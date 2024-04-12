@@ -5,7 +5,7 @@ const Header = () => {
     <header className="flex items-center min-w-full justify-end m-2">
     <div>
       <Link href="/">
-        <h1 className="text-3xl font-bold text-gray-800">QUEVEDODENTAL</h1>
+        <h1 className="text-3xl text-gray-800">QUEVEDO<b>DENTAL</b></h1>
       </Link>
       
       </div>

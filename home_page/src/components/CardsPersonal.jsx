@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const CardsPersonal = () => {
   return (
-    <div className="grid grid-cols-2 gap-12">
+    <div className="grid grid-cols-2 gap-12 p-10">
       <div className="max-w-md shadow-lg  p-6 bg-primary-main rounded-lg">
         <div className="">
           <Image 

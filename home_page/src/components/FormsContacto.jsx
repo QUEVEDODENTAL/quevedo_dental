@@ -6,7 +6,7 @@ const FormsContacto = () => {
     <div className='flex flex-col items-center justify-center bg-primary-white rounded-2xl mt-10 max-w-md shadow-lg  p-6'>
       {/* Logo */}
       <div className=''>
-        <Image src='/logo.png' alt='Logo' width={100} height={100} />
+        <Image src='/assets/logo.jpeg' alt='Logo' width={200} height={200} />
       </div>
       {/* Encabezado */}
       <h3 className='text-2xl font-semibold mb-4'>Comparte tu experiencia</h3>

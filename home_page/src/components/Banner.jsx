@@ -17,7 +17,7 @@ const Banner = () => {
             archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar
             de las industrias desde el año 1500
           </p>
-          <button className="bg-secondary-button  text-primary-seccion font-bold py-2 px-4 border-b-4 hover:border-blue-500 rounded mt-5">
+          <button className="bg-secondary-button  text-primary-seccion font-bold py-2 px-4  hover:text-primary-white rounded mt-5">
             Conocenos
           </button>
         </div>
