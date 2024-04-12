@@ -24,12 +24,12 @@ HomePage de la clinica dental Quevedo.
 ```
 4. Abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento.
 
-##Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 Next.js - Framework de React para aplicaciones web.
 Tailwind CSS - Framework de CSS utilitario.
 
-##Contribución
+## Contribución
 Si deseas contribuir a este proyecto, sigue estos pasos:
 
 Haz un fork del repositorio.
