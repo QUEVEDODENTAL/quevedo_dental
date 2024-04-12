@@ -26,10 +26,10 @@ HomePage de la clinica dental Quevedo.
 
 ## Tecnologías Utilizadas y Versiones
 
-Next.js - Framework de React para aplicaciones web.
-Tailwind CSS - Framework de CSS utilitario.
-npm - '10.4.0'
-node - '21.6.1',
+- Next.js - Framework de React para aplicaciones web.
+- Tailwind CSS - Framework de CSS utilitario.
+- npm - '10.4.0'
+- node - '21.6.1',
 
 ## Contribución
 Si deseas contribuir a este proyecto, sigue estos pasos:
