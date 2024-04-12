@@ -1,6 +1,6 @@
 # Quevedo Dental
+Se llevó acabo un proceso meticuloso y detallado para garantizar la eficiencia y la integridad de la información dentro del sistema realizado . Este proyecto implica la gestión de datos relacionados con citas, clientes, deudas, doctores, empleados, inventario, locales, pagos y datos de usuarios, abarcando tanto a doctores, empleados y clientes.
 
-HomePage de la clinica dental Quevedo.
 
 ## Tabla de Contenidos
 
@@ -14,22 +14,46 @@ HomePage de la clinica dental Quevedo.
 ## Instalación
 
 1. Clona este repositorio en tu máquina local.
-2. Instala las dependencias utilizando el gestor de paquetes npm:
 
-   ```bash
+Para clonar un repositorio dirigete a donde dice Code y  copia el url que te da HTTPS o SSH
+- Abra Git Bash.
+
+-Cambia el directorio de trabajo actual a la ubicación en donde quieres clonar el directorio.
+
+-Escriba git clone y pegue la dirección URL que ha copiado antes.
+
+-git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+
+2. Instala node.js 
+Ingresando a la pagina https://nodejs.org/en/download
+Instala la version 20.11.1
+
+3. Instala el react con el comando
+   - npx create-next-app@latest
+
+4. Instala las dependencias utilizando el gestor de paquetes npm:
+
+Ingresa a la terminal y escribe el comando:
    npm install
-3. Inicia el servidor de desarrollo:
-```bash
-   npm run dev
-```
-4. Abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento.
+ Inicia el servidor de desarrollo:
+ npm run dev
+   
+Genera y Migra el schema de Base de datos.
+ npx prisma migrate dev
+ npx prisma migrate deploy
+ npx prisma generate
+
+Ejecuta el proyecto.
+ npm run dev
+
+5. Abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento.
 
 ## Tecnologías Utilizadas y Versiones
 
 - Next.js - Framework de React para aplicaciones web.
 - Tailwind CSS - Framework de CSS utilitario.
-- npm - '10.4.0'
-- node - '21.6.1',
+- npm - '10.2.4'
+- node - '20.11.1',
 
 ## Contribución
 Si deseas contribuir a este proyecto, sigue estos pasos:
