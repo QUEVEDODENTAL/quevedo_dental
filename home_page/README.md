@@ -29,7 +29,8 @@ Instala la version 20.11.1 en caso de tener de ya contar con otra version
 Ingresa a la terminal y escribe el comando:
     ```sh npm install   ```
 Para cambiar de version usa el comando
-  ```sh npm install -g npm@7.0.0
+  ```
+sh npm install -g npm@7.0.0
 ```
  Inicia el servidor de desarrollo:
  npm run dev
