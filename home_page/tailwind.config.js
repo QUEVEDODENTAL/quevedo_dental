@@ -18,9 +18,13 @@ module.exports = {
   theme: {
     colors: {
       primary: {
-        seccion: '#E8EFFF',
+        seccion: '#F3F5F9',
         info: '#1BC3EA',
-        main: '#FFFBF2'
+        main: '#FFFBF2',
+        white: '#FFFFFf'
+      },
+      text: {
+        blackText: '#151515'
       },
       secondary: {
         font: '#1A71AB',
