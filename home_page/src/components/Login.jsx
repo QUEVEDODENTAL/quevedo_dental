@@ -29,7 +29,7 @@ const Login = () => {
             </div>
             <div className="flex justify-center mt-[15px]">
                 <p className="mr-2">No estas registrado?</p>
-                <Link href={'/admin/registrar'} className="text-blue-500">Registrate Ahora</Link >
+                <Link href={'/admin/registrar'} className="text-blue-500">Registrate Ahora</Link>
             </div>
         </div>
     )
