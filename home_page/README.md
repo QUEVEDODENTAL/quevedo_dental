@@ -21,32 +21,51 @@ Ingresando a la pagina https://nodejs.org/en/download
 Instala la version 20.11.1
 
 Instala la version 20.11.1 en caso de tener de ya contar con otra version
- ```sh nvm use [version] ```
+ ```
+sh nvm use [version] 
+ ```
 
 4. Instala las dependencias utilizando el gestor de paquetes npm:
-  ```sh npm install npm@latest -g   ```
+  ```
+sh npm install npm@latest -g
+ ```
 
 Ingresa a la terminal y escribe el comando:
     ```sh npm install   ```
 Para cambiar de version usa el comando
-  ```
+```
 sh npm install -g npm@7.0.0
 ```
  Inicia el servidor de desarrollo:
+ ```
  npm run dev
-  ```sh npm run dev ```
+```
+  ```
+sh npm run dev
+  ```
 
 Genera y Migra el schema de Base de datos.
-```sh npx prisma migrate dev```
-``` sh npx prisma migrate deploy  ```
- ``` sh npx prisma generate ```
+```
+sh npx prisma migrate dev
+```
+``` 
+sh npx prisma migrate deploy
+ ```
+ ``` 
+ sh npx prisma generate
+```
 
 Ejecuta el proyecto.
-``` sh npm run dev ```
+```
+ sh npm run dev
+```
 
 5. Abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento.
 5. Abre tu navegador y ve a
-```sh http://localhost:3000 ``` para ver la aplicación en funcionamiento.
+```
+sh http://localhost:3000
+```
+para ver la aplicación en funcionamiento.
 
 ## Tecnologías Utilizadas y Versiones
 
