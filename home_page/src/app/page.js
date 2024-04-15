@@ -1,9 +1,9 @@
 import { Phone, Mail, MapPin } from 'react-feather';
 import HeroBanner from "./pages";
-import Servicios from "./pages/servicios";
-import Contactanos from './pages/contactanos';
-import NuestroEquipo from './pages/nuesto-equipo';
-import SobreNosotros from './pages/sobre-nosotros';
+import Servicios from "./servicios";
+import Contactanos from './contactanos';
+import NuestroEquipo from './nuestro-equipo';
+import SobreNosotros from './sobre-nosotros';
 export default function Home() {
   return (
     <main className="flex flex-col items-center min-h-screen min-w-full md:min-w-0 bg-primary-main mx-24">
