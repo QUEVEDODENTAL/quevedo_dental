@@ -60,7 +60,7 @@ Ejecuta el proyecto.
  sh npm run dev
 ```
 
-5. Abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento.
+5. Desde el equipo donde ejecutaste el codigo abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento.
 5. Abre tu navegador y ve a
 ```
 sh http://localhost:3000
