@@ -22,52 +22,59 @@ Instala la version 20.11.1
 
 Instala la version 20.11.1 en caso de tener de ya contar con otra version
  ```
-sh nvm use [version] 
+nvm use [version] 
  ```
 
 4. Instala las dependencias utilizando el gestor de paquetes npm:
   ```
-sh npm install npm@latest -g
+npm install npm@latest -g
  ```
 
 Ingresa a la terminal y escribe el comando:
     ```sh npm install   ```
 Para cambiar de version usa el comando
 ```
-sh npm install -g npm@7.0.0
+npm install -g npm@7.0.0
 ```
  Inicia el servidor de desarrollo:
  ```
  npm run dev
 ```
   ```
-sh npm run dev
+npm run dev
   ```
 
 Genera y Migra el schema de Base de datos.
 ```
-sh npx prisma migrate dev
+npx prisma migrate dev
 ```
 ``` 
-sh npx prisma migrate deploy
+npx prisma migrate deploy
  ```
  ``` 
- sh npx prisma generate
+ npx prisma generate
 ```
 
 Ejecuta el proyecto.
 ```
- sh npm run dev
+ npm run dev
 ```
 
-5. Desde el equipo donde ejecutaste el codigo abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento.
+5. Desde el equipo donde ejecutaste el codigo abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento pero de manera local.
 5. Abre tu navegador y ve a
 ```
-sh http://localhost:3000
+http://localhost:3000
 ```
 para ver la aplicación en funcionamiento.
 
-## Tecnologías Utilizadas y Versiones
+
+6. Pero si es en otra equipo donde se esta ejecutando abre el cmd de tu equipo y escribe ipconfig, cuando termine de ejecutarse ese comando busca un apartado que diga direccion IPv4.
+6. Dada la direccion IPv4 que te dete diriges a tu navegador y pones
+ ```
+http://direccion ip:3000
+```
+
+# Tecnologías Utilizadas y Versiones
 
 ## Contribución
 Si deseas contribuir a este proyecto, sigue estos pasos:
