@@ -12,31 +12,33 @@ const Header = () => {
           <div className="p-3"><p className="text-sm flex"><Mail size={16} className='mx-2' /> doctor@consultoriomx.com</p></div>
         </div>
       </div>
-      <div>
-        <Link href="/">
-          <h1 className="text-3xl text-gray-800 p-3">QUEVEDO<b>DENTAL</b></h1>
-        </Link>
+      <div className='flex flex-row items-center'>
+        <div>
+          <Link href="/">
+            <h1 className="text-3xl text-gray-800 p-3">QUEVEDO<b>DENTAL</b></h1>
+          </Link>
 
+        </div>
+        <nav className="hidden md:flex ">
+          <ul className="flex items-center p-5">
+            <li className='p-2'>
+              <Link href="/#">Inicio</Link>
+            </li>
+            <li className='p-2'>
+              <Link href="/#servicios">Servicio</Link>
+            </li>
+            <li className='p-2'>
+              <Link href="/#sobre-nosotros">Sobre Nosotros</Link>
+            </li>
+            <li className='p-2'>
+              <Link href="/#nuestro-equipo">Nuestro Equipo</Link>
+            </li>
+            <li className='p-2'>
+              <Link href="/#contactanos">Contactanos</Link>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <nav className="hidden md:flex ">
-        <ul className="flex items-center p-5">
-          <li className='p-2'>
-            <Link href="/#">Inicio</Link>
-          </li>
-          <li className='p-2'>
-            <Link href="/#servicios">Servicio</Link>
-          </li>
-          <li className='p-2'>
-            <Link href="/#sobre-nosotros">Sobre Nosotros</Link>
-          </li>
-          <li className='p-2'>
-            <Link href="/#nuestro-equipo">Nuestro Equipo</Link>
-          </li>
-          <li className='p-2'>
-            <Link href="/#contactanos">Contactanos</Link>
-          </li>
-        </ul>
-      </nav>
     </header>
   );
 };

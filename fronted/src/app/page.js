@@ -9,11 +9,8 @@ export default function Home() {
   return (
 
     <main className="flex flex-col items-center min-h-screen min-w-full md:min-w-0 bg-primary-main mx-24 ">
-      <section className="flex flex-col items-center min-h-screen min-w-full justify-between bg-primary-seccion sticky">
-        <Header />
-        <div className="flex flex-row justify-center">
-          <Banner />
-        </div>
+      <section className="flex flex-col items-center min-h-screen min-w-full justify-between bg-primary-seccion sticky mt-64">
+        <Banner />
       </section>
       <div>
         <section id='servicios' className="flex flex-col items-center min-h-screen min-w-full justify-between bg-primary-seccion">
