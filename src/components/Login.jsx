@@ -25,7 +25,9 @@ const Login = () => {
                 <button
                     type='submit'
                     name='registrar'
-                    className="text-[1rem] p-[10px] rounded-[25px] bg-[#1f5792] cursor-pointer text-white" >Iniciar secion</button>
+                    className="text-[1rem] p-[10px] rounded-[25px] bg-[#1f5792] cursor-pointer text-white" >
+                    Iniciar secion
+                </button>
             </div>
             <div className="flex justify-center mt-[15px]">
                 <p className="mr-2">No estas registrado?</p>

@@ -2,7 +2,7 @@ const RegistrarPage = () => {
 
     return (
         <div className="bg-white mx-1 my-1 p-4  border-2 rounded-[15px] drop-shadow-2xl lg:w-1/4 md:w-1/2">
-            <h1 className='text-5xl font-semibold flex justify-center mb-[30px]'>Registro</h1>
+            <h1 className='text-5xl font-semibold flex justify-center mb-[30px]'>Registrar</h1>
 
             <div className="flex justify-around">
                 <button>Doctor </button>
