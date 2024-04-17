@@ -1,18 +1,18 @@
+<<<<<<< HEAD
 import { signup } from '@/app/actions/auth'
 const RegistrarPage = () => {
+=======
+import RegistrarPage from '@/components/Registrar'
+import React from 'react'
+>>>>>>> 454ccb76a73ad3467dce82bca06d3fccfc0872b3
 
+export const RegistroPage = () => {
     return (
-        <div className=" mx-1 my-1 p-4 border-10 custom-shadowa rounded-[15px] lg:w-4/5 md:w-1/2">
-            <h1 className='text-5xl font-bold flex justify-center mb-[30px]'>Registro</h1>
-
-            <div className="flex justify-around">
-                <div>
-                    <button className="font-semibold text-secondary-font hover:bg-cyan-600" >Doctor </button>
-                </div>
-                <div>
-                    <button className=" font-semibold text-secondary-font">Empleado</button>
-                </div>
+        <section className="flex flex-col items-center min-h-screen p-5 min-w-full justify-center bg-primary-seccion">
+            <div className='flex justify-center min-w text-xl font-extrabold pt-8'>
+                <RegistrarPage />
             </div>
+<<<<<<< HEAD
 
             <form action={signup}>
                 <label className="text-lg font-medium px-[12px]">Nombre(s)</label>
@@ -47,6 +47,10 @@ const RegistrarPage = () => {
                 </button>
             </div>
         </div>
+=======
+        </section>
+>>>>>>> 454ccb76a73ad3467dce82bca06d3fccfc0872b3
     )
 }
-export default RegistrarPage
+
+export default RegistroPage

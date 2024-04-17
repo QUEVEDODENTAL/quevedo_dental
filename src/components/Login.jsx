@@ -5,7 +5,7 @@ const Login = () => {
     return (
 <div class="font-[sans-serif] text-[#333]">
       <div class="min-h-screen flex fle-col items-center justify-center py-6 px-4">
-        <div class="flexitems-center gap-4 max-w-7xl w-full">
+        <div class="flex items-center gap-4 max-w-7xl w-full">
           <div class="border border-gray-300 rounded-md p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
             <form class="space-y-6">
               <div class="mb-10">
@@ -49,9 +49,24 @@ const Login = () => {
                 </button>
               </div>
             </form>
+<<<<<<< HEAD
           </div>
           <div class="lg:h-[400px] md:h-[300px] max-md:mt-10">
           </div>
+=======
+            <div className="mt-8 flex flex-col">
+                <button
+                    type='submit'
+                    name='registrar'
+                    className="text-[1rem] p-[10px] rounded-[25px] bg-[#1f5792] cursor-pointer text-white" >
+                    Iniciar secion
+                </button>
+            </div>
+            <div className="flex justify-center mt-[15px]">
+                <p className="mr-2">No estas registrado?</p>
+                <Link href={'/admin/registrar'} className="text-blue-500">Registrate Ahora</Link>
+            </div>
+>>>>>>> 454ccb76a73ad3467dce82bca06d3fccfc0872b3
         </div>
       </div>
     </div>
