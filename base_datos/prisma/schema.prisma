@@ -1,0 +1,168 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Doctor {
+  id                 Int      @id @default(autoincrement())
+  nombre             String
+  apellido           String
+  edad               Int?
+  fecha_nacimiento   DateTime?
+  genero             GeneroEnum?
+  especialidad       String?
+  direccion          String?
+  telefono           String?
+  celular            String?
+  curp               String?
+  cedula             String?
+  sexo               String?
+  licencia_medica    String?
+  correo_electronico String?
+  historiales_clinicos HistorialClinico[]
+}
+
+model Empleado {
+  id                 Int      @id @default(autoincrement())
+  nombre             String
+  apellido           String
+  fecha_nacimiento   DateTime?
+  genero             GeneroEnum?
+  telefono           String?
+  correo_electronico String?
+  direccion          String?
+  puesto             String?
+  curp               String?
+  rfc                String?
+  salario            Float?
+  fecha_contratacion DateTime?
+}
+
+model Clientes {
+  id                          Int      @id @default(autoincrement())
+  nombre                      String
+  apellido                    String
+  sexo                        String
+  edad                        Int
+  fecha_nacimiento            DateTime?
+  domicilio                   String?
+  telefono                    String?
+  curp                        String
+  correo_electronico          String?
+  tipo_sangre                 String
+  ocupacion                   String
+  escolaridad                 String
+  historial_clinico           HistorialClinico[]
+  antecedentesNoPatologicos   AntecedentesNoPatologicos[]
+  antecedentesPatologicos     AntecedentesPatologicos[]
+  examenesClinicosIntraorales ExamenClinicoIntraoral[]
+}
+
+model Enfermedades {
+  id_enfermedad Int       @id @default(autoincrement())
+  tipo          TipoEnfermedadEnum
+  otro          String
+  causas        String
+  sintomas      String
+  tratamiento   String
+}
+
+model AntecedentesNoPatologicos {
+  id_paciente  Int      @id
+  paciente     Clientes @relation(fields: [id_paciente], references: [id])
+  tabaquismo   SiNoEnum
+  toxicomanias SiNoEnum
+  alcoholismo  SiNoEnum
+  sedentarismo SiNoEnum
+  cirugias     String?
+  ejercicio    String?
+}
+
+model AntecedentesPatologicos {
+  id              Int      @id @default(autoincrement())
+  paciente        Clientes @relation(fields: [paciente_id], references: [id])
+  paciente_id     Int
+  enfermedad      String
+  fecha_diagnostico DateTime
+  tipo_enfermedad TipoEnfermedadEnum
+  cronica         SiNoEnum
+  tratamiento     String?
+  observaciones   String?
+
+  @@index([paciente_id], name: "paciente_id")
+}
+
+model ExamenClinicoIntraoral {
+  id_paciente       Int      @id
+  paciente          Clientes @relation(fields: [id_paciente], references: [id])
+  fecha_examen      DateTime
+  encia             String
+  lengua            String
+  paladar_duro      String
+  paladar_blando    String
+  faringe           String
+  piso_de_la_boca   String
+  reborde_residual  String
+  tipo_oclusion     String
+  observaciones     String?
+}
+
+model HistorialClinico {
+  id              Int       @id @default(autoincrement())
+  cliente         Clientes  @relation(fields: [cliente_id], references: [id])
+  cliente_id      Int
+  dentista        Doctor    @relation(fields: [dentista_id], references: [id])
+  dentista_id     Int
+  fecha_consulta  DateTime
+  datos_clinicos  Json
+
+  @@index([cliente_id], name: "cliente_id")
+  @@index([dentista_id], name: "dentista_id")
+}
+
+model Permiso {
+  id           Int    @id @default(autoincrement())
+  permiso      String
+  descripcion  String
+}
+
+model Bitacora {
+  id           Int      @id @default(autoincrement())
+  fecha_hora   DateTime @default(now())
+  usuario      String
+  accion       String
+  tabla        String?
+  id_registro  Int?
+  descripcion  String?
+}
+
+enum GeneroEnum {
+  Masculino
+  Femenino
+  Otro
+}
+
+enum TipoEnfermedadEnum {
+  Cardiovasculares
+  Hematologicas
+  Neurologicas
+  Pulmonares
+  Endocrinas
+  Metabolicas
+  Renales
+  Mentales
+  Gastrointestinales
+  Dermatologicas
+  Cancer
+  Otros
+  EnfermedadesDeLaInfancia
+}
+
+enum SiNoEnum {
+  Si
+  No
+}
