@@ -1,3 +1,4 @@
+import { signup } from '@/app/actions/auth'
 const RegistrarPage = () => {
 
     return (
@@ -13,7 +14,7 @@ const RegistrarPage = () => {
                 </div>
             </div>
 
-            <form>
+            <form action={signup}>
                 <label className="text-lg font-medium px-[12px]">Nombre(s)</label>
                 <input
                     type="text"

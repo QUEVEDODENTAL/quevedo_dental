@@ -10,7 +10,9 @@ export default function Home() {
 
     <main className="flex flex-col items-center min-h-screen min-w-full md:min-w-0 bg-primary-main mx-24 ">
       <Header />
-      <section className="flex flex-col items-center min-h-screen min-w-full justify-between bg-primary-seccion sticky mt-64">
+
+      <section className="flex flex-col items-center min-h-screen min-w-full justify-between bg-primary-seccion">
+      
         <Banner />
       </section>
       <div>
