@@ -1,11 +1,13 @@
 'use client'
 import React, { useState } from 'react';
-import { FaBars, FaTimes, } from 'react-icons/fa';
+import { FaBars, FaTimes, FaRegUserCircle, FaTooth } from 'react-icons/fa';
+import { FaHouse, FaAddressCard } from "react-icons/fa6";
 import Link from 'next/link';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuOpenHeight, setMenuOpenHeight] = useState('h-20');
+  const offsetValue = -1000; // desplazar no funciona
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -33,41 +35,39 @@ const Header = () => {
       <div className={`md:flex md:items-center ${menuOpen ? 'flex flex-col' : 'hidden'}`}>
         <nav className="md:hidden">
           <ul className="flex flex-col space-y-4 p-4 justify-start">
-            <li className="text-left hover:scale-125 transition-transform">
-              <Link href="/">Inicio</Link>
+            <li className="text-left hover:scale-125 transition-transform flex items-center justify-start">
+              <FaHouse className="mr-1" />
+              <Link href="/" scroll={true} offset={offsetValue}>Inicio</Link>
             </li>
-            <li className="text-left hover:scale-125 transition-transform">
-              <Link href="/#servicios">Servicios</Link>
+            <li className="text-left hover:scale-125 transition-transform flex items-center justify-start">
+              <FaTooth className="mr-1" />
+              <Link href="/#servicios" scroll={true} offset={offsetValue}>Servicios</Link>
             </li>
-            <li className="text-left hover:scale-125 transition-transform">
-              <Link href="/#sobre-nosotros">Sobre Nosotros</Link>
+            <li className="text-left hover:scale-125 transition-transform flex items-center justify-start">
+              <FaRegUserCircle className="mr-1" />
+              <Link href="/#sobre-nosotros" scroll={true} offset={offsetValue}>Sobre Nosotros</Link>
             </li>
-            <li className="text-left hover:scale-125 transition-transform">
-              <Link href="/#nuestro-equipo">Nuestro Equipo</Link>
-            </li>
-            <li className="text-left hover:scale-125 transition-transform">
-              <Link href="/#contactanos">Contáctanos</Link>
+            <li className="text-left hover:scale-125 transition-transform flex items-center justify-start">
+              <FaAddressCard className="mr-1" />
+              <Link href="/#nuestro-equipo" scroll={true} offset={offsetValue}>Nuestro Equipo</Link>
             </li>
           </ul>
         </nav>
-        <div className="hidden md:flex md:items-center justify-end font-sans p-2">
-            <ul className="md:flex md:space-x-4 whitespace-nowrap">
-                <li className="transition-transform transform hover:scale-105">
-                    <Link href="/">Inicio</Link>
-                </li>
-                <li className="transition-transform transform hover:scale-105">
-                    <Link href="/#servicios">Servicios</Link>
-                </li>
-                <li className="transition-transform transform hover:scale-105">
-                    <Link href="/#sobre-nosotros">Sobre Nosotros</Link>
-                </li>
-                <li className="transition-transform transform hover:scale-105">
-                    <Link href="/#nuestro-equipo">Nuestro Equipo</Link>
-                </li>
-                <li className="transition-transform transform hover:scale-105">
-                    <Link href="/#contactanos">Contáctanos</Link>
-                </li>
-            </ul>
+        <div className="hidden md:flex md:items-center justify-start font-sans p-2">
+          <ul className="md:flex md:space-x-4 whitespace-nowrap">
+            <li className="transition-transform transform hover:scale-105 flex items-center justify-start">
+              <Link href="/" scroll={true} offset={offsetValue}>Inicio</Link>
+            </li>
+            <li className="transition-transform transform hover:scale-105 flex items-center justify-start">
+              <Link href="/#servicios" scroll={true} offset={offsetValue}>Servicios</Link>
+            </li>
+            <li className="transition-transform transform hover:scale-105 flex items-center justify-start">
+              <Link href="/#sobre-nosotros" scroll={true} offset={offsetValue}>Sobre Nosotros</Link>
+            </li>
+            <li className="transition-transform transform hover:scale-105 flex items-center justify-start">
+              <Link href="/#nuestro-equipo" scroll={true} offset={offsetValue}>Nuestro Equipo</Link>
+            </li>
+          </ul>
         </div>
       </div>
       {menuOpen && (
