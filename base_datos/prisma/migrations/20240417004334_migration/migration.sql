@@ -1,20 +1,20 @@
 -- CreateTable
 CREATE TABLE `Doctor` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `nombre` VARCHAR(191) NOT NULL,
-    `apellido` VARCHAR(191) NOT NULL,
-    `edad` INTEGER NULL,
-    `fecha_nacimiento` DATETIME(3) NULL,
-    `genero` ENUM('Masculino', 'Femenino', 'Otro') NULL,
-    `especialidad` VARCHAR(191) NULL,
-    `direccion` VARCHAR(191) NULL,
-    `telefono` VARCHAR(191) NULL,
-    `celular` VARCHAR(191) NULL,
-    `curp` VARCHAR(191) NULL,
-    `cedula` VARCHAR(191) NULL,
-    `sexo` VARCHAR(191) NULL,
-    `licencia_medica` VARCHAR(191) NULL,
-    `correo_electronico` VARCHAR(191) NULL,
+    `Name` VARCHAR(191) NOT NULL,
+    `LastName` VARCHAR(191) NOT NULL,
+    `Age` INTEGER NULL,
+    `BirthDate` DATETIME(3) NULL,
+    `Gender` ENUM('Masculino', 'Femenino', 'Otro') NULL,
+    `Specialty` VARCHAR(191) NULL,
+    `Address` VARCHAR(191) NULL,
+    `Phone` VARCHAR(191) NULL,
+    `Cellphone` VARCHAR(191) NULL,
+    `Curp` VARCHAR(191) NULL,
+    `LicenseNumber` VARCHAR(191) NULL,
+    `Sex` VARCHAR(191) NULL,
+    `MedicalLicense` VARCHAR(191) NULL,
+    `Email` VARCHAR(191) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -22,18 +22,18 @@ CREATE TABLE `Doctor` (
 -- CreateTable
 CREATE TABLE `Empleado` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `nombre` VARCHAR(191) NOT NULL,
-    `apellido` VARCHAR(191) NOT NULL,
-    `fecha_nacimiento` DATETIME(3) NULL,
-    `genero` ENUM('Masculino', 'Femenino', 'Otro') NULL,
-    `telefono` VARCHAR(191) NULL,
-    `correo_electronico` VARCHAR(191) NULL,
-    `direccion` VARCHAR(191) NULL,
-    `puesto` VARCHAR(191) NULL,
-    `curp` VARCHAR(191) NULL,
-    `rfc` VARCHAR(191) NULL,
-    `salario` DOUBLE NULL,
-    `fecha_contratacion` DATETIME(3) NULL,
+    `Name` VARCHAR(191) NOT NULL,
+    `LastName` VARCHAR(191) NOT NULL,
+    `BirthDate` DATETIME(3) NULL,
+    `Gender` ENUM('Masculino', 'Feminino', 'Otro') NULL,
+    `Phone` VARCHAR(191) NULL,
+    `Email` VARCHAR(191) NULL,
+    `Address` VARCHAR(191) NULL,
+    `Position` VARCHAR(191) NULL,
+    `Curp` VARCHAR(191) NULL,
+    `Rfc` VARCHAR(191) NULL,
+    `Salary` DOUBLE NULL,
+    `HireDate` DATETIME(3) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -41,97 +41,99 @@ CREATE TABLE `Empleado` (
 -- CreateTable
 CREATE TABLE `Clientes` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `nombre` VARCHAR(191) NOT NULL,
-    `apellido` VARCHAR(191) NOT NULL,
-    `sexo` VARCHAR(191) NOT NULL,
-    `edad` INTEGER NOT NULL,
-    `fecha_nacimiento` DATETIME(3) NULL,
-    `domicilio` VARCHAR(191) NULL,
-    `telefono` VARCHAR(191) NULL,
-    `curp` VARCHAR(191) NOT NULL,
-    `correo_electronico` VARCHAR(191) NULL,
-    `tipo_sangre` VARCHAR(191) NOT NULL,
-    `ocupacion` VARCHAR(191) NOT NULL,
-    `escolaridad` VARCHAR(191) NOT NULL,
+    `Name` VARCHAR(191) NOT NULL,
+    `LastName` VARCHAR(191) NOT NULL,
+    `Sex` VARCHAR(191) NOT NULL,
+    `Age` INTEGER NOT NULL,
+    `BirthDate` DATETIME(3) NULL,
+    `Address` VARCHAR(191) NULL,
+    `Phone` VARCHAR(191) NULL,
+    `Curp` VARCHAR(191) NOT NULL,
+    `Email` VARCHAR(191) NULL,
+    `BloodType` VARCHAR(191) NOT NULL,
+    `Occupation` VARCHAR(191) NOT NULL,
+    `Education` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `Enfermedades` (
-    `id_enfermedad` INTEGER NOT NULL AUTO_INCREMENT,
-    `tipo` ENUM('Cardiovasculares', 'Hematologicas', 'Neurologicas', 'Pulmonares', 'Endocrinas', 'Metabolicas', 'Renales', 'Mentales', 'Gastrointestinales', 'Dermatologicas', 'Cancer', 'Otros', 'EnfermedadesDeLaInfancia') NOT NULL,
-    `otro` VARCHAR(191) NOT NULL,
-    `causas` VARCHAR(191) NOT NULL,
-    `sintomas` VARCHAR(191) NOT NULL,
-    `tratamiento` VARCHAR(191) NOT NULL,
+    `id_disease` INTEGER NOT NULL AUTO_INCREMENT,
+    `type` ENUM('Cardiovasculares', 'Hematológicas', 'Neurológicas', 'Pulmonares', 'Endocrinas', 'Metabólicas', 'Renales', 
+'Mentales', 'Gastrointestinales', 'Dermatológicas', 'Cáncer', 'Otros', 'ENFERMEDADES DE LA INFANCIA') NOT NULL,
+    `other` VARCHAR(191) NOT NULL,
+    `causes` VARCHAR(191) NOT NULL,
+    `symptoms` VARCHAR(191) NOT NULL,
+    `treatment` VARCHAR(191) NOT NULL,
 
-    PRIMARY KEY (`id_enfermedad`)
+    PRIMARY KEY (`id_disease`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `AntecedentesNoPatologicos` (
-    `id_paciente` INTEGER NOT NULL,
-    `tabaquismo` ENUM('Si', 'No') NOT NULL,
-    `toxicomanias` ENUM('Si', 'No') NOT NULL,
-    `alcoholismo` ENUM('Si', 'No') NOT NULL,
-    `sedentarismo` ENUM('Si', 'No') NOT NULL,
-    `cirugias` VARCHAR(191) NULL,
-    `ejercicio` VARCHAR(191) NULL,
+    `id_patient` INTEGER NOT NULL,
+    `smoking` ENUM('Yes', 'No') NOT NULL,
+    `substance_abuse` ENUM('Yes', 'No') NOT NULL,
+    `alcoholism` ENUM('Yes', 'No') NOT NULL,
+    `sedentary` ENUM('Yes', 'No') NOT NULL,
+    `surgeries` VARCHAR(191) NULL,
+    `exercise` VARCHAR(191) NULL,
 
-    PRIMARY KEY (`id_paciente`)
+    PRIMARY KEY (`id_patient`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `AntecedentesPatologicos` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `paciente_id` INTEGER NOT NULL,
-    `enfermedad` VARCHAR(191) NOT NULL,
-    `fecha_diagnostico` DATETIME(3) NOT NULL,
-    `tipo_enfermedad` ENUM('Cardiovasculares', 'Hematologicas', 'Neurologicas', 'Pulmonares', 'Endocrinas', 'Metabolicas', 'Renales', 'Mentales', 'Gastrointestinales', 'Dermatologicas', 'Cancer', 'Otros', 'EnfermedadesDeLaInfancia') NOT NULL,
-    `cronica` ENUM('Si', 'No') NOT NULL,
-    `tratamiento` VARCHAR(191) NULL,
-    `observaciones` VARCHAR(191) NULL,
+    `patient_id` INTEGER NOT NULL,
+    `disease` VARCHAR(191) NOT NULL,
+    `diagnosis_date` DATETIME(3) NOT NULL,
+    `disease_type` ENUM('Cardiovasculares', 'Hematológicas', 'Neurológicas', 'Pulmonares', 'Endocrinas', 'Metabólicas', 'Renales', 'Mentales', 
+'Gastrointestinales', 'Dermatológicas', 'Cáncer', 'Otros', 'ENFERMEDADES DE LA INFANCIA') NOT NULL,
+    `chronic` ENUM('Yes', 'No') NOT NULL,
+    `treatment` VARCHAR(191) NULL,
+    `observations` VARCHAR(191) NULL,
 
-    INDEX `paciente_id`(`paciente_id`),
+    INDEX `patient_id`(`patient_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `ExamenClinicoIntraoral` (
-    `id_paciente` INTEGER NOT NULL,
-    `fecha_examen` DATETIME(3) NOT NULL,
-    `encia` VARCHAR(191) NOT NULL,
-    `lengua` VARCHAR(191) NOT NULL,
-    `paladar_duro` VARCHAR(191) NOT NULL,
-    `paladar_blando` VARCHAR(191) NOT NULL,
-    `faringe` VARCHAR(191) NOT NULL,
-    `piso_de_la_boca` VARCHAR(191) NOT NULL,
-    `reborde_residual` VARCHAR(191) NOT NULL,
-    `tipo_oclusion` VARCHAR(191) NOT NULL,
-    `observaciones` VARCHAR(191) NULL,
+    `id_patient` INTEGER NOT NULL,
+    `examination_date` DATETIME(3) NOT NULL,
+    `gums` VARCHAR(191) NOT NULL,
+    `tongue` VARCHAR(191) NOT NULL,
+    `hard_palate` VARCHAR(191) NOT NULL,
+    `soft_palate` VARCHAR(191) NOT NULL,
+    `pharynx` VARCHAR(191) NOT NULL,
+    `floor_of_mouth` VARCHAR(191) NOT NULL,
+    `residual_ridge` VARCHAR(191) NOT NULL,
+    `occlusion_type` VARCHAR(191) NOT NULL,
+    `observations` VARCHAR(191) NULL,
 
-    PRIMARY KEY (`id_paciente`)
+    PRIMARY KEY (`id_patient`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `HistorialClinico` (
+CREATE TABLE `historialclinico` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `cliente_id` INTEGER NOT NULL,
-    `dentista_id` INTEGER NOT NULL,
-    `fecha_consulta` DATETIME(3) NOT NULL,
-    `datos_clinicos` JSON NOT NULL,
+    `client_id` INTEGER NOT NULL,
+    `dentist_id` INTEGER NOT NULL,
+    `consultation_date` DATETIME(3) NOT NULL,
+    `clinical_data` JSON NOT NULL,
 
-    INDEX `cliente_id`(`cliente_id`),
-    INDEX `dentista_id`(`dentista_id`),
+    INDEX `client_id`(`client_id`),
+    INDEX `dentist_id`(`dentist_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `Permiso` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `permiso` VARCHAR(191) NOT NULL,
-    `descripcion` VARCHAR(191) NOT NULL,
+    `permission` VARCHAR(191) NOT NULL,
+    `description` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -139,27 +141,36 @@ CREATE TABLE `Permiso` (
 -- CreateTable
 CREATE TABLE `Bitacora` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `fecha_hora` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `usuario` VARCHAR(191) NOT NULL,
-    `accion` VARCHAR(191) NOT NULL,
-    `tabla` VARCHAR(191) NULL,
-    `id_registro` INTEGER NULL,
-    `descripcion` VARCHAR(191) NULL,
+    `date_time` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `user` VARCHAR(191) NOT NULL,
+    `action` VARCHAR(191) NOT NULL,
+    `table` VARCHAR(191) NULL,
+    `record_id` INTEGER NULL,
+    `description` VARCHAR(191) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- AddForeignKey
-ALTER TABLE `AntecedentesNoPatologicos` ADD CONSTRAINT `AntecedentesNoPatologicos_id_paciente_fkey` FOREIGN KEY (`id_paciente`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+CREATE TABLE Usuarios (
+    `Id` INT AUTO_INCREMENT PRIMARY KEY,
+    `Email` VARCHAR(50) NOT NULL UNIQUE,
+    `Password` VARCHAR(50) NOT NULL,
+    `IsAdministrator` BOOLEAN NOT NULL DEFAULT FALSE,
+    `IsDoctor` BOOLEAN NOT NULL DEFAULT FALSE,
+    `IsEmployee` BOOLEAN NOT NULL DEFAULT FALSE
+);
 
 -- AddForeignKey
-ALTER TABLE `AntecedentesPatologicos` ADD CONSTRAINT `AntecedentesPatologicos_paciente_id_fkey` FOREIGN KEY (`paciente_id`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `NonPathologicalAntecedents` ADD CONSTRAINT `NonPathologicalAntecedents_id_patient_fkey` FOREIGN KEY (`id_patient`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `ExamenClinicoIntraoral` ADD CONSTRAINT `ExamenClinicoIntraoral_id_paciente_fkey` FOREIGN KEY (`id_paciente`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `PathologicalAntecedents` ADD CONSTRAINT `PathologicalAntecedents_patient_id_fkey` FOREIGN KEY (`patient_id`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `HistorialClinico` ADD CONSTRAINT `HistorialClinico_cliente_id_fkey` FOREIGN KEY (`cliente_id`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `IntraoralClinicalExamination` ADD CONSTRAINT `IntraoralClinicalExamination_id_patient_fkey` FOREIGN KEY (`id_patient`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `HistorialClinico` ADD CONSTRAINT `HistorialClinico_dentista_id_fkey` FOREIGN KEY (`dentista_id`) REFERENCES `Doctor`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `ClinicalHistory` ADD CONSTRAINT `ClinicalHistory_client_id_fkey` FOREIGN KEY (`client_id`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `ClinicalHistory` ADD CONSTRAINT `ClinicalHistory_dentist_id_fkey` FOREIGN KEY (`dentist_id`) REFERENCES `Doctor`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

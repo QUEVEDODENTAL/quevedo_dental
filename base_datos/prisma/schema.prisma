@@ -166,3 +166,12 @@ enum SiNoEnum {
   Si
   No
 }
+
+model User {
+  Id           Int      @id @default(autoincrement())
+  Email        String   @unique
+  Password     String
+  IsAdministrador      Boolean  @default(false)
+  IsDoctor     Boolean  @default(false)
+  IsEmployee   Boolean  @default(false)
+}
