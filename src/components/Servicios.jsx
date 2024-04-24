@@ -42,7 +42,7 @@ const Carousel = () => {
   return (
     <div className="relative w-full max-w-screen-xl mx-auto mb-8">
       <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-        <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 text-secondary-font md:pl-4 sm:pl-4">Servicios</h2>
+      <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 text-secondary-font md:pl-4 sm:pl-4 md:ml-0">Servicios</h2>
         <button
           className={`absolute top-1/2 left-0 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded-md text-5xl z-10 ${isLeftIconHovered ? 'scale-110 transition-transform duration-300' : ''}`}
           onClick={prevImage}

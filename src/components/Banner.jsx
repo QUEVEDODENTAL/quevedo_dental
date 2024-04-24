@@ -7,13 +7,13 @@ const Banner = () => {
       <div className="container mx-auto py-8 flex justify-center items-center">
         <div className="flex flex-col md:flex-row items-center">
           <div className="text-center md:text-left mb-6 md:mb-0 md:w-1/2 md:pr-8">
-            <h1 className="md:text-6xl font-semibold text-secondary-font mb-5 text-6xl">
+            <h1 className="md:text-6xl font-semibold text-secondary-font mb-5 text-6xl ">
               Tu sonrisa,<br />
               es la luz de<br />
               nuestro<br />
               consultorio
             </h1>
-            <p className="md:text-base lg:text-lg font-light">
+            <p className="md:text-base lg:text-lg font-light sm:px-2">
               Lorem Ipsum es simplemente el texto de relleno de las imprentas y
               archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar
               de las industrias desde el año 1500
@@ -30,7 +30,7 @@ const Banner = () => {
                 priority 
               />
             </div>
-            <div className="rounded-lg overflow-hidden md:hidden">
+            <div className="rounded-lg overflow-hidden md:hidden mx-4">
               <Image
                 src="/assets/dentista.jpg"
                 alt="Dentista"
