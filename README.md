@@ -1,6 +1,6 @@
 # Documentación de BASE DE DATOS
 
-Esta documentación proporciona una guía rápida sobre cómo usar Prisma para gestionar la base de datos y realizar migraciones.
+Esta documentación proporciona una guía sobre cómo usar Prisma para gestionar la base de datos y realizar la migración.
 
 ## Instalación
 
@@ -51,3 +51,4 @@ npx prisma migrate deploy
  npx prisma generate
 ```
 
+## Modo de uso de Base de Datos
