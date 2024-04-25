@@ -21,7 +21,8 @@ module.exports = {
         seccion: '#F3F5F9',
         info: '#1BC3EA',
         main: '#FFFBF2',
-        white: '#FFFFFf'
+        white: '#FFFFFf',
+        red: '#F94848'
       },
       text: {
         blackText: '#151515'
@@ -29,9 +30,9 @@ module.exports = {
       secondary: {
         font: '#1A71AB',
         button: '#1A71AB',
-        icon: '#1A71AB',
-        card: '#1A71AB'
-
+        icon: '#8190b5',
+        card: '#1A71AB',
+        dash: '#0f2246'
       }
     },
     extend: {
