@@ -13,7 +13,7 @@ npm install -g prisma
 1. Clona este repositorio en tu máquina local:
 
 ```
-git clone [https://github.com/tu_usuario/tu_proyecto.git](https://github.com/ValenzuelaRa/quevedo_dental.git)
+git clone (https://github.com/ValenzuelaRa/quevedo_dental.git)
 ```
 
 2. Navega hasta el directorio del proyecto:
