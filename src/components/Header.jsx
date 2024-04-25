@@ -51,6 +51,14 @@ const Header = () => {
               <FaAddressCard className="mr-1" />
               <Link href="/#nuestro-equipo" scroll={true} offset={offsetValue}>Nuestro Equipo</Link>
             </li>
+            <li className="text-left hover:scale-125 transition-transform flex items-center justify-start">
+              <FaAddressCard className="mr-1" />
+              <Link href="/#nuestro-equipo" scroll={true} offset={offsetValue}>Nuestro Equipo</Link>
+            </li>
+            <li className="text-left hover:scale-125 transition-transform flex items-center justify-start">
+              <FaAddressCard className="mr-1" />
+              <Link href="/admin" scroll={true} offset={offsetValue}>Consulta</Link>
+            </li>
           </ul>
         </nav>
         <div className="hidden md:flex md:items-center justify-start font-sans p-2">
@@ -66,6 +74,9 @@ const Header = () => {
             </li>
             <li className="transition-transform transform hover:scale-105 flex items-center justify-start">
               <Link href="/#nuestro-equipo" scroll={true} offset={offsetValue}>Nuestro Equipo</Link>
+            </li>
+            <li className="transition-transform transform hover:scale-105 flex items-center justify-start">
+              <Link href="/admin" scroll={true} offset={offsetValue}>Consulta</Link>
             </li>
           </ul>
         </div>

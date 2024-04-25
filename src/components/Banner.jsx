@@ -13,6 +13,7 @@ const Banner = () => {
               nuestro<br />
               consultorio
             </h1>
+            
             <p className="md:text-base lg:text-lg font-light sm:px-2">
               Lorem Ipsum es simplemente el texto de relleno de las imprentas y
               archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar

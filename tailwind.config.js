@@ -32,7 +32,8 @@ module.exports = {
         button: '#1A71AB',
         icon: '#8190b5',
         card: '#1A71AB',
-        dash: '#0f2246'
+        dash: '#0f2246',
+        dash2: '#E8F0FF'
       }
     },
     extend: {
