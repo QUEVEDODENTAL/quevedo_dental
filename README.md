@@ -34,7 +34,9 @@ cp .env.example .env
 ```
 
 4. Edita el archivo ´.env´ con los detalles de la base de datos.
-DATABASE_URL="postgresql://usuario:contraseña@localhost:5432/nombre_basedatos?schema=public"
+```
+DATABASE_URL="mysql://usuario:contraseña@localhost:5432/nombre_basedatos?schema=public"
+```
 
 ## Ejecucion de Migración.
 
