@@ -6,32 +6,32 @@ Esta documentación proporciona una guía rápida sobre cómo usar Prisma para g
 
 Antes de comenzar, asegúrate de tener Node.js y npm instalados en tu sistema. Luego, instala Prisma de forma global utilizando npm:
 
-´´´
+```
 npm install -g prisma
-´´´
+```
 
 1. Clona este repositorio en tu máquina local:
 
-´´´
+```
 git clone [https://github.com/tu_usuario/tu_proyecto.git](https://github.com/ValenzuelaRa/quevedo_dental.git)
-´´´
+```
 
 2. Navega hasta el directorio del proyecto:
-´´´
+```
 cd tu_proyecto
-´´´
+```
 
 3. INstala las dependencias del proyecto:
-´´´
+```
 npm install
-´´´
+```
 
 ## Configuracion de la Base De Datos.
 
 3. Crea un archivo .env
-´´´
+```
 cp .env.example .env
-´´´
+```
 
 4. Edita el archivo ´.env´ con los detalles de la base de datos.
 DATABASE_URL="postgresql://usuario:contraseña@localhost:5432/nombre_basedatos?schema=public"
