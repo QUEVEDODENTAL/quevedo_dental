@@ -18,7 +18,7 @@ git clone (https://github.com/ValenzuelaRa/quevedo_dental.git)
 
 2. Navega hasta el directorio del proyecto:
 ```
-cd tu_proyecto
+cd quevedo_dental
 ```
 
 3. INstala las dependencias del proyecto:
@@ -52,3 +52,12 @@ npx prisma migrate deploy
 ```
 
 ## Modo de uso de Base de Datos
+1. Vamos a ejecutar el archivo prueba.js con el comando.
+```
+node prueba.js
+```
+
+2. Para ver que se haya ejecutado correctamente ejecutamos el comando.
+```
+npx prisma studio
+```
