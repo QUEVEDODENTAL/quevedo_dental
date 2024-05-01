@@ -26,23 +26,23 @@ const SliderBar = () => {
         <ul className="flex-grow">
           <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
             <li><FaHouse/></li>
-            <li><Link href="dashboard/pages/Inicio" className="block ml-2 transition-all hover:text-yellow-500">Inicio</Link></li>
+            <li><Link href="/dashboard" className="block ml-2 transition-all hover:text-yellow-500">Inicio</Link></li>
           </div>
           <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
             <li><FaAddressBook/></li>
-            <li><Link href="/historial" className="block ml-2 transition-all hover:text-yellow-500">Historial</Link></li>
+            <li><Link href="/dashboard/historial" className="block ml-2 transition-all hover:text-yellow-500">Historial</Link></li>
           </div>
           <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
             <li><FaAddressCard/></li>
-            <li><Link href="/pacientes" className="block ml-2 transition-all hover:text-yellow-500">Pacientes</Link></li>
+            <li><Link href="/dashboard/pacientes" className="block ml-2 transition-all hover:text-yellow-500">Pacientes</Link></li>
           </div>
           <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
             <li><FaBookMedical/></li>
-            <li><Link href="/consultas" className="block ml-2 transition-all hover:text-yellow-500">Consultas</Link></li>
+            <li><Link href="/dashboard/pacientes" className="block ml-2 transition-all hover:text-yellow-500">Consultas</Link></li>
           </div>
           <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
             <li><FaUserAlt/></li>
-            <li><Link href="/perfil" className="block ml-2 transition-all hover:text-yellow-500">Perfil</Link></li>
+            <li><Link href="/dashboard/pacientes" className="block ml-2 transition-all hover:text-yellow-500">Perfil</Link></li>
           </div>
           <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
             <li><FaHospitalUser/></li>
