@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Contactanos = () => {
+const Historial = () => {
     return (
-        <section className="flex flex-col items-center min-h-screen p-5 min-w-full justify-between bg-primary-seccion">
+        <section className="flex flex-col items-center min-h-screen p-5 min-w-full justify-between bg-primary-red">
             <div className='min-w-full text-4xl font-extrabold pt-8'>
                 <h2 className='text-secondary-font '>Contactanos</h2>
             </div>
@@ -14,4 +14,4 @@ const Contactanos = () => {
     );
 }
 
-export default Contactanos;
+export default Historial;

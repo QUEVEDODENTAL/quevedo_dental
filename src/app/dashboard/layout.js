@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import Sliderbar from '@/components/Sliderbar';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,6 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.className} flex`}>
         {children}
+        <Sliderbar />
       </body>
     </html>
   );
