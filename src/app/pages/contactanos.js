@@ -1,5 +1,3 @@
-import FormsContacto from '@/components/FormsContacto';
-import Map from '@/components/Map';
 import React from 'react';
 
 const Contactanos = () => {
@@ -10,10 +8,6 @@ const Contactanos = () => {
             </div>
             <div className='grid grid-cols-2 min-w-full min-h-screen justify-center'>
                 <div className='hidden sm:block w-full max-w-sm justify-center bg-primary-white rounded-2xl mt-10 shadow-lg'>
-                    <FormsContacto />
-                </div>
-                <div className='hidden sm:block w-full max-w-xl justify-center bg-primary-white rounded-2xl mt-10 shadow-lg'>
-                    <Map className="" />
                 </div>
             </div>
         </section>
