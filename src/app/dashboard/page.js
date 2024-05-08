@@ -5,7 +5,7 @@ import { FaAddressBook, FaAddressCard, FaHospitalUser } from "react-icons/fa6";
 
 const Dashboard = () => {
   return (
-    <div className="h-screen flex flex-col justify-start items-center md:pl-8">
+    <div className="h-screen flex flex-col justify-center items-center md:pl-8">
       <h1 className="text-3xl font-bold mb-4 mt-4">¡Bienvenido, Doctor!</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="relative bg-primary-info p-4 text-center rounded-lg transition-transform duration-300 hover:scale-105">
