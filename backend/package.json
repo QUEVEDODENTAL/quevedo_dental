@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "express": "^4.19.2",
-    "prisma": "^5.12.1"
-  }
-}
