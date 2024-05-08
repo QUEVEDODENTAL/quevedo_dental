@@ -17,15 +17,6 @@ const Header = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <header className="flex flex-col sticky items-center min-w-full justify-end min-h-1">
-      <div className="flex items-center min-w-full justify-between p-2 bg-primary-info ">
-        <div className="p-3"><p className="text-sm flex text-text-blackText"><MapPin size={16} className='mx-2' /> Valle dorado, valle de los sirios, Ensenada, Baja California</p></div>
-        <div className="flex">
-          <div className="p-3"><p className="text-sm flex"><Phone size={16} className='mx-2' /> +52 646 256 3625</p></div>
-          <div className="p-3">|</div>
-          <div className="p-3"><p className="text-sm flex"><Mail size={16} className='mx-2' /> doctor@consultoriomx.com</p></div>
-=======
     <header className={`fixed top-0 left-0 right-0 z-50 flex flex-col md:flex-row justify-between items-center min-w-full bg-secondary-card text-primary-seccion p-4 transition-height duration-200 ease-in-out ${menuOpenHeight}`}>
       <div className={`flex items-center transition-all w-full ${menuOpen ? 'pb-4 md:pb-0' : ''}`}>
         <Link href="/">
@@ -39,7 +30,6 @@ const Header = () => {
           >
             <FaBars size={30} />
           </button>
->>>>>>> QA
         </div>
       </div>
       <div className={`md:flex md:items-center ${menuOpen ? 'flex flex-col' : 'hidden'}`}>
