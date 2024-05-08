@@ -10,7 +10,7 @@ const RootLayout = ({ children }) => {
         <div className="flex-none">
           <Sliderbar />
         </div>
-        <div className="flex-1 flex justify-center items-center">
+        <div className="flex-1 w-[80%] flex justify-center items-center">
           {children}
         </div>
       </body>
