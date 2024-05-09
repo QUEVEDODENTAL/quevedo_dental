@@ -36,7 +36,7 @@ conexion.connect((error) => {
     Email: 'juan@example.com'
   };
 
-  conexion.query('INSERT INTO Doctor SET ?', datosDoctor, (error, resultado) => {
+  conexion.query('INSERT INTO doctor SET ?', datosDoctor, (error, resultado) => {
     if (error) {
       console.error('Error al insertar datos en la tabla Doctor:', error);
       return;
@@ -63,7 +63,7 @@ conexion.connect((error) => {
     HireDate: '2023-02-15'
   };
 
-  conexion.query('INSERT INTO Empleado SET ?', datosEmpleado, (error, resultado) => {
+  conexion.query('INSERT INTO empleado SET ?', datosEmpleado, (error, resultado) => {
     if (error) {
       console.error('Error al insertar datos en la tabla Empleado:', error);
       return;
@@ -90,7 +90,7 @@ conexion.connect((error) => {
     Education: 'Maestría'
   };
 
-  conexion.query('INSERT INTO Clientes SET ?', datosCliente, (error, resultado) => {
+  conexion.query('INSERT INTO clientes SET ?', datosCliente, (error, resultado) => {
     if (error) {
       console.error('Error al insertar datos en la tabla Clientes:', error);
       return;
@@ -110,7 +110,7 @@ const datosEnfermedades = {
   Treatment: 'Broncodilatadores, corticosteroides, antihistamínicos, etc.'
 };
 
-conexion.query('INSERT INTO Enfermedades SET ?', datosEnfermedades, (error, resultado) => {
+conexion.query('INSERT INTO enfermedades SET ?', datosEnfermedades, (error, resultado) => {
   if (error) {
     console.error('Error al insertar datos en la tabla Enfermedades:', error);
     return;
@@ -132,7 +132,7 @@ conexion.query('INSERT INTO Enfermedades SET ?', datosEnfermedades, (error, resu
     Exercise: 'Natación dos veces por semana'
   };
 
-  conexion.query('INSERT INTO AntecedentesNoPatologicos SET ?', datosAntecedentesNoPatologicos, (error, resultado) => {
+  conexion.query('INSERT INTO antecedentesnopatologicos SET ?', datosAntecedentesNoPatologicos, (error, resultado) => {
     if (error) {
       console.error('Error al insertar datos en la tabla AntecedentesNoPatologicos:', error);
       return;
@@ -154,7 +154,7 @@ conexion.query('INSERT INTO Enfermedades SET ?', datosEnfermedades, (error, resu
     Observations: 'Monitoreo constante de los niveles de glucosa en sangre'
   };
 
-  conexion.query('INSERT INTO AntecedentesPatologicos SET ?', datosAntecedentesPatologicos, (error, resultado) => {
+  conexion.query('INSERT INTO antecedentespatologicos SET ?', datosAntecedentesPatologicos, (error, resultado) => {
     if (error) {
       console.error('Error al insertar datos en la tabla AntecedentesPatologicos:', error);
       return;
@@ -180,7 +180,7 @@ conexion.query('INSERT INTO Enfermedades SET ?', datosEnfermedades, (error, resu
     Observations: 'Recomendación de higiene bucal adecuada y revisión periódica'
   };
 
-  conexion.query('INSERT INTO ExamenClinicoIntraoral SET ?', datosExamenClinicoIntraoral, (error, resultado) => {
+  conexion.query('INSERT INTO examenclinicointraoral SET ?', datosExamenClinicoIntraoral, (error, resultado) => {
     if (error) {
       console.error('Error al insertar datos en la tabla ExamenClinicoIntraoral:', error);
       return;
@@ -220,7 +220,7 @@ conexion.query('INSERT INTO Enfermedades SET ?', datosEnfermedades, (error, resu
     { Permission: '0001', Description: 'Permite al usuario administrar el sistema.' }
   ];
 
-  conexion.query('INSERT INTO Permisos (Permission, Description) VALUES ?', [datosPermisos.map(item => [item.Permission, item.Description])], (error, resultado) => {
+  conexion.query('INSERT INTO permisos (Permission, Description) VALUES ?', [datosPermisos.map(item => [item.Permission, item.Description])], (error, resultado) => {
     if (error) {
       console.error('Error al insertar datos en la tabla Permisos:', error);
       return;
@@ -241,7 +241,7 @@ conexion.query('INSERT INTO Enfermedades SET ?', datosEnfermedades, (error, resu
       Description: 'El usuario admin cambió su contraseña.'
     };
   
-    conexion.query('INSERT INTO Bitacora SET ?', datosBitacora, (error, resultado) => {
+    conexion.query('INSERT INTO bitacora SET ?', datosBitacora, (error, resultado) => {
       if (error) {
         console.error('Error al insertar datos en la tabla Bitacora:', error);
         return;
@@ -262,10 +262,10 @@ conexion.query('INSERT INTO Enfermedades SET ?', datosEnfermedades, (error, resu
   };
   
   // Consulta SQL para insertar datos en la tabla Usuarios
-  const insertUsuarios = 'INSERT INTO Usuarios (Email, Password, IsAdministrator, IsDoctor, IsEmployee) VALUES ?';
+  const insertusuarios = 'INSERT INTO Usuarios (Email, Password, IsAdministrator, IsDoctor, IsEmployee) VALUES ?';
   
   // Insertar datos en la tabla Usuarios
-  conexion.query(insertUsuarios, [[Object.values(datosUsuarios)]], (error, results) => {
+  conexion.query(insertusuarios, [[Object.values(datosUsuarios)]], (error, results) => {
     if (error) {
       console.error('Error al insertar datos en la tabla Usuarios:', error);
       return;
