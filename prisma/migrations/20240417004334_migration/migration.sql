@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE `Doctor` (
+CREATE TABLE `doctor` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `Name` VARCHAR(191) NOT NULL,
     `LastName` VARCHAR(191) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE `Doctor` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Empleado` (
+CREATE TABLE `empleado` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `Name` VARCHAR(191) NOT NULL,
     `LastName` VARCHAR(191) NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE `Empleado` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Clientes` (
+CREATE TABLE `clientes` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `Name` VARCHAR(191) NOT NULL,
     `LastName` VARCHAR(191) NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE `Clientes` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Enfermedades` (
+CREATE TABLE `enfermedades` (
     `id_disease` INTEGER NOT NULL AUTO_INCREMENT,
     `type` ENUM('Cardiovasculares', 'Hematológicas', 'Neurológicas', 'Pulmonares', 'Endocrinas', 'Metabólicas', 'Renales', 
 'Mentales', 'Gastrointestinales', 'Dermatológicas', 'Cáncer', 'Otros', 'ENFERMEDADES DE LA INFANCIA') NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE `Enfermedades` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `AntecedentesNoPatologicos` (
+CREATE TABLE `antecedentesnopatologicos` (
     `id_patient` INTEGER NOT NULL,
     `smoking` ENUM('Yes', 'No') NOT NULL,
     `substance_abuse` ENUM('Yes', 'No') NOT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE `AntecedentesNoPatologicos` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `AntecedentesPatologicos` (
+CREATE TABLE `antecedentespatologicos` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `patient_id` INTEGER NOT NULL,
     `disease` VARCHAR(191) NOT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE `AntecedentesPatologicos` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `ExamenClinicoIntraoral` (
+CREATE TABLE `examenclinicointraoral` (
     `id_patient` INTEGER NOT NULL,
     `examination_date` DATETIME(3) NOT NULL,
     `gums` VARCHAR(191) NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE `historialclinico` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Permiso` (
+CREATE TABLE `permiso` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `permission` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191) NOT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE `Permiso` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Bitacora` (
+CREATE TABLE `bitacora` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `date_time` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `user` VARCHAR(191) NOT NULL,
@@ -151,7 +151,7 @@ CREATE TABLE `Bitacora` (
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE Usuarios (
+CREATE TABLE usuarios (
     `Id` INT AUTO_INCREMENT PRIMARY KEY,
     `Email` VARCHAR(50) NOT NULL UNIQUE,
     `Password` VARCHAR(50) NOT NULL,
@@ -161,16 +161,16 @@ CREATE TABLE Usuarios (
 );
 
 -- AddForeignKey
-ALTER TABLE `AntecedentesNoPatologicos` ADD CONSTRAINT `AntecedentesNoPatologicos_id_patient_fkey` FOREIGN KEY (`id_patient`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `antecedentesnopatologicos` ADD CONSTRAINT `antecedentesNoPatologicos_idnpptient_fkey` FOREIGN KEY (`id_patient`) REFERENCES `clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `AntecedentesPatologicos` ADD CONSTRAINT `AntecedentesPatologicos_patient_id_fkey` FOREIGN KEY (`patient_id`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `antecedentespatologicos` ADD CONSTRAINT `antecedentespatologicos_patient_id_fkey` FOREIGN KEY (`patient_id`) REFERENCES `clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `ExamenClinicoIntraoral` ADD CONSTRAINT `ExamenClinicoIntraoral_id_patient_fkey` FOREIGN KEY (`id_patient`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `examenClinicointraoral` ADD CONSTRAINT `examenClinicointraoral_id_patient_fkey` FOREIGN KEY (`id_patient`) REFERENCES `clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `historialclinico` ADD CONSTRAINT `historialclinico_client_id_fkey` FOREIGN KEY (`client_id`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `historialclinico` ADD CONSTRAINT `historialclinico_client_id_fkey` FOREIGN KEY (`client_id`) REFERENCES `clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `historialclinico` ADD CONSTRAINT `historialclinico_dentist_id_fkey` FOREIGN KEY (`dentist_id`) REFERENCES `Doctor`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
