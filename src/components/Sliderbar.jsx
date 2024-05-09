@@ -13,7 +13,7 @@ const SliderBar = () => {
 
   return (
     <div>
-      <div className="md:hidden fixed top-4 left-4 cursor-pointer">
+      <div className="fixed top-4 left-4 cursor-pointer">
         <FaBars className="text-white text-xl" onClick={toggleSliderVisibility} />
       </div>
 
@@ -27,16 +27,8 @@ const SliderBar = () => {
             <li><Link href="/dashboard" className="block ml-2 transition-all hover:text-yellow-500">Inicio</Link></li>
           </div>
           <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
-            <li><FaAddressBook /></li>
-            <li><Link href="/dashboard/historial" className="block ml-2 transition-all hover:text-yellow-500">Historial</Link></li>
-          </div>
-          <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
             <li><FaAddressCard /></li>
             <li><Link href="/dashboard/pacientes" className="block ml-2 transition-all hover:text-yellow-500">Pacientes</Link></li>
-          </div>
-          <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
-            <li><FaBookMedical /></li>
-            <li><Link href="/dashboard/consultas" className="block ml-2 transition-all hover:text-yellow-500">Consultas</Link></li>
           </div>
           <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
             <li><FaUserAlt /></li>
@@ -44,7 +36,7 @@ const SliderBar = () => {
           </div>
           <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
             <li><FaHospitalUser /></li>
-            <li><Link href="/admin/registrar" className="block ml-2 transition-all hover:text-yellow-500">Registrar</Link></li>
+            <li><Link href="/dashboard/registrar" className="block ml-2 transition-all hover:text-yellow-500">Registrar</Link></li>
           </div>
           <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
             <li><FaIdCardAlt /></li>
@@ -56,7 +48,7 @@ const SliderBar = () => {
           <Link href="/admin" className="block transition-all hover:text-yellow-500">Salir</Link>
         </div>
 
-        <div className="md:hidden absolute top-4 right-4 cursor-pointer" onClick={toggleSliderVisibility}>
+        <div className=" absolute top-4 right-4 cursor-pointer" onClick={toggleSliderVisibility}>
           <FaBars className="text-white text-xl" />
         </div>
       </div>

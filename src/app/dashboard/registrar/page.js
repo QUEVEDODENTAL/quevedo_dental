@@ -3,7 +3,7 @@ import React from 'react';
 const RegistrarPage = () => {
     return (
         <div className="mx-1 my-1 p-4 border-10 custom-shadowa rounded-[15px] lg:w-3/5 md:w-3/4">
-            <h1 className='text-5xl font-bold flex justify-center mb-[30px]'>Registro</h1>  
+            <h1 className='text-5xl font-bold flex justify-center mb-[30px]'>Registro</h1>
             <div className="flex justify-around">
                 <div>
                     <button className="font-semibold text-secondary-font hover:bg-cyan-600">Doctor</button>
@@ -11,7 +11,7 @@ const RegistrarPage = () => {
                 <div>
                     <button className="font-semibold text-secondary-font">Empleado</button>
                 </div>
-            </div>  
+            </div>
             <form className="space-y-4">
                 <label className="text-lg font-medium">Nombre(s)</label>
                 <input
@@ -43,7 +43,7 @@ const RegistrarPage = () => {
                     style={{ fontWeight: "300" }} />
                 <div className="mt-8 flex flex-col">
                     <button type="submit" name="registrar" className="text-[1rem] p-[10px] rounded-[10px] scale-90 bg-secondary-font text-primary-seccion cursor-pointer text-white hover:bg-secondary-font hover:text-primary-seccion hover:scale-100 transition-transform duration-300">
-                    Registrar
+                        Registrar
                     </button>
                 </div>
             </form>
