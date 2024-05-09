@@ -42,11 +42,11 @@ const SliderBar = () => {
             <li><FaIdCardAlt /></li>
             <li><Link href="/dashboard/cuestionario" className="block ml-2 transition-all hover:text-yellow-500">Cuestionario</Link></li>
           </div>
-        </ul>
-        <div className="absolute bottom-0 w-full p-4 flex items-center pl-10 transition-transform duration-300 ease-in-out hover:scale-110">
+          <div className="bottom-0 mt-[70%] p-4 flex items-center pl-10 transition-transform duration-300 ease-in-out hover:scale-110">
           <FaLock className="mr-2" />
           <Link href="/admin" className="block transition-all hover:text-yellow-500">Salir</Link>
         </div>
+        </ul>
 
         <div className=" absolute top-4 right-4 cursor-pointer" onClick={toggleSliderVisibility}>
           <FaBars className="text-white text-xl" />
