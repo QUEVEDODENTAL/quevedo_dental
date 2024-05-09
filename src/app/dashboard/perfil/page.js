@@ -1,54 +1,87 @@
+import Image from 'next/image';
 import React from 'react';
-import { FaUserAlt, FaBookMedical, FaLock, FaBars, FaIdCardAlt, FaCalendarAlt } from "react-icons/fa";
-import { FaHouse, FaAddressBook, FaAddressCard, FaHospitalUser } from "react-icons/fa6";
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-col justify-center items-center">
-      <h1 className="text-3xl font-bold mb-4 mt-4">¡Perfil!</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="relative bg-primary-info p-4 text-center rounded-lg">
-          <FaAddressCard className="absolute top-0 left-0 mt-2 ml-2" size={30} />
-          <h2 className="text-xl font-bold mb-2">Pacientes</h2>
-          <p>Ver datos de los</p>
-          <p>pacientes</p>
+    <div className="flex flex-col items-center h-screen w-screen text-2xl">
+      {/* Imagen */}
+
+      <div
+        style={{ borderRadius: '50%', overflow: 'hidden', width: '300px', height: '300px', border: '4px solid black', marginTop: '20px' }}
+      >
+        <Image
+          src="/assets/dentista2.jpg"
+          alt="Dentista 2"
+          width={300}
+          height={300}
+        />
+      </div>
+
+      <div className='flex flex-col items-center mt-10'>
+        <p className='text-3xl font-bold'>Información personal</p>
+        <div className='mt-2'>
+          {/* Nombre Completo */}
+          <b>Nombre:</b> Nombre Nombre Apellido Apellido
         </div>
-        <div className="relative bg-secondary-font p-4 text-center rounded-lg">
-          <FaAddressBook className="absolute top-0 left-0 mt-2 ml-2" size={30} />
-          <h2 className="text-xl font-bold mb-2">Historial</h2>
-          <p>Ver historial de las citas</p>
-          <p>realizadas</p>
+        <div className='flex mt-3'>
+          {/* Fecha de nacimiento */}
+          <div className='mr-10'>
+            <b>Fecha de nacimiento:</b> 09/12/2001
+          </div>
+          {/* CURP */}
+          <div className='mr-10'>
+            <b>CURP:</b> CURPCURPCURPCURP
+          </div>
+          {/* Género */}
+          <div>
+            <b>Género:</b> Hombre
+          </div>
         </div>
-        <div className="relative bg-primary-red p-4 text-center rounded-lg">
-          <FaCalendarAlt className="absolute top-0 left-0 mt-2 ml-2" size={30} />
-          <h2 className="text-xl font-bold mb-2">Agenda</h2>
-          <p>Presiona para agendar</p>
-          <p>o modificar alguna cita</p>
+      </div>
+
+      <div className='flex flex-col items-center mt-5'>
+        {/* Informacion de contacto */}
+        <p className='text-3xl font-bold'>Información de contacto</p>
+        <div className='mt-3'>
+          {/* Numero de telefono */}
+          <b>Número de teléfono:</b> 646-123-4567
         </div>
-        <div className="relative bg-secondary-icon p-4 text-center rounded-lg hidden md:block">
-          <FaAddressCard className="absolute top-0 left-0 mt-2 ml-2" size={30} />
-          <h2 className="text-xl font-bold">Ultimo</h2>
-          <h2 className="text-xl font-bold mb-2">paciente</h2>
-          <p>Ver datos del</p>
-          <p>ultimo paciente</p>
+        <div className='mt-3'>
+          {/* Correo */}
+          <b>Correo:</b> contactame@ite.edu.mx
         </div>
-        <div className="relative bg-secondary-button p-4 text-center rounded-lg hidden md:block">
-          <FaBookMedical className="absolute top-0 left-0 mt-2 ml-2" size={30} />
-          <h2 className="text-xl font-bold">Consulta</h2>
-          <h2 className="text-xl font-bold mb-2">siguiente</h2>
-          <p>Contenido de la siguiente</p>
-          <p>consulta</p>
+        {/* Direccion */}
+        <div className='mt-3'>
+          <b>Dirección:</b> Calle A, Numero 10, Chapultepec
         </div>
-        <div className="relative bg-secondary-icon p-4 text-center rounded-lg hidden md:block">
-          <FaIdCardAlt className="absolute top-0 left-0 mt-2 ml-2" size={30} />
-          <h2 className="text-xl font-bold mb-2">Cuestionario</h2>
-          <p>Realizar cuestionario</p>
-          <p>Para el paciente</p>
+      </div>
+
+      <div className='flex flex-col items-center mt-5'>
+        {/* Informacion de estudios */}
+        <p className='text-3xl font-bold'>Información de estudios</p>
+        <div className='mt-3'>
+          {/* Especialidad */}
+          <b>Especialidad:</b> Odontólogo
         </div>
-        <div className="relative col-span-3 bg-primary-info p-4 text-center rounded-lg hidden md:block">
-          <FaHospitalUser className="absolute top-0 left-0 mt-2 ml-2" size={30} />
-          <h2 className="text-xl font-bold mb-2">Registrar a nuevo doctor o empleado</h2>
-          <p>Presiona para registrar a nuevo doctor o empleado</p>
+        <div className='mt-3'>
+          {/* Licencia medica */}
+          <b>Licencia Médica:</b> Sí
+        </div>
+        {/* Numero de licencia */}
+        <div className='mt-3'>
+          <b>Número de licencia:</b> 1233141824899123
+        </div>
+      </div>
+      <div className='flex flex-col items-center mt-5'>
+        {/* Informacion de trabajo */}
+        <p className='text-3xl font-bold'>Información de trabajo</p>
+        <div className='mt-3'>
+          {/* Salario */}
+          <b>Salario:</b> $10,000
+        </div>
+        {/* Fecha de contratacion*/}
+        <div className='mt-3'>
+          <b>Fecha de contratación:</b> 08/02/2024
         </div>
       </div>
     </div>
