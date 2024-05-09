@@ -161,16 +161,16 @@ CREATE TABLE Usuarios (
 );
 
 -- AddForeignKey
-ALTER TABLE `NonPathologicalAntecedents` ADD CONSTRAINT `NonPathologicalAntecedents_id_patient_fkey` FOREIGN KEY (`id_patient`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `AntecedentesNoPatologicos` ADD CONSTRAINT `AntecedentesNoPatologicos_id_patient_fkey` FOREIGN KEY (`id_patient`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `PathologicalAntecedents` ADD CONSTRAINT `PathologicalAntecedents_patient_id_fkey` FOREIGN KEY (`patient_id`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `AntecedentesPatologicos` ADD CONSTRAINT `AntecedentesPatologicos_patient_id_fkey` FOREIGN KEY (`patient_id`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `IntraoralClinicalExamination` ADD CONSTRAINT `IntraoralClinicalExamination_id_patient_fkey` FOREIGN KEY (`id_patient`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `ExamenClinicoIntraoral` ADD CONSTRAINT `ExamenClinicoIntraoral_id_patient_fkey` FOREIGN KEY (`id_patient`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `ClinicalHistory` ADD CONSTRAINT `ClinicalHistory_client_id_fkey` FOREIGN KEY (`client_id`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `historialclinico` ADD CONSTRAINT `historialclinico_client_id_fkey` FOREIGN KEY (`client_id`) REFERENCES `Clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `ClinicalHistory` ADD CONSTRAINT `ClinicalHistory_dentist_id_fkey` FOREIGN KEY (`dentist_id`) REFERENCES `Doctor`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `historialclinico` ADD CONSTRAINT `historialclinico_dentist_id_fkey` FOREIGN KEY (`dentist_id`) REFERENCES `Doctor`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
