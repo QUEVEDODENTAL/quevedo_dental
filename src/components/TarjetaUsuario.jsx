@@ -10,7 +10,9 @@ const TarjetaUsuario = ({ nombre, edad }) => {
           width={150} 
           height={100}
           style={{borderRadius: "100px"}}
+          priority // Agregar la propiedad priority aquí
         />
+
       <div className="flex flex-row text-xl  ml-4">
         <p className="mx-10">{nombre}Nombre:</p>
         <p className="mx-10">{edad} Edad:</p>
