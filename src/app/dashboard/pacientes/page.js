@@ -1,5 +1,5 @@
+import TarjetaUsuario from '@/components/TarjetaUsuario';
 import React from 'react';
-import TarjetaUsuario from '../../../components/TarjetaUsuario';
 
 const Dashboard = () => {
   return (

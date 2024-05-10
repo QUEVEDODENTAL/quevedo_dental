@@ -1,21 +1,22 @@
-import { Inter } from "next/font/google";
+import { Manrope } from "next/font/google";
 import Sliderbar from '@/components/Sliderbar';
 
-const inter = Inter({ subsets: ["latin"] });
+const Inter = Manrope({ subsets: ["latin"] });
 
-const RootLayout = ({ children }) => {
+export const metadata = {
+  title: "Bienvenido",
+  description: "Bienvenida al dashboard del doctor/empleado",
+};
+
+export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} flex h-screen`}>
-        <div className="flex-none">
-          <Sliderbar />
+    <html lang="es">
+      <body className={Inter.className}>
+        <div>
+            <Sliderbar/>
         </div>
-        <div className="flex-1 w-[80%] flex justify-center items-center">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );
 }
-
-export default RootLayout;

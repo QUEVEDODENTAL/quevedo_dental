@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { FaUserAlt, FaBookMedical, FaLock, FaBars, FaIdCardAlt } from "react-icons/fa";
-import { FaHouse, FaAddressBook, FaAddressCard, FaHospitalUser } from "react-icons/fa6";
+import { FaUserAlt, FaLock, FaBars, FaIdCardAlt } from "react-icons/fa";
+import { FaHouse, FaAddressCard, FaHospitalUser } from "react-icons/fa6";
 
 const SliderBar = () => {
   const [isSliderVisible, setIsSliderVisible] = useState(true);
@@ -12,12 +12,14 @@ const SliderBar = () => {
   };
 
   return (
-    <div>
+    <div className="fixed top-0 left-0 bottom-0">
       <div className="fixed top-4 left-4 cursor-pointer">
         <FaBars className="text-white text-xl" onClick={toggleSliderVisibility} />
       </div>
-
-      <div className={`relative bg-gray-800 text-white h-screen w-64 flex flex-col bg-secondary-dash text-secondary-icon transition-transform duration-500 ${isSliderVisible ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className={`fixed text-white h-screen w-64 flex flex-col bg-secondary-dash text-secondary-icon transition-transform duration-500 ${isSliderVisible ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className=" absolute top-4 right-4 cursor-pointer" onClick={toggleSliderVisibility}>
+          <FaBars className="text-white text-xl" />
+        </div>
         <div className="p-4 text-center">
           LOGO
         </div>
@@ -42,15 +44,11 @@ const SliderBar = () => {
             <li><FaIdCardAlt /></li>
             <li><Link href="/dashboard/cuestionario" className="block ml-2 transition-all hover:text-yellow-500">Cuestionario</Link></li>
           </div>
-          <div className="bottom-0 mt-[70%] p-4 flex items-center pl-10 transition-transform duration-300 ease-in-out hover:scale-110">
+          <div className="bottom-0 mt-[80%] p-4 flex items-center pl-10 transition-transform duration-300 ease-in-out hover:scale-110">
           <FaLock className="mr-2" />
           <Link href="/admin" className="block transition-all hover:text-yellow-500">Salir</Link>
-        </div>
+          </div>
         </ul>
-
-        <div className=" absolute top-4 right-4 cursor-pointer" onClick={toggleSliderVisibility}>
-          <FaBars className="text-white text-xl" />
-        </div>
       </div>
     </div>
   );

@@ -1,18 +1,16 @@
 'use client';
 import React, { useState } from 'react';
-
+import Image from 'next/image';
 function HistorialClinicoForm() {
   const [nombre, setNombre] = useState('');
   const [sexo, setSexo] = useState('');
   const [domicilio, setDomicilio] = useState('');
   const [telefono, setTelefono] = useState('');
   const [ocupacion, setOcupacion] = useState('');
+  const [escolaridad, setEscolaridad] = useState('');
   const [fechaNacimiento, setFechaNacimiento] = useState('');
   const [ciudad, setCiudad] = useState('');
-  const [escolaridad, setEscolaridad] = useState('');
   const [otrosEnfermedades, setOtrosEnfermedades] = useState('');
-  const [numeroExpediente, setNumeroExpediente] = useState('');
-  const [fechaActual, setFechaActual] = useState('');
   const [motivoConsulta, setMotivoConsulta] = useState('');
   const [lastClickedButton, setLastClickedButton] = useState(null);
   const [enfermedadesSeleccionadas, setEnfermedadesSeleccionadas] = useState([]);
@@ -52,9 +50,7 @@ function HistorialClinicoForm() {
     "Morada"
   ];
 
-  const [coloracionLenguaSelected, setColoracionLenguaSelected] = useState(null); // Estado para controlar la opción seleccionada
-
-  
+  const [coloracionLenguaSelected, setColoracionLenguaSelected] = useState(null); 
 
   const opcionesColoracionPaladar= [
     "Rosado pálido",
@@ -89,10 +85,6 @@ const [coloracionEncias, setColoracionEncias] = useState('');
     setColoracionEncias(color);
   };
 
-
-  const [ulceracionesEncias, setUlceracionesEncias] = useState('sin-ulceraciones');
-  const [observacionesEncias, setObservacionesEncias] = useState('');
-  
 
   const [ulceracionesLengua, setUlceracionesLengua] = useState('sin-ulceraciones');
   const [observacionesLengua, setObservacionesLengua] = useState('');
@@ -170,7 +162,6 @@ const [coloracionEncias, setColoracionEncias] = useState('');
 };
 
 
-
   const handleButtonLeave = (name) => {
     setEnfermedades(prevState => ({
       ...prevState,
@@ -183,7 +174,8 @@ const [coloracionEncias, setColoracionEncias] = useState('');
     return enfermedadesList.map(enfermedad => (
       <button
         key={enfermedad.name}
-        className={`enfermedad-button ${isEnfermedadSeleccionada(enfermedad.name) ? 'selected' : ''}`}
+        className="px-4 py-2 rounded-md bg-blue-500 text-white font-semibold mb-2 mr-2 hover:bg-blue-700"
+        
         onClick={() => handleEnfermedadClick(enfermedad.name)}
       >
         {enfermedad.label}
@@ -212,18 +204,19 @@ const [coloracionEncias, setColoracionEncias] = useState('');
       (numeroDiente >= 71 && numeroDiente <= 75) ||
       (numeroDiente >= 81 && numeroDiente <= 85)
     ) {
-      const rutaImagen = `./assets/dientes/dentadura-inf-${numeroDiente}.svg`;
+      const rutaImagen = `/assets/dientes/dentadura-inf-${numeroDiente}.svg`;
       const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
 
       return (
         <div key={numero} className="diente-wrapper">
           {imagenExiste ? (
             <>
-              <img
+              <Image
                 src={rutaImagen}
                 alt={`Diente ${numeroDiente}`}
                 className={`diente ${dientesSeleccionados.includes(numeroDiente) ? 'seleccionado' : ''}`}
                 onClick={() => toggleDienteSeleccionado(numeroDiente)}
+                width="30" height="90"
               />
               <div className="numero-diente">{numeroDiente}</div>
             </>
@@ -243,18 +236,19 @@ const renderizarImagenSup = (numero) => {
       (numeroDiente >= 51 && numeroDiente <= 55) ||
       (numeroDiente >= 61 && numeroDiente <= 65)
     ) {
-      const rutaImagen = `./assets/dientes/dentadura-sup-${numeroDiente}.svg`;
+      const rutaImagen =`/assets/dientes/dentadura-sup-${numeroDiente}.svg`;
       const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
 
       return (
         <div key={numero} className="diente-wrapper">
           {imagenExiste ? (
             <>
-              <img
+              <Image 
                 src={rutaImagen}
                 alt={`Diente ${numeroDiente}`}
                 className={`diente ${dientesSeleccionados.includes(numeroDiente) ? 'seleccionado' : ''}`}
                 onClick={() => toggleDienteSeleccionado(numeroDiente)}
+                width="30" height="90"
               />
               <div className="numero-diente">{numeroDiente}</div>
             </>
@@ -264,9 +258,9 @@ const renderizarImagenSup = (numero) => {
     }
     return null; // Retorna null si no se cumple ninguna condición
 };
-  // Función para manejar el cambio de selección de coloración de lengua
+
   const handleColoracionLenguaChange = (coloracion) => {
-    setColoracionLenguaSelected(coloracion); // Actualiza el estado con la opción seleccionada
+    setColoracionLenguaSelected(coloracion); 
   };
 
   const renderColoracionLenguaOptions = () => {
@@ -277,13 +271,15 @@ const renderizarImagenSup = (numero) => {
           id={`coloracionLengua-${index}`}
           checked={coloracion === coloracionLenguaSelected}
           onChange={() => handleColoracionLenguaChange(coloracion)}
+          style={{ width: '1.5em', height: '1.5em' }}
           className="hidden"
         />
         <label htmlFor={`coloracionLengua-${index}`} className="flex flex-col items-center cursor-pointer">
-          <img
+          <Image
             src={`/assets/lengua/lengua-${coloracion.toLowerCase().replace(/\s/g, "_")}.png`}
             alt={coloracion}
             className="w-24 mb-2 cursor-pointer"
+            width="80" height="70"
           />
           <span className="text-xs">{coloracion}</span>
         </label>
@@ -298,23 +294,35 @@ const renderizarImagenSup = (numero) => {
   
   
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '5px' }}>
-        <img src="./assets/logo.png" alt="Logo" style={{ maxWidth: '200px' }} />
-        <h2 style={{ margin: '0 5px' }}>Historial Clínico/Preguntas</h2>
-      </div>
+    <div className="max-w-md">
+    <div className="flex items-center justify-center mb-4">
+      <h2 className="ml-2 text-lg font-semibold">Historial Clínico/Preguntas</h2>
+    </div>
   
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}  className="max-w-md">
         <fieldset>
-          <legend className="text-lg font-semibold text-gray-700">Información Personal</legend>
+          <legend className="text-lg font-semibold text-gray-700 mr">Información Personal</legend>
           <div className="form-control">
-            <label htmlFor="nombre" className="text-gray-700">Nombre:</label><br />
-            <input type="text" id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)}/><br /><br />
+            
+            <label htmlFor="nombre" className="text-gray-700 ">Nombre:</label><br />
+            <input type="text" id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} 
+          className="w-full h-12 text-lg border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          style={{ maxWidth: '400px' }} // Ajusta el ancho máximo del campo de entrada
+        />
           </div>
-  
           <div className="form-control">
+            <legend className="text-gray-700">Sexo:</legend>
+            <div><input type="radio" id="hombre" name="sexo" value="hombre" checked={sexo === 'hombre'} onChange={(e) => setSexo(e.target.value)}/> <label htmlFor="hombre">Hombre</label>
+            </div> <div> <input type="radio" id="mujer" name="sexo" value="mujer" checked={sexo === 'mujer'} onChange={(e) => setSexo(e.target.value)} /> <label htmlFor="mujer">Mujer</label> </div> </div>
+
+
+          <div className="form-control text-center mt-8">
             <label htmlFor="domicilio" className="text-gray-700">Domicilio:</label><br />
-            <input type="text" id="domicilio" value={domicilio} onChange={(e) => setDomicilio(e.target.value)} /><br /><br />
+            <input type="text" id="domicilio" value={domicilio} onChange={(e) => setDomicilio(e.target.value)}
+            className="w-full h-12 text-lg border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            style={{ maxWidth: '400px' }} // Ajusta el ancho máximo del campo de entrada
+           /><br /><br />
+            
           </div>
   
           <div className="form-control">
@@ -334,7 +342,10 @@ const renderizarImagenSup = (numero) => {
             <label htmlFor="fecha_nacimiento" className="text-gray-700">Fecha de Nacimiento:</label><br />
             <input type="date" id="fecha_nacimiento" value={fechaNacimiento} onChange={(e) => setFechaNacimiento(e.target.value)}  /><br /><br />
           </div>
-  
+          <div className="form-control">
+            <label htmlFor="escolaridad" className="text-gray-700">Escolaridad:</label><br />
+            <input type="text"id="escolaridad"value={escolaridad} onChange={(e) => setEscolaridad(e.target.value)}/><br /><br />
+            </div>  
           <div className="form-control">
             <label htmlFor="ciudad" className="text-gray-700">Ciudad:</label><br />
             <input type="text" id="ciudad" value={ciudad} onChange={(e) => setCiudad(e.target.value)}  /><br /><br />
@@ -349,16 +360,17 @@ const renderizarImagenSup = (numero) => {
               id="motivoConsulta"
               value={motivoConsulta}
               onChange={(e) => setMotivoConsulta(e.target.value)}
-              rows={2}
-              style={{ maxWidth: '650px', maxHeight: '200px' }} // Especificar el tamaño máximo
+              rows={8}
+              className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              style={{ maxWidth: '700px', maxHeight: '250px', resize: 'none' }} 
               placeholder="Describe el motivo de consulta aquí..."
-              
             />
           </div>
+        
         </fieldset>
   
         <fieldset>
-          <legend className="text-lg font-semibold text-gray-700">Enfermedades</legend>
+          <legend className="text-lg font-semibold text-gray-700 bg-transparent text-gray-700 border border-gray-700 hover:bg-gray-100 hover:text-gray-900 py-2 px-4 rounded inline-flex items-center">Enfermedades</legend>
           <div className="enfermedades-container">
             {renderEnfermedadesButtons()}
           </div>
@@ -386,55 +398,44 @@ const renderizarImagenSup = (numero) => {
             ))}
           </div>
         </fieldset>
-
-        <fieldset>
         <fieldset>
   <legend className="text-lg font-semibold text-gray-700">Información Bucal</legend>
   <div className="form-control">
-    <label htmlFor="coloracionEncias" className="text-gray-700">Coloración de Encías:</label><br />
+
+  <legend  className="text-gray-700">Coloración de Encías:</legend>
+
     <div className="color-options">
       <div className="color-option" onClick={() => handleColoracionEnciasChange('#FFCCCC')} style={{ backgroundColor: '#FFCCCC' }}>
         <div className="color-box"></div>
         <div className="color-name">Rosa pálido</div>
       </div>
-      <div className="color-option" onClick={() => handleColoracionEnciasChange('#FF0000')} style={{ backgroundColor: '#FF0000' }}>
-        <div className="color-box"></div>
-        <div className="color-name">Rojo brillante</div>
-      </div>
-      <div className="color-option" onClick={() => handleColoracionEnciasChange('#8B0000')} style={{ backgroundColor: '#8B0000' }}>
+     <div className="color-option" onClick={() => handleColoracionEnciasChange('#8B0000')} style={{ backgroundColor: '#8B0000' }}>
         <div className="color-box"></div>
         <div className="color-name">Rojo oscuro</div>
+      </div> 
+      <div className="color-option" onClick={() => handleColoracionEnciasChange('#FFFFFF')} style={{ backgroundColor: '#FFFFFF' }}>
+        <div className="color-box"></div>
+        <div className="color-name">Blanco palido</div>
       </div>
       <div className="color-option" onClick={() => handleColoracionEnciasChange('#4B0082')} style={{ backgroundColor: '#4B0082' }}>
         <div className="color-box"></div>
         <div className="color-name">Azulada o púrpura</div>
       </div>
-      <div className="color-option" onClick={() => handleColoracionEnciasChange('#FFFFFF')} style={{ backgroundColor: '#FFFFFF' }}>
+      <div className="color-option" onClick={() => handleColoracionEnciasChange('#FF0000')} style={{ backgroundColor: '#FF0000' }}>
         <div className="color-box"></div>
-        <div className="color-name">Blanco pálido</div>
-      </div> {/* Imagen de las encías */}
-    <div className="form-control" style={{ position: 'relative', width: '200px' }}>
-        <img src="./assets/enciaa.jpg" alt="Encías" style={{ width: '100%', height: '50' }} />
+        <div className="color-name">Rojo brillante</div>
+      </div> 
+    <div className="form-control" style={{ position: 'relative', width: '100px' }}>
+        <Image src="/assets/enciaas.jpg" alt="Encías" width={200} 
+          height={100} style={{ width: '100%', height: '50' }} />
         {coloracionEncias && (
-          <div
-            className="color-overlay"
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              backgroundColor: coloracionEncias,
-              
-              opacity: 0.5, 
-            }}
-          />
-        )}
-      </div>
+          <div className="color-overlay" style={{position: 'absolute',top: 0,left: 0,width: '100%',height: '100%',backgroundColor: coloracionEncias,opacity: 0.5,}}
+            />
+            )}
+            </div>
+            </div>
+            </div>
 
-    </div>
-  </div>
-</fieldset>
         <div className="form-control">
           <legend> Coloración de lengua</legend>
           <div className="flex flex-wrap  flex-row">
@@ -487,7 +488,7 @@ const renderizarImagenSup = (numero) => {
         </div>
       </fieldset>
 
-      <input type="submit" value="Enviar" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" />
+      <input type="submit" value="Enviar" />
     </form>
   </div>
 );
