@@ -1,4 +1,4 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -27,4 +27,61 @@
 
 .custom-shadowa {
   box-shadow: 0px 3px 8px rgba(26, 113, 171, 0.50);
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    hyphens: auto;
+  }
+}
+
+
+
+.custom-shadow {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+}
+
+.custom-cursor {
+  cursor: pointer;
+}
+
+/* Define el color morado en RGB */
+.custom-cursor:hover {
+  cursor: pointer;
+  color: rgb(106, 74, 175); /* Morado en RGB */
+}
+
+
+  
+  .enfermedad-button.selected {
+    /* Estilos para los botones de enfermedad seleccionados */
+    background-color: #6a4caf; /* Cambia el color de fondo */
+    color: rgb(255, 255, 255); /* Cambia el color del texto */
+    border-radius: 5px; /* Agrega bordes redondeados */
+  }
+  .odontograma-container {
+    display: flex;
+    justify-content: center; /* Alinea los elementos horizontalmente en el centro */
+  }
+  
+  .diente-wrapper {
+    margin: 0 5px; /* Espacio entre cada diente */
+  }

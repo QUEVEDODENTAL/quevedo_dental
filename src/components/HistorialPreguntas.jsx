@@ -301,7 +301,7 @@ const renderizarImagenSup = (numero) => {
   
       <form onSubmit={handleSubmit}  className="max-w-md">
         <fieldset>
-          <legend className="text-lg font-semibold text-gray-700 mr">Información Personal</legend>
+          <legend className="text-lg font-semibold text-gray-700">Información Personal</legend>
           <div className="form-control">
             
             <label htmlFor="nombre" className="text-gray-700 ">Nombre:</label><br />

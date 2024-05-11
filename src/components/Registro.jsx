@@ -12,25 +12,29 @@ const RegistrarPage = () => {
         <div className="mx-1 my-1 p-4 border-10 custom-shadowa rounded-[10px] lg:w-4/5 md:w-4/4">
             <h1 className='text-3xl font-bold flex justify-center mb-[20px]'>Registro</h1>
             <div className="flex justify-around">
-    <div>
-        <button
-            className={`font-semibold text-sm text-secondary-font hover:bg-secondary-font hover:text-primary-white ${selectedOption === 'doctor' ? 'bg-secondary-font text-white' : ''}`}
-            onClick={() => handleOptionSelect('doctor')}>
-            Doctor
-        </button>
-    </div>
-    <div>
-        <button
-            className={`font-semibold text-sm text-secondary-font hover:bg-secondary-icon ${selectedOption === 'empleado' ? 'bg-secondary-icon text-white' : ''}`}
-            onClick={() => handleOptionSelect('empleado')}>
-            Empleado
-        </button>
-    </div>
-</div>
+                <div style={{ flex: 1 }}>
+                    <button
+                        className={`font-semibold text-sm text-secondary-font hover:bg-secondary-font hover:text-primary-white ${selectedOption === 'doctor' ? 'bg-secondary-font text-white' : ''}`}
+                        onClick={() => handleOptionSelect('doctor')}
+                        style={{ width: '100%', padding: '10px', borderRadius: '10px', textAlign: 'center', marginBottom: '10px', transition: 'background-color 0.3s' }}
+                    >
+                        Doctor
+                    </button>
+                </div>
+                <div style={{ flex: 1 }}>
+                    <button
+                        className={`font-semibold text-sm text-secondary-font hover:bg-secondary-font hover:text-primary-white ${selectedOption === 'empleado' ? 'bg-secondary-font text-white' : ''}`}
+                        onClick={() => handleOptionSelect('empleado')}
+                        style={{ width: '100%', padding: '10px', borderRadius: '10px', textAlign: 'center', marginBottom: '10px', transition: 'background-color 0.3s' }}
+                    >
+                        Empleado
+                    </button>
+                </div>
+            </div>
 
             {selectedOption && (
-                <form className="grid grid-cols-4 gap-x-4 gap-y-2">
-                    <div className="col-span-1">
+                <form className="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-2">
+                    <div>
                         <label className="text-sm font-medium">Nombre(s):</label>
                         <input
                             type="text"
@@ -154,8 +158,6 @@ const RegistrarPage = () => {
                                     placeholder="RFC"
                                     style={{ fontWeight: "300" }} />
                             </div>
-                            <div></div>
-                            <div></div>
                         </>
                     )}
                     <div>
@@ -167,7 +169,7 @@ const RegistrarPage = () => {
                             placeholder="Salario"
                             style={{ fontWeight: "300" }} />
                     </div>
-                    <div className="col-span-2">
+                    <div>
                         <label className="text-sm font-medium">Fecha de Contratación</label>
                         <input
                             type="date"
@@ -175,8 +177,7 @@ const RegistrarPage = () => {
                             className="w-full outline-secondary-font rounded-[3px] mb-[6px] bg-[#e4e4e4] px-[8px] py-[10px] text-sm"
                             style={{ fontWeight: "300" }} />
                     </div>
-                    <div></div>
-                    <div className="mt-4 flex flex-col col-span-4 justify-center">
+                    <div className="mt-4">
                         <button type="submit" name="registrar" className="text-[1rem] p-[10px] rounded-[10px] scale-90 bg-secondary-font text-primary-seccion cursor-pointer text-white hover:bg-secondary-font hover:text-primary-seccion hover:scale-100 transition-transform duration-300">
                             Registrar
                         </button>
