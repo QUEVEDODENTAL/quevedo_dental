@@ -54,7 +54,6 @@
 }
 
 
-
 .custom-shadow {
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
 }
@@ -63,25 +62,28 @@
   cursor: pointer;
 }
 
-/* Define el color morado en RGB */
 .custom-cursor:hover {
   cursor: pointer;
-  color: rgb(106, 74, 175); /* Morado en RGB */
+  color: rgb(106, 74, 175);
+}
+  
+.enfermedad-button.selected {
+  /* Estilos para los botones de enfermedad seleccionados */
+  background-color: #6a4caf; /* Cambia el color de fondo */
+  color: rgb(255, 255, 255); /* Cambia el color del texto */
+  border-radius: 5px; /* Agrega bordes redondeados */
+}
+.odontograma-container {
+  display: flex;
+  justify-content: center; /* Alinea los elementos horizontalmente en el centro */
 }
 
+.diente-wrapper {
+  margin: 0 5px; /* Espacio entre cada diente */
+}
 
-  
-  .enfermedad-button.selected {
-    /* Estilos para los botones de enfermedad seleccionados */
-    background-color: #6a4caf; /* Cambia el color de fondo */
-    color: rgb(255, 255, 255); /* Cambia el color del texto */
-    border-radius: 5px; /* Agrega bordes redondeados */
-  }
-  .odontograma-container {
-    display: flex;
-    justify-content: center; /* Alinea los elementos horizontalmente en el centro */
-  }
-  
-  .diente-wrapper {
-    margin: 0 5px; /* Espacio entre cada diente */
-  }
+.dientes-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 10px; /* Puedes ajustar esto según el espacio que desees entre los dientes */
+}
