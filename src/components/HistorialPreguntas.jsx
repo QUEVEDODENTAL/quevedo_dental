@@ -29,7 +29,7 @@ function HistorialClinicoForm() {
 
   const opcionesColoracionLengua = 
   [
-    "Blanca", "Gris", "Rosa", "Roja", "Morada"
+    "Blanca", "Gris", "Rosa", "Roja", 
   ];
   
   const opcionesColoracionPaladar = [
@@ -390,7 +390,16 @@ const renderColoracionLenguaOptions = () => {
         <div className="color-name">Blanco pálido</div>
       </div> {/* Imagen de las encías */}
     <div className="form-control" style={{ position: 'relative', width: '100px' }}>
-        <Image src="/assets/enciaas.jpg" alt="Encías" width = "100" height = "50"  />
+    <Image
+          src="/assets/enciaas.jpg"
+          alt="Dentista 2"
+          width={200}
+          height={200}
+          priority
+          className="rounded-full"
+        />
+
+
         {coloracionEncias && (
           <div
             className="color-overlay"
