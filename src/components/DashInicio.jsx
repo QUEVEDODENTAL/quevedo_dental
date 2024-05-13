@@ -5,7 +5,7 @@ import { FaAddressCard, FaAddressBook, FaIdCardAlt, FaHospitalUser } from 'react
 const DashInicio = () => {
   return (
     <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mb-12'>
-      <div className="bg-primary-info p-4 text-center rounded-lg transition-transform duration-300 hover:scale-105 relative h-48 flex flex-col justify-center items-center">
+      <div className="bg-secondary-icon p-4 text-center rounded-lg transition-transform duration-300 hover:scale-105 relative h-48 flex flex-col justify-center items-center">
         <Link href="/dashboard/pacientes">
           <div>
             <FaAddressCard className="mt-2 ml-2" size={30} />
@@ -15,7 +15,7 @@ const DashInicio = () => {
           </div>
         </Link>
       </div>
-      <div className="bg-primary-red p-4 text-center rounded-lg transition-transform duration-300 hover:scale-105 relative h-48 flex flex-col justify-center items-center">
+      <div className="bg-secondary-icon p-4 text-center rounded-lg transition-transform duration-300 hover:scale-105 relative h-48 flex flex-col justify-center items-center">
         <Link href="/dashboard/historial">
           <div>
             <FaAddressBook className="mt-2 ml-2" size={30} />
@@ -25,7 +25,7 @@ const DashInicio = () => {
           </div>
         </Link>
       </div>
-      <div className="bg-primary-info p-4 text-center rounded-lg transition-transform duration-300 hover:scale-105 relative h-48 flex flex-col justify-center items-center">
+      <div className="bg-secondary-icon p-4 text-center rounded-lg transition-transform duration-300 hover:scale-105 relative h-48 flex flex-col justify-center items-center">
         <Link href="/dashboard/pacientes">
           <div>
             <FaAddressCard className="mt-2 ml-2" size={30} />
@@ -56,7 +56,7 @@ const DashInicio = () => {
           </div>
         </Link>
       </div>
-      <div className="bg-primary-info p-4 text-center rounded-lg hidden md:block transition-transform duration-300 hover:scale-105 col-span-3 relative h-48 flex flex-col justify-center items-center">
+      <div className="bg-secondary-icon p-4 text-center rounded-lg hidden md:block transition-transform duration-300 hover:scale-105 col-span-3 relative h-48 flex flex-col justify-center items-center">
         <Link href="/admin/registrar">
           <div>
             <FaHospitalUser className="mt-2 ml-2" size={30} />

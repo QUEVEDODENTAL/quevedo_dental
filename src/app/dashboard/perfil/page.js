@@ -1,7 +1,7 @@
 import Perfil from '@/components/Perfil';
 import React from 'react';
 
-const Perfil = () => {
+const PerfilD = () => {
   return (
     <div className="flex flex-col justify-center items-center mx-4 px-4 py-8">
         <Perfil/>
@@ -9,4 +9,4 @@ const Perfil = () => {
   );
 }
 
-export default Perfil;
+export default PerfilD;
