@@ -135,13 +135,13 @@ model historialclinico {
 }
 
 model permisos {
-  ID          Int                  @id @default(autoincrement())
-  Description String               @db.VarChar(255)
+  ID          Int    @id @default(autoincrement())
+  Description String @db.VarChar(255)
 }
 
 model usuarios {
   Id              Int     @id @default(autoincrement())
-  Email           String  @unique(map: "Email") @db.VarChar(100)
+  Email           String  @unique @db.VarChar(100)
   Password        String  @db.VarChar(100)
   IsAdministrator Boolean @default(false)
   IsDoctor        Boolean @default(false)
@@ -168,8 +168,6 @@ enum enfermedades_DiseaseType {
   Otros
   ENFERMEDADES_DE_LA_INFANCIA @map("ENFERMEDADES DE LA INFANCIA")
 }
-
-
 
 enum antecedentesnopatologicos_SubstanceAbuse {
   Si

@@ -1,84 +1,3 @@
-/*
-  Warnings:
-
-  - The primary key for the `historialclinico` table will be changed. If it partially fails, the table could be left without primary key constraint.
-  - You are about to drop the column `client_id` on the `historialclinico` table. All the data in the column will be lost.
-  - You are about to drop the column `clinical_data` on the `historialclinico` table. All the data in the column will be lost.
-  - You are about to drop the column `consultation_date` on the `historialclinico` table. All the data in the column will be lost.
-  - You are about to drop the column `dentist_id` on the `historialclinico` table. All the data in the column will be lost.
-  - You are about to drop the column `id` on the `historialclinico` table. All the data in the column will be lost.
-  - You are about to drop the `AntecedentesNoPatologicos` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `AntecedentesPatologicos` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Bitacora` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Clientes` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Doctor` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Empleado` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Enfermedades` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `ExamenClinicoIntraoral` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Permiso` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Usuarios` table. If the table is not empty, all the data it contains will be lost.
-  - Added the required column `HistoryId` to the `historialclinico` table without a default value. This is not possible if the table is not empty.
-
-*/
--- DropForeignKey
-ALTER TABLE `AntecedentesNoPatologicos` DROP FOREIGN KEY `AntecedentesNoPatologicos_id_patient_fkey`;
-
--- DropForeignKey
-ALTER TABLE `AntecedentesPatologicos` DROP FOREIGN KEY `AntecedentesPatologicos_patient_id_fkey`;
-
--- DropForeignKey
-ALTER TABLE `ExamenClinicoIntraoral` DROP FOREIGN KEY `ExamenClinicoIntraoral_id_patient_fkey`;
-
--- DropForeignKey
-ALTER TABLE `historialclinico` DROP FOREIGN KEY `historialclinico_client_id_fkey`;
-
--- DropForeignKey
-ALTER TABLE `historialclinico` DROP FOREIGN KEY `historialclinico_dentist_id_fkey`;
-
--- AlterTable
-ALTER TABLE `historialclinico` DROP PRIMARY KEY,
-    DROP COLUMN `client_id`,
-    DROP COLUMN `clinical_data`,
-    DROP COLUMN `consultation_date`,
-    DROP COLUMN `dentist_id`,
-    DROP COLUMN `id`,
-    ADD COLUMN `ClientId` INTEGER NULL,
-    ADD COLUMN `ClinicalData` JSON NULL,
-    ADD COLUMN `ConsultationDate` DATE NULL,
-    ADD COLUMN `DentistId` INTEGER NULL,
-    ADD COLUMN `HistoryId` INTEGER NOT NULL AUTO_INCREMENT,
-    ADD PRIMARY KEY (`HistoryId`);
-
--- DropTable
-DROP TABLE `AntecedentesNoPatologicos`;
-
--- DropTable
-DROP TABLE `AntecedentesPatologicos`;
-
--- DropTable
-DROP TABLE `Bitacora`;
-
--- DropTable
-DROP TABLE `Clientes`;
-
--- DropTable
-DROP TABLE `Doctor`;
-
--- DropTable
-DROP TABLE `Empleado`;
-
--- DropTable
-DROP TABLE `Enfermedades`;
-
--- DropTable
-DROP TABLE `ExamenClinicoIntraoral`;
-
--- DropTable
-DROP TABLE `Permiso`;
-
--- DropTable
-DROP TABLE `Usuarios`;
-
 -- CreateTable
 CREATE TABLE `antecedentesnopatologicos` (
     `PatientId` INTEGER NOT NULL,
@@ -209,6 +128,19 @@ CREATE TABLE `examenclinicointraoral` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `historialclinico` (
+    `HistoryId` INTEGER NOT NULL AUTO_INCREMENT,
+    `ClientId` INTEGER NULL,
+    `DentistId` INTEGER NULL,
+    `ConsultationDate` DATE NULL,
+    `ClinicalData` JSON NULL,
+
+    INDEX `cliente_id`(`ClientId`),
+    INDEX `dentista_id`(`DentistId`),
+    PRIMARY KEY (`HistoryId`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `permisos` (
     `ID` INTEGER NOT NULL AUTO_INCREMENT,
     `Description` VARCHAR(255) NOT NULL,
@@ -225,15 +157,9 @@ CREATE TABLE `usuarios` (
     `IsDoctor` BOOLEAN NOT NULL DEFAULT false,
     `IsEmployee` BOOLEAN NOT NULL DEFAULT false,
 
-    UNIQUE INDEX `Email`(`Email`),
+    UNIQUE INDEX `usuarios_Email_key`(`Email`),
     PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateIndex
-CREATE INDEX `cliente_id` ON `historialclinico`(`ClientId`);
-
--- CreateIndex
-CREATE INDEX `dentista_id` ON `historialclinico`(`DentistId`);
 
 -- AddForeignKey
 ALTER TABLE `antecedentesnopatologicos` ADD CONSTRAINT `AntecedentesNoPatologicos_id_paciente_fkey` FOREIGN KEY (`PatientId`) REFERENCES `clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

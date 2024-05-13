@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const conexion = mysql.createConnection({
   host: 'localhost', // Cambia esto por la dirección de tu servidor de base de datos si es diferente
   user: 'root', // Cambia esto por tu nombre de usuario de MySQL
-  password: 'Backend1', // Cambia esto por tu contraseña de MySQL
+  password: 'Backend-1', // Cambia esto por tu contraseña de MySQL
   database: 'proyecto_salud' // Cambia esto por el nombre de tu base de datos
 });
 
@@ -17,7 +17,7 @@ conexion.connect((error) => {
   console.log('Conexión establecida con la base de datos.');
 
 
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'Doctor'
   const datosDoctor = {
     Name: 'Juan',
@@ -43,10 +43,10 @@ conexion.connect((error) => {
     }
     console.log('Datos insertados en la tabla Doctor correctamente:', resultado);
   });
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
 
 
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'Empleado'
   const datosEmpleado = {
     Name: 'Ana',
@@ -70,10 +70,10 @@ conexion.connect((error) => {
     }
     console.log('Datos insertados en la tabla Empleado correctamente:', resultado);
   });
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
 
 
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'Clientes'
   const datosCliente = {
     Name: 'Roberto',
@@ -97,30 +97,30 @@ conexion.connect((error) => {
     }
     console.log('Datos insertados en la tabla Clientes correctamente:', resultado);
   });
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
 
 
-// --------------------------------------------------------------------------------------------
-// Inserta datos de ejemplo en la tabla 'Enfermedades'
-const datosEnfermedades = {
-  DiseaseType: 'Pulmonares',
-  Other: 'Asma',
-  Causes: 'Alergias, exposición a humo, contaminantes, etc.',
-  Symptoms: 'Tos, dificultad para respirar, opresión en el pecho, etc.',
-  Treatment: 'Broncodilatadores, corticosteroides, antihistamínicos, etc.'
-};
+  // --------------------------------------------------------------------------------------------
+  // Inserta datos de ejemplo en la tabla 'Enfermedades'
+  const datosEnfermedades = {
+    DiseaseType: 'Pulmonares',
+    Other: 'Asma',
+    Causes: 'Alergias, exposición a humo, contaminantes, etc.',
+    Symptoms: 'Tos, dificultad para respirar, opresión en el pecho, etc.',
+    Treatment: 'Broncodilatadores, corticosteroides, antihistamínicos, etc.'
+  };
 
-conexion.query('INSERT INTO enfermedades SET ?', datosEnfermedades, (error, resultado) => {
-  if (error) {
-    console.error('Error al insertar datos en la tabla Enfermedades:', error);
-    return;
-  }
-  console.log('Datos insertados en la tabla Enfermedades correctamente:', resultado);
-});
-// --------------------------------------------------------------------------------------------
+  conexion.query('INSERT INTO enfermedades SET ?', datosEnfermedades, (error, resultado) => {
+    if (error) {
+      console.error('Error al insertar datos en la tabla Enfermedades:', error);
+      return;
+    }
+    console.log('Datos insertados en la tabla Enfermedades correctamente:', resultado);
+  });
+  // --------------------------------------------------------------------------------------------
 
 
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'AntecedentesNoPatologicos'
   const datosAntecedentesNoPatologicos = {
     PatientId: 3,
@@ -139,10 +139,10 @@ conexion.query('INSERT INTO enfermedades SET ?', datosEnfermedades, (error, resu
     }
     console.log('Datos insertados en la tabla AntecedentesNoPatologicos correctamente:', resultado);
   });
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
 
 
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'AntecedentesPatologicos'
   const datosAntecedentesPatologicos = {
     PatientId: 3,
@@ -161,10 +161,10 @@ conexion.query('INSERT INTO enfermedades SET ?', datosEnfermedades, (error, resu
     }
     console.log('Datos insertados en la tabla AntecedentesPatologicos correctamente:', resultado);
   });
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
 
 
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'ExamenClinicoIntraoral'
   const datosExamenClinicoIntraoral = {
     PatientId: 3,
@@ -187,10 +187,10 @@ conexion.query('INSERT INTO enfermedades SET ?', datosEnfermedades, (error, resu
     }
     console.log('Datos insertados en la tabla ExamenClinicoIntraoral correctamente:', resultado);
   });
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
 
 
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'HistorialClinico'
   const datosHistorialClinico = {
     ClientId: 3,
@@ -210,10 +210,10 @@ conexion.query('INSERT INTO enfermedades SET ?', datosEnfermedades, (error, resu
     }
     console.log('Datos insertados en la tabla historialclinico correctamente:', resultado);
   });
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
 
 
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'Permiso'
   const datosPermisos = [
     { Permission: '0000', Description: 'Permite al usuario modificar información.' },
@@ -227,43 +227,43 @@ conexion.query('INSERT INTO enfermedades SET ?', datosEnfermedades, (error, resu
     }
     console.log('Datos insertados en la tabla Permisos correctamente:', resultado);
   });
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
 
 
-// --------------------------------------------------------------------------------------------
-    // Inserta datos de ejemplo en la tabla 'Bitacora'
-    const datosBitacora = {
-      DateTime: new Date().toISOString().slice(0, 19).replace('T', ' '),
-      User: 'admin',
-      Action: 'Cambio de contraseña',
-      Tabla: null,
-      RecordId: null,
-      Description: 'El usuario admin cambió su contraseña.'
-    };
-  
-    conexion.query('INSERT INTO bitacora SET ?', datosBitacora, (error, resultado) => {
-      if (error) {
-        console.error('Error al insertar datos en la tabla Bitacora:', error);
-        return;
-      }
-      console.log('Datos insertados en la tabla Bitacora correctamente:', resultado);
-    });
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
+  // Inserta datos de ejemplo en la tabla 'Bitacora'
+  const datosBitacora = {
+    DateTime: new Date().toISOString().slice(0, 19).replace('T', ' '),
+    User: 'admin',
+    Action: 'Cambio de contraseña',
+    Tabla: null,
+    RecordId: null,
+    Description: 'El usuario admin cambió su contraseña.'
+  };
+
+  conexion.query('INSERT INTO bitacora SET ?', datosBitacora, (error, resultado) => {
+    if (error) {
+      console.error('Error al insertar datos en la tabla Bitacora:', error);
+      return;
+    }
+    console.log('Datos insertados en la tabla Bitacora correctamente:', resultado);
+  });
+  // --------------------------------------------------------------------------------------------
 
 
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'Usuarios'
   const datosUsuarios = {
-    Email: 'juan@example.com', 
-    Password: 'juan123', 
-    IsAdministrator: false, 
-    IsDoctor: true, 
+    Email: 'juan@example.com',
+    Password: 'juan123',
+    IsAdministrator: false,
+    IsDoctor: true,
     IsEmployee: false
   };
-  
+
   // Consulta SQL para insertar datos en la tabla Usuarios
   const insertusuarios = 'INSERT INTO Usuarios (Email, Password, IsAdministrator, IsDoctor, IsEmployee) VALUES ?';
-  
+
   // Insertar datos en la tabla Usuarios
   conexion.query(insertusuarios, [[Object.values(datosUsuarios)]], (error, results) => {
     if (error) {
@@ -272,7 +272,7 @@ conexion.query('INSERT INTO enfermedades SET ?', datosEnfermedades, (error, resu
     }
     console.log('Datos insertados correctamente en la tabla Usuarios');
   });
-// --------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------
 
 
   // Cierra la conexión a la base de datos
