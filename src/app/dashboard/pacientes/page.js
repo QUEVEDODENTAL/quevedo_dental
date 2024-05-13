@@ -1,7 +1,7 @@
 import React from 'react';
 import TarjetaUsuario from '@/components/TarjetaUsuario';
 
-const Dashboard = () => {
+const Pacientes = () => {
   return (
     <div className="flex flex-col justify-center items-center mx-4 px-4 py-8">
       <h1 className="text-3xl font-bold mb-10">¡Pacientes!</h1>
@@ -20,4 +20,4 @@ const Dashboard = () => {
   );
 }
 
-export default Dashboard;
+export default Pacientes;
