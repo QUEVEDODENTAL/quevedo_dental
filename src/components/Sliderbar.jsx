@@ -12,7 +12,7 @@ const SliderBar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 bottom-0">
+    <div className="fixed top-0 left-0 bottom-0 z-10">
       <div className="fixed top-4 left-4 cursor-pointer">
         <FaBars className="text-white text-xl" onClick={toggleSliderVisibility} />
       </div>

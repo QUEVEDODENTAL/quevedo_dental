@@ -13,8 +13,6 @@ const Perfil = () => {
           height={200}
           priority
           className="rounded-full"
-          layout="responsive"
-          objectFit="cover"
         />
       </div>
 
