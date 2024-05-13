@@ -87,3 +87,8 @@
   grid-template-columns: repeat(8, 1fr);
   grid-gap: 10px; /* Puedes ajustar esto según el espacio que desees entre los dientes */
 }
+.diente.seleccionado {
+  border-color: #6a4caf; /* Cambia el color del borde cuando está seleccionado */
+  box-shadow: 0 0 5px #4c66af; /* Agrega una sombra al diente seleccionado */
+}
+
