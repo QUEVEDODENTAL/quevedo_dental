@@ -76,7 +76,7 @@ const Header = () => {
               <Link href="/#nuestro-equipo" scroll={true} offset={offsetValue}>Nuestro Equipo</Link>
             </li>
             <li className="transition-transform transform hover:scale-105 flex items-center justify-start">
-              <Link href="/admin" scroll={true} offset={offsetValue}>Consulta</Link>
+              <Link href="/auth/login" scroll={true} offset={offsetValue}>Consulta</Link>
             </li>
           </ul>
         </div>

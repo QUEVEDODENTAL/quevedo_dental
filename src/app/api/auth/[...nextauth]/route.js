@@ -2,7 +2,6 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import db from '@/lib/db'
 import bcrypt from 'bcrypt'
-import { data } from "autoprefixer";
 
 export const authOptions = {
     providers: [
