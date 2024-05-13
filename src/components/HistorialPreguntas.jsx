@@ -251,13 +251,18 @@ const renderColoracionLenguaOptions = () => {
     </div>
   ));
 };
-
+const toggleUlceraciones = () => {
+  setUlceraciones(!ulceraciones); // Cambia el estado de ulceraciones al valor opuesto
+};
 
 
   return (
       <div className="max-w-md">
         <div className="flex items-center justify-center mb-4 border-black">
-          <h2 className="ml-2 text-lg font-semibold">Historial Clínico/Preguntas</h2>
+        <div className="logo-container">
+        <Image src="/assets/logo.jpeg" alt="Logo" width={150} height={100} />
+        </div>
+          <h2 className="ml-2 text-lg font-semibold ">Historial Clínico/Preguntas</h2>
         </div>
         {currentPage === 1 && (
           <form onSubmit={handleSubmit} className="max-w-md">
@@ -266,24 +271,28 @@ const renderColoracionLenguaOptions = () => {
               <div className="form-control">
                
             <label htmlFor="nombre" className="text-gray-700 border-black">Nombre:</label><br />
-            <input type="text" id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" />
+            <input type="text" id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
+            placeholder="Ingrese el Nombre completo"/>
+            
           </div>
   
           <div className="form-control ">
             <label htmlFor="domicilio" className="text-gray-700 border-black">Domicilio:</label><br />
-            <input type="text" id="domicilio" value={domicilio} onChange={(e) => setDomicilio(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" /><br /><br />
+            <input type="text" id="domicilio" value={domicilio} onChange={(e) => setDomicilio(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
+            placeholder="Ingrese su domicilio" /><br /><br />
           </div>
   
 
           <div className="form-control">
             <label htmlFor="telefono" className="text-gray-700 border-black ">Teléfono:</label><br />
-            <input type="text" id="telefono" value={telefono} onChange={(e) => setTelefono(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" /><br /><br />
+            <input type="text" id="telefono" value={telefono} onChange={(e) => setTelefono(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
+            placeholder="Ingrese su numero de telefono"/><br /><br />
            
           
           </div>
           <div className="form-control">
           <label htmlFor="ocupacion" className="text-gray-700 ">Ocupación:</label><br />
-          <select id="ocupacion" value={ocupacionSeleccionada} onChange={handleOcupacionChange} className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+          <select id="ocupacion" value={ocupacionSeleccionada} onChange={handleOcupacionChange}className="border border-gray-300 rounded-md p-2 w-full">
           <option value="">Seleccionar ocupación</option>
           {opcionesOcupacion.map((opcion, index) => (
           <option key={index} value={opcion}>{opcion}</option>
@@ -309,7 +318,7 @@ const renderColoracionLenguaOptions = () => {
               value={motivoConsulta}
               onChange={(e) => setMotivoConsulta(e.target.value)}
               rows={2}
-              className="w-full border-gray-300 rounded-md shadow-sm  focus:ring-blue-500"
+            className="border border-gray-300 rounded-md p-2 w-full "
               style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}} // Impide el redimensionamiento
               placeholder="Describe el motivo de consulta aquí..."
             />
@@ -349,6 +358,7 @@ const renderColoracionLenguaOptions = () => {
                   ))}</div></div>
                   </fieldset>
                       <button type="button" onClick={prevPage}>Anterior</button>
+                      <div style={{ margin: '8px' }}></div>
                 
                   <button type="button" onClick={nextPage}>Siguiente</button>
                   </form>)}
@@ -367,42 +377,31 @@ const renderColoracionLenguaOptions = () => {
                 />
 
                 <div className="color-options">
-      <div className="color-option" onClick={() => handleColoracionEnciasChange("#FFCCCC")} style={{ backgroundColor: '#FFCCCC' }}>
-        <div className="color-box"></div>
-
-        
-        <div className="color-name">Rosa pálido</div>
-      </div>
-      <div className="color-option" onClick={() => handleColoracionEnciasChange('#FF0000')} style={{ backgroundColor: '#FF0000' }}>
-        <div className="color-box"></div>
-        <div className="color-name">Rojo brillante</div>
-      </div>
-      <div className="color-option" onClick={() => handleColoracionEnciasChange('#8B0000')} style={{ backgroundColor: '#8B0000' }}>
-        <div className="color-box"></div>
-        <div className="color-name">Rojo oscuro</div>
-      </div>
-      <div className="color-option" onClick={() => handleColoracionEnciasChange('#4B0082')} style={{ backgroundColor: '#4B0082' }}>
-        <div className="color-box"></div>
-        <div className="color-name">Azulada o púrpura</div>
-      </div>
-      <div className="color-option" onClick={() => handleColoracionEnciasChange('#FFFFFF')} style={{ backgroundColor: '#FFFFFF' }}>
-        <div className="color-box"></div>
-        <div className="color-name">Blanco pálido</div>
-      </div> {/* Imagen de las encías */}
-    <div className="form-control" style={{ position: 'relative', width: '100px' }}>
-    <Image
-          src="/assets/enciaas.jpg"
-          alt="Dentista 2"
-          width={200}
-          height={200}
-          priority
-          className="rounded-full"
-        />
-
-
-        {coloracionEncias && (
-          <div
-            className="color-overlay"
+                  <div className="color-option" onClick={() => handleColoracionEnciasChange("#FFCCCC")} style={{ backgroundColor: '#FFCCCC' }}>
+                    <div className="color-box"></div>
+                    <div className="color-name">Rosa pálido</div></div>
+                    <div className="color-option" onClick={() => handleColoracionEnciasChange('#FF0000')} style={{ backgroundColor: '#FF0000' }}>
+                    <div className="color-box"></div>
+                    <div className="color-name">Rojo brillante</div>
+                    </div>
+                    <div className="color-option" onClick={() => handleColoracionEnciasChange('#8B0000')} style={{ backgroundColor: '#8B0000' }}>
+                    <div className="color-box"></div>
+                    <div className="color-name">Rojo oscuro</div> 
+                    </div> 
+                    <div className="color-option" onClick={() => handleColoracionEnciasChange('#4B0082')} style={{ backgroundColor: '#4B0082' }}>
+                    <div className="color-box"></div>
+                    <div className="color-name">Azulada o púrpura</div></div>
+                    <div className="color-option" onClick={() => handleColoracionEnciasChange('#FFFFFF')} style={{ backgroundColor: '#FFFFFF' }}>
+                    <div className="color-box"></div>
+                    <div className="color-name">Blanco pálido</div>
+                    </div> 
+                    <div className="form-control" style={{ position: 'relative', width: '100px' }}>
+                      <Image
+                      src="/assets/enciaas.jpg" alt="Dentista 2" width={200} height={200} priorityclassName="rounded-full"/>
+                      
+                      {coloracionEncias && (
+                      <div
+                      className="color-overlay"
             style={{position: 'absolute',top: 0,left: 0,width: '100%',height: '80%',backgroundColor: coloracionEncias,opacity: 0.5, }}/>)}
             </div>
             </div>
@@ -410,14 +409,14 @@ const renderColoracionLenguaOptions = () => {
             </fieldset>
         <div className="form-control">
           <legend> Coloración de lengua</legend>
-          <div className="flex flex-wrap  flex-row">
+          <div className="flex flex-wrap lengua-image flex-row ">
             {renderColoracionLenguaOptions()}
           </div>
         </div>
 
         <div className="form-control">
           <label htmlFor="ulceracionesLengua" className="text-gray-700">Ulceraciones en Lengua:</label><br />
-          <select id="ulceracionesLengua" value={ulceracionesLengua} onChange={(e) => setUlceracionesLengua(e.target.value)}>
+          <select id="ulceracionesLengua" value={ulceracionesLengua} onChange={(e) => setUlceracionesLengua(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
             <option value="sin-ulceraciones">Sin Ulceraciones</option>
             <option value="con-ulceraciones">Con Ulceraciones</option>
           </select><br /><br />
@@ -428,13 +427,15 @@ const renderColoracionLenguaOptions = () => {
             value={observacionesLengua}
             onChange={(e) => setObservacionesLengua(e.target.value)}
             rows={4}
-            style={{ maxWidth: '650px', maxHeight: '200px' }}
+            className="border border-gray-300 rounded-md p-2 w-full"
+            style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}}
             placeholder="Ingrese observaciones adicionales sobre la lengua aquí..."
+            
           />
         </div>
         <div className="form-control">
           <label htmlFor="coloracionPaladar" className="text-gray-700">Coloración de Paladar Duro:</label><br />
-          <select id="coloracionPaladar" value={coloracionPaladar} onChange={(e) => setColoracionPaladar(e.target.value)}>
+          <select id="coloracionPaladar" value={coloracionPaladar} onChange={(e) => setColoracionPaladar(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
             <option value="">Seleccionar coloración de Paladar</option>
             {opcionesColoracionPaladar.map((coloracion, index) => (
               <option key={index} value={coloracion}>{coloracion}</option>
@@ -442,20 +443,23 @@ const renderColoracionLenguaOptions = () => {
           </select><br /><br />
 
           <label htmlFor="ulceracionesPaladar" className="text-gray-700">Lesiones o Anomalías en Paladar Duro:</label><br />
-          <select id="ulceracionesPaladar" value={ulceracionesPaladar} onChange={(e) => setUlceracionesPaladar(e.target.value)}>
+          <select id="ulceracionesPaladar" value={ulceracionesPaladar} onChange={(e) => setUlceracionesPaladar(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
             <option value="sin-ulceraciones">Sin lesiones</option>
             <option value="con-ulceraciones">Con lesiones</option>
           </select><br /><br />
-
           <label htmlFor="observacionesPaladar" className="text-gray-700">Observaciones sobre Paladar Duro:</label><br />
-          <textarea
-            id="observacionesPaladar"
-            value={observacionesPaladar}
-            onChange={(e) => setObservacionesPaladar(e.target.value)}
-            rows={4}
-            style={{ maxWidth: '650px', maxHeight: '200px' }}
-            placeholder="Ingrese observaciones adicionales sobre el paladar aquí..."
-          />  <input type="submit" value="Enviar" />
+           <textarea
+           id="observacionesPaladar"
+           value={observacionesPaladar}
+           onChange={(e) => setObservacionesPaladar(e.target.value)}
+           rows={4}
+           className="border border-gray-300 rounded-md p-2 w-full"
+           style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}}
+           placeholder="Ingrese observaciones adicionales sobre el paladar aquí..."
+          />  
+          <button type="button" onClick={prevPage}>Anterior</button>
+          <div style={{ margin: '8px' }}></div>
+          <input type="submit" value="Enviar" />
           </div>
           </form>
           )}

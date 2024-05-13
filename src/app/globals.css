@@ -92,3 +92,12 @@
   box-shadow: 0 0 5px #4c66af; /* Agrega una sombra al diente seleccionado */
 }
 
+.lengua-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Para centrar las imágenes horizontalmente */
+}
+
+.coloracion-lengua-option {
+  margin: 0 10px; /* Ajusta el margen entre las imágenes según sea necesario */
+}
