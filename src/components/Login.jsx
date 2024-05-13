@@ -1,36 +1,43 @@
 'use client'
 
-import { set, useForm } from "react-hook-form";
-import { signIn } from "next-auth/react";
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+// Importación de módulos y hooks necesarios
+import { set, useForm } from "react-hook-form"; // Para el manejo de formularios
+import { signIn } from "next-auth/react"; // Para la autenticación
+import { useRouter } from 'next/navigation'; // Para la navegación
+import { useState } from 'react'; // Para manejar el estado
+
+// Componente principal del formulario de inicio de sesión
 function LoginForm() {
 
+  // Inicialización de useForm para manejar el formulario
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
+    register, // Para registrar los campos del formulario
+    handleSubmit, // Para manejar el envío del formulario
+    formState: { errors }, // Para manejar los errores del formulario
   } = useForm();
-  const router = useRouter()
-  const [error, setError] = useState(null)
 
+  const router = useRouter(); // Hook para la navegación
+  const [error, setError] = useState(null); // Estado para manejar errores de autenticación
+
+  // Función que se ejecuta al enviar el formulario
   const onSubmit = handleSubmit(async (data) => {
     console.log(data);
 
+    // Intento de inicio de sesión utilizando las credenciales proporcionadas
     const res = await signIn('credentials', {
-      Email: data.Email,
-      Password: data.Password,
-      redirect: false,
+      Email: data.Email, // Email del usuario
+      Password: data.Password, // Contraseña del usuario
+      redirect: false, // No redirigir automáticamente
     });
 
     console.log(res);
 
+    // Manejo de errores o redirección en caso de éxito
     if (res.error) {
-      setError(res.error)
+      setError(res.error); // Establece el error si ocurre
     } else {
-      router.push('/dashboard')
+      router.push('/dashboard'); // Redirige al dashboard si el inicio de sesión es exitoso
     }
-
   });
 
   return (
@@ -52,15 +59,13 @@ function LoginForm() {
             {...register("Email", {
               required: {
                 value: true,
-                message: "Email is required",
+                message: "Email is required", // Mensaje de error si el campo está vacío
               },
             })}
-
             className="w-full outline-none rounded-md mb-4 bg-gray-200 px-4 py-3"
             placeholder="Ingresa tu correo electrónico"
             style={{ fontWeight: "300" }}
           />
-
           {errors.Email && (
             <span className="text-red-500 text-xs mb-4">{errors.Email.message}</span>
           )}
@@ -74,20 +79,18 @@ function LoginForm() {
           {...register("Password", {
             required: {
               value: true,
-              message: "Password is required",
+              message: "Password is required", // Mensaje de error si el campo está vacío
             },
           })}
           className="w-full outline-none rounded-md bg-gray-200 px-4 py-3"
           placeholder="Ingresa tu contraseña"
           style={{ fontWeight: "300" }}
         />
-
         {errors.Password && (
           <span className="text-red-500 text-xs">
             {errors.Password.message}
           </span>
         )}
-
 
         <button className="flex text-lg p-3 rounded-md bg-secondary-button text-white scale-95 cursor-pointer transform hover:scale-100 transition-transform duration-300 text-primary-white">
           Entrar
