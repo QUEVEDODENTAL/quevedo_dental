@@ -259,9 +259,7 @@ const toggleUlceraciones = () => {
   return (
       <div className="max-w-md">
         <div className="flex items-center justify-center mb-4 border-black">
-        <div className="logo-container">
-        <Image src="/assets/logo.jpeg" alt="Logo" width={150} height={100} />
-        </div>
+     
           <h2 className="ml-2 text-lg font-semibold ">Historial Clínico/Preguntas</h2>
         </div>
         {currentPage === 1 && (
@@ -397,7 +395,7 @@ const toggleUlceraciones = () => {
                     </div> 
                     <div className="form-control" style={{ position: 'relative', width: '100px' }}>
                       <Image
-                      src="/assets/enciaas.jpg" alt="Dentista 2" width={200} height={200} priorityclassName="rounded-full"/>
+                      src="/assets/enciaas.jpg" alt="Dentista 2" width={200} height={200}className="rounded-full"/>
                       
                       {coloracionEncias && (
                       <div
