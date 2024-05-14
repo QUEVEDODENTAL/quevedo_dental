@@ -8,7 +8,6 @@ import { useState } from 'react'; // Para manejar el estado
 
 // Componente principal del formulario de inicio de sesión
 function LoginForm() {
-
   // Inicialización de useForm para manejar el formulario
   const {
     register, // Para registrar los campos del formulario
@@ -21,7 +20,7 @@ function LoginForm() {
 
   // Función que se ejecuta al enviar el formulario
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
+    // console.log(data);
 
     // Intento de inicio de sesión utilizando las credenciales proporcionadas
     const res = await signIn('credentials', {
@@ -30,7 +29,7 @@ function LoginForm() {
       redirect: false, // No redirigir automáticamente
     });
 
-    console.log(res);
+    // console.log(res);
 
     // Manejo de errores o redirección en caso de éxito
     if (res.error) {

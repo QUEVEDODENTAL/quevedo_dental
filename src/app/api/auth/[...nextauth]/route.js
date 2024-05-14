@@ -10,10 +10,7 @@ export const authOptions = {
         // Configuración del proveedor de autenticación basado en credenciales
         CredentialsProvider({
             name: "Credentials", // Nombre del proveedor
-            credentials: {
-                Email: { label: "Email", }, // Campo de email
-                Password: { label: "Password" }, // Campo de contraseña
-            },
+
             // Función de autorización que se ejecuta al intentar iniciar sesión
             async authorize(credentials, req) {
                 console.log(credentials); // Imprime las credenciales en el servidor para depuración
