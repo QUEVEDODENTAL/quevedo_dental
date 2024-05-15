@@ -128,9 +128,7 @@ const renderEnfermedadesButtons = () => {
     return enfermedadesList.map(enfermedad => (
         <button
             key={enfermedad.name}
-            className={`px-4 py-2 enfermedad-button selected bg-purple-600 text-white rounded-md${enfermedadesSeleccionadas.includes(enfermedad.name) ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'} font-semibold mb-2 mr-2 hover:bg-blue-700`}
-            onClick={() => handleEnfermedadClick(enfermedad.name)}
-        >
+            className={`px-4 py-2 rounded-md mb-2 mr-2 hover:bg-blue-700 ${enfermedadesSeleccionadas.includes(enfermedad.name) ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}>
             {enfermedad.label}
         </button>
     ));
@@ -177,7 +175,7 @@ const renderEnfermedadesButtons = () => {
       const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
 
       return (
-        <div key={numero} className="mx-1 shadow-md r  cursor-pointer hover:text-purple-600">
+        <div key={numero} className="mx-1 shadow-md   cursor-pointer hover:text-purple-600">
           {imagenExiste ? (
             <>
               <Image

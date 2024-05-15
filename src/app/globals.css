@@ -65,4 +65,18 @@
   border-color: #6a4caf; /* Cambia el color del borde cuando está seleccionado */
   box-shadow: 0 0 5px #4c66af; /* Agrega una sombra al diente seleccionado */
 }
+/* Estilos para la imagen de fondo */
+
+
+
+.bg-center {
+  background-position: center;
+}
+
+/* Estilos para hacer que la imagen no se superponga en dispositivos pequeños */
+@media only screen and (max-width: 100%) {
+  .bg-cover {
+    background-size: contain; /* Cambiar a contener en dispositivos más pequeños */
+  }
+}
 
