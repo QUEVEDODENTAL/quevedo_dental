@@ -1,5 +1,7 @@
 // Importa el cliente Prisma desde el paquete @prisma/client
-import { PrismaClient } from '@prisma/client'
+
+import { PrismaClient } from "@prisma/client"
+
 
 // Función para crear una nueva instancia de PrismaClient
 const prismaClientSingleton = () => {

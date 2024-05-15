@@ -246,7 +246,7 @@ const renderColoracionLenguaOptions = () => {
           className="w-24 mb-2 cursor-pointer"
           width="80" height="70"
         />
-        <span className="text-xs">{coloracion}</span>
+     
       </label>
     </div>
   ));
