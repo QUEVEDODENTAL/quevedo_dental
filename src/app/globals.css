@@ -54,33 +54,7 @@
 }
 
 
-.custom-shadow {
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
-}
 
-.custom-cursor {
-  cursor: pointer;
-}
-
-.custom-cursor:hover {
-  cursor: pointer;
-  color: rgb(106, 74, 175);
-}
-  
-.enfermedad-button.selected {
-  /* Estilos para los botones de enfermedad seleccionados */
-  background-color: #6a4caf; /* Cambia el color de fondo */
-  color: rgb(255, 255, 255); /* Cambia el color del texto */
-  border-radius: 5px; /* Agrega bordes redondeados */
-}
-.odontograma-container {
-  display: flex;
-  justify-content: center; /* Alinea los elementos horizontalmente en el centro */
-}
-
-.diente-wrapper {
-  margin: 0 5px; /* Espacio entre cada diente */
-}
 
 .dientes-grid {
   display: grid;
@@ -92,12 +66,3 @@
   box-shadow: 0 0 5px #4c66af; /* Agrega una sombra al diente seleccionado */
 }
 
-.lengua-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Para centrar las imágenes horizontalmente */
-}
-
-.coloracion-lengua-option {
-  margin: 0 10px; /* Ajusta el margen entre las imágenes según sea necesario */
-}
