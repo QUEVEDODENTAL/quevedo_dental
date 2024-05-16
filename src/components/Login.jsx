@@ -29,8 +29,6 @@ function LoginForm() {
       redirect: false, // No redirigir automáticamente
     });
 
-    // console.log(res);
-
     // Manejo de errores o redirección en caso de éxito
     if (res.error) {
       setError(res.error); // Establece el error si ocurre
@@ -42,15 +40,6 @@ function LoginForm() {
   return (
 
       <div className="h-screen md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
- <Image
-      src="/assets/wave.png"
-      width="750"
-      height="100"
-      alt="Login fondo"
-      priority={true} 
-      style={{ position: 'absolute', top: 0, left: 0 }}
-      className="hidden md:block"
-    />
       <h1 className='text-5xl font-bold flex justify-center mb-8'>Iniciar sesión</h1>
 
       <form onSubmit={onSubmit} className="space-y-8">
