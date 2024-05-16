@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { FaUserAlt, FaLock, FaBars, FaIdCardAlt } from "react-icons/fa";
 import { FaHouse, FaAddressCard, FaHospitalUser } from "react-icons/fa6";
-import { signOut, singOut } from 'next-auth/react'
+import { signOut } from 'next-auth/react'
 
 const SliderBar = () => {
   const [isSliderVisible, setIsSliderVisible] = useState(true);

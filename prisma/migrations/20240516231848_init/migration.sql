@@ -74,8 +74,9 @@ CREATE TABLE `doctor` (
     `LicenseNumber` VARCHAR(12) NULL,
     `Sex` VARCHAR(10) NULL,
     `MedicalLicense` VARCHAR(100) NULL,
-    `Email` VARCHAR(150) NULL,
+    `Email` VARCHAR(150) NOT NULL,
 
+    UNIQUE INDEX `doctor_Email_key`(`Email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -87,7 +88,7 @@ CREATE TABLE `empleado` (
     `BirthDate` DATE NULL,
     `Gender` ENUM('Masculino', 'Femenino', 'Otro') NULL,
     `Phone` VARCHAR(20) NULL,
-    `Email` VARCHAR(100) NULL,
+    `Email` VARCHAR(100) NOT NULL,
     `Address` VARCHAR(255) NULL,
     `Position` VARCHAR(100) NULL,
     `CURP` VARCHAR(18) NULL,
@@ -95,6 +96,7 @@ CREATE TABLE `empleado` (
     `Salary` DECIMAL(10, 2) NULL,
     `HireDate` DATE NULL,
 
+    UNIQUE INDEX `empleado_Email_key`(`Email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -166,6 +168,12 @@ ALTER TABLE `antecedentesnopatologicos` ADD CONSTRAINT `AntecedentesNoPatologico
 
 -- AddForeignKey
 ALTER TABLE `antecedentespatologicos` ADD CONSTRAINT `AntecedentesPatologicos_paciente_id_fkey` FOREIGN KEY (`PatientId`) REFERENCES `clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `doctor` ADD CONSTRAINT `doctor_Email_fkey` FOREIGN KEY (`Email`) REFERENCES `usuarios`(`Email`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `empleado` ADD CONSTRAINT `empleado_Email_fkey` FOREIGN KEY (`Email`) REFERENCES `usuarios`(`Email`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `examenclinicointraoral` ADD CONSTRAINT `ExamenClinicoIntraoral_id_paciente_fkey` FOREIGN KEY (`PatientId`) REFERENCES `clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

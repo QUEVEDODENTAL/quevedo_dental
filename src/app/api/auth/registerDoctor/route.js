@@ -23,7 +23,7 @@ export async function POST(request) {
         }, { status: 400 });
     } else {
         try {
-
+            // Se genera un hash de la contraseña proporcionada utilizando bcrypt
             const hashPassword = await bcrypt.hash(Password, 10)
             // Si el email no existe, crea un nuevo usuario
             const newUser = await db.usuarios.create({
@@ -47,7 +47,7 @@ export async function POST(request) {
                     CURP,
                     MedicalLicense,
                     LicenseNumber,
-                    Email // Asociar el email del doctor con el email del usuario
+                    Email
                 }
             });
 
@@ -56,7 +56,6 @@ export async function POST(request) {
             return NextResponse.json({ doctor: newDoctor, usuarios: newUser });
         } catch (error) {
             console.error(error);
-            // En caso de error, el entorno manejará el error y lo mostrará según su configuración predeterminada
             return NextResponse.json({
                 message: "Hubo un error al registrar el doctor"
             }, { status: 500 });
