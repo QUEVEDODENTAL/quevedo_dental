@@ -30,8 +30,6 @@ function LoginForm() {
       redirect: false, // No redirigir automáticamente
     });
 
-    // console.log(res);
-
     // Manejo de errores o redirección en caso de éxito
     if (res.error) {
       setError(res.error); // Establece el error si ocurre

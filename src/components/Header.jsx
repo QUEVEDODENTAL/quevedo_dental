@@ -53,11 +53,7 @@ const Header = () => {
             </li>
             <li className="text-left hover:scale-125 transition-transform flex items-center justify-start">
               <FaAddressCard className="mr-1" />
-              <Link href="/#nuestro-equipo" scroll={true} offset={offsetValue}>Nuestro Equipo</Link>
-            </li>
-            <li className="text-left hover:scale-125 transition-transform flex items-center justify-start">
-              <FaAddressCard className="mr-1" />
-              <Link href="/admin" scroll={true} offset={offsetValue}>Consulta</Link>
+              <Link href="/auth/login" scroll={true} offset={offsetValue}>Consulta</Link>
             </li>
           </ul>
         </nav>
