@@ -236,11 +236,11 @@ const renderColoracionLenguaOptions = () => {
         checked={coloracion === coloracionLenguaSelected}
         onChange={() => handleColoracionLenguaChange(coloracion)}
         style={{ width: '1.5em', height: '1.5em' }}
-        className="hidden"
+     
       />
       <label htmlFor={`coloracionLengua-${index}`} className={`flex flex-col items-center cursor-pointer ${coloracion === coloracionLenguaSelected ? 'border-2 border-blue-500' : 'border border-gray-300'}`}>
         <Image
-          src={`/assets/lengua/lengua-${coloracion.toLowerCase().replace(/\s/g, "_")}.png`}
+          src={`/assets/lengua/lengua-${coloracion}.png`}
           alt={coloracion}
           className="w-24 mb-2 cursor-pointer"
           width="80" height="70"

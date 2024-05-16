@@ -1,4 +1,3 @@
-
 'use client'
 
 // Importación de módulos y hooks necesarios
@@ -29,6 +28,8 @@ function LoginForm() {
       Password: data.Password, // Contraseña del usuario
       redirect: false, // No redirigir automáticamente
     });
+
+    // console.log(res);
 
     // Manejo de errores o redirección en caso de éxito
     if (res.error) {
