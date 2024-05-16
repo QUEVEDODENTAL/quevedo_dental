@@ -28,8 +28,8 @@ export const authOptions = {
                 console.log(userFound); // Imprime el usuario encontrado para depuración
 
                 // Compara la contraseña proporcionada con la almacenada (aquí se usa una comparación simple para demo)
-                // const matchPassword = await bcrypt.compare(credentials.Password, userFound.Password); // Uso recomendado con bcrypt
-                const matchPassword = credentials.Password === userFound.Password; // Comparación simple
+                const matchPassword = await bcrypt.compare(credentials.Password, userFound.Password); // Uso recomendado con bcrypt
+                // const matchPassword = credentials.Password === userFound.Password; // Comparación simple
 
                 // Si la contraseña no coincide, lanza un error
                 if (!matchPassword) throw new Error('Contraseña incorrecto.');
