@@ -18,7 +18,7 @@ const SliderBar = () => {
         <FaBars className="text-white text-xl" onClick={toggleSliderVisibility} />
       </div>
       <div className={`fixed text-white h-screen w-64 flex flex-col bg-secondary-dash text-secondary-icon transition-transform duration-500 ${isSliderVisible ? 'translate-x-0' : '-translate-x-full'}`}>
-        <div className=" absolute top-4 right-4 cursor-pointer" onClick={toggleSliderVisibility}>
+        <div className="absolute top-4 right-4 cursor-pointer" onClick={toggleSliderVisibility}>
           <FaBars className="text-white text-xl" />
         </div>
         <div className="p-4 text-center">

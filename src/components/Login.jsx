@@ -1,5 +1,5 @@
 'use client'
-
+import Image from 'next/image';
 // Importación de módulos y hooks necesarios
 import { set, useForm } from "react-hook-form"; // Para el manejo de formularios
 import { signIn } from "next-auth/react"; // Para la autenticación
@@ -29,8 +29,6 @@ function LoginForm() {
       redirect: false, // No redirigir automáticamente
     });
 
-    // console.log(res);
-
     // Manejo de errores o redirección en caso de éxito
     if (res.error) {
       setError(res.error); // Establece el error si ocurre
@@ -40,10 +38,11 @@ function LoginForm() {
   });
 
   return (
-    <div className="mx-1 p-4 custom-shadowa rounded-lg lg:w-3/5 md:w-3/4 bg-secondary-dash2">
+
+      <div className="h-screen md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
       <h1 className='text-5xl font-bold flex justify-center mb-8'>Iniciar sesión</h1>
 
-      <form onSubmit={onSubmit} className="space-y-4">
+      <form onSubmit={onSubmit} className="space-y-8">
 
         {error && (
           <p className="bg-primary-red text-xs text-white p-3 rounded-md text-center"> {error}</p>
@@ -58,10 +57,10 @@ function LoginForm() {
             {...register("Email", {
               required: {
                 value: true,
-                message: "Email is required", // Mensaje de error si el campo está vacío
+                message: "Correo electronico requerido", // Mensaje de error si el campo está vacío
               },
             })}
-            className="w-full outline-none rounded-md mb-4 bg-gray-200 px-4 py-3"
+            className="w-full outline-none rounded-md mb-4 bg-gray-200 px-4 py-3 text-center"
             placeholder="Ingresa tu correo electrónico"
             style={{ fontWeight: "300" }}
           />
@@ -78,10 +77,10 @@ function LoginForm() {
           {...register("Password", {
             required: {
               value: true,
-              message: "Password is required", // Mensaje de error si el campo está vacío
+              message: "Contraseña requerida", // Mensaje de error si el campo está vacío
             },
           })}
-          className="w-full outline-none rounded-md bg-gray-200 px-4 py-3"
+          className="w-full outline-none rounded-md bg-gray-200 px-4 py-3 text-center" 
           placeholder="Ingresa tu contraseña"
           style={{ fontWeight: "300" }}
         />
@@ -91,7 +90,8 @@ function LoginForm() {
           </span>
         )}
 
-        <button className="flex text-lg p-3 rounded-md bg-secondary-button text-white scale-95 cursor-pointer transform hover:scale-100 transition-transform duration-300 text-primary-white">
+        <button  className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg bg-gradient-to-r from-purple-700 to-blue-500"
+        style={{background:"linear-gradient(to right,  #2D16AD, #167CA5, #5AA7E6, #5EDCEC) "}}>
           Entrar
         </button>
       </form>

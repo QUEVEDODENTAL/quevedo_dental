@@ -5,9 +5,24 @@ import { useForm } from 'react-hook-form';
 const RegistrarPage = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [password, setPassword] = useState('');
+    const [salario, setSalario] = useState('');
+    const [fechaContratacion, setFechaContratacion] = useState('');
 
     const handleOptionSelect = (option) => {
         setSelectedOption(option);
+    };
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+
+    const handleSalarioChange = (event) => {
+        setSalario(event.target.value);
+    };
+
+    const handleFechaContratacionChange = (event) => {
+        setFechaContratacion(event.target.value);
     };
 
 
@@ -282,6 +297,8 @@ const RegistrarPage = () => {
                             {...register("Salary", { requierd: true })}
                             type="number"
                             name='Salary'
+                            value={salario}
+                            onChange={handleSalarioChange}
                             className="w-full outline-secondary-font rounded-[3px] mb-[6px] bg-[#e4e4e4] px-[8px] py-[10px] text-sm"
                             placeholder="Salario"
                             style={{ fontWeight: "300" }} />
@@ -292,9 +309,41 @@ const RegistrarPage = () => {
                             {...register("DateHire", { requierd: true })}
                             type="date"
                             name='DateHire'
+                            value={fechaContratacion}
+                            onChange={handleFechaContratacionChange}
                             className="w-full outline-secondary-font rounded-[3px] mb-[6px] bg-[#e4e4e4] px-[8px] py-[10px] text-sm"
                             style={{ fontWeight: "300" }} />
                     </div>
+                    {selectedOption === 'doctor' && (
+                        <>
+                            <div>
+                                <label className="text-sm font-medium">Contraseña:</label>
+                                <input
+                                    type="password"
+                                    name='contrasenaDoctor'
+                                    value={password}
+                                    onChange={handlePasswordChange}
+                                    className="w-full outline-secondary-font rounded-[3px] mb-[6px] bg-[#e4e4e4] px-[8px] py-[10px] text-sm"
+                                    placeholder="Contraseña"
+                                    style={{ fontWeight: "300" }} />
+                            </div>
+                        </>
+                    )}
+                    {selectedOption === 'empleado' && (
+                        <>
+                            <div>
+                                <label className="text-sm font-medium">Contraseña:</label>
+                                <input
+                                    type="password"
+                                    name='contrasenaEmpleado'
+                                    value={password}
+                                    onChange={handlePasswordChange}
+                                    className="w-full outline-secondary-font rounded-[3px] mb-[6px] bg-[#e4e4e4] px-[8px] py-[10px] text-sm"
+                                    placeholder="Contraseña"
+                                    style={{ fontWeight: "300" }} />
+                            </div>
+                        </>
+                    )}
                     <div className="mt-4">
                         <button type="submit" name="registrar" className="text-[1rem] p-[10px] rounded-[10px] scale-90 bg-secondary-font text-primary-seccion cursor-pointer text-white hover:bg-secondary-font hover:text-primary-seccion hover:scale-100 transition-transform duration-300">
                             Registrar

@@ -128,9 +128,7 @@ const renderEnfermedadesButtons = () => {
     return enfermedadesList.map(enfermedad => (
         <button
             key={enfermedad.name}
-            className={`px-4 py-2 rounded-md ${enfermedadesSeleccionadas.includes(enfermedad.name) ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'} font-semibold mb-2 mr-2 hover:bg-blue-700`}
-            onClick={() => handleEnfermedadClick(enfermedad.name)}
-        >
+            className={`px-4 py-2 rounded-md mb-2 mr-2 hover:bg-blue-700 ${enfermedadesSeleccionadas.includes(enfermedad.name) ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}>
             {enfermedad.label}
         </button>
     ));
@@ -177,7 +175,7 @@ const renderEnfermedadesButtons = () => {
       const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
 
       return (
-        <div key={numero} className="diente-wrapper custom-cursor diente-seleccionado custom-shadow custom-cursor:hover">
+        <div key={numero} className="mx-1 shadow-md   cursor-pointer hover:text-purple-600">
           {imagenExiste ? (
             <>
               <Image
@@ -209,7 +207,8 @@ const renderizarImagenSup = (numero) => {
       const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
 
       return (
-        <div key={numero} className="diente-wrapper custom-cursor custom-shadow custom-cursor:hover ">
+        <div key={numero} className="mx-1 shadow-md custom-pointer  cursor-pointer hover:text-purple-600">
+          
           {imagenExiste ? (
             <>
               <Image 
@@ -217,7 +216,7 @@ const renderizarImagenSup = (numero) => {
                 alt={`Diente ${numeroDiente}`}
                 className={`diente ${dientesSeleccionados.includes(numeroDiente) ? 'seleccionado' : ''}`}
                 onClick={() => toggleDienteSeleccionado(numeroDiente)}
-                width="30" height="90"
+                width="80" height="90"
               />
               <div className="numero-diente">{numeroDiente}</div>
             </>
@@ -246,7 +245,7 @@ const renderColoracionLenguaOptions = () => {
           className="w-24 mb-2 cursor-pointer"
           width="80" height="70"
         />
-        <span className="text-xs">{coloracion}</span>
+     
       </label>
     </div>
   ));
@@ -259,9 +258,7 @@ const toggleUlceraciones = () => {
   return (
       <div className="max-w-md">
         <div className="flex items-center justify-center mb-4 border-black">
-        <div className="logo-container">
-        <Image src="/assets/logo.jpeg" alt="Logo" width={150} height={100} />
-        </div>
+     
           <h2 className="ml-2 text-lg font-semibold ">Historial Clínico/Preguntas</h2>
         </div>
         {currentPage === 1 && (
@@ -327,7 +324,7 @@ const toggleUlceraciones = () => {
         </fieldset>
   
         <fieldset>
-          <legend className="text-lg text-gray-700 bg-transparent text-gray-700 border border-gray-700 hover:bg-gray-100 hover:text-gray-900 font-semibold py-2 px-4 rounded inline-flex items-center">Enfermedades</legend>
+          <legend className="text-lg text-gray-700 bg-transparent text-gray-700  border border-gray-700 hover:bg-gray-100 hover:text-gray-900 font-semibold py-2 px-4 rounded inline-flex items-center">Enfermedades</legend>
           <div className="enfermedades-container">
             {renderEnfermedadesButtons()}
           </div>
@@ -342,18 +339,18 @@ const toggleUlceraciones = () => {
           <fieldset>
             <legend className="text-lg font-semibold text-gray-700">Odontograma</legend>
             <legend className="text-lg font-semibold text-gray-700">Dientes Superiores</legend>
-            <div className="odontograma-container">
-              <div className="dientes-grid">
+            <div className="grid grid-cols-8 gap-10 justify-center">
+               <div className="dientes-grid "> 
                 {[...Array(105).keys()].map(numero => (
-                <div key={`sup-${numero}`} className="diente-wrapper">
+                <div key={`sup-${numero}`} className="m-2 ">
                   {renderizarImagenSup(numero)}
                   </div>
                 ))}</div></div>
                 <legend className="text-lg font-semibold text-gray-700">Dientes Inferiores</legend>
-                <div className="odontograma-container">
+                <div className="grid grid-cols-8 gap-10 justify-center">
                   <div className="dientes-grid">
                     {[...Array(105).keys()].map(numero => (
-                    <div key={`inf-${numero}`} className="diente-wrapper">{renderizarImagen(numero)}
+                    <div key={`inf-${numero}`} className="m-2 px-1">{renderizarImagen(numero)}
                     </div>
                   ))}</div></div>
                   </fieldset>
@@ -397,7 +394,7 @@ const toggleUlceraciones = () => {
                     </div> 
                     <div className="form-control" style={{ position: 'relative', width: '100px' }}>
                       <Image
-                      src="/assets/enciaas.jpg" alt="Dentista 2" width={200} height={200} priorityclassName="rounded-full"/>
+                      src="/assets/enciaas.jpg" alt="Dentista 2" width={200} height={200}className="rounded-full"/>
                       
                       {coloracionEncias && (
                       <div
