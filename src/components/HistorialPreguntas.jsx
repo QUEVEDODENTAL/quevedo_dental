@@ -385,12 +385,12 @@ const toggleUlceraciones = () => {
                     <div className="color-box"></div>
                     <div className="color-name">Rojo oscuro</div> 
                     </div> 
-                    <div className="color-option" onClick={() => handleColoracionEnciasChange('#4B0082')} style={{ backgroundColor: '#4B0082' }}>
+                    <div className="color-option" onClick={() => handleColoracionEnciasChange('#FFFFFF')} style={{ backgroundColor:'#FFFFFF'   }}>
                     <div className="color-box"></div>
-                    <div className="color-name">Azulada o púrpura</div></div>
-                    <div className="color-option" onClick={() => handleColoracionEnciasChange('#FFFFFF')} style={{ backgroundColor: '#FFFFFF' }}>
+                    <div className="color-name">Blanco pálido</div></div>
+                    <div className="color-option" onClick={() => handleColoracionEnciasChange('#4B0082')} style={{ backgroundColor:'#4B0082 '}}>
                     <div className="color-box"></div>
-                    <div className="color-name">Blanco pálido</div>
+                    <div className="color-name">Azulada o púrpura</div>
                     </div> 
                     <div className="form-control" style={{ position: 'relative', width: '100px' }}>
                       <Image

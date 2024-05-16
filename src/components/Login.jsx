@@ -1,5 +1,6 @@
+
 'use client'
-import Image from 'next/image';
+
 // Importación de módulos y hooks necesarios
 import { set, useForm } from "react-hook-form"; // Para el manejo de formularios
 import { signIn } from "next-auth/react"; // Para la autenticación
@@ -40,17 +41,8 @@ function LoginForm() {
   });
 
   return (
-
-      <div className="h-screen md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
- <Image
-      src="/assets/wave.png"
-      width="750"
-      height="100"
-      alt="Login fondo"
-      priority={true} 
-      style={{ position: 'absolute', top: 0, left: 0 }}
-      className="hidden md:block"
-    />
+    <div className="mx-auto p-8 w-4/5 max-w-lg custom-shadow rounded-lg bg-secondary-dash2"
+    >
       <h1 className='text-5xl font-bold flex justify-center mb-8'>Iniciar sesión</h1>
 
       <form onSubmit={onSubmit} className="space-y-8">
