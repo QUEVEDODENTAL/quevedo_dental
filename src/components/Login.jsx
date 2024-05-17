@@ -1,8 +1,10 @@
 'use client'
-import { useForm } from "react-hook-form";
-import { signIn } from "next-auth/react";
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+
+// Importación de módulos y hooks necesarios
+import { set, useForm } from "react-hook-form"; // Para el manejo de formularios
+import { signIn } from "next-auth/react"; // Para la autenticación
+import { useRouter } from 'next/navigation'; // Para la navegación
+import { useState } from 'react'; // Para manejar el estado
 
 function LoginForm() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -16,6 +18,9 @@ function LoginForm() {
       password: data.Password,
     });
 
+    // console.log(res);
+
+    // Manejo de errores o redirección en caso de éxito
     if (res.error) {
       setError(res.error);
     } else {
@@ -24,7 +29,8 @@ function LoginForm() {
   });
 
   return (
-    <div className="h-screen md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
+    <div className="mx-auto p-8 w-4/5 max-w-lg custom-shadow rounded-lg bg-secondary-dash2"
+    >
       <h1 className='text-5xl font-bold flex justify-center mb-8'>Iniciar sesión</h1>
       <form onSubmit={onSubmit} className="space-y-8">
         {error && (
@@ -58,11 +64,6 @@ function LoginForm() {
           Entrar
         </button>
       </form>
-      <div className="mt-8 flex flex-col items-center">
-        <div className="mt-4">
-          <a href="#" className="text-sm text-blue-500 hover:underline">¿Olvidaste tu contraseña?</a>
-        </div>
-      </div>
     </div>
   );
 }
