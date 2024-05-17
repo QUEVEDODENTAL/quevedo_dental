@@ -46,7 +46,7 @@ const SliderBar = () => {
           </li>
           <li className="bottom-0 mt-[80%] p-4 flex items-center pl-10 transition-transform duration-300 ease-in-out hover:scale-110">
             <FaLock className="mr-2" />
-            <Link href="/admin" className="block transition-all hover:text-yellow-500">Salir</Link>
+            <Link href="/auth/login" className="block transition-all hover:text-yellow-500">Salir</Link>
           </li>
         </ul>
       </div>

@@ -97,12 +97,6 @@ function LoginForm() {
           Entrar
         </button>
       </form>
-
-      <div className="mt-8 flex flex-col items-center">
-        <div className="mt-4">
-          <a href="#" className="text-sm text-blue-500 hover:underline">¿Olvidaste tu contraseña?</a>
-        </div>
-      </div>
     </div>
   );
 }
