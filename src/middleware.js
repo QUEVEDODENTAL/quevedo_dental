@@ -5,6 +5,6 @@ export { default } from 'next-auth/middleware'
 export const config = {
     // `matcher` define las rutas donde se aplicará el middleware
     matcher: [
-        // "/dashboard/:path*",
+        "/dashboard/:path*",
     ]
 }
