@@ -28,7 +28,7 @@ const Banner = () => {
                 width={300}
                 height={200}
                 className="w-full h-auto md:w-96 md:h-auto"
-                priority 
+                priority
               />
             </div>
             <div className="rounded-lg overflow-hidden md:hidden mx-4">
