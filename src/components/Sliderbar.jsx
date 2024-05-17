@@ -51,33 +51,10 @@ const SliderBar = () => {
               <div className="block transition-all hover:text-yellow-500">Salir</div>
             </button>
           </div>
-          <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
-            <FaHouse />
-            <Link href="/dashboard" className="block ml-2 transition-all hover:text-yellow-500">Inicio</Link>
-          </li>
-          <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
-            <FaAddressCard />
-            <Link href="/dashboard/pacientes" className="block ml-2 transition-all hover:text-yellow-500">Pacientes</Link>
-          </li>
-          <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
-            <FaUserAlt />
-            <Link href="/dashboard/perfil" className="block ml-2 transition-all hover:text-yellow-500">Perfil</Link>
-          </li>
-          <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
-            <FaHospitalUser />
-            <Link href="/dashboard/registrar" className="block ml-2 transition-all hover:text-yellow-500">Registrar</Link>
-          </li>
-          <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
-            <FaIdCardAlt />
-            <Link href="/dashboard/cuestionario" className="block ml-2 transition-all hover:text-yellow-500">Cuestionario</Link>
-          </li>
-          <li className="bottom-0 mt-[80%] p-4 flex items-center pl-10 transition-transform duration-300 ease-in-out hover:scale-110">
-            <FaLock className="mr-2" />
-            <Link href="/auth/login" className="block transition-all hover:text-yellow-500">Salir</Link>
-          </li>
         </ul>
       </div>
     </div>
+
   );
 };
 
