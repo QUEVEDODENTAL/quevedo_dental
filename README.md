@@ -12,7 +12,6 @@ Esta documentación proporciona una guía sobre cómo Instalar para gestionar y 
  * github desktop
  *  git bash
  * Node
-````
 `````
 ## Instalacion de extencion  para visualizar studio code 
    - Liver  Server
@@ -33,7 +32,6 @@ Antes de comenzar, asegúrate de tener Node.js y npm instalados en tu sistema :
 1. Intalar visual Studio code 
     visual studio (https://code.visualstudio.com/download)
 `````
-````
 
 1. Clona este repositorio en tu máquina local:
 
@@ -49,12 +47,14 @@ cd quevedo_dental
 3. Instala las dependencias del proyecto:
 ```
 npm install
+
 ````
 ````
 ````
 ## Instalación de las icons
 `````
-npm install react-icons 
+npm install react-icons
+
 ````
 `````
 ## Instalar la programa para crear Usuario
@@ -82,15 +82,18 @@ DATABASE_URL="mysql://usuario:contraseña@localhost:5432/nombre_basedatos?schema
 npx prisma migrate dev
 npx prisma migrate deploy
 npx prisma generate
-```
 
+```
 ## Modo de uso de Base de Datos
 ````
 1. Para ver que se haya ejecutado correctamente ejecutamos el comando.
 ```
+
 npx prisma studio
+
 `````
 despues de poner  comando  le aparecerá  http://localhost:5555 
+
 ```
 dando click utl lo mandara  la página  y despues  dar en  el + en donde  les desplegara  OPEN MODEL  debera buscar usuario le abrira  paguina en donde  tendra que poner un  correo y contraseña  y despues le da en aguardar   
 
