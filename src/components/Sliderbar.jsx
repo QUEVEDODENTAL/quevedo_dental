@@ -1,15 +1,20 @@
 'use client'
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { FaUserAlt, FaLock, FaBars, FaIdCardAlt } from "react-icons/fa";
-import { FaHouse, FaAddressCard, FaHospitalUser } from "react-icons/fa6";
-import { signOut } from 'next-auth/react'
+import { FaUserAlt, FaLock, FaBars, FaIdCardAlt, FaShoppingCart } from "react-icons/fa";
+import { FaHouse, FaAddressCard, FaHospitalUser, FaBookMedical } from "react-icons/fa6";
+import { signOut } from 'next-auth/react'; // Importa la función de cierre de sesión
 
 const SliderBar = () => {
   const [isSliderVisible, setIsSliderVisible] = useState(true);
 
   const toggleSliderVisibility = () => {
     setIsSliderVisible(!isSliderVisible);
+  };
+
+  const handleSignOut = async () => {
+    const data = await signOut({ redirect: false, callbackUrl: '/auth/login' });
+    window.location.href = data.url;
   };
 
   return (
@@ -25,36 +30,41 @@ const SliderBar = () => {
           LOGO
         </div>
         <ul className="flex-grow">
-          <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
-            <li><FaHouse /></li>
-            <li><Link href="/dashboard" className="block ml-2 transition-all hover:text-yellow-500">Inicio</Link></li>
-          </div>
-          <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
-            <li><FaAddressCard /></li>
-            <li><Link href="/dashboard/pacientes" className="block ml-2 transition-all hover:text-yellow-500">Pacientes</Link></li>
-          </div>
-          <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
-            <li><FaUserAlt /></li>
-            <li><Link href="/dashboard/perfil" className="block ml-2 transition-all hover:text-yellow-500">Perfil</Link></li>
-          </div>
-          <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
-            <li><FaHospitalUser /></li>
-            <li><Link href="/dashboard/registrar" className="block ml-2 transition-all hover:text-yellow-500">Registrar</Link></li>
-          </div>
-          <div className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
-            <li><FaIdCardAlt /></li>
-            <li><Link href="/dashboard/cuestionario" className="block ml-2 transition-all hover:text-yellow-500">Cuestionario</Link></li>
-          </div>
-          <div className="bottom-0 mt-[80%] p-4 flex items-center pl-10 transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer">
-            <button className="flex items-center" onClick={() => signOut()}>
-              <FaLock className="mr-2" />
-              <div className="block transition-all hover:text-yellow-500">Salir</div>
-            </button>
-          </div>
+          <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
+            <FaHouse />
+            <Link href="/dashboard" className="block ml-2 transition-all hover:text-yellow-500">Inicio</Link>
+          </li>
+          <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
+            <FaAddressCard />
+            <Link href="/dashboard/pacientes" className="block ml-2 transition-all hover:text-yellow-500">Pacientes</Link>
+          </li>
+          <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
+            <FaUserAlt />
+            <Link href="/dashboard/perfil" className="block ml-2 transition-all hover:text-yellow-500">Perfil</Link>
+          </li>
+          <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
+            <FaHospitalUser />
+            <Link href="/dashboard/registrar" className="block ml-2 transition-all hover:text-yellow-500">Registrar</Link>
+          </li>
+          <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
+            <FaIdCardAlt />
+            <Link href="/dashboard/cuestionario" className="block ml-2 transition-all hover:text-yellow-500">Cuestionario</Link>
+          </li>
+          <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
+          <FaBookMedical />
+            <Link href="/dashboard/servicios" className="block ml-2 transition-all hover:text-yellow-500">Servicios</Link>
+          </li>
+          <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
+          <FaShoppingCart />
+            <Link href="/dashboard/cuestionario" className="block ml-2 transition-all hover:text-yellow-500">Carrito</Link>
+          </li>
+          <li className="bottom-0 mt-[50%] p-4 flex items-center pl-10 transition-transform duration-300 ease-in-out hover:scale-110">
+            <FaLock className="mr-2" />
+            <a onClick={handleSignOut} className="block transition-all hover:text-yellow-500 cursor-pointer">Salir</a>
+          </li>
         </ul>
       </div>
     </div>
-
   );
 };
 

@@ -1,6 +1,8 @@
 'use client'
 import React, { useState } from 'react';
+import jsPDF from 'jspdf';
 import Image from 'next/image';
+// hola
 
 function HistorialClinicoForm() {
   const [nombre, setNombre] = useState('');
@@ -10,10 +12,9 @@ function HistorialClinicoForm() {
   const [ocupacionSeleccionada, setOcupacionSeleccionada] = useState('');
   const [fechaNacimiento, setFechaNacimiento] = useState('');
   const [ciudad, setCiudad] = useState('');
-  const [escolaridad, setEscolaridad] = useState('');
+  const [padecimientoActual, setPadecimientoActual] = useState('');
   const [motivoConsulta, setMotivoConsulta] = useState('');
   const [enfermedadesSeleccionadas, setEnfermedadesSeleccionadas] = useState([]);
-  const [enfermedadesz, setEnfermedades] = useState([]);
  
  
   const [coloracionEncias, setColoracionEncias] = useState('');
@@ -58,7 +59,7 @@ function HistorialClinicoForm() {
   ];
   const handleSubmit = (event) => {
     event.preventDefault();
-
+  
     // Verificar si todos los campos obligatorios están llenos
     if (
       nombre.trim() !== '' &&
@@ -77,30 +78,17 @@ function HistorialClinicoForm() {
       coloracionPaladar.trim() !== '' &&
       ulceracionesPaladar.trim() !== '' 
     ) {
-      console.log({
-        nombre,
-        sexo,
-        domicilio,
-        telefono,
-        ocupacionSeleccionada,
-        fechaNacimiento,
-        ciudad,
-        escolaridad,
-        motivoConsulta,
-        enfermedadesSeleccionadas,
-        coloracionEncias,
-        coloracionLenguaSelected,
-        ulceracionesLengua,
-        observacionesLengua,
-        coloracionPaladar,
-        ulceracionesPaladar,
-        observacionesPaladar,
-        dientesSeleccionados
-      });
+      // Llama a la función generarPDF para crear el PDF
+      generarPDF();
+  
+      // También podrías enviar los datos del formulario a un servidor aquí
+  
+      // Puedes mostrar un mensaje de éxito o redirigir a otra página
+      alert("Formulario enviado correctamente.");
     } else {
       alert("Por favor complete todos los campos obligatorios.");
     }
-  };
+  };  
 
   const handleOcupacionChange = (e) => {
     setOcupacionSeleccionada(e.target.value);
@@ -124,14 +112,19 @@ function HistorialClinicoForm() {
     }
 };
 
-const renderEnfermedadesButtons = () => {
-    return enfermedadesList.map(enfermedad => (
-        <button
-            key={enfermedad.name}
-            className={`px-4 py-2 rounded-md mb-2 mr-2 hover:bg-blue-700 ${enfermedadesSeleccionadas.includes(enfermedad.name) ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}>
-            {enfermedad.label}
-        </button>
-    ));
+const renderEnfermedadesCheckboxes = () => {
+  return enfermedadesList.map(enfermedad => (
+    <div key={enfermedad.name} className="mb-2">
+      <input
+        type="checkbox"
+        id={enfermedad.name}
+        checked={enfermedadesSeleccionadas.includes(enfermedad.name)}
+        onChange={() => handleEnfermedadClick(enfermedad.name)}
+        className="mr-2"
+      />
+      <label htmlFor={enfermedad.name}>{enfermedad.label}</label>
+    </div>
+  ));
 };
 
   
@@ -251,8 +244,77 @@ const renderColoracionLenguaOptions = () => {
   ));
 };
 const toggleUlceraciones = () => {
-  setUlceraciones(!ulceraciones); // Cambia el estado de ulceraciones al valor opuesto
+  setUlceraciones(!ulceraciones);
 };
+
+const generarPDF = () => {
+  const pdf = new jsPDF();
+
+  // Define la posición inicial para escribir en el PDF
+  let posY = 10;
+
+  // Agrega la información personal
+  pdf.setFontSize(16);
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('Información Personal:', 10, posY);
+  pdf.setFont('helvetica', 'normal');
+  posY += 10;
+  pdf.text(`Nombre: ${nombre}`, 15, posY);
+  posY += 10;
+  pdf.text(`Sexo: ${sexo}`, 15, posY);
+  posY += 10;
+  pdf.text(`Domicilio: ${domicilio}`, 15, posY);
+  posY += 10;
+  pdf.text(`Teléfono: ${telefono}`, 15, posY);
+  posY += 10;
+  pdf.text(`Fecha de Nacimiento: ${fechaNacimiento}`, 15, posY);
+  posY += 10;
+  pdf.text(`Ciudad: ${ciudad}`, 15, posY);
+  posY += 20; // Incrementa la posición Y
+
+  // Agrega el padecimiento actual
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('Padecimiento Actual:', 10, posY);
+  pdf.setFont('helvetica', 'normal');
+  posY += 10;
+  pdf.text(`${padecimientoActual}`, 15, posY);
+  posY += 20; // Incrementa la posición Y
+
+  // Agrega las enfermedades seleccionadas
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('Enfermedades:', 10, posY);
+  pdf.setFont('helvetica', 'normal');
+  posY += 10;
+  enfermedadesSeleccionadas.forEach((enfermedad, index) => {
+    pdf.text(`${index + 1}. ${enfermedad}`, 15, posY);
+    posY += 10;
+  });
+  posY += 20; // Incrementa la posición Y
+
+  // Agrega la información bucal
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('Información Bucal:', 10, posY);
+  pdf.setFont('helvetica', 'normal');
+  posY += 10;
+  pdf.text(`Coloración de Encías: ${coloracionEncias}`, 15, posY);
+  posY += 10;
+  pdf.text(`Coloración de Lengua: ${coloracionLenguaSelected}`, 15, posY);
+  posY += 10;
+  pdf.text(`Ulceraciones en Lengua: ${ulceracionesLengua}`, 15, posY);
+  posY += 10;
+  pdf.text(`Observaciones sobre Lengua: ${observacionesLengua}`, 15, posY);
+  posY += 10;
+  pdf.text(`Coloración de Paladar Duro: ${coloracionPaladar}`, 15, posY);
+  posY += 10;
+  pdf.text(`Lesiones o Anomalías en Paladar Duro: ${ulceracionesPaladar}`, 15, posY);
+  posY += 10;
+  pdf.text(`Observaciones sobre Paladar Duro: ${observacionesPaladar}`, 15, posY);
+  posY += 10;
+
+  // Guarda el PDF
+  pdf.save('historial_clinico.pdf');
+};
+
 
 
   return (
@@ -271,6 +333,15 @@ const toggleUlceraciones = () => {
             <input type="text" id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
             placeholder="Ingrese el Nombre completo"/>
             
+          </div>
+
+          <div className="form-control ">
+            <label htmlFor="sexo" className="text-gray-700 border-black">Género:</label><br />
+            <select id="sexo" value={sexo} onChange={(e) => setSexo(e.target.value)} className="border border-gray-300 rounded-md p-2 w-full">
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
+              <option value="otro">Otro</option>
+            </select><br /><br />
           </div>
   
           <div className="form-control ">
@@ -307,7 +378,19 @@ const toggleUlceraciones = () => {
     
               </div>
         <fieldset>
-          <legend className="text-lg font-semibold text-gray-700 border-black">Padecimiento Actual</legend>
+        <div className="form-control">
+  <label htmlFor="padecimientoActual" className="text-gray-700 border-black">Padecimiento Actual:</label><br />
+  <textarea
+    id="padecimientoActual"
+    value={padecimientoActual}
+    onChange={(e) => setPadecimientoActual(e.target.value)}
+    rows={4}
+    className="border border-gray-300 rounded-md p-2 w-full"
+    style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}}
+    placeholder="Ingrese el padecimiento actual aquí..."
+  />
+</div>
+
           <div className="form-control">
             <label htmlFor="motivoConsulta" className="text-gray-700 border-black">Motivo de consulta:</label><br />
             <textarea
@@ -326,8 +409,9 @@ const toggleUlceraciones = () => {
         <fieldset>
           <legend className="text-lg text-gray-700 bg-transparent text-gray-700  border border-gray-700 hover:bg-gray-100 hover:text-gray-900 font-semibold py-2 px-4 rounded inline-flex items-center">Enfermedades</legend>
           <div className="enfermedades-container">
-            {renderEnfermedadesButtons()}
-          </div>
+  {renderEnfermedadesCheckboxes()}
+</div>
+
         </fieldset>
               
               <button type="button" onClick={nextPage}>Siguiente</button>
