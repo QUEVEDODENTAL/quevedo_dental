@@ -20,7 +20,6 @@ Esta documentación proporciona una guía sobre cómo Instalar para gestionar y 
    - Git History
    - Tailwind CSS IntelliSence
 
-``
 ##Instalación de Linux en Windows con WSL
 ```
 wsl --install
@@ -54,8 +53,6 @@ npm install
 ## Instalación de las icons
 `````
 npm install react-icons
-
-````
 `````
 ## Instalar la programa para crear Usuario
 ```
@@ -71,8 +68,6 @@ Cuando se Instale despues hacer el proceso de intalacion se pidara   poner una  
 
 ```
 DATABASE_URL="mysql://usuario:contraseña@localhost:5432/nombre_basedatos?schema=public"
-```
-`````
 `````
 ## Ejecucion de Migración.
 
@@ -87,13 +82,11 @@ npx prisma generate
 ## Modo de uso de Base de Datos
 ````
 1. Para ver que se haya ejecutado correctamente ejecutamos el comando.
-```
 
 npx prisma studio
 
 `````
 despues de poner  comando  le aparecerá  http://localhost:5555 
 
-```
 dando click utl lo mandara  la página  y despues  dar en  el + en donde  les desplegara  OPEN MODEL  debera buscar usuario le abrira  paguina en donde  tendra que poner un  correo y contraseña  y despues le da en aguardar   
 
