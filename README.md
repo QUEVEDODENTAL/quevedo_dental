@@ -1,7 +1,6 @@
 # Manual de Instalacion
-````
+
 Esta documentación proporciona una guía sobre cómo Instalar para gestionar y realizar la migración.
-````
 ## Prerrequisitos
 `````
  * visual studio code 
@@ -48,8 +47,6 @@ cd quevedo_dental
 npm install
 
 ````
-````
-````
 ## Instalación de las icons
 `````
 npm install react-icons
@@ -88,5 +85,5 @@ npx prisma studio
 `````
 despues de poner  comando  le aparecerá  http://localhost:5555 
 
-dando click utl lo mandara  la página  y despues  dar en  el + en donde  les desplegara  OPEN MODEL  debera buscar usuario le abrira  paguina en donde  tendra que poner un  correo y contraseña  y despues le da en aguardar   
+dando click url lo mandara  la página  y despues  dar en  el + en donde  les desplegara  OPEN MODEL  debera buscar usuario le abrira  paguina en donde  tendra que poner un  correo y contraseña  y despues le da en aguardar   
 
