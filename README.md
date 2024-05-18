@@ -20,15 +20,13 @@ Esta documentación proporciona una guía sobre cómo Instalar para gestionar y 
    - gitignore
    - Git History
    - Tailwind CSS IntelliSence
-``````
+```
 
 ```
 ##Instalación de Linux en Windows con WSL
 ---
 wsl --install
 ---
-
-``````
 
 ## Instalación Programas 
 `````
@@ -54,7 +52,7 @@ cd quevedo_dental
 npm install
 ````
 ````
-``
+````
 ## Instalación de las icons
 `````
 npm install react-icons 
@@ -75,6 +73,7 @@ Cuando se Instale despues hacer el proceso de intalacion se pidara   poner una  
 ```
 DATABASE_URL="mysql://usuario:contraseña@localhost:5432/nombre_basedatos?schema=public"
 ```
+`````
 ## Ejecucion de Migración.
 
 5. Genera y Migra el schema de Base de datos.
