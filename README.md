@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Documentación de BASE DE DATOS
 
 Esta documentación proporciona una guía sobre cómo usar Prisma para gestionar la base de datos y realizar la migración.
@@ -62,6 +61,3 @@ node prueba.js
 ```
 npx prisma studio
 ```
-=======
-# quevedo_dental
->>>>>>> origin/main
