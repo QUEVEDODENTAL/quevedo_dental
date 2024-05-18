@@ -75,6 +75,7 @@ Cuando se Instale despues hacer el proceso de intalacion se pidara   poner una  
 DATABASE_URL="mysql://usuario:contraseña@localhost:5432/nombre_basedatos?schema=public"
 ```
 `````
+`````
 ## Ejecucion de Migración.
 
 5. Genera y Migra el schema de Base de datos.
