@@ -20,13 +20,12 @@ Esta documentación proporciona una guía sobre cómo Instalar para gestionar y 
    - gitignore
    - Git History
    - Tailwind CSS IntelliSence
-```
 
-```
+``
 ##Instalación de Linux en Windows con WSL
----
+```
 wsl --install
----
+```
 
 ## Instalación Programas 
 `````
@@ -57,7 +56,6 @@ npm install
 `````
 npm install react-icons 
 ````
-````
 `````
 ## Instalar la programa para crear Usuario
 ```
@@ -82,11 +80,7 @@ DATABASE_URL="mysql://usuario:contraseña@localhost:5432/nombre_basedatos?schema
 
 ```
 npx prisma migrate dev
-```
-``` 
 npx prisma migrate deploy
- ```
- ``` 
 npx prisma generate
 ```
 
