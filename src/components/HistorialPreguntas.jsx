@@ -1080,7 +1080,7 @@ const renderColoracionLenguaOptions = () => {
         </fieldset>
   
         <fieldset>
-          <legend className="text-lg font-semibold text-gray-700 bg-transparent text-gray-700 border border-gray-700 hover:bg-gray-100 hover:text-gray-900 font-semibold py-2 px-4 rounded inline-flex items-center">Enfermedades</legend>
+          <legend className="text-lg font-semibold text-gray-700 bg-transparent text-gray-700 border border-gray-700 hover:bg-gray-100 hover:text-gray-900 py-2 px-4 rounded inline-flex items-center">Enfermedades</legend>
           <div className="enfermedades-container">
             {renderEnfermedadesButtons()}
           </div>
