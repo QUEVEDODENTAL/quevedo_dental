@@ -634,8 +634,8 @@
 'use client'
 import React, { useState } from 'react';
 import Image from 'next/image';
-import jsPDF from 'jspdf';
-import PSPDFKit from 'pspdfkit';
+// import jsPDF from 'jspdf';
+// import PSPDFKit from 'pspdfkit';
 // Define la función para traducir el color de las encías
 const traducirColorEncias = (colorEncias) => {
   // Mapea los valores de color a sus nombres correspondientes
@@ -789,9 +789,6 @@ const traducirColorEncias = (colorEncias) => {
       ulceracionesPaladar.trim() !== '' 
       
     ) {
-        
-    // Llama a la función generarPDF para crear el PDF
-      generarPDF();
   
       // También podrías enviar los datos del formulario a un servidor aquí
   
@@ -802,38 +799,6 @@ const traducirColorEncias = (colorEncias) => {
     }
   };  
 
-  
-  const generarPDF = () => {
-    const doc = new jsPDF();
-    doc.text('Historial Clínico', 20, 20);
-    doc.text(`Nombre: ${nombre}`, 20, 30);
-    doc.text(`Sexo: ${sexo}`, 20, 40);
-    doc.text(`Domicilio: ${domicilio}`, 20, 50);
-    doc.text(`Teléfono: ${telefono}`, 20, 60);
-    doc.text(`Ocupación: ${ocupacionSeleccionada}`, 20, 70);
-    doc.text(`Fecha de Nacimiento: ${fechaNacimiento}`, 20, 80);
-    doc.text(`Ciudad: ${ciudad}`, 20, 90);
-    doc.text(`Motivo de Consulta: ${motivoConsulta}`, 20, 100);
-    doc.text('Enfermedades:', 20, 110);
-    enfermedadesSeleccionadas.forEach((enfermedad, index) => {
-      doc.text(`${index + 1}. ${enfermedad}`, 20, 120 + index * 10);
-    });
-    doc.text(`Coloración de las encías: ${nombreColorEncias}`, 20, 150);
-    doc.text(`Coloración de la lengua: ${coloracionLenguaSelected}`, 20, 160);
-    doc.text(`Ulceraciones en la lengua: ${ulceracionesLengua}`, 20, 170);
-    doc.text(`Coloración del paladar: ${coloracionPaladar}`, 20, 180);
-    doc.text(`Ulceraciones en el paladar: ${ulceracionesPaladar}`, 20, 190);
-    
-   
-  // Generar texto para dientes seleccionados
-  const textoDientes = generarTextoHistorial();
-  // Agregar texto de dientes seleccionados al PDF
-  doc.text(`Dientes Seleccionados:\n${textoDientes}`, 20, 200);
-
-  
-    // Guardar el documento PDF
-    doc.save('historial_clinico.pdf');
-  };
   
   const generarTextoHistorial = () => {
     const texto = dientesSeleccionados.map(numero => {
