@@ -1,8 +1,656 @@
+
+// 'use client'
+// import React, { useState,useEffect,useRef } from 'react';
+// import Image from 'next/image';
+
+// import PSPDFKit from 'pspdfkit';
+
+
+// Define la función para traducir el color de las encías
+// const traducirColorEncias = (colorEncias) => {
+//   Mapea los valores de color a sus nombres correspondientes
+//   const colores = {
+//     '#FFCCCC': 'Rosa pálido',
+//     '#FF0000': 'Rojo brillante',
+//     '#8B0000': 'Rojo oscuro',
+//     '#FFFFFF': 'Blanco pálido',
+//     '#4B0082': 'Azulada o púrpura'
+//     Añade más colores según sea necesario
+//   };
+
+//   Retorna el nombre del color correspondiente
+//   return colores[colorEncias] || 'Color no definido'; // Si el color no está definido, retorna un mensaje predeterminado
+// };
+
+// function HistorialClinicoForm() {
+//   const [nombre, setNombre] = useState('');
+//   const [sexo, setSexo] = useState('');
+//   const [domicilio, setDomicilio] = useState('');
+//   const [telefono, setTelefono] = useState('');
+//   const [ocupacionSeleccionada, setOcupacionSeleccionada] = useState('');
+//   const [fechaNacimiento, setFechaNacimiento] = useState('');
+//   const [ciudad, setCiudad] = useState('');
+//   const [motivoConsulta, setMotivoConsulta] = useState('');
+//   const [enfermedadesSeleccionadas, setEnfermedadesSeleccionadas] = useState([]);
+//   const [nombreDienteSeleccionado, setNombreDienteSeleccionado] = useState([]);
+
+//   const containerRef = useRef(null);
+ 
+//   const [coloracionEncias, setColoracionEncias] = useState('');
+//   const [coloracionLenguaSelected, setColoracionLenguaSelected] = useState(null);
+//   const [ulceracionesLengua, setUlceracionesLengua] = useState('sin-ulceraciones');
+ 
+//   const [observacionesLengua, setObservacionesLengua] = useState('');
+ 
+//   const [coloracionPaladar, setColoracionPaladar] = useState('');
+//   const [ulceracionesPaladar, setUlceracionesPaladar] = useState('sin-ulceraciones');
+//   const [observacionesPaladar, setObservacionesPaladar] = useState('');
+//   const [currentPage, setCurrentPage] = useState(1);
+
+//   const obtenerNombresDientes = () => {
+//     const nombresDientes = {
+//       11: 'Incisivo Central Superior Izquierdo',
+//       12: 'Incisivo Lateral Superior Izquierdo',
+//       13: 'Canino Superior Izquierdo',
+//       14: 'Primer Premolar Superior Izquierdo',
+//       15: 'Segundo Premolar Superior Izquierdo',
+//       16: 'Primer Molar Superior Izquierdo',
+//       17: 'Segundo Molar Superior Izquierdo',
+//       18: 'Tercer Molar Superior Izquierdo',
+//       21: 'Incisivo Central Superior Derecho',
+//       22: 'Incisivo Lateral Superior Derecho',
+//       23: 'Canino Superior Derecho',
+//       24: 'Primer Premolar Superior Derecho',
+//       25: 'Segundo Premolar Superior Derecho',
+//       26: 'Primer Molar Superior Derecho',
+//       27: 'Segundo Molar Superior Derecho',
+//       28: 'Tercer Molar Superior Derecho',
+//       31: 'Incisivo Central Inferior Izquierdo',
+//       32: 'Incisivo Lateral Inferior Izquierdo',
+//       33: 'Canino Inferior Izquierdo',
+//       34: 'Primer Premolar Inferior Izquierdo',
+//       35: 'Segundo Premolar Inferior Izquierdo',
+//       36: 'Primer Molar Inferior Izquierdo',
+//       37: 'Segundo Molar Inferior Izquierdo',
+//       38: 'Tercer Molar Inferior Izquierdo',
+//       41: 'Incisivo Central Inferior Derecho',
+//       42: 'Incisivo Lateral Inferior Derecho',
+//       43: 'Canino Inferior Derecho',
+//       44: 'Primer Premolar Inferior Derecho',
+//       45: 'Segundo Premolar Inferior Derecho',
+//       46: 'Primer Molar Inferior Derecho',
+//       47: 'Segundo Molar Inferior Derecho',
+//       48: 'Tercer Molar Inferior Derecho',
+//     };
+  
+//     return nombresDientes;
+//   };
+  
+//   const nombresDientes = obtenerNombresDientes();
+//   console.log(nombresDientes);
+
+
+
+//  const nombreColorEncias = traducirColorEncias(coloracionEncias);  
+// Luego puedes usar esta función en tu código para obtener el nombre del color de las encías
+//   const opcionesColoracionLengua = 
+//   [
+//     "Blanca", "Gris", "Rosa", "Roja", 
+//   ];
+  
+//   const opcionesColoracionPaladar = [
+//     "Rosado pálido", "Rojo intenso", "Blanco brillante", "Parduzco oscuro", "Morado oscuro", "Grisáceo o negro"
+//   ];
+//   const opcionesOcupacion = ["Estudiante", "Profesional", "Comerciante", "Empleado", "Desempleado", "Otro"];
+//   const [dientesSeleccionados, setDientesSeleccionados] = useState([]); 
+  
+//   const enfermedadesList = [
+//     { name: 'cardiovasculares', label: 'Cardiovasculares' },
+//     { name: 'pulmonares', label: 'Pulmonares' },
+//     { name: 'renales', label: 'Renales' },
+//     { name: 'gastrointestinales', label: 'Gastrointestinales' },
+//     { name: 'hematologicas', label: 'Hematológicas' },
+//     { name: 'endocrinas', label: 'Endocrinas' },
+//     { name: 'mentales', label: 'Mentales' },
+//     { name: 'dermatologicas', label: 'Dermatológicas' },
+//     { name: 'neurologicas', label: 'Neurológicas' },
+//     { name: 'metabolicas', label: 'Metabólicas' },
+//     { name: 'marcapasos', label: 'Marcapasos' },
+//     { name: 'cardiopatias', label: 'Cardiopatías' },
+//     { name: 'neuropatias', label: 'Neuropatías' },
+//     { name: 'implanteDental', label: 'Implante Dental' },
+//     { name: 'cancer', label: 'Cáncer' },
+//     { name: 'convulsiones', label: 'Convulsiones' }
+//   ];
+
+  
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+
+//     if (
+//       nombre.trim() !== '' &&
+//       domicilio.trim() !== '' &&
+//       telefono.trim() !== '' &&
+//       ocupacionSeleccionada !== '' &&
+//       fechaNacimiento.trim() !== '' &&
+//       ciudad.trim() !== '' &&
+//       motivoConsulta.trim() !== '' &&
+//       coloracionEncias.trim() !== '' &&
+//       coloracionLenguaSelected !== null &&
+//       ulceracionesLengua.trim() !== '' &&
+//       coloracionPaladar.trim() !== '' &&
+//       ulceracionesPaladar.trim() !== '' 
+//     ) {
+     
+//       alert("Formulario enviado correctamente.");
+//     } else {
+//       alert("Por favor complete todos los campos obligatorios.");
+//     }
+//   };
+//   useEffect(() => {
+//     const generarPDFPSPDFKit = async () => {
+//       const container = containerRef.current; // This `useRef` instance will render the PDF.
+
+//       try {
+//         Inicializar PSPDFKit con la configuración necesaria
+//         const instance = await PSPDFKit.load({
+//           container:'pdf-container',
+//           licenseKey:('fDI7mttSWw9gTXlfeDvzFcUDxAO9ZBN83a7skA6coL5zAtXjlFpf9jSyXW7N1wExcT7hKdgvpw7v3mzDIA3ACDi7vmZwgZlcKxTn_jAGXNx-q4ImZ8E92kH4yY5y3IfkL2nRKgNm8_08cMwj9DLno-rHkBCITqHyChAyu68R17YhYgbLfyEUsIMgGY3zUpO5O88hc6ZU_erwt2kX','fDI7mttSWw9gTXlfeDvzFcUDxAO9ZBN83a7skA6coL5zAtXjlFpf9jSyXW7N1wExcT7hKdgvpw7v3mzDIA3ACDi7vmZwgZlcKxTn_jAGXNx-q4ImZ8E92kH4yY5y3IfkL2nRKgNm8_08cMwj9DLno-rHkBCITqHyChAyu68R17YhYgbLfyEUsIMgGY3zUpO5O88hc6ZU_erwt2kX'),
+//           initialViewState: {
+//             Configuración inicial del visor PDF
+//             showToolbar: true, // Mostrar barra de herramientas
+//             sidebarMode: 'outline', // Mostrar el esquema del documento en la barra lateral
+//           },
+//         });
+  
+//         Crear el documento PDF utilizando PSPDFKit
+//         const doc = await instance.createPDFDocument((pdfDocumentBuilder) => {
+//           pdfDocumentBuilder.addText('Historial Clínico', 20, 20);
+//           pdfDocumentBuilder.addText(`Nombre: ${nombre}`, 20, 30);
+//           pdfDocumentBuilder.addText(`Sexo: ${sexo}`, 20, 40);
+//           pdfDocumentBuilder.addText(`Domicilio: ${domicilio}`, 20, 50);
+//           pdfDocumentBuilder.addText(`Teléfono: ${telefono}`, 20, 60);
+//           pdfDocumentBuilder.addText(`Ocupación: ${ocupacionSeleccionada}`, 20, 70);
+//           pdfDocumentBuilder.addText(`Fecha de Nacimiento: ${fechaNacimiento}`, 20, 80);
+//           pdfDocumentBuilder.addText(`Ciudad: ${ciudad}`, 20, 90);fDI7mttSWw9gTXlfeDvzFcUDxAO9ZBN83a7skA6coL5zAtXjlFpf9jSyXW7N1wExcT7hKdgvpw7v3mzDIA3ACDi7vmZwgZlcKxTn_jAGXNx-q4ImZ8E92kH4yY5y3IfkL2nRKgNm8_08cMwj9DLno-rHkBCITqHyChAyu68R17YhYgbLfyEUsIMgGY3zUpO5O88hc6ZU_erwt2kX
+//           pdfDocumentBuilder.addText(`Motivo de Consulta: ${motivoConsulta}`, 20, 100);
+//           pdfDocumentBuilder.addText('Enfermedades:', 20, 110);
+//           enfermedadesSeleccionadas.forEach((enfermedad, index) => {
+//             pdfDocumentBuilder.addText(`${index + 1}. ${enfermedad}`, 20, 120 + index * 10);
+//           });
+//           pdfDocumentBuilder.addText(`Coloración de las encías: ${nombreColorEncias}`, 20, 150);
+//           pdfDocumentBuilder.addText(`Coloración de la lengua: ${coloracionLenguaSelected}`, 20, 160);
+//           pdfDocumentBuilder.addText(`Ulceraciones en la lengua: ${ulceracionesLengua}`, 20, 170);
+//           pdfDocumentBuilder.addText(`Coloración del paladar: ${coloracionPaladar}`, 20, 180);
+//           pdfDocumentBuilder.addText(`Ulceraciones en el paladar: ${ulceracionesPaladar}`, 20, 190);
+  
+//           Generar texto para dientes seleccionados
+//           const textoDientes = generarTextoHistorial();
+//           Agregar texto de dientes seleccionados al PDF
+//           pdfDocumentBuilder.addText(`Dientes Seleccionados:\n${textoDientes}`, 20, 200);
+//         });
+  
+//         Descargar el documento PDF generado
+//         await doc.download({ filename: 'historial_clinico.pdf' });
+  
+//         Cerrar la instancia de PSPDFKit después de generar el PDF
+//         await instance.close();
+//       } catch (error) {
+//         console.error('Error al generar el PDF con PSPDFKit:', error);
+//       }
+//     };
+  
+//     generarPDFPSPDFKit();
+//   }, []); // El array vacío como segundo argumento hace que useEffect se ejecute solo una vez al montar el componente
+  
+//   const generarTextoHistorial = () => {
+//     const texto = dientesSeleccionados.map((numero) => {
+//       const nombre = nombresDientes[numero];
+//       return `Número: ${numero}, Nombre: ${nombre}`;
+//     }).join('\n');
+//     return texto;
+//   };
+  
+
+  
+//   const handleSexoChange = (e) => {
+//     setSexo(e.target.value);
+//   };
+
+//   const handleColoracionLenguaChange = (coloracion) => {
+//     setColoracionLenguaSelected(coloracion); 
+ 
+//   }
+//   const handleEnfermedadClick = (enfermedad) => {
+//     const isSelected = enfermedadesSeleccionadas.includes(enfermedad);
+//     if (isSelected) {
+//       setEnfermedadesSeleccionadas(enfermedadesSeleccionadas.filter((e) => e !== enfermedad));
+//     } else {
+//       setEnfermedadesSeleccionadas([...enfermedadesSeleccionadas, enfermedad]);
+//     }
+//   };
+//   const renderEnfermedadesButtons = () => {
+//     return (
+//       <div className="flex flex-wrap justify-start">
+//         {enfermedadesList.map(enfermedad => (
+//           <label
+//             key={enfermedad.name}
+//             className={`rounded-md p-2 cursor-pointer mr-4 mb-4 border border-gray-300 ${enfermedadesSeleccionadas.includes(enfermedad.name) ? 'border-blue-500' : ''}`}
+//             onClick={() => handleEnfermedadClick(enfermedad.name)}
+//             style={{ textDecoration: 'none', background: 'none' }}
+//           >
+//             {enfermedad.label}
+//             <input
+//               type="checkbox"
+//               style={{ display: 'none' }}
+//               checked={enfermedadesSeleccionadas.includes(enfermedad.name)}
+//               onChange={() => handleEnfermedadClick(enfermedad)}
+//             />
+//           </label>
+//         ))}
+//       </div>
+//     );
+//   };
+  
+  
+  
+
+//   const nextPage = () => {
+//     setCurrentPage(currentPage + 1);
+//   };
+
+//   const prevPage = () => {
+//     setCurrentPage(currentPage - 1);
+//   };
+//   const toggleDienteSeleccionado = (numeroDiente) => {
+//     Verifica si el número de diente está en el array de dientes seleccionados
+//     const index = dientesSeleccionados.indexOf(numeroDiente);
+//     if (index === -1) {
+//       Si no está seleccionado, agrégalo al array
+//       setDientesSeleccionados([...dientesSeleccionados, numeroDiente]);
+//       Obtén el nombre del diente y guárdalo en el estado
+//       const nombreDiente = nombresDientes[numeroDiente];
+//       setNombreDienteSeleccionado(nombreDiente);
+//     } else {
+//       Si ya está seleccionado, elimínalo del array
+//       const newDientesSeleccionados = [...dientesSeleccionados];
+//       newDientesSeleccionados.splice(index, 1);
+//       setDientesSeleccionados(newDientesSeleccionados);
+//       Borra el nombre del diente seleccionado del estado
+//       setNombreDienteSeleccionado('');
+//     }
+//   };
+  
+
+//   const handleColoracionEnciasChange = (color) => {
+//     setColoracionEncias(color);
+//   };
+//   const handleOcupacionChange = (event) => {
+//     setOcupacionSeleccionada(event.target.value);
+//   };
+  
+
+//   const renderizarImagen = (numero) => {
+//     const numeroDiente = numero + 31;
+
+//     if (
+//       (numeroDiente >= 31 && numeroDiente <= 38) ||
+//       (numeroDiente >= 41 && numeroDiente <= 48) ||
+//       (numeroDiente >= 71 && numeroDiente <= 75) ||
+//       (numeroDiente >= 81 && numeroDiente <= 85)
+//     ) {
+//       const rutaImagen = `/assets/dientes/dentadura-inf-${numeroDiente}.svg`;
+//       const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
+
+//       return (
+//         <div key={numero} className="mx-1 shadow-md   cursor-pointer hover:text-purple-600">
+//           {imagenExiste ? (
+//             <>
+//               <Image
+//                 src={rutaImagen}
+//                 alt={`Diente ${numeroDiente}`}
+//                 className={`diente ${dientesSeleccionados.includes(numeroDiente) ? 'seleccionado' : ''}`}
+//                 onClick={() => toggleDienteSeleccionado(numeroDiente)}
+//                 width="30" height="90"
+//               />
+//               <div className="numero-diente">{numeroDiente}</div>
+//             </>
+//           ) : null}
+//         </div>
+//       );
+//     }
+//     return null; // Retorna null si no se cumple ninguna condición
+// };
+
+// const renderizarImagenSup = (numero) => {
+//     const numeroDiente = numero + 11;
+
+//     if (
+//       (numeroDiente >= 11 && numeroDiente <= 18) ||
+//       (numeroDiente >= 21 && numeroDiente <= 28) ||
+//       (numeroDiente >= 51 && numeroDiente <= 55) ||
+//       (numeroDiente >= 61 && numeroDiente <= 65)
+//     ) {
+//       const rutaImagen =`/assets/dientes/dentadura-sup-${numeroDiente}.svg`;
+//       const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
+
+//       return (
+//         <div key={numero} className="mx-1 shadow-md custom-pointer  cursor-pointer hover:text-purple-600">
+          
+//           {imagenExiste ? (
+//             <>
+//               <Image 
+//                 src={rutaImagen}
+//                 alt={`Diente ${numeroDiente}`}
+//                 className={`diente ${dientesSeleccionados.includes(numeroDiente) ? 'seleccionado' : ''}`}
+//                 onClick={() => toggleDienteSeleccionado(numeroDiente)}
+//                 width="80" height="90"
+//               />
+//               <div className="numero-diente">{numeroDiente}</div>
+//             </>
+//           ) : null}
+//         </div>
+//       );
+//     }
+//     return null; // Retorna null si no se cumple ninguna condición
+// };
+// Dentro de la función renderColoracionLenguaOptions()
+// const renderColoracionLenguaOptions = () => {
+//   return opcionesColoracionLengua.map((coloracion, index) => (
+//     <div key={index} className="coloracion-lengua-option flex flex-col items-center">
+//       <input
+//         type="checkbox"
+//         id={`coloracionLengua-${index}`}
+//         checked={coloracion === coloracionLenguaSelected}
+//         onChange={() => handleColoracionLenguaChange(coloracion)}
+//         style={{ width: '1.5em', height: '1.5em' }}
+     
+//       />
+//       <label htmlFor={`coloracionLengua-${index}`} className={`flex flex-col items-center cursor-pointer ${coloracion === coloracionLenguaSelected ? 'border-2 border-blue-500' : 'border border-gray-300'}`}>
+//         <Image
+//           src={`/assets/lengua/lengua-${coloracion}.png`}
+//           alt={coloracion}
+//           className="w-24 mb-2 cursor-pointer"
+//           width="80" height="70"
+          
+//         />
+     
+//       </label>
+//     </div>
+//   ));
+// };
+
+
+
+//   return (
+//       <div className="max-w-md">
+//         <div className="flex items-center justify-center mb-4 border-black">
+     
+//           <h2 className="ml-2 text-lg font-semibold ">Historial Clínico/Preguntas</h2>
+//         </div>
+//         {currentPage === 1 && (
+//           <form onSubmit={handleSubmit} className="max-w-md">
+//             <fieldset>
+//               <legend className="text-lg font-semibold text-gray-700">Información Personal</legend>
+//               <div className="form-control">
+               
+//             <label htmlFor="nombre" className="text-gray-700 border-black">Nombre:</label><br />
+//             <input type="text" id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
+//             placeholder="Ingrese el Nombre completo"/>
+            
+//           </div>
+//           <div className="form-control">
+//             <label className="text-gray-700">Sexo:</label><br />
+//             <label className="inline-flex items-center">
+//               <input
+//               type="checkbox"
+//               value="masculino"
+//               checked={sexo === "masculino"}
+//               onChange={handleSexoChange}
+//               className="form-checkbox h-5 w-5 text-red-600 rounded-full"
+//               />
+//               <span className="ml-2">Masculino</span>
+//               </label>
+//               <label className="inline-flex items-center ml-4">
+//                 <input
+//                 type="checkbox"
+//                 value="femenino"
+//                 checked={sexo === "femenino"}
+//                 onChange={handleSexoChange}
+//                 className="form-checkbox h-5 w-5 text-red-600 rounded-full"
+//                 />
+//                 <span className="ml-2">Femenino</span>
+//                 </label>
+//                 <label className="inline-flex items-center ml-4">
+//                   <input
+//                   type="checkbox"
+//                   value="otro"
+//                   checked={sexo === "otro"}
+//                   onChange={handleSexoChange}
+//                   className="form-checkbox h-5 w-5 text-red-600 rounded-full"
+//                    />
+//                    <span className="ml-2">Otro</span>
+//                    </label>
+//                    </div>
+
+//           <div className="form-control ">
+//             <label htmlFor="domicilio" className="text-gray-700 border-black">Domicilio:</label><br />
+//             <input type="text" id="domicilio" value={domicilio} onChange={(e) => setDomicilio(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
+//             placeholder="Ingrese su domicilio" /><br /><br />
+//           </div>
+  
+
+//           <div className="form-control">
+//             <label htmlFor="telefono" className="text-gray-700 border-black ">Teléfono:</label><br />
+//             <input type="text" id="telefono" value={telefono} onChange={(e) => setTelefono(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
+//             placeholder="Ingrese su numero de telefono"/><br /><br />
+           
+          
+//           </div>
+//           <div className="form-control">
+//           <label htmlFor="ocupacion" className="text-gray-700 ">Ocupación:</label><br />
+//           <select id="ocupacion" value={ocupacionSeleccionada} onChange={handleOcupacionChange}className="border border-gray-300 rounded-md p-2 w-full">
+//           <option value="">Seleccionar ocupación</option>
+//           {opcionesOcupacion.map((opcion, index) => (
+//           <option key={index} value={opcion}>{opcion}</option>
+//           ))}
+//           </select>
+//           </div>
+//           <div className="form-control">
+//             <label htmlFor="fecha_nacimiento" className="text-gray-700 border-black">Fecha de Nacimiento:</label><br />
+//             <input type="date" id="fecha_nacimiento" value={fechaNacimiento} onChange={(e) => setFechaNacimiento(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full"  /><br /><br />
+//           </div>
+  
+//           <div className="form-control">
+//             <label htmlFor="ciudad" className="text-gray-700 border-black">Ciudad:</label><br />
+//             <input type="text" id="ciudad" value={ciudad} onChange={(e) => setCiudad(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full"  /><br /><br />
+    
+//               </div>
+//         <fieldset>
+//           <legend className="text-lg font-semibold text-gray-700 border-black">Padecimiento Actual</legend>
+//           <div className="form-control">
+//             <label htmlFor="motivoConsulta" className="text-gray-700 border-black">Motivo de consulta:</label><br />
+//             <textarea
+//               id="motivoConsulta"
+//               value={motivoConsulta}
+//               onChange={(e) => setMotivoConsulta(e.target.value)}
+//               rows={2}
+//             className="border border-gray-300 rounded-md p-2 w-full "
+//               style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}} // Impide el redimensionamiento
+//               placeholder="Describe el motivo de consulta aquí..."
+//             />
+//           </div>
+        
+//         </fieldset>
+  
+//         <fieldset>
+//           <legend className="text-lg font-semibold text-gray-700 bg-transparent text-gray-700 border border-gray-700 hover:bg-gray-100 hover:text-gray-900 font-semibold py-2 px-4 rounded inline-flex items-center">Enfermedades</legend>
+//           <div className="enfermedades-container">
+//             {renderEnfermedadesButtons()}
+//           </div>
+//         </fieldset>
+              
+//               <button type="button" onClick={nextPage}>Siguiente</button>
+//             </fieldset>
+//           </form>
+//         )}
+//         {currentPage === 2 && (
+//         <form onSubmit={handleSubmit} className="max-w-md">
+//           <fieldset>
+//             <legend className="text-lg font-semibold text-gray-700">Odontograma</legend>
+//             <legend className="text-lg font-semibold text-gray-700">Dientes Superiores</legend>
+//             <div className="grid grid-cols-8 gap-10 justify-center">
+//                <div className="dientes-grid "> 
+//                 {[...Array(105).keys()].map(numero => (
+//                 <div key={`sup-${numero}`} className="m-2 ">
+//                   {renderizarImagenSup(numero)}
+//                   </div>
+//                 ))}</div></div>
+//                 <legend className="text-lg font-semibold text-gray-700">Dientes Inferiores</legend>
+//                 <div className="grid grid-cols-8 gap-10 justify-center">
+//                   <div className="dientes-grid">
+//                     {[...Array(105).keys()].map(numero => (
+//                     <div key={`inf-${numero}`} className="m-2 px-1">{renderizarImagen(numero)}
+//                     </div>
+//                   ))}</div></div>
+//                   </fieldset>
+//                       <button type="button" onClick={prevPage}>Anterior</button>
+//                       <div style={{ margin: '8px' }}></div>
+                
+//                   <button type="button" onClick={nextPage}>Siguiente</button>
+//                   </form>)}
+//         {currentPage === 3 && (
+//           <form onSubmit={handleSubmit} className="max-w-md">
+//             <fieldset>
+//               <legend className="text-lg font-semibold text-gray-700">Información Bucal</legend>
+//               <div className="form-control">
+//                 <label htmlFor="coloracionEncias" className="text-gray-700">Coloración de Encías:</label><br />
+//                 <input
+//                   type="color"
+//                   id="coloracionEncias"
+//                   onChange={(e) => setColoracionEncias(e.target.value)}
+//                   className="form-control"
+//                   style={{ width: '190px', height: '5px' }}
+//                 />
+
+//                 <div className="color-options">
+//                   <div className="color-option" onClick={() => handleColoracionEnciasChange("#FFCCCC")} style={{ backgroundColor: '#FFCCCC' }}>
+//                     <div className="color-box"></div>
+//                     <div className="color-name">Rosa pálido</div></div>
+//                     <div className="color-option" onClick={() => handleColoracionEnciasChange('#FF0000')} style={{ backgroundColor: '#FF0000' }}>
+//                     <div className="color-box"></div>
+//                     <div className="color-name">Rojo brillante</div>
+//                     </div>
+//                     <div className="color-option" onClick={() => handleColoracionEnciasChange('#8B0000')} style={{ backgroundColor: '#8B0000' }}>
+//                     <div className="color-box"></div>
+//                     <div className="color-name">Rojo oscuro</div> 
+//                     </div> 
+//                     <div className="color-option" onClick={() => handleColoracionEnciasChange('#FFFFFF')} style={{ backgroundColor:'#FFFFFF'   }}>
+//                     <div className="color-box"></div>
+//                     <div className="color-name">Blanco pálido</div></div>
+//                     <div className="color-option" onClick={() => handleColoracionEnciasChange('#4B0082')} style={{ backgroundColor:'#4B0082 '}}>
+//                     <div className="color-box"></div>
+//                     <div className="color-name">Azulada o púrpura</div>
+//                     </div> 
+//                     <div className="form-control" style={{ position: 'relative', width: '100px' }}>
+//                       <Image
+//                       src="/assets/enciaas.jpg" alt="Dentista 2" width={200} height={200}className="rounded-full"/>
+                      
+//                       {coloracionEncias && (
+//                       <div
+//                       className="color-overlay"
+//             style={{position: 'absolute',top: 0,left: 0,width: '100%',height: '80%',backgroundColor: coloracionEncias,opacity: 0.5, }}/>)}
+//             </div>
+//             </div>
+//             </div>
+//             </fieldset>
+//         <div className="form-control">
+//           <legend> Coloración de lengua</legend>
+//           <div className="flex flex-wrap lengua-image flex-row ">
+//             {renderColoracionLenguaOptions()}
+//           </div>
+//         </div>
+
+//         <div className="form-control">
+//           <label htmlFor="ulceracionesLengua" className="text-gray-700">Ulceraciones en Lengua:</label><br />
+//           <select id="ulceracionesLengua" value={ulceracionesLengua} onChange={(e) => setUlceracionesLengua(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
+//             <option value="sin-ulceraciones">Sin Ulceraciones</option>
+//             <option value="con-ulceraciones">Con Ulceraciones</option>
+//           </select><br /><br />
+
+//           <label htmlFor="observacionesLengua" className="text-gray-700">Observaciones sobre Lengua:</label><br />
+//           <textarea
+//             id="observacionesLengua"
+//             value={observacionesLengua}
+//             onChange={(e) => setObservacionesLengua(e.target.value)}
+//             rows={4}
+//             className="border border-gray-300 rounded-md p-2 w-full"
+//             style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}}
+//             placeholder="Ingrese observaciones adicionales sobre la lengua aquí..."
+            
+//           />
+//         </div>
+//         <div className="form-control">
+//           <label htmlFor="coloracionPaladar" className="text-gray-700">Coloración de Paladar Duro:</label><br />
+//           <select id="coloracionPaladar" value={coloracionPaladar} onChange={(e) => setColoracionPaladar(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
+//             <option value="">Seleccionar coloración de Paladar</option>
+//             {opcionesColoracionPaladar.map((coloracion, index) => (
+//               <option key={index} value={coloracion}>{coloracion}</option>
+//             ))}
+//           </select><br /><br />
+
+//           <label htmlFor="ulceracionesPaladar" className="text-gray-700">Lesiones o Anomalías en Paladar Duro:</label><br />
+//           <select id="ulceracionesPaladar" value={ulceracionesPaladar} onChange={(e) => setUlceracionesPaladar(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
+//             <option value="sin-ulceraciones">Sin lesiones</option>
+//             <option value="con-ulceraciones">Con lesiones</option>
+//           </select><br /><br />
+//           <label htmlFor="observacionesPaladar" className="text-gray-700">Observaciones sobre Paladar Duro:</label><br />
+//            <textarea
+//            id="observacionesPaladar"
+//            value={observacionesPaladar}
+//            onChange={(e) => setObservacionesPaladar(e.target.value)}
+//            rows={4}
+//            className="border border-gray-300 rounded-md p-2 w-full"
+//            style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}}
+//            placeholder="Ingrese observaciones adicionales sobre el paladar aquí..."
+//           />  
+//           <button type="button" onClick={prevPage}>Anterior</button>
+//           <div style={{ margin: '8px' }}></div>
+//           <input type="submit" value="Enviar" />
+//           </div>
+//           <div ref={containerRef} style={{ width: "100%", height: "100vh" }} />
+       
+			
+//           </form>
+//           )}
+//         </div>
+//       );
+
+//     }  
+//   export default HistorialClinicoForm;
+
+
+
 'use client'
 import React, { useState } from 'react';
-import jsPDF from 'jspdf';
 import Image from 'next/image';
-// hola
+import jsPDF from 'jspdf';
+import PSPDFKit from 'pspdfkit';
+// Define la función para traducir el color de las encías
+const traducirColorEncias = (colorEncias) => {
+  // Mapea los valores de color a sus nombres correspondientes
+  const colores = {
+    '#FFCCCC': 'Rosa pálido',
+    '#FF0000': 'Rojo brillante',
+    '#8B0000': 'Rojo oscuro',
+    '#FFFFFF': 'Blanco pálido',
+    '#4B0082': 'Azulada o púrpura'
+    // Añade más colores según sea necesario
+  };
+
+  // Retorna el nombre del color correspondiente
+  return colores[colorEncias] || 'Color no definido'; // Si el color no está definido, retorna un mensaje predeterminado
+};
 
 function HistorialClinicoForm() {
   const [nombre, setNombre] = useState('');
@@ -12,10 +660,10 @@ function HistorialClinicoForm() {
   const [ocupacionSeleccionada, setOcupacionSeleccionada] = useState('');
   const [fechaNacimiento, setFechaNacimiento] = useState('');
   const [ciudad, setCiudad] = useState('');
-  const [padecimientoActual, setPadecimientoActual] = useState('');
   const [motivoConsulta, setMotivoConsulta] = useState('');
   const [enfermedadesSeleccionadas, setEnfermedadesSeleccionadas] = useState([]);
- 
+  const [nombreDienteSeleccionad, setNombreDienteSeleccionado] = useState([]);
+
  
   const [coloracionEncias, setColoracionEncias] = useState('');
   const [coloracionLenguaSelected, setColoracionLenguaSelected] = useState(null);
@@ -28,6 +676,65 @@ function HistorialClinicoForm() {
   const [observacionesPaladar, setObservacionesPaladar] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
+  const obtenerNombresDientes = () => {
+    const nombresDientes = {
+      11: 'Incisivo Central Superior Izquierdo',
+      12: 'Incisivo Lateral Superior Izquierdo',
+      13: 'Canino Superior Izquierdo',
+      14: 'Primer Premolar Superior Izquierdo',
+      15: 'Segundo Premolar Superior Izquierdo',
+      16: 'Primer Molar Superior Izquierdo',
+      17: 'Segundo Molar Superior Izquierdo',
+      18: 'Tercer Molar Superior Izquierdo',
+      21: 'Incisivo Central Superior Derecho',
+      22: 'Incisivo Lateral Superior Derecho',
+      23: 'Canino Superior Derecho',
+      24: 'Primer Premolar Superior Derecho',
+      25: 'Segundo Premolar Superior Derecho',
+      26: 'Primer Molar Superior Derecho',
+      27: 'Segundo Molar Superior Derecho',
+      28: 'Tercer Molar Superior Derecho',
+      31: 'Incisivo Central Inferior Izquierdo',
+      32: 'Incisivo Lateral Inferior Izquierdo',
+      33: 'Canino Inferior Izquierdo',
+      34: 'Primer Premolar Inferior Izquierdo',
+      35: 'Segundo Premolar Inferior Izquierdo',
+      36: 'Primer Molar Inferior Izquierdo',
+      37: 'Segundo Molar Inferior Izquierdo',
+      38: 'Tercer Molar Inferior Izquierdo',
+      41: 'Incisivo Central Inferior Derecho',
+      42: 'Incisivo Lateral Inferior Derecho',
+      43: 'Canino Inferior Derecho',
+      44: 'Primer Premolar Inferior Derecho',
+      45: 'Segundo Premolar Inferior Derecho',
+      46: 'Primer Molar Inferior Derecho',
+      47: 'Segundo Molar Inferior Derecho',
+      48: 'Tercer Molar Inferior Derecho',
+    };
+  
+    return nombresDientes;
+  };
+  
+  const nombresDientes = obtenerNombresDientes();
+  console.log(nombresDientes);
+
+  // Define la función para traducir el color de las encías
+const traducirColorEncias = (colorEncias) => {
+  // Mapea los valores de color a sus nombres correspondientes
+  const colores = {
+    '#FFCCCC': 'Rosa pálido',
+    '#FF0000': 'Rojo brillante',
+    '#8B0000': 'Rojo oscuro',
+    '#FFFFFF': 'Blanco pálido',
+    '#4B0082': 'Azulada o púrpura'
+    // Añade más colores según sea necesario
+  };
+
+  // Retorna el nombre del color correspondiente
+  return colores[colorEncias] || 'Color no definido'; // Si el color no está definido, retorna un mensaje predeterminado
+};
+ const nombreColorEncias = traducirColorEncias(coloracionEncias);  
+// Luego puedes usar esta función en tu código para obtener el nombre del color de las encías
   const opcionesColoracionLengua = 
   [
     "Blanca", "Gris", "Rosa", "Roja", 
@@ -57,19 +764,22 @@ function HistorialClinicoForm() {
     { name: 'cancer', label: 'Cáncer' },
     { name: 'convulsiones', label: 'Convulsiones' }
   ];
+
+  
   const handleSubmit = (event) => {
     event.preventDefault();
-  
+
     // Verificar si todos los campos obligatorios están llenos
     if (
       nombre.trim() !== '' &&
       domicilio.trim() !== '' &&
+      
       telefono.trim() !== '' &&
       ocupacionSeleccionada !== '' &&
       fechaNacimiento.trim() !== '' &&
       ciudad.trim() !== '' &&
       motivoConsulta.trim() !== '' &&
-      enfermedadesSeleccionadas.length > 0 &&
+      
     
       coloracionEncias.trim() !== '' &&
       coloracionLenguaSelected !== null &&
@@ -77,8 +787,10 @@ function HistorialClinicoForm() {
       
       coloracionPaladar.trim() !== '' &&
       ulceracionesPaladar.trim() !== '' 
+      
     ) {
-      // Llama a la función generarPDF para crear el PDF
+        
+    // Llama a la función generarPDF para crear el PDF
       generarPDF();
   
       // También podrías enviar los datos del formulario a un servidor aquí
@@ -90,44 +802,90 @@ function HistorialClinicoForm() {
     }
   };  
 
-  const handleOcupacionChange = (e) => {
-    setOcupacionSeleccionada(e.target.value);
-  };
+  
+  const generarPDF = () => {
+    const doc = new jsPDF();
+    doc.text('Historial Clínico', 20, 20);
+    doc.text(`Nombre: ${nombre}`, 20, 30);
+    doc.text(`Sexo: ${sexo}`, 20, 40);
+    doc.text(`Domicilio: ${domicilio}`, 20, 50);
+    doc.text(`Teléfono: ${telefono}`, 20, 60);
+    doc.text(`Ocupación: ${ocupacionSeleccionada}`, 20, 70);
+    doc.text(`Fecha de Nacimiento: ${fechaNacimiento}`, 20, 80);
+    doc.text(`Ciudad: ${ciudad}`, 20, 90);
+    doc.text(`Motivo de Consulta: ${motivoConsulta}`, 20, 100);
+    doc.text('Enfermedades:', 20, 110);
+    enfermedadesSeleccionadas.forEach((enfermedad, index) => {
+      doc.text(`${index + 1}. ${enfermedad}`, 20, 120 + index * 10);
+    });
+    doc.text(`Coloración de las encías: ${nombreColorEncias}`, 20, 150);
+    doc.text(`Coloración de la lengua: ${coloracionLenguaSelected}`, 20, 160);
+    doc.text(`Ulceraciones en la lengua: ${ulceracionesLengua}`, 20, 170);
+    doc.text(`Coloración del paladar: ${coloracionPaladar}`, 20, 180);
+    doc.text(`Ulceraciones en el paladar: ${ulceracionesPaladar}`, 20, 190);
+    
+   
+  // Generar texto para dientes seleccionados
+  const textoDientes = generarTextoHistorial();
+  // Agregar texto de dientes seleccionados al PDF
+  doc.text(`Dientes Seleccionados:\n${textoDientes}`, 20, 200);
 
   
+    // Guardar el documento PDF
+    doc.save('historial_clinico.pdf');
+  };
+  
+  const generarTextoHistorial = () => {
+    const texto = dientesSeleccionados.map(numero => {
+      const nombre = nombresDientes[numero];
+      return `Número: ${numero}, Nombre: ${nombre}`;
+    }).join('\n');
+    return texto;
+  };
+  
+  
+  const handleSexoChange = (e) => {
+    setSexo(e.target.value);
+  };
 
   const handleColoracionLenguaChange = (coloracion) => {
     setColoracionLenguaSelected(coloracion); 
-  };
+ 
+  }
   const handleEnfermedadClick = (enfermedad) => {
-    // Comprobar si la enfermedad ya está seleccionada
     const isSelected = enfermedadesSeleccionadas.includes(enfermedad);
-    
     if (isSelected) {
-        // Si está seleccionada, la eliminamos del estado de las enfermedades seleccionadas
-        setEnfermedadesSeleccionadas(prevEnfermedades => prevEnfermedades.filter(item => item !== enfermedad));
+      setEnfermedadesSeleccionadas(enfermedadesSeleccionadas.filter((e) => e !== enfermedad));
     } else {
-        // Si no está seleccionada, la añadimos al estado de las enfermedades seleccionadas
-        setEnfermedadesSeleccionadas(prevEnfermedades => [...prevEnfermedades, enfermedad]);
+      setEnfermedadesSeleccionadas([...enfermedadesSeleccionadas, enfermedad]);
     }
-};
-
-const renderEnfermedadesCheckboxes = () => {
-  return enfermedadesList.map(enfermedad => (
-    <div key={enfermedad.name} className="mb-2">
-      <input
-        type="checkbox"
-        id={enfermedad.name}
-        checked={enfermedadesSeleccionadas.includes(enfermedad.name)}
-        onChange={() => handleEnfermedadClick(enfermedad.name)}
-        className="mr-2"
-      />
-      <label htmlFor={enfermedad.name}>{enfermedad.label}</label>
-    </div>
-  ));
-};
-
+  };
+  const renderEnfermedadesButtons = () => {
+    return (
+      <div className="flex flex-wrap justify-start">
+        {enfermedadesList.map(enfermedad => (
+          <label
+            key={enfermedad.name}
+            className={`rounded-md p-2 cursor-pointer mr-4 mb-4 border border-gray-300 ${enfermedadesSeleccionadas.includes(enfermedad.name) ? 'border-blue-500' : ''}`}
+            onClick={() => handleEnfermedadClick(enfermedad.name)}
+            style={{ textDecoration: 'none', background: 'none' }}
+          >
+            {enfermedad.label}
+            <input
+              type="checkbox"
+              style={{ display: 'none' }}
+              checked={enfermedadesSeleccionadas.includes(enfermedad.name)}
+              onChange={() => handleEnfermedadClick(enfermedad)}
+            />
+          </label>
+        ))}
+      </div>
+    );
+  };
   
+  
+  
+
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
   };
@@ -141,17 +899,25 @@ const renderEnfermedadesCheckboxes = () => {
     if (index === -1) {
       // Si no está seleccionado, agrégalo al array
       setDientesSeleccionados([...dientesSeleccionados, numeroDiente]);
+      // Obtén el nombre del diente y guárdalo en el estado
+      const nombreDiente = nombresDientes[numeroDiente];
+      setNombreDienteSeleccionado(nombreDiente);
     } else {
       // Si ya está seleccionado, elimínalo del array
       const newDientesSeleccionados = [...dientesSeleccionados];
       newDientesSeleccionados.splice(index, 1);
       setDientesSeleccionados(newDientesSeleccionados);
+      // Borra el nombre del diente seleccionado del estado
+      setNombreDienteSeleccionado('');
     }
   };
   
 
   const handleColoracionEnciasChange = (color) => {
     setColoracionEncias(color);
+  };
+  const handleOcupacionChange = (event) => {
+    setOcupacionSeleccionada(event.target.value);
   };
   
 
@@ -237,82 +1003,12 @@ const renderColoracionLenguaOptions = () => {
           alt={coloracion}
           className="w-24 mb-2 cursor-pointer"
           width="80" height="70"
+          
         />
      
       </label>
     </div>
   ));
-};
-const toggleUlceraciones = () => {
-  setUlceraciones(!ulceraciones);
-};
-
-const generarPDF = () => {
-  const pdf = new jsPDF();
-
-  // Define la posición inicial para escribir en el PDF
-  let posY = 10;
-
-  // Agrega la información personal
-  pdf.setFontSize(16);
-  pdf.setFont('helvetica', 'bold');
-  pdf.text('Información Personal:', 10, posY);
-  pdf.setFont('helvetica', 'normal');
-  posY += 10;
-  pdf.text(`Nombre: ${nombre}`, 15, posY);
-  posY += 10;
-  pdf.text(`Sexo: ${sexo}`, 15, posY);
-  posY += 10;
-  pdf.text(`Domicilio: ${domicilio}`, 15, posY);
-  posY += 10;
-  pdf.text(`Teléfono: ${telefono}`, 15, posY);
-  posY += 10;
-  pdf.text(`Fecha de Nacimiento: ${fechaNacimiento}`, 15, posY);
-  posY += 10;
-  pdf.text(`Ciudad: ${ciudad}`, 15, posY);
-  posY += 20; // Incrementa la posición Y
-
-  // Agrega el padecimiento actual
-  pdf.setFont('helvetica', 'bold');
-  pdf.text('Padecimiento Actual:', 10, posY);
-  pdf.setFont('helvetica', 'normal');
-  posY += 10;
-  pdf.text(`${padecimientoActual}`, 15, posY);
-  posY += 20; // Incrementa la posición Y
-
-  // Agrega las enfermedades seleccionadas
-  pdf.setFont('helvetica', 'bold');
-  pdf.text('Enfermedades:', 10, posY);
-  pdf.setFont('helvetica', 'normal');
-  posY += 10;
-  enfermedadesSeleccionadas.forEach((enfermedad, index) => {
-    pdf.text(`${index + 1}. ${enfermedad}`, 15, posY);
-    posY += 10;
-  });
-  posY += 20; // Incrementa la posición Y
-
-  // Agrega la información bucal
-  pdf.setFont('helvetica', 'bold');
-  pdf.text('Información Bucal:', 10, posY);
-  pdf.setFont('helvetica', 'normal');
-  posY += 10;
-  pdf.text(`Coloración de Encías: ${coloracionEncias}`, 15, posY);
-  posY += 10;
-  pdf.text(`Coloración de Lengua: ${coloracionLenguaSelected}`, 15, posY);
-  posY += 10;
-  pdf.text(`Ulceraciones en Lengua: ${ulceracionesLengua}`, 15, posY);
-  posY += 10;
-  pdf.text(`Observaciones sobre Lengua: ${observacionesLengua}`, 15, posY);
-  posY += 10;
-  pdf.text(`Coloración de Paladar Duro: ${coloracionPaladar}`, 15, posY);
-  posY += 10;
-  pdf.text(`Lesiones o Anomalías en Paladar Duro: ${ulceracionesPaladar}`, 15, posY);
-  posY += 10;
-  pdf.text(`Observaciones sobre Paladar Duro: ${observacionesPaladar}`, 15, posY);
-  posY += 10;
-
-  // Guarda el PDF
-  pdf.save('historial_clinico.pdf');
 };
 
 
@@ -334,16 +1030,40 @@ const generarPDF = () => {
             placeholder="Ingrese el Nombre completo"/>
             
           </div>
+          <div className="form-control">
+            <label className="text-gray-700">Sexo:</label><br />
+            <label className="inline-flex items-center">
+              <input
+              type="checkbox"
+              value="masculino"
+              checked={sexo === "masculino"}
+              onChange={handleSexoChange}
+              className="form-checkbox h-5 w-5 text-red-600 rounded-full"
+              />
+              <span className="ml-2">Masculino</span>
+              </label>
+              <label className="inline-flex items-center ml-4">
+                <input
+                type="checkbox"
+                value="femenino"
+                checked={sexo === "femenino"}
+                onChange={handleSexoChange}
+                className="form-checkbox h-5 w-5 text-red-600 rounded-full"
+                />
+                <span className="ml-2">Femenino</span>
+                </label>
+                <label className="inline-flex items-center ml-4">
+                  <input
+                  type="checkbox"
+                  value="otro"
+                  checked={sexo === "otro"}
+                  onChange={handleSexoChange}
+                  className="form-checkbox h-5 w-5 text-red-600 rounded-full"
+                   />
+                   <span className="ml-2">Otro</span>
+                   </label>
+                   </div>
 
-          <div className="form-control ">
-            <label htmlFor="sexo" className="text-gray-700 border-black">Género:</label><br />
-            <select id="sexo" value={sexo} onChange={(e) => setSexo(e.target.value)} className="border border-gray-300 rounded-md p-2 w-full">
-              <option value="masculino">Masculino</option>
-              <option value="femenino">Femenino</option>
-              <option value="otro">Otro</option>
-            </select><br /><br />
-          </div>
-  
           <div className="form-control ">
             <label htmlFor="domicilio" className="text-gray-700 border-black">Domicilio:</label><br />
             <input type="text" id="domicilio" value={domicilio} onChange={(e) => setDomicilio(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
@@ -378,19 +1098,7 @@ const generarPDF = () => {
     
               </div>
         <fieldset>
-        <div className="form-control">
-  <label htmlFor="padecimientoActual" className="text-gray-700 border-black">Padecimiento Actual:</label><br />
-  <textarea
-    id="padecimientoActual"
-    value={padecimientoActual}
-    onChange={(e) => setPadecimientoActual(e.target.value)}
-    rows={4}
-    className="border border-gray-300 rounded-md p-2 w-full"
-    style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}}
-    placeholder="Ingrese el padecimiento actual aquí..."
-  />
-</div>
-
+          <legend className="text-lg font-semibold text-gray-700 border-black">Padecimiento Actual</legend>
           <div className="form-control">
             <label htmlFor="motivoConsulta" className="text-gray-700 border-black">Motivo de consulta:</label><br />
             <textarea
@@ -407,11 +1115,10 @@ const generarPDF = () => {
         </fieldset>
   
         <fieldset>
-          <legend className="text-lg text-gray-700 bg-transparent text-gray-700  border border-gray-700 hover:bg-gray-100 hover:text-gray-900 font-semibold py-2 px-4 rounded inline-flex items-center">Enfermedades</legend>
+          <legend className="text-lg font-semibold text-gray-700 bg-transparent text-gray-700 border border-gray-700 hover:bg-gray-100 hover:text-gray-900 font-semibold py-2 px-4 rounded inline-flex items-center">Enfermedades</legend>
           <div className="enfermedades-container">
-  {renderEnfermedadesCheckboxes()}
-</div>
-
+            {renderEnfermedadesButtons()}
+          </div>
         </fieldset>
               
               <button type="button" onClick={nextPage}>Siguiente</button>
@@ -546,6 +1253,6 @@ const generarPDF = () => {
           )}
         </div>
       );
-    
+
     }  
   export default HistorialClinicoForm;
