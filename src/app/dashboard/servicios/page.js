@@ -4,7 +4,7 @@ import Servicio from '@/components/Servicio';
 
 const serviciosData = [
   { id: 1, nombre: "Examen Bucodental Inicial", precio: 50 },
-  { id: 2, nombre: "Procedimientos de obturación o llenado dental", precio: 100 },
+  { id: 2, nombre: "Procedimientos de obturación", precio: 100 },
   { id: 3, nombre: "Extracciones dentales", precio: 150 },
   { id: 4, nombre: "Servicios de limpieza dental", precio: 75 },
   { id: 5, nombre: "Ortodoncia", precio: 200 },
