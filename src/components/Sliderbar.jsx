@@ -56,7 +56,7 @@ const SliderBar = () => {
           </li>
           <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
           <FaShoppingCart />
-            <Link href="/dashboard/cuestionario" className="block ml-2 transition-all hover:text-yellow-500">Carrito</Link>
+            <Link href="/dashboard/carrito" className="block ml-2 transition-all hover:text-yellow-500">Carrito</Link>
           </li>
           <li className="bottom-0 mt-[50%] p-4 flex items-center pl-10 transition-transform duration-300 ease-in-out hover:scale-110">
             <FaLock className="mr-2" />
