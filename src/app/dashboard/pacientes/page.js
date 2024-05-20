@@ -9,15 +9,15 @@ const Pacientes = () => {
   const [searchTerm, setSearchTerm] = useState('');
   
   const pacientes = [
-    { name: 'Juan Pérez', age: 35, sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012',href: '/paciente/juan-perez' },
-    { name: 'María López', age: 42, sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/paciente/maria-lopez' },
-    { name: 'Carlos García', age: 28, sex:'Masculino',phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/paciente/juan-perez' },
-    { name: 'Juan Pérez',age: 35,  sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/paciente/juan-perez'},
-    { name: 'María López', age: 42, sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/paciente/juan-perez' },
-    { name: 'Carlos García', age: 28, sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/paciente/juan-perez'}, 
-    { name: 'Juan Pérez', age: 35, sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/paciente/juan-perez' },
-    { name: 'María López', age: 42, sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/paciente/juan-perez' },
-    { name: 'Carlos García', age: 28, sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/paciente/juan-perez' },
+    { name: 'Juan Pérez', age: 35, sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012',href: '/dashboard/pacientes/juan-perez' },
+    { name: 'María López', age: 42, sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/dashboard/pacientes/maria-lopez' },
+    { name: 'Carlos García', age: 28, sex:'Masculino',phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/dashboard/pacientes/carlos-garcia' },
+    { name: 'Juan Pérez',age: 35,  sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/dashboard/pacientes/juan-perez'},
+    { name: 'María López', age: 42, sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/dashboard/pacientes/maria-lopez' },
+    { name: 'Carlos García', age: 28, sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/dashboard/pacientes/carlos-garcia'}, 
+    { name: 'Juan Pérez', age: 35, sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/dashboard/pacientes/juan-perez' },
+    { name: 'María López', age: 42, sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/dashboard/pacientes/maria-lopez' },
+    { name: 'Carlos García', age: 28, sex:'Masculino', phone: '646123456',consultation:'Extraccion de diente',lastappointmenth:'29-08-2012', href: '/dashboard/pacientes/carlos-garcia' },
   ];
 
   const filteredPacientes = pacientes.filter(paciente =>
