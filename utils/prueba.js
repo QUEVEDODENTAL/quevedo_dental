@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const conexion = mysql.createConnection({
   host: 'localhost', // Cambia esto por la dirección de tu servidor de base de datos si es diferente
   user: 'root', // Cambia esto por tu nombre de usuario de MySQL
-  password: '1234', // Cambia esto por tu contraseña de MySQL
+  password: 'Backend1', // Cambia esto por tu contraseña de MySQL
   database: 'proyecto_salud' // Cambia esto por el nombre de tu base de datos
 });
 
@@ -16,24 +16,23 @@ conexion.connect((error) => {
   }
   console.log('Conexión establecida con la base de datos.');
 
-
-  // --------------------------------------------------------------------------------------------
+ // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'Doctor'
   const datosDoctor = {
-    Name: 'Juan',
-    LastName: 'Pérez',
-    Age: 35,
-    BirthDate: '1989-08-20',
+    Name: 'Pedro',
+    LastName: 'Ramírez',
+    Age: 40,
+    BirthDate: '1984-07-15',
     Gender: 'Masculino',
-    Specialty: 'Pediatría',
-    Address: 'Calle Independencia 456',
-    Phone: '1234567890',
-    Cellphone: '0987654321',
-    Curp: 'PEJU890820HTCPRN07',
-    LicenseNumber: '87654321',
+    Specialty: 'Cardiología',
+    Address: 'Calle Principal 123',
+    Cellphone: '0987123456',
+    Curp: 'RARV840715HTCPRD01',
+    LicenseNumber: '12345678',
     Sex: 'Masculino',
-    MedicalLicense: 'XYZ789',
-    Email: 'juan@example.com'
+    MedicalLicense: 'ABC123',
+    Email: 'pedro@example.com',
+    HireDate: '2023-05-20',
   };
 
   conexion.query('INSERT INTO Doctor SET ?', datosDoctor, (error, resultado) => {
@@ -49,18 +48,18 @@ conexion.connect((error) => {
   // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'Empleado'
   const datosEmpleado = {
-    Name: 'Ana',
-    LastName: 'Gómez',
-    BirthDate: '1995-03-10',
+    Name: 'María',
+    LastName: 'López',
+    BirthDate: '1990-09-25',
     Gender: 'Femenino',
-    Phone: '9876543210',
-    Email: 'ana@example.com',
-    Address: 'Avenida Reforma 123',
-    Position: 'Secretaria',
-    Curp: 'GOAN950310MDFMNS08',
-    Rfc: 'GOAN950310ABC1234',
-    Salary: 20000.00,
-    HireDate: '2023-02-15'
+    Cellphone: '0987123456',
+    Email: 'maria@example.com',
+    Address: 'Avenida Central 456',
+    Position: 'Enfermera',
+    Curp: 'LOPM900925MDFMRA07',
+    Rfc: 'LOPM900925XYZ1234',
+    Salary: 25000.00,
+    HireDate: '2023-05-20',
   };
 
   conexion.query('INSERT INTO Empleado SET ?', datosEmpleado, (error, resultado) => {
@@ -76,18 +75,18 @@ conexion.connect((error) => {
   // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'Clientes'
   const datosCliente = {
-    Name: 'Roberto',
-    LastName: 'Hernández',
-    Sex: 'Masculino',
-    Age: 45,
-    BirthDate: '1979-11-05',
-    Address: 'Calle Principal 789',
-    Phone: '5678901234',
-    Curp: 'HERO791105MDFRBR03',
-    Email: 'roberto@example.com',
-    BloodType: 'A+',
-    Occupation: 'Abogado',
-    Education: 'Maestría'
+    Name: 'Laura',
+    LastName: 'García',
+    Sex: 'Femenino',
+    Age: 30,
+    BirthDate: '1994-12-10',
+    Address: 'Avenida Libertad 789',
+    Phone: '5678123456',
+    Curp: 'GALU941210MDFRRC05',
+    Email: 'laura@example.com',
+    BloodType: 'AB-',
+    Occupation: 'Ingeniera',
+    Education: 'Doctorado'
   };
 
   conexion.query('INSERT INTO Clientes SET ?', datosCliente, (error, resultado) => {
@@ -103,11 +102,11 @@ conexion.connect((error) => {
   // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'Enfermedades'
   const datosEnfermedades = {
-    DiseaseType: 'Pulmonares',
-    Other: 'Asma',
-    Causes: 'Alergias, exposición a humo, contaminantes, etc.',
-    Symptoms: 'Tos, dificultad para respirar, opresión en el pecho, etc.',
-    Treatment: 'Broncodilatadores, corticosteroides, antihistamínicos, etc.'
+    DiseaseType: 'Cardiovasculares',
+    Other: 'Hipertensión arterial',
+    Causes: 'Factores genéticos, estilo de vida sedentario, dieta poco saludable, etc.',
+    Symptoms: 'Dolor de cabeza, fatiga, visión borrosa, etc.',
+    Treatment: 'Medicamentos antihipertensivos, cambios en el estilo de vida, control del estrés, etc.'
   };
 
   conexion.query('INSERT INTO Enfermedades SET ?', datosEnfermedades, (error, resultado) => {
@@ -123,16 +122,16 @@ conexion.connect((error) => {
   // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'AntecedentesNoPatologicos'
   const datosAntecedentesNoPatologicos = {
-    PatientId: 3,
+    PatientId: 5,
     Smoking: 'No',
     SubstanceAbuse: 'No',
     Alcoholism: 'No',
-    Sedentary: 'No',
-    Surgeries: 'Cirugía de apendicitis',
-    Exercise: 'Natación dos veces por semana'
+    Sedentary: 'Sí',
+    Surgeries: 'Ninguna',
+    Exercise: 'Caminata diaria'
   };
 
-  conexion.query('INSERT INTO AntecedentesNoPatologicos SET ?', datosAntecedentesNoPatologicos, (error, resultado) => {
+  conexion.query('INSERT INTO antecedentesnopatologicos SET ?', datosAntecedentesNoPatologicos, (error, resultado) => {
     if (error) {
       console.error('Error al insertar datos en la tabla AntecedentesNoPatologicos:', error);
       return;
@@ -145,16 +144,16 @@ conexion.connect((error) => {
   // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'AntecedentesPatologicos'
   const datosAntecedentesPatologicos = {
-    PatientId: 3,
-    Disease: 'Diabetes tipo 2',
-    DiagnosisDate: '2010-06-15',
-    DiseaseType: 'Metabólicas',
+    PatientId: 5,
+    Disease: 'Hipotiroidismo',
+    DiagnosisDate: '2015-10-20',
+    DiseaseType: 'Endocrinas',
     Chronic: 'Sí',
-    Treatment: 'Control de la dieta, ejercicio regular, medicamentos orales',
-    Observations: 'Monitoreo constante de los niveles de glucosa en sangre'
+    Treatment: 'Reemplazo hormonal con levotiroxina',
+    Observations: 'Control regular de los niveles de hormonas tiroideas'
   };
 
-  conexion.query('INSERT INTO AntecedentesPatologicos SET ?', datosAntecedentesPatologicos, (error, resultado) => {
+  conexion.query('INSERT INTO antecedentespatologicos SET ?', datosAntecedentesPatologicos, (error, resultado) => {
     if (error) {
       console.error('Error al insertar datos en la tabla AntecedentesPatologicos:', error);
       return;
@@ -167,20 +166,20 @@ conexion.connect((error) => {
   // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'ExamenClinicoIntraoral'
   const datosExamenClinicoIntraoral = {
-    PatientId: 3,
-    ExaminationDate: '2024-02-10',
-    Gums: 'Inflamación en la encía superior derecha',
-    Tongue: 'Leve halitosis y saburra lingual',
+    PatientId: 5,
+    ExaminationDate: '2024-05-10',
+    Gums: 'Sangrado leve en la encía inferior derecha',
+    Tongue: 'Leve saburra lingual',
     HardPalate: 'Intacto',
     SoftPalate: 'Intacto',
     Pharynx: 'Normal',
     FloorOfMouth: 'Normal',
     ResidualRidge: 'Normal',
-    OcclusionType: 'Clase I de Angle',
-    Observations: 'Recomendación de higiene bucal adecuada y revisión periódica'
+    OcclusionType: 'Clase II de Angle',
+    Observations: 'Instrucciones sobre técnica de cepillado y uso de hilo dental'
   };
 
-  conexion.query('INSERT INTO ExamenClinicoIntraoral SET ?', datosExamenClinicoIntraoral, (error, resultado) => {
+  conexion.query('INSERT INTO examenclinicointraoral SET ?', datosExamenClinicoIntraoral, (error, resultado) => {
     if (error) {
       console.error('Error al insertar datos en la tabla ExamenClinicoIntraoral:', error);
       return;
@@ -193,13 +192,13 @@ conexion.connect((error) => {
   // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'HistorialClinico'
   const datosHistorialClinico = {
-    ClientId: 3,
-    DentistId: 1,
-    ConsultationDate: '2024-02-10',
+    ClientId: 5,
+    DentistId: 2,
+    ConsultationDate: '2024-05-10',
     ClinicalData: JSON.stringify({
-      Sintomas: 'Malestar general, fatiga, micción frecuente',
-      Diagnostico: 'Infección de las vías urinarias',
-      Tratamiento: 'Antibióticos, analgésicos, aumentar la ingesta de líquidos'
+      Sintomas: 'Fatiga, aumento de peso, intolerancia al frío',
+      Diagnostico: 'Hipotiroidismo subclínico',
+      Tratamiento: 'Iniciar levotiroxina, seguimiento de los niveles de TSH'
     })
   };
 
@@ -216,11 +215,10 @@ conexion.connect((error) => {
   // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'Permiso'
   const datosPermisos = [
-    { Permission: '0000', Description: 'Permite al usuario modificar información.' },
-    { Permission: '0001', Description: 'Permite al usuario administrar el sistema.' }
-  ];
+  {Permission: '0001', 
+   Description: 'Permite al usuario ver información'},]
 
-  conexion.query('INSERT INTO Permisos (Permission, Description) VALUES ?', [datosPermisos.map(item => [item.Permission, item.Description])], (error, resultado) => {
+  conexion.query('INSERT INTO permisos (Permission, Description) VALUES ?', [datosPermisos.map(item => [item.Permission, item.Description])], (error, resultado) => {
     if (error) {
       console.error('Error al insertar datos en la tabla Permisos:', error);
       return;
@@ -234,11 +232,11 @@ conexion.connect((error) => {
   // Inserta datos de ejemplo en la tabla 'Bitacora'
   const datosBitacora = {
     DateTime: new Date().toISOString().slice(0, 19).replace('T', ' '),
-    User: 'admin',
-    Action: 'Cambio de contraseña',
+    User: 'usuario1',
+    Action: 'Inicio de sesión',
     Tabla: null,
     RecordId: null,
-    Description: 'El usuario admin cambió su contraseña.'
+    Description: 'El usuario usuario1 inició sesión correctamente.'
   };
 
   conexion.query('INSERT INTO Bitacora SET ?', datosBitacora, (error, resultado) => {
@@ -254,10 +252,10 @@ conexion.connect((error) => {
   // --------------------------------------------------------------------------------------------
   // Inserta datos de ejemplo en la tabla 'Usuarios'
   const datosusuarios = {
-    Email: 'juan@example.com',
-    Password: 'juan123',
-    IsAdministrator: false,
-    IsDoctor: true,
+    Email: 'daniel@gmail.com', 
+    Password: 'daniel123', 
+    IsAdministrator: true, 
+    IsDoctor: false, 
     IsEmployee: false
   };
 
