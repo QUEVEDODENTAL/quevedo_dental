@@ -3,12 +3,28 @@ import { FaEnvelopeOpenText, FaFileArchive, FaCalendarAlt, FaClipboardList } fro
 
 const Perfil = () => {
   const personalInfo = {
-    nombre: "Carlos García",
-    edad: 28,
+    name: "Carlos García",
+    age: 28,
     sexo: "Masculino",
-    telefono: "646123456",
-    consulta: "Extracción de diente",
-    ultimaCita: "29-08-2012"
+    phone: "646123456",
+    ocupation:"Estudiante",
+    consultation: "Extracción de diente",
+    lastCita: "29-08-2012",
+    birthdate:"08-05-2000",
+    city:"ensenada",
+
+
+    consultation: "Extracción de diente",
+    date: "29-08-2012",
+    diseasess:"Cancer",
+    odontogram:"14,molar inferior",
+    
+    gumColoration:"Rosa palido",
+    
+    tonguecoloring:"Lengua Rosa",
+    tongueUlcerations:"Sin ulceraciones",
+    observationstongue:"No hay nada",
+
   };
 
   return (
@@ -19,27 +35,62 @@ const Perfil = () => {
           <div className="flex flex-col">
             {/* Nombre Completo */}
             <div className="mb-2">
-              <b>Nombre:</b> {personalInfo.nombre}
+              <b>Nombre:</b> {personalInfo.name}
             </div>
             {/* Edad */}
             <div className="mb-2">
-              <b>Edad:</b> {personalInfo.edad}
+              <b>Edad:</b> {personalInfo.age}
             </div>
             {/* Sexo */}
             <div className="mb-2">
-              <b>Sexo:</b> {personalInfo.sexo}
+              <b>Sexo:</b> {personalInfo.sex}
             </div>
             {/* Teléfono */}
             <div className="mb-2">
-              <b>Teléfono:</b> {personalInfo.telefono}
+              <b>Teléfono:</b> {personalInfo.phone}
+            </div>
+            <div className="mb-2">
+              <b>Ocupacion:</b> {personalInfo.ocupation}
+            </div>
+            <div className="mb-2">
+              <b>Fecha de nacimiento:</b> {personalInfo.birthdate}
+            </div>
+            <div className="mb-2">
+              <b>Ciudad:</b> {personalInfo.city}
             </div>
             {/* Consulta */}
             <div className="mb-2">
-              <b>Consulta:</b> {personalInfo.consulta}
+              <b>Consulta:</b> {personalInfo.consultation}
             </div>
-            {/* Última cita */}
             <div className="mb-2">
-              <b>Última cita:</b> {personalInfo.ultimaCita}
+              <b>Enfermedades:</b> {personalInfo.diseasess}
+            </div>
+            <div className="mb-2">
+              <b>Odontograma:</b> {personalInfo.odontogram}
+            </div>
+            <div className="mb-2">
+            <b>Coloracion encias:</b> {personalInfo.gumColoration}
+            </div>
+            <div className="mb-2">
+            <b>Coloracion lengua:</b> {personalInfo.tonguecoloring}
+            </div>
+            <div className="mb-2">
+            <b>Ulceraciones lengua:</b> {personalInfo.tongueUlcerations}
+            </div>
+            <div className="mb-2">
+            <b>Observaciones lengua:</b> {personalInfo.odontogram}
+            </div>
+            <div className="mb-2">
+            <b>Coloracion paladar:</b> {personalInfo.odontogram}
+            </div>
+            <div className="mb-2">
+            <b>Lesiones paladar:</b> {personalInfo.observationstongue}
+            </div>
+            <div className="mb-2">
+            <b>Observaciones paladar:</b> {personalInfo.observationstongue}
+            </div>
+            <div className="mb-2">
+              <b>Última cita:</b> {personalInfo.date}
             </div>
           </div>
         </div>

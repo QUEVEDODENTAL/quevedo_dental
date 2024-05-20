@@ -51,7 +51,7 @@ const Pacientes = () => {
             sex={paciente.sex}
             phone={paciente.phone}
             consultation={paciente.consultation}
-            lastappointment={paciente.lastappointment}
+            lastappointment={paciente.lastappointmenth}
             href={paciente.href}
           />
         ))}

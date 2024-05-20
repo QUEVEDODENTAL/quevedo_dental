@@ -195,7 +195,7 @@ const traducirColorEncias = (colorEncias) => {
   };
   const renderEnfermedadesButtons = () => {
     return (
-      <div className="flex flex-wrap justify-start">
+      <div className="flex flex-wrap  justify-start">
         {enfermedadesList.map(enfermedad => (
           <label
             key={enfermedad.name}
@@ -466,7 +466,7 @@ const renderColoracionLenguaOptions = () => {
             <div className="grid grid-cols-8 gap-10 justify-center">
                <div className="dientes-grid "> 
                 {[...Array(105).keys()].map(numero => (
-                <div key={`sup-${numero}`} className="m-2 ">
+                <div key={`sup-${numero}`} className="m-2 px-1">
                   {renderizarImagenSup(numero)}
                   </div>
                 ))}</div></div>
