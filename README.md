@@ -79,10 +79,11 @@ npx prisma generate
 ## Modo de uso de Base de Datos
 ````
 1. Para ver que se haya ejecutado correctamente ejecutamos el comando.
-`````
-npx prisma studio
 
-`````
+```
+npx prisma studio
+```
+
 despues de poner  comando  le aparecerá  http://localhost:5555 
 
 dando click url lo mandara  la página  y despues  dar en  el + en donde  les desplegara  OPEN MODEL  debera buscar usuario le abrira  paguina en donde  tendra que poner un  correo y contraseña  y despues le da en aguardar   
