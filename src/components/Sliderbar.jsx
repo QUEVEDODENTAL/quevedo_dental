@@ -19,10 +19,10 @@ const SliderBar = () => {
 
   return (
     <div className="fixed top-0 left-0 bottom-0 z-10">
-      <div className="fixed bottom-4 left-4 cursor-pointer bg-secondary-dash p-2 rounded-lg text-secondary-icon">
+      <div className="fixed top-4 left-4 cursor-pointer bg-secondary-dash p-2 rounded-lg text-secondary-icon">
         <FaBars className="text-xl" onClick={toggleSliderVisibility} />
       </div>
-      <div className={`fixed text-white h-screen w-64 flex flex-col bg-secondary-dash text-secondary-icon transition-transform duration-500 ${isSliderVisible ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className={`fixed text-white h-[100%] w-64 flex flex-col bg-secondary-dash text-secondary-icon transition-transform duration-500 ${isSliderVisible ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="absolute top-4 right-4 cursor-pointer" onClick={toggleSliderVisibility}>
           <FaBars className="text-xl" />
         </div>

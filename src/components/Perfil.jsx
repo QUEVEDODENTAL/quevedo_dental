@@ -5,12 +5,12 @@ const Perfil = () => {
   return (
     <div className="flex flex-col items-center h-screen w-full text-base md:text-lg">
       {/* Imagen */}
-      <div className="w-40 h-40 rounded-full overflow-hidden border-1 border-black flex items-center justify-center">
+      <div className="w-40 h-40 rounded-full overflow-hidden border-1 flex items-center justify-center">
         <Image
           src="/assets/dentista2.jpg"
           alt="Dentista 2"
-          width={200}
-          height={200}
+          width={240}
+          height={240}
           priority
           className="rounded-full"
         />
