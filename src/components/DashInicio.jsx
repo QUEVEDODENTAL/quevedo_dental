@@ -29,7 +29,7 @@ const DashInicio = () => {
         <Link href="/dashboard/pacientes">
           <div>
             <FaAddressCard className="mt-2 ml-2" size={30} />
-            <h2 className="text-xl font-bold mb-2">Perfil</h2>
+            <h2 className="text-xl font-bold mb-2"> Perfil</h2>
             <p>Ver información de</p>
             <p>perfil de usuario</p>
           </div>

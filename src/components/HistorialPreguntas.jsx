@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 // import jsPDF from 'jspdf';
 // import PSPDFKit from 'pspdfkit';
@@ -580,6 +581,7 @@ const renderColoracionLenguaOptions = () => {
           <button type="button" onClick={prevPage}>Anterior</button>
           <div style={{ margin: '8px' }}></div>
           <input type="submit" value="Enviar" />
+          <Link href="/dashboard/servicios">Servicios</Link>
           </div>
           </form>
           )}

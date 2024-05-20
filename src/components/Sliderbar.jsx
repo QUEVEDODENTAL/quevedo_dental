@@ -40,7 +40,7 @@ const SliderBar = () => {
           </li>
           <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
             <FaUserAlt />
-            <Link href="/dashboard/perfil" className="block ml-2 transition-all hover:text-yellow-500">Perfil</Link>
+            <Link href="/dashboard/mi_perfil" className="block ml-2 transition-all"> Mi Perfil</Link>
           </li>
           <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
             <FaHospitalUser />
