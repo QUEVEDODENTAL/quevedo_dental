@@ -51,7 +51,7 @@ npm install
 `````
 npm install react-icons
 `````
-## Instalar la programa para crear Usuario
+## Instalar la programa para crear contraseña para uso .env
 ```
 MySQL Product Archives(https://downloads.mysql.com/archives/community/)
 
@@ -64,7 +64,11 @@ Cuando se Instale despues hacer el proceso de intalacion se pidara   poner una  
 4. Edita el archivo ´.env´ con los detalles de la base de datos.
 
 ```
-DATABASE_URL="mysql://usuario:contraseña@localhost:5432/nombre_basedatos?schema=public"
+DATABASE_URL="mysql://root:contraseña@localhost:3306/proyecto_salud?schema=public"
+
+NEXTAUTH_URL="http://localhost:3000/"
+
+NEXTAUTH_SECRET=TuPalabraSecreta
 `````
 ## Ejecucion de Migración.
 
@@ -79,9 +83,9 @@ npx prisma generate
 ## Modo de uso de Base de Datos
 ````
 1. Para ver que se haya ejecutado correctamente ejecutamos el comando.
-
 ```
 npx prisma studio
+
 ```
 
 despues de poner  comando  le aparecerá  http://localhost:5555 
