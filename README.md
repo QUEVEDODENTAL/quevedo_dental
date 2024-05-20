@@ -5,9 +5,8 @@ Esta documentación proporciona una guía sobre cómo Instalar para gestionar y 
 `````
  * visual studio code 
  * npm 10.5.2 o superior
- *  MySQL 8.3.0
  *  MySQL Workbench 8 o superior para (Base de Datos)
- *  MySQL Product Archives(Crear el Usuario)
+ *  MySQL Product Archives(Crear contraseña)
  * github desktop
  *  git bash
  * Node
