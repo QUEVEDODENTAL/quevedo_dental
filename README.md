@@ -12,13 +12,6 @@ Esta documentación proporciona una guía sobre cómo Instalar para gestionar y 
  *  git bash
  * Node
 `````
-## Instalacion de extencion  para visualizar studio code 
-   - Liver  Server
-   - ES7+React/Redux/React-Native 
-   - gitignore
-   - Git History
-   - Tailwind CSS IntelliSence
-
 ##Instalación de Linux en Windows con WSL
 ```
 wsl --install
@@ -83,9 +76,9 @@ npx prisma generate
 ## Modo de uso de Base de Datos
 ````
 1. Para ver que se haya ejecutado correctamente ejecutamos el comando.
+
 ```
 npx prisma studio
-
 ```
 
 despues de poner  comando  le aparecerá  http://localhost:5555 
