@@ -210,7 +210,8 @@ const Perfil = () => {
   </button>
   <PDFDownloadLink document={generatePdf()} fileName="perfil.pdf">
     {({ loading }) => (
-      <button disabled={loading} className="mb-2 px-4 py-2 w-[80%] bg-secondary-button text-white rounded hover:bg-secondary-dash hover:text-primary-white transition-colors duration-300">
+      <button disabled={loading} className="mb-2 px-4 py-2 w-[80%] bg-secondary-button text-white rounded hover:bg-secondary-dash hover:text-primary-white transition-colors duration-300"
+      >
         <FaPrint className="inline mr-2" /> Generar PDF
       </button>
     )}
