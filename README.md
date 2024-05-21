@@ -58,15 +58,12 @@ NEXTAUTH_SECRET=TuPalabraSecreta
 ````
 npx prisma migrate dev
 ````
-
 ````
 npx prisma migrate deploy
-```
-```
 npx prisma generate
-`````
-
 ```
+
+````
 ## Modo de uso de Base de Datos
 1. Para ver que se haya ejecutado correctamente ejecutamos el comando.
 ```
