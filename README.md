@@ -3,7 +3,6 @@
 Esta documentación proporciona una guía sobre cómo Instalar para gestionar y realizar la migración.
 ## Prerrequisitos
 `````
- * visual studio code 
  * npm 10.5.2 o superior
  *  MySQL Workbench 8 o superior para (Base de Datos)
  *  MySQL Product Archives(Crear contraseña)
@@ -17,11 +16,6 @@ wsl --install
 ```
 
 ## Instalación Programas 
-`````
-Antes de comenzar, asegúrate de tener Node.js y npm instalados en tu sistema :
-1. Intalar visual Studio code 
-    visual studio (https://code.visualstudio.com/download)
-`````
 
 1. Clona este repositorio en tu máquina local:
 
@@ -73,9 +67,7 @@ npx prisma generate
 
 ```
 ## Modo de uso de Base de Datos
-````
 1. Para ver que se haya ejecutado correctamente ejecutamos el comando.
-
 ```
 npx prisma studio
 ```
