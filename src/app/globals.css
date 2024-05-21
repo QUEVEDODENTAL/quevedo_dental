@@ -80,3 +80,6 @@
  /* border: 1px solid #ccc;
   /* Otros estilos... */
 /*} */
+.seleccionado {
+  border: 2px solid red; /* Cambia este estilo según tus necesidades */
+}

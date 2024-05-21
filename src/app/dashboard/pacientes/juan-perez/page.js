@@ -22,11 +22,11 @@ const Perfil = () => {
     gumColoration:"Rosa palido",
     
     tonguecoloring:"Lengua Rosa",
-    tongueulcerations:"Sin ulceraciones",
-    observationstongue:"No hay nada",
-    palatecoloring:"Rojo intenso",
+    tongueUlcerations:"Sin ulceraciones",
+    observationsTongue:"No hay nada",
+    palateColoring:"Rojo intenso",
     palateinjuries:"No hay lesiones",
-    observationspalate:"Tiene una fisura en la parte de enfrente"
+    observationsPalate:"Tiene una fisura en la parte de enfrente"
 
 
   };

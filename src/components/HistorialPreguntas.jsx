@@ -1,25 +1,9 @@
 'use client'
+'use client'
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PDFDocument, Page, Text, View } from '@react-pdf/renderer';
-// import jsPDF from 'jspdf';
-// import PSPDFKit from 'pspdfkit';
-// Define la función para traducir el color de las encías
-const traducirColorEncias = (colorEncias) => {
-  // Mapea los valores de color a sus names correspondientes
-  const colores = {
-    '#FFCCCC': 'Rosa pálido',
-    '#FF0000': 'Rojo brillante',
-    '#8B0000': 'Rojo oscuro',
-    '#FFFFFF': 'Blanco pálido',
-    '#4B0082': 'Azulada o púrpura'
-    // Añade más colores según sea necesario
-  };
-
-  // Retorna el name del color correspondiente
-  return colores[colorEncias] || 'Color no definido'; // Si el color no está definido, retorna un mensaje predeterminado
-};
 
 function HistorialClinicoForm() {
   const [name, setName] = useState('');
@@ -30,8 +14,7 @@ function HistorialClinicoForm() {
   const [birthdate, setBirthdate] = useState('');
   const [city, setCity] = useState('');
   const [consultation, setConsultation] = useState('');
-  const [diseasess, setDiseasess] = useState([]);
- // const [nameToothSelected, setNameToothSelected] = useState([]);
+  const [diseasess, setDiseasess] = useState('');
 
  
   const [gumColoration, setGumColoration] = useState('');
@@ -44,6 +27,30 @@ function HistorialClinicoForm() {
   const [palateInjuries, setPalateInjuries] = useState('sin-ulceraciones');
   const [observationsPalate, setObservationsPalate] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [nombreDienteSeleccionado, setNameToothSelected] = useState([]);
+
+ 
+
+  const formData = {
+    name,
+    sex,
+    address,
+    phone,
+    occupationSelected,
+    birthdate,
+    city,
+    consultation,
+    diseasess,
+    gumColoration,
+    colorationTongueSelected,
+    tongueUlcerations,
+    observationsTongue,
+    palateColoring,
+    palateInjuries,
+    observationsPalate,
+  };
+
+ 
 
   const getNamesTeeth = () => {
     const namesTeeth = {
@@ -104,16 +111,16 @@ const traducirColorEncias = (colorEncias) => {
 };
  const nameColorEncias = traducirColorEncias(gumColoration);  
 // Luego puedes usar esta función en tu código para obtener el name del color de las encías
-  const opcionesColoracionLengua = 
+  const optionsColoracionLengua = 
   [
     "Blanca", "Gris", "Rosa", "Roja", 
   ];
   
-  const opcionespalateColoring = [
+  const optionspalateColoring = [
     "Rosado pálido", "Rojo intenso", "Blanco brillante", "Parduzco oscuro", "Morado oscuro", "Grisáceo o negro"
   ];
-  const opcionesOcupacion = ["Estudiante", "Profesional", "Comerciante", "Empleado", "Desempleado", "Otro"];
-  const [dientesSeleccionados, setToothSelecteds] = useState([]); 
+  const optionOcupation = ["Estudiante", "Profesional", "Comerciante", "Empleado", "Desempleado", "Otro"];
+  const [toothSelected, setToothSelected] = useState([]); 
   
   const enfermedadesList = [
     { name: 'cardiovasculares', label: 'Cardiovasculares' },
@@ -137,7 +144,14 @@ const traducirColorEncias = (colorEncias) => {
   
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(formData);
 
+    const onSubmit = (data) => {
+      // Renderiza el PDF
+      // Puedes usar un estado para controlar si se muestra el formulario o el PDF
+      setFormData(data);
+      setShowPDF(true);
+    };
     // Verificar si todos los campos obligatorios están llenos
     if (
       name.trim() !== '' &&
@@ -147,7 +161,7 @@ const traducirColorEncias = (colorEncias) => {
       occupationSelected !== '' &&
       birthdate.trim() !== '' &&
       city.trim() !== '' &&
-      reasonConsultation.trim() !== '' &&
+      consultation.trim() !== '' &&
       
     
       gumColoration.trim() !== '' &&
@@ -168,7 +182,12 @@ const traducirColorEncias = (colorEncias) => {
     }
   };  
 
-  
+  const onSubmit = (data) => {
+    // Renderiza el PDF
+    // Puedes usar un estado para controlar si se muestra el formulario o el PDF
+    setFormData(data);
+    setShowPDF(true);
+  };
   const generarTextoHistorial = () => {
     const texto = dientesSeleccionados.map(numero => {
       const name = namesTeeth[numero];
@@ -229,28 +248,28 @@ const traducirColorEncias = (colorEncias) => {
   };
   const toggleToothSelected = (numeroDiente) => {
     // Verifica si el número de diente está en el array de dientes seleccionados
-    const index = dientesSeleccionados.indexOf(numeroDiente);
+    const index = toothSelected.indexOf(numeroDiente);
     if (index === -1) {
       // Si no está seleccionado, agrégalo al array
-      setToothSelected([...dientesSeleccionados, numeroDiente]);
-      // Obtén el name del diente y guárdalo en el estado
-      const nameDiente = namesTeeth[numeroDiente];
-      setNameToothSelected(nameDiente);
+      setNameToothSelected([...toothSelected, numeroDiente]);
+      // Obtén el nombre del diente y guárdalo en el estado
+      const nametooth = namesTeeth[numeroDiente];
+      setNameToothSelected(nametooth);
     } else {
       // Si ya está seleccionado, elimínalo del array
-      const newDientesSeleccionados = [...dientesSeleccionados];
-      newDientesSeleccionados.splice(index, 1);
-      setToothSelecteds(newDientesSeleccionados);
-      // Borra el name del diente seleccionado del estado
+      const newToothSelected = [...toothSelected];
+      newToothSelecteds.splice(index, 1);
+      setNameToothSelected(newToothSelected);
+      // Borra el nombre del diente seleccionado del estado
       setNameToothSelected('');
     }
   };
-  
+
 
   const handlegumColorationChange = (color) => {
     setGumColoration(color);
   };
-  const handleOcupacionChange = (event) => {
+  const handleOcupationChange = (event) => {
     setoccupationSelected(event.target.value);
   };
   
@@ -274,7 +293,7 @@ const traducirColorEncias = (colorEncias) => {
               <Image
                 src={rutaImagen}
                 alt={`Diente ${numeroDiente}`}
-                className={`diente ${dientesSeleccionados.includes(numeroDiente) ? 'seleccionado' : ''}`}
+                className={`diente ${toothSelected.includes(numeroDiente) ? 'seleccionado' : ''}`}
                 onClick={() => toggleToothSelected(numeroDiente)}
                 width="30" height="90"
               />
@@ -307,7 +326,7 @@ const renderizarImagenSup = (numero) => {
               <Image 
                 src={rutaImagen}
                 alt={`Diente ${numeroDiente}`}
-                className={`diente ${dientesSeleccionados.includes(numeroDiente) ? 'seleccionado' : ''}`}
+                className={`diente ${toothSelected.includes(numeroDiente) ? 'seleccionado' : ''}`}
                 onClick={() => toggleToothSelected(numeroDiente)}
                 width="80" height="90"
               />
@@ -321,7 +340,7 @@ const renderizarImagenSup = (numero) => {
 };
 // Dentro de la función renderColoracionLenguaOptions()
 const renderColoracionLenguaOptions = () => {
-  return opcionesColoracionLengua.map((coloracion, index) => (
+  return optionsColoracionLengua.map((coloracion, index) => (
     <div key={index} className="coloracion-lengua-option flex flex-col items-center">
       <input
         type="checkbox"
@@ -413,10 +432,10 @@ const renderColoracionLenguaOptions = () => {
           
           </div>
           <div className="form-control">
-          <label htmlFor="ocupacion" className="text-gray-700 ">Ocupación:</label><br />
-          <select id="ocupacion" value={occupationSelected} onChange={handleOcupacionChange}className="border border-gray-300 rounded-md p-2 w-full">
+          <label htmlFor="ocupation" className="text-gray-700 ">Ocupación:</label><br />
+          <select id="ocupation" value={occupationSelected} onChange={handleOcupationChange}className="border border-gray-300 rounded-md p-2 w-full">
           <option value="">Seleccionar ocupación</option>
-          {opcionesOcupacion.map((opcion, index) => (
+          {optionOcupation.map((opcion, index) => (
           <option key={index} value={opcion}>{opcion}</option>
           ))}
           </select>
@@ -559,7 +578,7 @@ const renderColoracionLenguaOptions = () => {
           <label htmlFor="palateColoring" className="text-gray-700">Coloración de Paladar Duro:</label><br />
           <select id="palateColoring" value={palateColoring} onChange={(e) => setPalateColoring(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
             <option value="">Seleccionar coloración de Paladar</option>
-            {opcionespalateColoring.map((coloracion, index) => (
+            {optionspalateColoring.map((coloracion, index) => (
               <option key={index} value={coloracion}>{coloracion}</option>
             ))}
           </select><br /><br />
@@ -582,8 +601,7 @@ const renderColoracionLenguaOptions = () => {
           <button type="button" onClick={prevPage}>Anterior</button>
           <div style={{ margin: '8px' }}></div>
           <input type="submit" value="Enviar" />
-          <Link href="/dashboard/servicios">Servicios</Link>
-          </div>
+         </div>
           </form>
           )}
         </div>
