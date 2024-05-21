@@ -55,10 +55,14 @@ NEXTAUTH_SECRET=TuPalabraSecreta
 
 5. Genera y Migra el schema de Base de datos.
 
-```
+````
 npx prisma migrate dev
+````
+````
 npx prisma migrate deploy
+```
 npx prisma generate
+`````
 
 ```
 ## Modo de uso de Base de Datos
