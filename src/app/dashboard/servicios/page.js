@@ -21,6 +21,7 @@ const Servicios = () => {
   const agregarServicio = (servicio) => {
     if (!carrito.find(item => item.id === servicio.id)) {
       setCarrito([...carrito, servicio]);
+      console.log("Servicio agregado al carrito:", servicio);
     }
   };
 
@@ -31,7 +32,7 @@ const Servicios = () => {
       }
       return servicio;
     });
-    
+    // Aquí podrías actualizar el estado local o el almacenamiento persistente con los nuevos datos.
   };
 
   return (
