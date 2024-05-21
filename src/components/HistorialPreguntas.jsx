@@ -31,14 +31,19 @@ function HistorialClinicoForm() {
   const [currentPage, setCurrentPage] = useState(1);
   const [nameToothSelected, setNameToothSelected] = useState([]);
 
-  const [currentDate, setCurrentDate] = useState(new Date());
+  
+  // Utilizar useEffect para ejecutar efectos secundarios
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000);
-
+    // Crear un intervalo que se ejecuta cada 1000 milisegundos (1 segundo)
+const interval = setInterval(() => {
+      // Actualizar el estado currentDate con la fecha y hora actuales
+setCurrentDate(new Date());
+}, 1000);
+// Devolver una función de limpieza que se ejecuta cuando el componente se desmonta
+// o cuando cambia la dependencia (en este caso, un array vacío [])
     return () => clearInterval(interval);
-  }, []);
+  }, []); // La dependencia está vacía, lo que significa que el efecto se ejecuta solo una vez al montar el componente
+
   const [formData, setFormData] = useState({
     name: '',
     sex: '',
@@ -204,13 +209,7 @@ optionsColorationTongue =
   };
   
   
-  const generarTextoHistorial = () => {
-    const text = toothSelected.map(numero => {
-      const name = namesTeeth[numero];
-      return `Número: ${numero}, name: ${name}`;
-    }).join('\n');
-    return text;
-  };
+
   
   
   const handleSexChange = (e) => {
