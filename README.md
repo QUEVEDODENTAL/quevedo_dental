@@ -33,10 +33,6 @@ cd quevedo_dental
 npm install
 
 ````
-## Instalación de las icons
-`````
-npm install react-icons
-`````
 ## Instalar la programa para crear contraseña para uso .env
 ```
 MySQL Product Archives(https://downloads.mysql.com/archives/community/)
