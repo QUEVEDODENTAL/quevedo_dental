@@ -6,14 +6,11 @@ const Service = () => {
     { id: 2, nombre: 'Servicio 2', precio: 20 },
     { id: 3, nombre: 'Servicio 3', precio: 30 }
   ]);
+  const [carrito, setCarrito] = useState([]);
 
-  const agregarServicio = () => {
-    const nuevoServicio = {
-      id: servicios.length + 1,
-      nombre: 'Nuevo Servicio',
-      precio: 0
-    };
-    setServicios([...servicios, nuevoServicio]);
+  const agregarServicio = (id) => {
+    const servicioSeleccionado = servicios.find(servicio => servicio.id === id);
+    setCarrito([...carrito, servicioSeleccionado]);
   };
 
   const modificarServicio = (id, nuevoNombre, nuevoPrecio) => {
@@ -38,65 +35,38 @@ const Service = () => {
   return (
     <div>
       {servicios.map(servicio => (
-        <Servicio
-          key={servicio.id}
-          id={servicio.id}
-          nombre={servicio.nombre}
-          precio={servicio.precio}
-          modificarServicio={modificarServicio}
-          eliminarServicio={eliminarServicio}
-        />
+        <div key={servicio.id}>
+          <Servicio
+            id={servicio.id}
+            nombre={servicio.nombre}
+            precio={servicio.precio}
+            modificarServicio={modificarServicio}
+            eliminarServicio={eliminarServicio}
+          />
+          <button onClick={() => agregarServicio(servicio.id)} className="bg-secondary-card text-primary-white px-4 py-2 rounded-[10px] mt-2 transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
+            Agregar al Carrito
+          </button>
+        </div>
       ))}
-      <button onClick={agregarServicio} className="bg-secondary-card text-primary-white px-4 py-2 rounded-[10px] mt-4 transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
-        Agregar Servicio
-      </button>
+      <Carrito carrito={carrito} />
     </div>
   );
 };
 
 const Servicio = ({ id, nombre, precio, modificarServicio, eliminarServicio }) => {
-  const [servicio, setServicio] = useState({ nombre, precio });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setServicio(prevServicio => ({
-      ...prevServicio,
-      [name]: value,
-    }));
-  };
+};
 
-  const handleModificarServicio = () => {
-    modificarServicio(id, servicio.nombre, servicio.precio);
-  };
-
-  const handleEliminarServicio = () => {
-    eliminarServicio(id);
-  };
-
+const Carrito = ({ carrito }) => {
   return (
-    <div className="p-4 rounded-lg shadow-xl bg-primary-seccion">
-      <h2 className="text-lg font-semibold mb-2">Nombre: {nombre}</h2>
-      <p>Precio: ${precio}</p>
-      <input
-        type="text"
-        name="nombre"
-        value={servicio.nombre}
-        onChange={handleChange}
-        className="border border-gray-300 rounded-lg px-3 py-1 mt-2 w-[53%]"
-      />
-      <input
-        type="number"
-        name="precio"
-        value={servicio.precio}
-        onChange={handleChange}
-        className="border border-gray-300 rounded-lg px-3 py-1 mt-2 w-[53%]"
-      />
-      <button onClick={handleModificarServicio} className="bg-secondary-card text-primary-white px-4 py-2 rounded-[10px] mt-2 mr-2 transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
-        Modificar Servicio
-      </button>
-      <button onClick={handleEliminarServicio} className="bg-secondary-card text-primary-white px-4 py-2 rounded-[10px] mt-2 transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
-        Eliminar Servicio
-      </button>
+    <div>
+      <h2>Carrito de Compras</h2>
+      {carrito.map(servicio => (
+        <div key={servicio.id}>
+          <p>{servicio.nombre} - ${servicio.precio}</p>
+        
+        </div>
+      ))}
     </div>
   );
 };

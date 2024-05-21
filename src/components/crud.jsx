@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Servicio = ({ id, nombre, precio, agregarServicio, modificarServicio, eliminarServicio }) => {
-  const [servicios, setServicio] = useState({ nombre, precio });
+  const [servicio, setServicio] = useState({ nombre, precio });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
