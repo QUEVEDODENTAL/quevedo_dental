@@ -1,9 +1,10 @@
-'use client'
+
 'use client'
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { PDFDocument, Page, Text, View } from '@react-pdf/renderer';
+import { PDFDocument, PDFViewer,} from '@react-pdf/renderer';
+import HistorialClinicoPDF from './PdfHistorial';
 
 function HistorialClinicoForm() {
   const [name, setName] = useState('');
@@ -15,6 +16,7 @@ function HistorialClinicoForm() {
   const [city, setCity] = useState('');
   const [consultation, setConsultation] = useState('');
   const [diseasess, setDiseasess] = useState('');
+  const [showForm, setShowForm] = useState(true); // Agregamos el estado para controlar si se muestra el formulario o la vista previa
 
  
   const [gumColoration, setGumColoration] = useState('');
@@ -30,27 +32,26 @@ function HistorialClinicoForm() {
   const [nombreDienteSeleccionado, setNameToothSelected] = useState([]);
 
  
-
-  const formData = {
-    name,
-    sex,
-    address,
-    phone,
-    occupationSelected,
-    birthdate,
-    city,
-    consultation,
-    diseasess,
-    gumColoration,
-    colorationTongueSelected,
-    tongueUlcerations,
-    observationsTongue,
-    palateColoring,
-    palateInjuries,
-    observationsPalate,
+  const [formData, setFormData] = useState({
+    name: '',
+    sex: '',
+    address: '',
+    phone: '',
+    occupationSelected: '',
+    birthdate: '',
+    city: '',
+    consultation: '',
+    diseases: '',
+    gumColoration: '',
+    colorationTongueSelected: '',
+    tongueUlcerations: '',
+    observationsTongue: '',
+    palateColoring: '',
+    observationsPalate: '',
+  });
+  const handleFormDataChange = (newFormData) => {
+    setFormData(newFormData);
   };
-
- 
 
   const getNamesTeeth = () => {
     const namesTeeth = {
@@ -111,7 +112,8 @@ const traducirColorEncias = (colorEncias) => {
 };
  const nameColorEncias = traducirColorEncias(gumColoration);  
 // Luego puedes usar esta función en tu código para obtener el name del color de las encías
-  const optionsColoracionLengua = 
+  const 
+optionsColorationTongue = 
   [
     "Blanca", "Gris", "Rosa", "Roja", 
   ];
@@ -141,55 +143,48 @@ const traducirColorEncias = (colorEncias) => {
     { name: 'convulsiones', label: 'Convulsiones' }
   ];
 
-  
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
-
-    const onSubmit = (data) => {
-      // Renderiza el PDF
-      // Puedes usar un estado para controlar si se muestra el formulario o el PDF
-      setFormData(data);
-      setShowPDF(true);
-    };
+    
     // Verificar si todos los campos obligatorios están llenos
     if (
       name.trim() !== '' &&
       address.trim() !== '' &&
-      
       phone.trim() !== '' &&
       occupationSelected !== '' &&
       birthdate.trim() !== '' &&
       city.trim() !== '' &&
       consultation.trim() !== '' &&
-      
-    
       gumColoration.trim() !== '' &&
       colorationTongueSelected !== null &&
       tongueUlcerations.trim() !== '' &&
-      
       palateColoring.trim() !== '' &&
-      palateInjuries.trim() !== '' 
-      
+      palateInjuries.trim() !== ''&&
+      toothSelected.trim() !== ''
     ) {
-  
-      // También podrías enviar los datos del formulario a un servidor aquí
-  
-      // Puedes mostrar un mensaje de éxito o redirigir a otra página
-      alert("Formulario enviado correctamente.");
+      // Agregar la información de los dientes al objeto formData
+      const dientesSeleccionados = toothSelected.map(numero => ({
+        numero: numero,
+        nombre: namesTeeth[numero]
+      }));
+      const newData = {
+        ...formData,
+        dientes: dientesSeleccionados
+      };
+      setFormData(newData);
+      
+      // Generar el PDF
+      setShowForm(false); // Cambia showForm a false para mostrar la vista previa del PDF
     } else {
       alert("Por favor complete todos los campos obligatorios.");
     }
-  };  
-
-  const onSubmit = (data) => {
-    // Renderiza el PDF
-    // Puedes usar un estado para controlar si se muestra el formulario o el PDF
-    setFormData(data);
-    setShowPDF(true);
   };
+  
+
+  
   const generarTextoHistorial = () => {
-    const texto = dientesSeleccionados.map(numero => {
+    const texto = toothSelected.map(numero => {
       const name = namesTeeth[numero];
       return `Número: ${numero}, name: ${name}`;
     }).join('\n');
@@ -201,7 +196,7 @@ const traducirColorEncias = (colorEncias) => {
     setSex(e.target.value);
   };
 
-  const handleColoracionLenguaChange = (coloracion) => {
+  const handleColorationTongueChange = (coloracion) => {
   setColorationTongueSelected(coloracion); 
  
   }
@@ -251,19 +246,15 @@ const traducirColorEncias = (colorEncias) => {
     const index = toothSelected.indexOf(numeroDiente);
     if (index === -1) {
       // Si no está seleccionado, agrégalo al array
-      setNameToothSelected([...toothSelected, numeroDiente]);
-      // Obtén el nombre del diente y guárdalo en el estado
-      const nametooth = namesTeeth[numeroDiente];
-      setNameToothSelected(nametooth);
+      setToothSelected([...toothSelected, numeroDiente]);
     } else {
       // Si ya está seleccionado, elimínalo del array
       const newToothSelected = [...toothSelected];
-      newToothSelecteds.splice(index, 1);
-      setNameToothSelected(newToothSelected);
-      // Borra el nombre del diente seleccionado del estado
-      setNameToothSelected('');
+      newToothSelected.splice(index, 1);
+      setToothSelected(newToothSelected);
     }
   };
+
 
 
   const handlegumColorationChange = (color) => {
@@ -339,14 +330,14 @@ const renderizarImagenSup = (numero) => {
     return null; // Retorna null si no se cumple ninguna condición
 };
 // Dentro de la función renderColoracionLenguaOptions()
-const renderColoracionLenguaOptions = () => {
-  return optionsColoracionLengua.map((coloracion, index) => (
+const renderColorationTongueOptions = () => {
+  return optionsColorationTongue.map((coloracion, index) => (
     <div key={index} className="coloracion-lengua-option flex flex-col items-center">
       <input
         type="checkbox"
         id={`coloracionLengua-${index}`}
         checked={coloracion === colorationTongueSelected}
-        onChange={() => handleColoracionLenguaChange(coloracion)}
+        onChange={() => handleColorationTongueChange(coloracion)}
         style={{ width: '1.5em', height: '1.5em' }}
      
       />
@@ -551,7 +542,7 @@ const renderColoracionLenguaOptions = () => {
         <div className="form-control">
           <legend> Coloración de lengua</legend>
           <div className="flex flex-wrap lengua-image flex-row ">
-            {renderColoracionLenguaOptions()}
+            {renderColorationTongueOptions()}
           </div>
         </div>
 
@@ -598,14 +589,27 @@ const renderColoracionLenguaOptions = () => {
            style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}}
            placeholder="Ingrese observaciones adicionales sobre el paladar aquí..."
           />  
-          <button type="button" onClick={prevPage}>Anterior</button>
-          <div style={{ margin: '8px' }}></div>
-          <input type="submit" value="Enviar" />
-         </div>
-          </form>
-          )}
-        </div>
-      );
+          </div>
+        
+            {showForm ? (
+              <form onSubmit={handleSubmit}>
+                {/* Contenido del formulario */}
+                <button type="button" onClick={prevPage}>Anterior</button>
+                <div style={{ margin: '8px' }}></div>
+                <input type="submit" value="Enviar" />
+              </form>
+            ) : (
+              <div className='mt-8'>
+                <h2 className="text-lg font-semibold mb-2">Vista previa del Historial Clínico</h2>
+                <PDFViewer width="100%" height={500}>
+                  <HistorialClinicoPDF datos={formData} />
+                </PDFViewer>
+              </div>
+            )}
+        </form>
+      )}
+    </div>
+  );
+}
 
-    }  
-  export default HistorialClinicoForm;
+export default HistorialClinicoForm;

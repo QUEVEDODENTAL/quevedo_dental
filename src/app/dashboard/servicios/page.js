@@ -24,6 +24,16 @@ const Servicios = () => {
     }
   };
 
+  const modificarPrecio = (id, nuevoPrecio) => {
+    const nuevosServicios = serviciosData.map(servicio => {
+      if (servicio.id === id) {
+        return { ...servicio, precio: nuevoPrecio };
+      }
+      return servicio;
+    });
+    
+  };
+
   return (
     <div className="flex flex-col justify-center items-center mx-4 px-4 py-8">
       <h1 className="text-3xl font-bold mb-4">Servicios</h1>
@@ -31,9 +41,11 @@ const Servicios = () => {
         {serviciosData.map(servicio => (
           <Servicio
             key={servicio.id}
+            id={servicio.id}
             nombre={servicio.nombre}
             precio={servicio.precio}
             agregarServicio={() => agregarServicio(servicio)}
+            modificarPrecio={modificarPrecio}
           />
         ))}
       </div>

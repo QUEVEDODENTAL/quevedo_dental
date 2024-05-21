@@ -12,10 +12,26 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'left',
   },
+  error: {
+    color: 'red',
+    fontSize: 14,
+    marginTop: 10,
+  },
 });
 
-
 function HistorialClinicoPDF({ datos }) {
+  if (!datos) {
+    return (
+      <Document>
+        <Page size="A4" style={styles.page}>
+          <View style={styles.section}>
+            <Text style={styles.error}>Error: No se han proporcionado datos para generar el PDF.</Text>
+          </View>
+        </Page>
+      </Document>
+    );
+  }
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -29,27 +45,17 @@ function HistorialClinicoPDF({ datos }) {
           <Text>Fecha de Nacimiento: {datos.birthdate}</Text>
           <Text>Ciudad: {datos.city}</Text>
           <Text>Motivo de consulta: {datos.consultation}</Text>
-          
-
-          <Text>Nombre: {datos.diseasess}</Text>
-          
-          <Text>Coloracion encias: {datos.gumColoration}</Text>
-
-          <Text>Coloracion de encias: {datos.colorationTongueSelected}</Text> 
-          <Text>Sexo: {datos.tongueUlcerations}</Text>
-          <Text>Domicilio: {datos.gumColoration}</Text>
+          <Text>Enfermedades: {datos.diseases}</Text> {/* Corregido el nombre del prop */}
+          <Text>Coloración encías: {datos.gumColoration}</Text>
+          <Text>Coloración de lengua: {datos.colorationTongueSelected}</Text>
           <Text>Ulceraciones lengua: {datos.tongueUlcerations}</Text>
-          <Text>Observaciones Lengua: {datos.observationstongue}</Text>  
-          <Text>Coloracion de lengua: {datos.colorationTongueSelected}</Text> 
-          <Text>Coloracion Paladar: {datos.palateColoring}</Text>
+          <Text>Observaciones Lengua: {datos.observationsTongue}</Text>
+          <Text>Coloración Paladar: {datos.palateColoring}</Text>
           <Text>Observaciones paladar: {datos.observationsPalate}</Text>
-         
-
         </View>
       </Page>
     </Document>
   );
 }
-
 
 export default HistorialClinicoPDF;
