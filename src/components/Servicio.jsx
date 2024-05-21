@@ -1,19 +1,20 @@
+'use client'
 import React, { useState } from 'react';
 
 const Service = () => {
   const [servicios, setServicios] = useState([
-    { id: 1, nombre: 'Servicio 1', precio: 10 }
+    { id: 1, nombre: 'Servicio 1', precio: 10 },
+    { id: 2, nombre: 'Servicio 2', precio: 20 },
+    { id: 3, nombre: 'Servicio 3', precio: 30 }
   ]);
 
   const agregarServicio = () => {
-    if (servicios.length === 0) {
-      const nuevoServicio = {
-        id: 1,
-        nombre: 'Nuevo Servicio',
-        precio: 0
-      };
-      setServicios([nuevoServicio]);
-    }
+    const nuevoServicio = {
+      id: servicios.length + 1,
+      nombre: 'Nuevo Servicio',
+      precio: 0
+    };
+    setServicios([...servicios, nuevoServicio]);
   };
 
   const modificarServicio = (id, nuevoNombre, nuevoPrecio) => {
@@ -31,13 +32,8 @@ const Service = () => {
   };
 
   const eliminarServicio = (id) => {
-    if (servicios.length === 1) {
-      setServicios([]);
-    } else {
-      const serviciosFiltrados = servicios.filter(servicio => servicio.id !== id);
-      setServicios(serviciosFiltrados);
-      
-    }
+    const serviciosFiltrados = servicios.filter(servicio => servicio.id !== id);
+    setServicios(serviciosFiltrados);
   };
 
   return (
@@ -45,7 +41,9 @@ const Service = () => {
       {servicios.map(servicio => (
         <Servicio
           key={servicio.id}
-          servicio={servicio}
+          id={servicio.id}
+          nombre={servicio.nombre}
+          precio={servicio.precio}
           modificarServicio={modificarServicio}
           eliminarServicio={eliminarServicio}
         />
@@ -57,12 +55,19 @@ const Service = () => {
   );
 };
 
-const Servicio = ({ servicio, modificarServicio, eliminarServicio }) => {
-  const { id, nombre, precio } = servicio;
+const Servicio = ({ id, nombre, precio, modificarServicio, eliminarServicio }) => {
+  const [servicio, setServicio] = useState({ nombre, precio });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    modificarServicio(id, name === 'nombre' ? value : nombre, name === 'precio' ? parseFloat(value) : precio);
+    setServicio(prevServicio => ({
+      ...prevServicio,
+      [name]: value,
+    }));
+  };
+
+  const handleModificarServicio = () => {
+    modificarServicio(id, servicio.nombre, servicio.precio);
   };
 
   const handleEliminarServicio = () => {
@@ -76,17 +81,22 @@ const Servicio = ({ servicio, modificarServicio, eliminarServicio }) => {
       <input
         type="text"
         name="nombre"
-        value={nombre}
+        value={servicio.nombre}
         onChange={handleChange}
-        className="border border-gray-300 rounded-lg px-3 py-1 mt-2 w-[53%]"
+        className="border rounded-lg px-3 py-1 mt-2 w-[53%]"
       />
       <input
         type="number"
         name="precio"
-        value={precio}
+        value={servicio.precio}
         onChange={handleChange}
-        className="border border-gray-300 rounded-lg px-3 py-1 mt-2 w-[53%]"
+        className="border rounded-lg px-3 py-1 mt-2 w-[53%]"
       />
+      <div style={{ display: 'inline-block', marginRight: '8px' }}>
+        <button onClick={handleModificarServicio} className="bg-secondary-card text-primary-white px-4 py-2 rounded-[10px] mt-2 transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
+          Modificar Servicio
+        </button>
+      </div>
       <button onClick={handleEliminarServicio} className="bg-secondary-card text-primary-white px-4 py-2 rounded-[10px] mt-2 transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
         Eliminar Servicio
       </button>
