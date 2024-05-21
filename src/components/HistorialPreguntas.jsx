@@ -41,7 +41,7 @@ function HistorialClinicoForm() {
     birthdate: '',
     city: '',
     consultation: '',
-    diseases: '',
+    diseasess: '',
     gumColoration: '',
     colorationTongueSelected: '',
     tongueUlcerations: '',
