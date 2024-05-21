@@ -2,11 +2,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { PDFDocument, Page, Text, View } from '@react-pdf/renderer';
 // import jsPDF from 'jspdf';
 // import PSPDFKit from 'pspdfkit';
 // Define la función para traducir el color de las encías
 const traducirColorEncias = (colorEncias) => {
-  // Mapea los valores de color a sus nombres correspondientes
+  // Mapea los valores de color a sus names correspondientes
   const colores = {
     '#FFCCCC': 'Rosa pálido',
     '#FF0000': 'Rojo brillante',
@@ -16,36 +17,36 @@ const traducirColorEncias = (colorEncias) => {
     // Añade más colores según sea necesario
   };
 
-  // Retorna el nombre del color correspondiente
+  // Retorna el name del color correspondiente
   return colores[colorEncias] || 'Color no definido'; // Si el color no está definido, retorna un mensaje predeterminado
 };
 
 function HistorialClinicoForm() {
-  const [nombre, setNombre] = useState('');
-  const [sexo, setSexo] = useState('');
-  const [domicilio, setDomicilio] = useState('');
-  const [telefono, setTelefono] = useState('');
-  const [ocupacionSeleccionada, setOcupacionSeleccionada] = useState('');
-  const [fechaNacimiento, setFechaNacimiento] = useState('');
-  const [ciudad, setCiudad] = useState('');
-  const [motivoConsulta, setMotivoConsulta] = useState('');
-  const [enfermedadesSeleccionadas, setEnfermedadesSeleccionadas] = useState([]);
-  const [nombreDienteSeleccionad, setNombreDienteSeleccionado] = useState([]);
+  const [name, setName] = useState('');
+  const [sex, setSex] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone, setPhone] = useState('');
+  const [occupationSelected, setoccupationSelected] = useState('');
+  const [birthdate, setBirthdate] = useState('');
+  const [city, setCity] = useState('');
+  const [consultation, setConsultation] = useState('');
+  const [diseasess, setDiseasess] = useState([]);
+ // const [nameToothSelected, setNameToothSelected] = useState([]);
 
  
-  const [coloracionEncias, setColoracionEncias] = useState('');
-  const [coloracionLenguaSelected, setColoracionLenguaSelected] = useState(null);
-  const [ulceracionesLengua, setUlceracionesLengua] = useState('sin-ulceraciones');
+  const [gumColoration, setGumColoration] = useState('');
+  const [colorationTongueSelected,setColorationTongueSelected] = useState(null);
+  const [tongueUlcerations, setTongueUlcerationsss] = useState('sin-ulceraciones');
  
-  const [observacionesLengua, setObservacionesLengua] = useState('');
+  const [observationsTongue, setObservationsTongue] = useState('');
  
-  const [coloracionPaladar, setColoracionPaladar] = useState('');
-  const [ulceracionesPaladar, setUlceracionesPaladar] = useState('sin-ulceraciones');
-  const [observacionesPaladar, setObservacionesPaladar] = useState('');
+  const [palateColoring, setPalateColoring] = useState('');
+  const [palateInjuries, setPalateInjuries] = useState('sin-ulceraciones');
+  const [observationsPalate, setObservationsPalate] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
-  const obtenerNombresDientes = () => {
-    const nombresDientes = {
+  const getNamesTeeth = () => {
+    const namesTeeth = {
       11: 'Incisivo Central Superior Izquierdo',
       12: 'Incisivo Lateral Superior Izquierdo',
       13: 'Canino Superior Izquierdo',
@@ -80,15 +81,15 @@ function HistorialClinicoForm() {
       48: 'Tercer Molar Inferior Derecho',
     };
   
-    return nombresDientes;
+    return namesTeeth;
   };
   
-  const nombresDientes = obtenerNombresDientes();
-  console.log(nombresDientes);
+  const namesTeeth = getNamesTeeth();
+  console.log(namesTeeth);
 
   // Define la función para traducir el color de las encías
 const traducirColorEncias = (colorEncias) => {
-  // Mapea los valores de color a sus nombres correspondientes
+  // Mapea los valores de color a sus names correspondientes
   const colores = {
     '#FFCCCC': 'Rosa pálido',
     '#FF0000': 'Rojo brillante',
@@ -98,21 +99,21 @@ const traducirColorEncias = (colorEncias) => {
     // Añade más colores según sea necesario
   };
 
-  // Retorna el nombre del color correspondiente
+  // Retorna el name del color correspondiente
   return colores[colorEncias] || 'Color no definido'; // Si el color no está definido, retorna un mensaje predeterminado
 };
- const nombreColorEncias = traducirColorEncias(coloracionEncias);  
-// Luego puedes usar esta función en tu código para obtener el nombre del color de las encías
+ const nameColorEncias = traducirColorEncias(gumColoration);  
+// Luego puedes usar esta función en tu código para obtener el name del color de las encías
   const opcionesColoracionLengua = 
   [
     "Blanca", "Gris", "Rosa", "Roja", 
   ];
   
-  const opcionesColoracionPaladar = [
+  const opcionespalateColoring = [
     "Rosado pálido", "Rojo intenso", "Blanco brillante", "Parduzco oscuro", "Morado oscuro", "Grisáceo o negro"
   ];
   const opcionesOcupacion = ["Estudiante", "Profesional", "Comerciante", "Empleado", "Desempleado", "Otro"];
-  const [dientesSeleccionados, setDientesSeleccionados] = useState([]); 
+  const [dientesSeleccionados, setToothSelecteds] = useState([]); 
   
   const enfermedadesList = [
     { name: 'cardiovasculares', label: 'Cardiovasculares' },
@@ -139,22 +140,22 @@ const traducirColorEncias = (colorEncias) => {
 
     // Verificar si todos los campos obligatorios están llenos
     if (
-      nombre.trim() !== '' &&
-      domicilio.trim() !== '' &&
+      name.trim() !== '' &&
+      address.trim() !== '' &&
       
-      telefono.trim() !== '' &&
-      ocupacionSeleccionada !== '' &&
-      fechaNacimiento.trim() !== '' &&
-      ciudad.trim() !== '' &&
-      motivoConsulta.trim() !== '' &&
+      phone.trim() !== '' &&
+      occupationSelected !== '' &&
+      birthdate.trim() !== '' &&
+      city.trim() !== '' &&
+      reasonConsultation.trim() !== '' &&
       
     
-      coloracionEncias.trim() !== '' &&
-      coloracionLenguaSelected !== null &&
-      ulceracionesLengua.trim() !== '' &&
+      gumColoration.trim() !== '' &&
+      colorationTongueSelected !== null &&
+      tongueUlcerations.trim() !== '' &&
       
-      coloracionPaladar.trim() !== '' &&
-      ulceracionesPaladar.trim() !== '' 
+      palateColoring.trim() !== '' &&
+      palateInjuries.trim() !== '' 
       
     ) {
   
@@ -170,27 +171,27 @@ const traducirColorEncias = (colorEncias) => {
   
   const generarTextoHistorial = () => {
     const texto = dientesSeleccionados.map(numero => {
-      const nombre = nombresDientes[numero];
-      return `Número: ${numero}, Nombre: ${nombre}`;
+      const name = namesTeeth[numero];
+      return `Número: ${numero}, name: ${name}`;
     }).join('\n');
     return texto;
   };
   
   
-  const handleSexoChange = (e) => {
-    setSexo(e.target.value);
+  const handlesexChange = (e) => {
+    setSex(e.target.value);
   };
 
   const handleColoracionLenguaChange = (coloracion) => {
-    setColoracionLenguaSelected(coloracion); 
+  setColorationTongueSelected(coloracion); 
  
   }
   const handleEnfermedadClick = (enfermedad) => {
-    const isSelected = enfermedadesSeleccionadas.includes(enfermedad);
+    const isSelected = diseasess.includes(enfermedad);
     if (isSelected) {
-      setEnfermedadesSeleccionadas(enfermedadesSeleccionadas.filter((e) => e !== enfermedad));
+      setDiseasess(diseasess.filter((e) => e !== enfermedad));
     } else {
-      setEnfermedadesSeleccionadas([...enfermedadesSeleccionadas, enfermedad]);
+      setDiseasess([...diseasess, enfermedad]);
     }
   };
   const renderEnfermedadesButtons = () => {
@@ -199,7 +200,7 @@ const traducirColorEncias = (colorEncias) => {
         {enfermedadesList.map(enfermedad => (
           <label
             key={enfermedad.name}
-            className={`rounded-md p-2 cursor-pointer mr-4 mb-4 border border-gray-300 ${enfermedadesSeleccionadas.includes(enfermedad.name) ? 'border-blue-500' : ''}`}
+            className={`rounded-md p-2 cursor-pointer mr-4 mb-4 border border-gray-300 ${diseasess.includes(enfermedad.name) ? 'border-blue-500' : ''}`}
             onClick={() => handleEnfermedadClick(enfermedad.name)}
             style={{ textDecoration: 'none', background: 'none' }}
           >
@@ -207,7 +208,7 @@ const traducirColorEncias = (colorEncias) => {
             <input
               type="checkbox"
               style={{ display: 'none' }}
-              checked={enfermedadesSeleccionadas.includes(enfermedad.name)}
+              checked={diseasess.includes(enfermedad.name)}
               onChange={() => handleEnfermedadClick(enfermedad)}
             />
           </label>
@@ -226,31 +227,31 @@ const traducirColorEncias = (colorEncias) => {
   const prevPage = () => {
     setCurrentPage(currentPage - 1);
   };
-  const toggleDienteSeleccionado = (numeroDiente) => {
+  const toggleToothSelected = (numeroDiente) => {
     // Verifica si el número de diente está en el array de dientes seleccionados
     const index = dientesSeleccionados.indexOf(numeroDiente);
     if (index === -1) {
       // Si no está seleccionado, agrégalo al array
-      setDientesSeleccionados([...dientesSeleccionados, numeroDiente]);
-      // Obtén el nombre del diente y guárdalo en el estado
-      const nombreDiente = nombresDientes[numeroDiente];
-      setNombreDienteSeleccionado(nombreDiente);
+      setToothSelected([...dientesSeleccionados, numeroDiente]);
+      // Obtén el name del diente y guárdalo en el estado
+      const nameDiente = namesTeeth[numeroDiente];
+      setNameToothSelected(nameDiente);
     } else {
       // Si ya está seleccionado, elimínalo del array
       const newDientesSeleccionados = [...dientesSeleccionados];
       newDientesSeleccionados.splice(index, 1);
-      setDientesSeleccionados(newDientesSeleccionados);
-      // Borra el nombre del diente seleccionado del estado
-      setNombreDienteSeleccionado('');
+      setToothSelecteds(newDientesSeleccionados);
+      // Borra el name del diente seleccionado del estado
+      setNameToothSelected('');
     }
   };
   
 
-  const handleColoracionEnciasChange = (color) => {
-    setColoracionEncias(color);
+  const handlegumColorationChange = (color) => {
+    setGumColoration(color);
   };
   const handleOcupacionChange = (event) => {
-    setOcupacionSeleccionada(event.target.value);
+    setoccupationSelected(event.target.value);
   };
   
 
@@ -274,7 +275,7 @@ const traducirColorEncias = (colorEncias) => {
                 src={rutaImagen}
                 alt={`Diente ${numeroDiente}`}
                 className={`diente ${dientesSeleccionados.includes(numeroDiente) ? 'seleccionado' : ''}`}
-                onClick={() => toggleDienteSeleccionado(numeroDiente)}
+                onClick={() => toggleToothSelected(numeroDiente)}
                 width="30" height="90"
               />
               <div className="numero-diente">{numeroDiente}</div>
@@ -307,7 +308,7 @@ const renderizarImagenSup = (numero) => {
                 src={rutaImagen}
                 alt={`Diente ${numeroDiente}`}
                 className={`diente ${dientesSeleccionados.includes(numeroDiente) ? 'seleccionado' : ''}`}
-                onClick={() => toggleDienteSeleccionado(numeroDiente)}
+                onClick={() => toggleToothSelected(numeroDiente)}
                 width="80" height="90"
               />
               <div className="numero-diente">{numeroDiente}</div>
@@ -325,12 +326,12 @@ const renderColoracionLenguaOptions = () => {
       <input
         type="checkbox"
         id={`coloracionLengua-${index}`}
-        checked={coloracion === coloracionLenguaSelected}
+        checked={coloracion === colorationTongueSelected}
         onChange={() => handleColoracionLenguaChange(coloracion)}
         style={{ width: '1.5em', height: '1.5em' }}
      
       />
-      <label htmlFor={`coloracionLengua-${index}`} className={`flex flex-col items-center cursor-pointer ${coloracion === coloracionLenguaSelected ? 'border-2 border-blue-500' : 'border border-gray-300'}`}>
+      <label htmlFor={`coloracionLengua-${index}`} className={`flex flex-col items-center cursor-pointer ${coloracion === colorationTongueSelected ? 'border-2 border-blue-500' : 'border border-gray-300'}`}>
         <Image
           src={`/assets/lengua/lengua-${coloracion}.png`}
           alt={coloracion}
@@ -358,9 +359,9 @@ const renderColoracionLenguaOptions = () => {
               <legend className="text-lg font-semibold text-gray-700">Información Personal</legend>
               <div className="form-control">
                
-            <label htmlFor="nombre" className="text-gray-700 border-black">Nombre:</label><br />
-            <input type="text" id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
-            placeholder="Ingrese el Nombre completo"/>
+            <label htmlFor="name" className="text-gray-700 border-black">Nombre:</label><br />
+            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
+            placeholder="Ingrese el name completo"/>
             
           </div>
           <div className="form-control">
@@ -369,8 +370,8 @@ const renderColoracionLenguaOptions = () => {
               <input
               type="checkbox"
               value="masculino"
-              checked={sexo === "masculino"}
-              onChange={handleSexoChange}
+              checked={sex === "masculino"}
+              onChange={handlesexChange}
               className="form-checkbox h-5 w-5 text-red-600 rounded-full"
               />
               <span className="ml-2">Masculino</span>
@@ -379,8 +380,8 @@ const renderColoracionLenguaOptions = () => {
                 <input
                 type="checkbox"
                 value="femenino"
-                checked={sexo === "femenino"}
-                onChange={handleSexoChange}
+                checked={sex === "femenino"}
+                onChange={handlesexChange}
                 className="form-checkbox h-5 w-5 text-red-600 rounded-full"
                 />
                 <span className="ml-2">Femenino</span>
@@ -389,8 +390,8 @@ const renderColoracionLenguaOptions = () => {
                   <input
                   type="checkbox"
                   value="otro"
-                  checked={sexo === "otro"}
-                  onChange={handleSexoChange}
+                  checked={sex === "otro"}
+                  onChange={handlesexChange}
                   className="form-checkbox h-5 w-5 text-red-600 rounded-full"
                    />
                    <span className="ml-2">Otro</span>
@@ -398,22 +399,22 @@ const renderColoracionLenguaOptions = () => {
                    </div>
 
           <div className="form-control ">
-            <label htmlFor="domicilio" className="text-gray-700 border-black">Domicilio:</label><br />
-            <input type="text" id="domicilio" value={domicilio} onChange={(e) => setDomicilio(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
-            placeholder="Ingrese su domicilio" /><br /><br />
+            <label htmlFor="address" className="text-gray-700 border-black">Domicilio:</label><br />
+            <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
+            placeholder="Ingrese su Domicilio" /><br /><br />
           </div>
   
 
           <div className="form-control">
-            <label htmlFor="telefono" className="text-gray-700 border-black ">Teléfono:</label><br />
-            <input type="text" id="telefono" value={telefono} onChange={(e) => setTelefono(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
-            placeholder="Ingrese su numero de telefono"/><br /><br />
+            <label htmlFor="phone" className="text-gray-700 border-black ">Teléfono:</label><br />
+            <input type="text" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
+            placeholder="Ingrese su numero de Telefono"/><br /><br />
            
           
           </div>
           <div className="form-control">
           <label htmlFor="ocupacion" className="text-gray-700 ">Ocupación:</label><br />
-          <select id="ocupacion" value={ocupacionSeleccionada} onChange={handleOcupacionChange}className="border border-gray-300 rounded-md p-2 w-full">
+          <select id="ocupacion" value={occupationSelected} onChange={handleOcupacionChange}className="border border-gray-300 rounded-md p-2 w-full">
           <option value="">Seleccionar ocupación</option>
           {opcionesOcupacion.map((opcion, index) => (
           <option key={index} value={opcion}>{opcion}</option>
@@ -422,22 +423,22 @@ const renderColoracionLenguaOptions = () => {
           </div>
           <div className="form-control">
             <label htmlFor="fecha_nacimiento" className="text-gray-700 border-black">Fecha de Nacimiento:</label><br />
-            <input type="date" id="fecha_nacimiento" value={fechaNacimiento} onChange={(e) => setFechaNacimiento(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full"  /><br /><br />
+            <input type="date" id="fecha_nacimiento" value={birthdate} onChange={(e) => setBirthdate(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full"  /><br /><br />
           </div>
   
           <div className="form-control">
-            <label htmlFor="ciudad" className="text-gray-700 border-black">Ciudad:</label><br />
-            <input type="text" id="ciudad" value={ciudad} onChange={(e) => setCiudad(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full"  /><br /><br />
+            <label htmlFor="city" className="text-gray-700 border-black">Ciudad:</label><br />
+            <input type="text" id="city" value={city} onChange={(e) => setCity(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full"  /><br /><br />
     
               </div>
         <fieldset>
           <legend className="text-lg font-semibold text-gray-700 border-black">Padecimiento Actual</legend>
           <div className="form-control">
-            <label htmlFor="motivoConsulta" className="text-gray-700 border-black">Motivo de consulta:</label><br />
+            <label htmlFor="reasonConsultation" className="text-gray-700 border-black">Motivo de consulta:</label><br />
             <textarea
-              id="motivoConsulta"
-              value={motivoConsulta}
-              onChange={(e) => setMotivoConsulta(e.target.value)}
+              id="Consultation"
+              value={consultation}
+              onChange={(e) => setConsultation(e.target.value)}
               rows={2}
             className="border border-gray-300 rounded-md p-2 w-full "
               style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}} // Impide el redimensionamiento
@@ -488,31 +489,31 @@ const renderColoracionLenguaOptions = () => {
             <fieldset>
               <legend className="text-lg font-semibold text-gray-700">Información Bucal</legend>
               <div className="form-control">
-                <label htmlFor="coloracionEncias" className="text-gray-700">Coloración de Encías:</label><br />
+                <label htmlFor="gumColoration" className="text-gray-700">Coloración de Encías:</label><br />
                 <input
                   type="color"
-                  id="coloracionEncias"
-                  onChange={(e) => setColoracionEncias(e.target.value)}
+                  id="gumColoration"
+                  onChange={(e) => setGumColoration(e.target.value)}
                   className="form-control"
                   style={{ width: '190px', height: '5px' }}
                 />
 
                 <div className="color-options">
-                  <div className="color-option" onClick={() => handleColoracionEnciasChange("#FFCCCC")} style={{ backgroundColor: '#FFCCCC' }}>
+                  <div className="color-option" onClick={() => handlegumColorationChange("#FFCCCC")} style={{ backgroundColor: '#FFCCCC' }}>
                     <div className="color-box"></div>
                     <div className="color-name">Rosa pálido</div></div>
-                    <div className="color-option" onClick={() => handleColoracionEnciasChange('#FF0000')} style={{ backgroundColor: '#FF0000' }}>
+                    <div className="color-option" onClick={() => handlegumColorationChange('#FF0000')} style={{ backgroundColor: '#FF0000' }}>
                     <div className="color-box"></div>
                     <div className="color-name">Rojo brillante</div>
                     </div>
-                    <div className="color-option" onClick={() => handleColoracionEnciasChange('#8B0000')} style={{ backgroundColor: '#8B0000' }}>
+                    <div className="color-option" onClick={() => handlegumColorationChange('#8B0000')} style={{ backgroundColor: '#8B0000' }}>
                     <div className="color-box"></div>
                     <div className="color-name">Rojo oscuro</div> 
                     </div> 
-                    <div className="color-option" onClick={() => handleColoracionEnciasChange('#FFFFFF')} style={{ backgroundColor:'#FFFFFF'   }}>
+                    <div className="color-option" onClick={() => handlegumColorationChange('#FFFFFF')} style={{ backgroundColor:'#FFFFFF'   }}>
                     <div className="color-box"></div>
                     <div className="color-name">Blanco pálido</div></div>
-                    <div className="color-option" onClick={() => handleColoracionEnciasChange('#4B0082')} style={{ backgroundColor:'#4B0082 '}}>
+                    <div className="color-option" onClick={() => handlegumColorationChange('#4B0082')} style={{ backgroundColor:'#4B0082 '}}>
                     <div className="color-box"></div>
                     <div className="color-name">Azulada o púrpura</div>
                     </div> 
@@ -520,10 +521,10 @@ const renderColoracionLenguaOptions = () => {
                       <Image
                       src="/assets/enciaas.jpg" alt="Dentista 2" width={200} height={200}className="rounded-full"/>
                       
-                      {coloracionEncias && (
+                      {gumColoration && (
                       <div
                       className="color-overlay"
-            style={{position: 'absolute',top: 0,left: 0,width: '100%',height: '80%',backgroundColor: coloracionEncias,opacity: 0.5, }}/>)}
+            style={{position: 'absolute',top: 0,left: 0,width: '100%',height: '80%',backgroundColor: gumColoration,opacity: 0.5, }}/>)}
             </div>
             </div>
             </div>
@@ -536,17 +537,17 @@ const renderColoracionLenguaOptions = () => {
         </div>
 
         <div className="form-control">
-          <label htmlFor="ulceracionesLengua" className="text-gray-700">Ulceraciones en Lengua:</label><br />
-          <select id="ulceracionesLengua" value={ulceracionesLengua} onChange={(e) => setUlceracionesLengua(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
+          <label htmlFor="tongueUlcerations" className="text-gray-700">Ulceraciones en Lengua:</label><br />
+          <select id="tongueUlcerations" value={tongueUlcerations} onChange={(e) => setTongueUlcerationsss(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
             <option value="sin-ulceraciones">Sin Ulceraciones</option>
             <option value="con-ulceraciones">Con Ulceraciones</option>
           </select><br /><br />
 
-          <label htmlFor="observacionesLengua" className="text-gray-700">Observaciones sobre Lengua:</label><br />
+          <label htmlFor="observationsTongue" className="text-gray-700">Observaciones sobre Lengua:</label><br />
           <textarea
-            id="observacionesLengua"
-            value={observacionesLengua}
-            onChange={(e) => setObservacionesLengua(e.target.value)}
+            id="observationsTongue"
+            value={observationsTongue}
+            onChange={(e) => setObservationsTongue(e.target.value)}
             rows={4}
             className="border border-gray-300 rounded-md p-2 w-full"
             style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}}
@@ -555,24 +556,24 @@ const renderColoracionLenguaOptions = () => {
           />
         </div>
         <div className="form-control">
-          <label htmlFor="coloracionPaladar" className="text-gray-700">Coloración de Paladar Duro:</label><br />
-          <select id="coloracionPaladar" value={coloracionPaladar} onChange={(e) => setColoracionPaladar(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
+          <label htmlFor="palateColoring" className="text-gray-700">Coloración de Paladar Duro:</label><br />
+          <select id="palateColoring" value={palateColoring} onChange={(e) => setPalateColoring(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
             <option value="">Seleccionar coloración de Paladar</option>
-            {opcionesColoracionPaladar.map((coloracion, index) => (
+            {opcionespalateColoring.map((coloracion, index) => (
               <option key={index} value={coloracion}>{coloracion}</option>
             ))}
           </select><br /><br />
 
-          <label htmlFor="ulceracionesPaladar" className="text-gray-700">Lesiones o Anomalías en Paladar Duro:</label><br />
-          <select id="ulceracionesPaladar" value={ulceracionesPaladar} onChange={(e) => setUlceracionesPaladar(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
+          <label htmlFor="palateInjuries" className="text-gray-700">Lesiones o Anomalías en Paladar Duro:</label><br />
+          <select id="palateInjuries" value={palateInjuries} onChange={(e) => setPalateInjuries(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
             <option value="sin-ulceraciones">Sin lesiones</option>
             <option value="con-ulceraciones">Con lesiones</option>
           </select><br /><br />
-          <label htmlFor="observacionesPaladar" className="text-gray-700">Observaciones sobre Paladar Duro:</label><br />
+          <label htmlFor="observationsPalate" className="text-gray-700">Observaciones sobre Paladar Duro:</label><br />
            <textarea
-           id="observacionesPaladar"
-           value={observacionesPaladar}
-           onChange={(e) => setObservacionesPaladar(e.target.value)}
+           id="observationsPalate"
+           value={observationsPalate}
+           onChange={(e) => setObservationsPalate(e.target.value)}
            rows={4}
            className="border border-gray-300 rounded-md p-2 w-full"
            style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}}

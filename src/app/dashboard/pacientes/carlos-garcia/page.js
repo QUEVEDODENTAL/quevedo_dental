@@ -21,9 +21,9 @@ const Perfil = () => {
     
     gumColoration:"Rosa palido",
     
-    tonguecoloring:"Lengua Rosa",
+    tongueColoring:"Lengua Rosa",
     tongueUlcerations:"Sin ulceraciones",
-    observationstongue:"No hay nada",
+    observationsTongue:"No hay nada",
 
   };
 
