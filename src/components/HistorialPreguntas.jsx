@@ -11,7 +11,7 @@ function HistorialClinicoForm() {
   const [sex, setSex] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
-  const [occupationSelected, setoccupationSelected] = useState('');
+  const [ocupationSelected, setocupationSelected] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [city, setCity] = useState('');
   const [consultation, setConsultation] = useState('');
@@ -37,11 +37,11 @@ function HistorialClinicoForm() {
     sex: '',
     address: '',
     phone: '',
-    occupationSelected: '',
+    ocupationSelected: '',
     birthdate: '',
     city: '',
     consultation: '',
-    diseasess: '',
+    diseases: '',
     gumColoration: '',
     colorationTongueSelected: '',
     tongueUlcerations: '',
@@ -117,8 +117,11 @@ optionsColorationTongue =
   [
     "Blanca", "Gris", "Rosa", "Roja", 
   ];
-  
-  const optionspalateColoring = [
+  const opcionesColoracionLengua = 
+  [
+    "Blanca", "Gris", "Rosa", "Roja", 
+  ];
+  const optionsPalateColoring = [
     "Rosado pálido", "Rojo intenso", "Blanco brillante", "Parduzco oscuro", "Morado oscuro", "Grisáceo o negro"
   ];
   const optionOcupation = ["Estudiante", "Profesional", "Comerciante", "Empleado", "Desempleado", "Otro"];
@@ -152,7 +155,7 @@ optionsColorationTongue =
       name.trim() !== '' &&
       address.trim() !== '' &&
       phone.trim() !== '' &&
-      occupationSelected !== '' &&
+      ocupationSelected !== '' &&
       birthdate.trim() !== '' &&
       city.trim() !== '' &&
       consultation.trim() !== '' &&
@@ -160,8 +163,8 @@ optionsColorationTongue =
       colorationTongueSelected !== null &&
       tongueUlcerations.trim() !== '' &&
       palateColoring.trim() !== '' &&
-      palateInjuries.trim() !== ''&&
-      toothSelected.trim() !== ''
+      palateInjuries.trim() !== ''
+      
     ) {
       // Agregar la información de los dientes al objeto formData
       const dientesSeleccionados = toothSelected.map(numero => ({
@@ -192,7 +195,7 @@ optionsColorationTongue =
   };
   
   
-  const handlesexChange = (e) => {
+  const handleSexChange = (e) => {
     setSex(e.target.value);
   };
 
@@ -257,11 +260,11 @@ optionsColorationTongue =
 
 
 
-  const handlegumColorationChange = (color) => {
+  const handleGumColorationChange = (color) => {
     setGumColoration(color);
   };
   const handleOcupationChange = (event) => {
-    setoccupationSelected(event.target.value);
+    setocupationSelected(event.target.value);
   };
   
 
@@ -357,259 +360,178 @@ const renderColorationTongueOptions = () => {
 
 
 
-  return (
-      <div className="max-w-md">
-        <div className="flex items-center justify-center mb-4 border-black">
-     
-          <h2 className="ml-2 text-lg font-semibold ">Historial Clínico/Preguntas</h2>
-        </div>
-        {currentPage === 1 && (
-          <form onSubmit={handleSubmit} className="max-w-md">
-            <fieldset>
-              <legend className="text-lg font-semibold text-gray-700">Información Personal</legend>
-              <div className="form-control">
-               
-            <label htmlFor="name" className="text-gray-700 border-black">Nombre:</label><br />
-            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
-            placeholder="Ingrese el name completo"/>
-            
+return (
+  <div className="max-w-md">
+    <div className="flex items-center justify-center mb-4 border-black">
+      <h2 className="ml-2 text-lg font-semibold">Historial Clínico/Preguntas</h2>
+    </div>
+    {currentPage === 1 && (
+      <form onSubmit={handleSubmit} className="max-w-md">
+        <fieldset>
+          <legend className="text-lg font-semibold text-gray-700">Información Personal</legend>
+          <div className="form-control">
+            <label htmlFor="name" className="text-gray-700 border-black">Nombre:</label>
+            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} className="border border-gray-300 rounded-md p-2 w-full" placeholder="Ingrese el nombre completo" />
           </div>
           <div className="form-control">
-            <label className="text-gray-700">Sexo:</label><br />
+            <label className="text-gray-700">Sexo:</label>
             <label className="inline-flex items-center">
-              <input
-              type="checkbox"
-              value="masculino"
-              checked={sex === "masculino"}
-              onChange={handlesexChange}
-              className="form-checkbox h-5 w-5 text-red-600 rounded-full"
-              />
+              <input type="checkbox" value="masculino" checked={sex === 'masculino'} onChange={handleSexChange} className="form-checkbox h-5 w-5 text-red-600 rounded-full" />
               <span className="ml-2">Masculino</span>
-              </label>
-              <label className="inline-flex items-center ml-4">
-                <input
-                type="checkbox"
-                value="femenino"
-                checked={sex === "femenino"}
-                onChange={handlesexChange}
-                className="form-checkbox h-5 w-5 text-red-600 rounded-full"
-                />
-                <span className="ml-2">Femenino</span>
-                </label>
-                <label className="inline-flex items-center ml-4">
-                  <input
-                  type="checkbox"
-                  value="otro"
-                  checked={sex === "otro"}
-                  onChange={handlesexChange}
-                  className="form-checkbox h-5 w-5 text-red-600 rounded-full"
-                   />
-                   <span className="ml-2">Otro</span>
-                   </label>
-                   </div>
-
-          <div className="form-control ">
-            <label htmlFor="address" className="text-gray-700 border-black">Domicilio:</label><br />
-            <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
-            placeholder="Ingrese su Domicilio" /><br /><br />
-          </div>
-  
-
-          <div className="form-control">
-            <label htmlFor="phone" className="text-gray-700 border-black ">Teléfono:</label><br />
-            <input type="text" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full" 
-            placeholder="Ingrese su numero de Telefono"/><br /><br />
-           
-          
+            </label>
+            <label className="inline-flex items-center ml-4">
+              <input type="checkbox" value="femenino" checked={sex === 'femenino'} onChange={handleSexChange} className="form-checkbox h-5 w-5 text-red-600 rounded-full" />
+              <span className="ml-2">Femenino</span>
+            </label>
+            <label className="inline-flex items-center ml-4">
+              <input type="checkbox" value="otro" checked={sex === 'otro'} onChange={handleSexChange} className="form-checkbox h-5 w-5 text-red-600 rounded-full" />
+              <span className="ml-2">Otro</span>
+            </label>
           </div>
           <div className="form-control">
-          <label htmlFor="ocupation" className="text-gray-700 ">Ocupación:</label><br />
-          <select id="ocupation" value={occupationSelected} onChange={handleOcupationChange}className="border border-gray-300 rounded-md p-2 w-full">
-          <option value="">Seleccionar ocupación</option>
-          {optionOcupation.map((opcion, index) => (
-          <option key={index} value={opcion}>{opcion}</option>
-          ))}
-          </select>
+            <label htmlFor="address" className="text-gray-700 border-black">Domicilio:</label>
+            <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} className="border border-gray-300 rounded-md p-2 w-full" placeholder="Ingrese su Domicilio" />
           </div>
           <div className="form-control">
-            <label htmlFor="fecha_nacimiento" className="text-gray-700 border-black">Fecha de Nacimiento:</label><br />
-            <input type="date" id="fecha_nacimiento" value={birthdate} onChange={(e) => setBirthdate(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full"  /><br /><br />
+            <label htmlFor="phone" className="text-gray-700 border-black">Teléfono:</label>
+            <input type="text" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} className="border border-gray-300 rounded-md p-2 w-full" placeholder="Ingrese su número de Teléfono" />
           </div>
-  
           <div className="form-control">
-            <label htmlFor="city" className="text-gray-700 border-black">Ciudad:</label><br />
-            <input type="text" id="city" value={city} onChange={(e) => setCity(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full"  /><br /><br />
-    
-              </div>
-        <fieldset>
-          <legend className="text-lg font-semibold text-gray-700 border-black">Padecimiento Actual</legend>
+            <label htmlFor="ocupation" className="text-gray-700">Ocupación:</label>
+            <select id="ocupation" value={ocupationSelected} onChange={handleOcupationChange} className="border border-gray-300 rounded-md p-2 w-full">
+              <option value="">Seleccionar ocupación</option>
+              {optionOcupation.map((opcion, index) => (
+                <option key={index} value={opcion}>{opcion}</option>
+              ))}
+            </select>
+          </div>
           <div className="form-control">
-            <label htmlFor="reasonConsultation" className="text-gray-700 border-black">Motivo de consulta:</label><br />
-            <textarea
-              id="Consultation"
-              value={consultation}
-              onChange={(e) => setConsultation(e.target.value)}
-              rows={2}
-            className="border border-gray-300 rounded-md p-2 w-full "
-              style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}} // Impide el redimensionamiento
-              placeholder="Describe el motivo de consulta aquí..."
-            />
+            <label htmlFor="fecha_nacimiento" className="text-gray-700 border-black">Fecha de Nacimiento:</label>
+            <input type="date" id="fecha_nacimiento" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} className="border border-gray-300 rounded-md p-2 w-full" />
           </div>
-        
-        </fieldset>
-  
-        <fieldset>
-          <legend className="text-lg font-semibold text-gray-700 bg-transparent text-gray-700 border border-gray-700 hover:bg-gray-100 hover:text-gray-900 py-2 px-4 rounded inline-flex items-center">Enfermedades</legend>
-          <div className="enfermedades-container">
-            {renderEnfermedadesButtons()}
+          <div className="form-control">
+            <label htmlFor="city" className="text-gray-700 border-black">Ciudad:</label>
+            <input type="text" id="city" value={city} onChange={(e) => setCity(e.target.value)} className="border border-gray-300 rounded-md p-2 w-full" />
           </div>
-        </fieldset>
-              
-              <button type="button" onClick={nextPage}>Siguiente</button>
-            </fieldset>
-          </form>
-        )}
-        {currentPage === 2 && (
-        <form onSubmit={handleSubmit} className="max-w-md">
           <fieldset>
-            <legend className="text-lg font-semibold text-gray-700">Odontograma</legend>
-            <legend className="text-lg font-semibold text-gray-700">Dientes Superiores</legend>
-            <div className="grid grid-cols-8 gap-10 justify-center">
-               <div className="dientes-grid "> 
-                {[...Array(105).keys()].map(numero => (
+            <legend className="text-lg font-semibold text-gray-700 border-black">Padecimiento Actual</legend>
+            <div className="form-control">
+              <label htmlFor="reasonConsultation" className="text-gray-700 border-black">Motivo de consulta:</label>
+              <textarea id="Consultation" value={consultation} onChange={(e) => setConsultation(e.target.value)} rows={2} className="border border-gray-300 rounded-md p-2 w-full" style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none' }} placeholder="Describe el motivo de consulta aquí..." />
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend className="text-lg font-semibold text-gray-700 border-black">Enfermedades</legend>
+            <div className="enfermedades-container">
+              {renderEnfermedadesButtons()}
+            </div>
+          </fieldset>
+          <button type="button" onClick={nextPage}>Siguiente</button>
+        </fieldset>
+      </form>
+    )}
+    {currentPage === 2 && (
+      <form onSubmit={handleSubmit} className="max-w-md">
+        <fieldset>
+          <legend className="text-lg font-semibold text-gray-700">Odontograma</legend>
+          <legend className="text-lg font-semibold text-gray-700">Dientes Superiores</legend>
+          <div className="grid grid-cols-8 gap-10 justify-center">
+            <div className="dientes-grid">
+              {[...Array(105).keys()].map((numero) => (
                 <div key={`sup-${numero}`} className="m-2 px-1">
                   {renderizarImagenSup(numero)}
-                  </div>
-                ))}</div></div>
-                <legend className="text-lg font-semibold text-gray-700">Dientes Inferiores</legend>
-                <div className="grid grid-cols-8 gap-10 justify-center">
-                  <div className="dientes-grid">
-                    {[...Array(105).keys()].map(numero => (
-                    <div key={`inf-${numero}`} className="m-2 px-1">{renderizarImagen(numero)}
-                    </div>
-                  ))}</div></div>
-                  </fieldset>
-                      <button type="button" onClick={prevPage}>Anterior</button>
-                      <div style={{ margin: '8px' }}></div>
-                
-                  <button type="button" onClick={nextPage}>Siguiente</button>
-                  </form>)}
-        {currentPage === 3 && (
-          <form onSubmit={handleSubmit} className="max-w-md">
-            <fieldset>
-              <legend className="text-lg font-semibold text-gray-700">Información Bucal</legend>
-              <div className="form-control">
-                <label htmlFor="gumColoration" className="text-gray-700">Coloración de Encías:</label><br />
-                <input
-                  type="color"
-                  id="gumColoration"
-                  onChange={(e) => setGumColoration(e.target.value)}
-                  className="form-control"
-                  style={{ width: '190px', height: '5px' }}
-                />
-
-                <div className="color-options">
-                  <div className="color-option" onClick={() => handlegumColorationChange("#FFCCCC")} style={{ backgroundColor: '#FFCCCC' }}>
-                    <div className="color-box"></div>
-                    <div className="color-name">Rosa pálido</div></div>
-                    <div className="color-option" onClick={() => handlegumColorationChange('#FF0000')} style={{ backgroundColor: '#FF0000' }}>
-                    <div className="color-box"></div>
-                    <div className="color-name">Rojo brillante</div>
-                    </div>
-                    <div className="color-option" onClick={() => handlegumColorationChange('#8B0000')} style={{ backgroundColor: '#8B0000' }}>
-                    <div className="color-box"></div>
-                    <div className="color-name">Rojo oscuro</div> 
-                    </div> 
-                    <div className="color-option" onClick={() => handlegumColorationChange('#FFFFFF')} style={{ backgroundColor:'#FFFFFF'   }}>
-                    <div className="color-box"></div>
-                    <div className="color-name">Blanco pálido</div></div>
-                    <div className="color-option" onClick={() => handlegumColorationChange('#4B0082')} style={{ backgroundColor:'#4B0082 '}}>
-                    <div className="color-box"></div>
-                    <div className="color-name">Azulada o púrpura</div>
-                    </div> 
-                    <div className="form-control" style={{ position: 'relative', width: '100px' }}>
-                      <Image
-                      src="/assets/enciaas.jpg" alt="Dentista 2" width={200} height={200}className="rounded-full"/>
-                      
-                      {gumColoration && (
-                      <div
-                      className="color-overlay"
-            style={{position: 'absolute',top: 0,left: 0,width: '100%',height: '80%',backgroundColor: gumColoration,opacity: 0.5, }}/>)}
+                </div>
+              ))}
             </div>
-            </div>
-            </div>
-            </fieldset>
-        <div className="form-control">
-          <legend> Coloración de lengua</legend>
-          <div className="flex flex-wrap lengua-image flex-row ">
-            {renderColorationTongueOptions()}
           </div>
-        </div>
-
-        <div className="form-control">
-          <label htmlFor="tongueUlcerations" className="text-gray-700">Ulceraciones en Lengua:</label><br />
-          <select id="tongueUlcerations" value={tongueUlcerations} onChange={(e) => setTongueUlcerationsss(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
-            <option value="sin-ulceraciones">Sin Ulceraciones</option>
-            <option value="con-ulceraciones">Con Ulceraciones</option>
-          </select><br /><br />
-
-          <label htmlFor="observationsTongue" className="text-gray-700">Observaciones sobre Lengua:</label><br />
-          <textarea
-            id="observationsTongue"
-            value={observationsTongue}
-            onChange={(e) => setObservationsTongue(e.target.value)}
-            rows={4}
-            className="border border-gray-300 rounded-md p-2 w-full"
-            style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}}
-            placeholder="Ingrese observaciones adicionales sobre la lengua aquí..."
-            
-          />
-        </div>
+          <legend className="text-lg font-semibold text-gray-700">Dientes Inferiores</legend>
+          <div className="grid grid-cols-8 gap-10 justify-center">
+            <div className="dientes-grid">
+              {[...Array(105).keys()].map((numero) => (
+                <div key={`inf-${numero}`} className="m-2 px-1">
+                  {renderizarImagen(numero)}
+                </div>
+              ))}
+            </div>
+          </div>
+        </fieldset>
+        <button type="button" onClick={prevPage}>Anterior</button>
+        <div style={{ margin: '8px' }}></div>
+        <button type="button" onClick={nextPage}>Siguiente</button>
+      </form>
+    )}
+    {currentPage === 3 && (
+      <form onSubmit={handleSubmit} className="max-w-md">
+        <fieldset>
+          <legend className="text-lg font-semibold text-gray-700">Información Bucal</legend>
+          <div className="form-control">
+            <label htmlFor="gumColoration" className="text-gray-700">Coloración de Encías:</label>
+            <input type="color" id="gumColoration" onChange={(e) => setGumColoration(e.target.value)} className="form-control" style={{ width: '190px', height: '5px' }} />
+            <div className="color-options">
+              {['#FFCCCC', '#FF0000', '#8B0000', '#FFFFFF', '#4B0082'].map((color, index) => (
+                <div key={index} className="color-option" onClick={() => handleGumColorationChange(color)} style={{ backgroundColor: color }}>
+                  <div className="color-box"></div>
+                  <div className="color-name">{color}</div>
+                </div>
+              ))}
+            </div>
+            <div className="form-control" style={{ position: 'relative', width: '100px' }}>
+              <Image src="/assets/enciaas.jpg" alt="Dentista 2" width={200} height={200} className="rounded-full" />
+              {gumColoration && (
+                <div className="color-overlay" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '80%', backgroundColor: gumColoration, opacity: 0.5 }} />
+              )}
+            </div>
+          </div>
+          <div className="form-control">
+            <legend>Coloración de lengua</legend>
+            <div className="flex flex-wrap lengua-image flex-row">
+              {renderColorationTongueOptions()}
+            </div>
+          </div>
+          <div className="form-control">
+            <label htmlFor="observationsTongue" className="text-gray-700">Observaciones en Lengua:</label>
+            <textarea id="observationsTongue" value={observationsTongue} onChange={(e) => setObservationsTongue(e.target.value)} rows={2} className="border border-gray-300 rounded-md p-2 w-full" style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none' }} placeholder="Escriba aquí cualquier observación sobre la lengua..." />
+          </div>
+          <div className="form-control">
+            <legend>Coloración del paladar</legend>
+            </div>
         <div className="form-control">
           <label htmlFor="palateColoring" className="text-gray-700">Coloración de Paladar Duro:</label><br />
           <select id="palateColoring" value={palateColoring} onChange={(e) => setPalateColoring(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
             <option value="">Seleccionar coloración de Paladar</option>
-            {optionspalateColoring.map((coloracion, index) => (
+            {optionsPalateColoring.map((coloracion, index) => (
               <option key={index} value={coloracion}>{coloracion}</option>
             ))}
-          </select><br /><br />
-
-          <label htmlFor="palateInjuries" className="text-gray-700">Lesiones o Anomalías en Paladar Duro:</label><br />
-          <select id="palateInjuries" value={palateInjuries} onChange={(e) => setPalateInjuries(e.target.value)}className="border border-gray-300 rounded-md p-2 w-full">
-            <option value="sin-ulceraciones">Sin lesiones</option>
-            <option value="con-ulceraciones">Con lesiones</option>
-          </select><br /><br />
-          <label htmlFor="observationsPalate" className="text-gray-700">Observaciones sobre Paladar Duro:</label><br />
-           <textarea
-           id="observationsPalate"
-           value={observationsPalate}
-           onChange={(e) => setObservationsPalate(e.target.value)}
-           rows={4}
-           className="border border-gray-300 rounded-md p-2 w-full"
-           style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none'}}
-           placeholder="Ingrese observaciones adicionales sobre el paladar aquí..."
-          />  
+          </select>
           </div>
-        
-            {showForm ? (
-              <form onSubmit={handleSubmit}>
-                {/* Contenido del formulario */}
-                <button type="button" onClick={prevPage}>Anterior</button>
-                <div style={{ margin: '8px' }}></div>
-                <input type="submit" value="Enviar" />
-              </form>
-            ) : (
-              <div className='mt-8'>
-                <h2 className="text-lg font-semibold mb-2">Vista previa del Historial Clínico</h2>
-                <PDFViewer width="100%" height={500}>
-                  <HistorialClinicoPDF datos={formData} />
-                </PDFViewer>
-              </div>
-            )}
-        </form>
-      )}
-    </div>
-  );
-}
+          <div className="form-control">
+            <label htmlFor="palateInjuries" className="text-gray-700">Lesiones en el paladar:</label>
+            <select id="palateInjuries" value={palateInjuries} onChange={(e) => setPalateInjuries(e.target.value)} className="border border-gray-300 rounded-md p-2 w-full">
+              <option value="sin-ulceraciones">Sin ulceraciones</option>
+              <option value="con-ulceraciones">Con ulceraciones</option>
+            </select>
+          </div>
+          <div className="form-control">
+            <label htmlFor="observationsPalate" className="text-gray-700">Observaciones en el paladar:</label>
+            <textarea id="observationsPalate" value={observationsPalate} onChange={(e) => setObservationsPalate(e.target.value)} rows={2} className="border border-gray-300 rounded-md p-2 w-full" style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none' }} placeholder="Escriba aquí cualquier observación sobre el paladar..." />
+          </div>
+          <button type="button" onClick={prevPage}>Anterior</button>
+          <div style={{ margin: '8px' }}></div>
+          <button type="submit" onClick={handleSubmit}>Generar PDF</button>
+        </fieldset>
+      </form>
+    )}
+    {!showForm && (
+      <div>
+        <h2>Vista Previa del Historial Clínico</h2>
+        <PDFViewer>
+          <HistorialClinicoPDF datos={{formData}} />
+        </PDFViewer>
+        <button onClick={() => setShowForm(true)}>Regresar</button>
+      </div>
+    )}
+  </div>
+);
+};
 
 export default HistorialClinicoForm;
