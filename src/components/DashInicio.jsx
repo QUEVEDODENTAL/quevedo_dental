@@ -19,24 +19,24 @@ const DashInicio = () => {
         <Link href="/dashboard/historial">
           <div>
             <FaAddressBook className="mt-2 ml-2" size={30} />
-            <h2 className="text-xl font-bold mb-2">Historial</h2>
-            <p>Ver historial de las citas</p>
+            <h2 className="text-xl font-bold mb-2">Servicios</h2>
+            <p>Ver servicios disponibles</p>
             <p>realizadas</p>
           </div>
         </Link>
       </div>
       <div className="bg-secondary-icon p-4 text-center rounded-lg transition-transform duration-300 hover:scale-105 relative h-48 flex flex-col justify-center items-center">
-        <Link href="/dashboard/pacientes">
+        <Link href="/dashboard/mi_perfil">
           <div>
             <FaAddressCard className="mt-2 ml-2" size={30} />
-            <h2 className="text-xl font-bold mb-2">Perfil</h2>
+            <h2 className="text-xl font-bold mb-2"> Perfil</h2>
             <p>Ver información de</p>
             <p>perfil de usuario</p>
           </div>
         </Link>
       </div>
       <div className="bg-secondary-icon p-4 text-center rounded-lg transition-transform duration-300 hover:scale-105 relative h-48 flex flex-col justify-center items-center">
-        <Link href="/dashboard/pacientes">
+        <Link href="/dashboard/pacientes/juan-perez">
           <div>
             <FaAddressCard className="mt-2 ml-2" size={30} />
             <h2 className="text-xl font-bold">Último</h2>
@@ -57,7 +57,7 @@ const DashInicio = () => {
         </Link>
       </div>
       <div className="bg-secondary-icon p-4 text-center rounded-lg hidden md:block transition-transform duration-300 hover:scale-105 col-span-3 relative h-48 flex flex-col justify-center items-center">
-        <Link href="/admin/registrar">
+        <Link href="/dashboard/registrar">
           <div>
             <FaHospitalUser className="mt-2 ml-2" size={30} />
             <h2 className="text-xl font-bold mb-2">Nuevo doctor o empleado</h2>

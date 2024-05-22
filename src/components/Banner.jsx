@@ -37,7 +37,7 @@ const Banner = () => {
                 alt="Dentista"
                 width={200}
                 height={150}
-                className="w-full h-auto"
+                className="w-full h-auto "
                 priority 
               />
             </div>

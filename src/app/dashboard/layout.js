@@ -1,21 +1,26 @@
+'use client'
 import { Manrope } from "next/font/google";
+import React, { useState } from 'react';
 import Sliderbar from '@/components/Sliderbar';
 
 const Inter = Manrope({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Bienvenido",
-  description: "Bienvenida al dashboard del doctor/empleado",
-};
-
 export default function RootLayout({ children }) {
+  const [isSliderVisible, setIsSliderVisible] = useState(true);
+
+  const toggleSliderVisibility = () => {
+    setIsSliderVisible(!isSliderVisible);
+  };
+
   return (
     <html lang="es">
       <body className={Inter.className}>
-        <div>
-            <Sliderbar/>
+        <div className="flex">
+          <Sliderbar isSliderVisible={isSliderVisible} toggleSliderVisibility={toggleSliderVisibility} />
+          <main className={`transition-all duration-500 flex-grow ${isSliderVisible ? 'ml-64' : 'ml-0'}`}>
+            {children}
+          </main>
         </div>
-        {children}
       </body>
     </html>
   );
