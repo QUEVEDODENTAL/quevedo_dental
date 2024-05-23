@@ -5,15 +5,15 @@ import { FaChevronLeft, FaChevronRight, FaTooth } from 'react-icons/fa';
 const Carousel = () => {
   const images = [
     {
-      src: 'https://lh3.googleusercontent.com/44OEKSc6rWXexvuvCdTKNK5FK38LgbiLBMooW00HAT0-uEdibYUltKqAY1ls1sPVqHzM_CnuIVw37EnEcCHl3Re8wlg8YPseR8ffsB1xpFT_Nt3-4JVhELvsz-fpQmfMpIZ1UqVr',
+      src: '/assets/carrusel1.jpg',
       caption: 'Imagen 1',
     },
     {
-      src: 'https://jboard-tenant.s3.us-west-1.amazonaws.com/editor/ndbNKCAQrv9PtnpZDIjml9cqhY4WLXFyDEWA3sc0.webp',
+      src: '/assets/carrusel2.webp',
       caption: 'Imagen 2',
     },
     {
-      src: 'https://www.florence.edu.br/blog/wp-content/uploads/2023/02/Florence-como-ser-dentista.jpg',
+      src: '/assets/carrusel3.jpg',
       caption: 'Imagen 3',
     },
   ];
