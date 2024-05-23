@@ -16,15 +16,12 @@ function HistorialClinicoForm() {
   const [city, setCity] = useState('');
   const [consultation, setConsultation] = useState('');
   const [diseasess, setDiseasess] = useState('');
+  const [selectedDiseases, setSelectedDiseases] = useState([]);
   const [showForm, setShowForm] = useState(true); // Agregamos el estado para controlar si se muestra el formulario o la vista previa
-
- 
   const [gumColoration, setGumColoration] = useState('');
   const [colorationTongueSelected,setColorationTongueSelected] = useState(null);
   const [tongueUlcerations, setTongueUlcerationsss] = useState('sin-ulceraciones');
- 
   const [observationsTongue, setObservationsTongue] = useState('');
- 
   const [palateColoring, setPalateColoring] = useState('');
   const [palateInjuries, setPalateInjuries] = useState('sin-ulceraciones');
   const [observationsPalate, setObservationsPalate] = useState('');
@@ -44,23 +41,28 @@ function HistorialClinicoForm() {
     sex: '',
     address: '',
     phone: '',
-    ocupationSelected: '',
+    occupation: '',
     birthdate: '',
     city: '',
     consultation: '',
-    diseases: '',
-    nameColorationGum: '',
-    colorationTongueSelected: '',
-    tongueUlcerations: '',
+    diseases: [],
+    gumColoration: '',
+    tongueColoration: '',
+    tongueUlcerations: 'sin-ulceraciones',
     observationsTongue: '',
     palateColoring: '',
+    palateInjuries: 'sin-ulceraciones',
     observationsPalate: '',
   });
-  const handleFormDataChange = (newFormData) => {
-    setFormData(newFormData);
+
+  const handleFormDataChange = (field, value) => {
+    setFormData({
+      ...formData,
+      [field]: value,
+    });
   };
 
-  const getNamesTeeth = () => {
+ // const getNamesTeeth = () => {
     const namesTeeth = {
       11: 'Incisivo Central Superior Izquierdo',
       12: 'Incisivo Lateral Superior Izquierdo',
@@ -96,11 +98,11 @@ function HistorialClinicoForm() {
       48: 'Tercer Molar Inferior Derecho',
     };
   
-    return namesTeeth;
-  };
+    //return namesTeeth;
+  //};
   
-  const namesTeeth = getNamesTeeth();
-  console.log(namesTeeth);
+  //const namesTeeth = getNamesTeeth();
+  //console.log(namesTeeth);
 
   const traducirColorEncias = (colorEncias) => {
     // Mapea los valores de color a sus nombres correspondientes
@@ -153,28 +155,18 @@ optionsColorationTongue =
   ];
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
+    
     
     // Verificar si todos los campos obligatorios están llenos
-    if (
-      name.trim() !== '' &&
-      address.trim() !== '' &&
-      phone.trim() !== '' &&
-      ocupationSelected !== '' &&
-      birthdate.trim() !== '' &&
-      city.trim() !== '' &&
-      consultation.trim() !== '' &&
-      gumColoration.trim() !== '' &&
-      colorationTongueSelected !== null &&
-      tongueUlcerations.trim() !== '' &&
-      palateColoring.trim() !== '' &&
-      palateInjuries.trim() !== ''
-    ) {
-      // Agregar la información de los dientes al objeto formData
-      const toothsSelected = toothSelected.map(numero => ({
-        numero: numero,
-        nombre: namesTeeth[numero]
-      }));
+ // Validar si todos los campos obligatorios, excepto los relacionados con enfermedades, están llenos
+ const requiredFields = [name, address, phone, ocupationSelected, birthdate, city, consultation,gumColoration, colorationTongueSelected, tongueUlcerations, palateColoring, palateInjuries];
+ const hasEmptyFields = requiredFields.some(field => field.trim() === '');
+ if (!hasEmptyFields) {
+  // Agregar la información de los dientes al objeto formData
+  const toothsSelected = toothSelected.map(numero => ({
+    numero: numero,
+    nombre: namesTeeth[numero]
+  }));
       const newData = {
         name,
         sex,
@@ -184,7 +176,7 @@ optionsColorationTongue =
         birthdate,
         city,
         consultation,
-        diseases: diseasess,
+        diseases: selectedDiseases,
         nameColorationGum,
         colorationTongueSelected,
         tongueUlcerations,
@@ -200,7 +192,7 @@ optionsColorationTongue =
       setFormData(newData); // Actualiza el estado formData con los datos del formulario
     } else {
       alert("Por favor complete todos los campos obligatorios.");
-    }
+    }console.log(formData);
   };
   
   
@@ -222,36 +214,50 @@ optionsColorationTongue =
  
   }
   const handleEnfermedadClick = (enfermedad) => {
-    const isSelected = diseasess.includes(enfermedad);
-    if (isSelected) {
-      setDiseasess(diseasess.filter((e) => e !== enfermedad));
-    } else {
-      setDiseasess([...diseasess, enfermedad]);
-    }
-  };
+  
+      // Verificar si la enfermedad ya está seleccionada
+      const isSelected = formData.diseases.includes(enfermedad); // Usar formData en lugar de selectedDiseases
+      let updatedDiseases = [];
+    
+      if (isSelected) {
+        // Si la enfermedad ya está seleccionada, la eliminamos de la lista
+        updatedDiseases = formData.diseases.filter((e) => e !== enfermedad); // Usar formData en lugar de selectedDiseases
+      } else {
+        // Si la enfermedad no está seleccionada, la agregamos a la lista
+        updatedDiseases = [...formData.diseases, enfermedad]; // Usar formData en lugar de selectedDiseases
+      }
+    
+      // Actualizamos el estado con la lista de enfermedades seleccionadas
+      handleFormDataChange('diseases', updatedDiseases);
+    };
+    
+
   const renderEnfermedadesButtons = () => {
     return (
-      <div className="flex flex-wrap  justify-start">
-        {enfermedadesList.map(enfermedad => (
-          <label
-            key={enfermedad.name}
-            className={`rounded-md p-2 cursor-pointer mr-4 mb-4 border ${diseasess.includes(enfermedad.name) ? 'border-blue-500' : ''}`}
-            onClick={() => handleEnfermedadClick(enfermedad.name)}
-            style={{ textDecoration: 'none', background: 'none' }}
-          >
-            {enfermedad.label}
-            <input
-              type="checkbox"
-              style={{ display: 'none' }}
-              checked={diseasess.includes(enfermedad.name)}
-              onChange={() => handleEnfermedadClick(enfermedad)}
-            />
-          </label>
+      <div className="flex flex-wrap">
+        {enfermedadesList.map((enfermedad) => (
+          <div key={enfermedad.name} className="mr-4 mb-4">
+            <button
+              className={`rounded-md p-2 w-48 text-center cursor-pointer ${
+                selectedDiseases.includes(enfermedad.name)
+                  ? 'bg-blue-500 text-white border-blue-500'
+                  : 'bg-gray-200 text-gray-700 border-gray-300'
+              } focus:outline-none`}
+              onClick={() => handleEnfermedadClick(enfermedad.name)}
+            >
+              {enfermedad.label}
+              <input
+                type="checkbox"
+                style={{ display: 'none' }}
+                checked={selectedDiseases.includes(enfermedad.name)}
+                onChange={() => handleEnfermedadClick(enfermedad.name)}
+              />
+            </button>
+          </div>
         ))}
       </div>
     );
   };
-  
   
   
 
@@ -307,9 +313,9 @@ optionsColorationTongue =
                 alt={`Diente ${numeroDiente}`}
                 className={`diente ${toothSelected.includes(numeroDiente) ? 'seleccionado' : ''}`}
                 onClick={() => toggleToothSelected(numeroDiente)}
-                width="30" height="90"
+                width="200" height="100"
               />
-              <div className="numero-diente">{numeroDiente}</div>
+              <div >{numeroDiente}</div>
             </>
           ) : null}
         </div>
@@ -331,7 +337,7 @@ const renderizarImagenSup = (numero) => {
       const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
 
       return (
-        <div key={numero} className="mx-1 shadow-md custom-pointer  cursor-pointer hover:text-purple-600">
+        <div key={numero} className="mx-1 shadow-md   cursor-pointer hover:text-purple-600r">
           
           {imagenExiste ? (
             <>
@@ -340,9 +346,10 @@ const renderizarImagenSup = (numero) => {
                 alt={`Diente ${numeroDiente}`}
                 className={`diente ${toothSelected.includes(numeroDiente) ? 'seleccionado' : ''}`}
                 onClick={() => toggleToothSelected(numeroDiente)}
-                width="80" height="90"
+                width="200" height="200"
               />
-              <div className="numero-diente">{numeroDiente}</div>
+              <div className = {numeroDiente}>
+              </div>
             </>
           ) : null}
         </div>
@@ -359,7 +366,8 @@ const renderColorationTongueOptions = () => {
         id={`coloracionLengua-${index}`}
         checked={coloracion === colorationTongueSelected}
         onChange={() => handleColorationTongueChange(coloracion)}
-        style={{ width: '1.5em', height: '1.5em', marginBottom: '10px', marginTop: '10px'}}
+        
+        style={{ width: '1.5em', height: '1.5em', marginBottom: '10px', marginTop: '10px',  display: 'none' }} 
      
       />
       <label htmlFor={`coloracionLengua-${index}`} className={`flex flex-col items-center cursor-pointer ${coloracion === colorationTongueSelected ? 'border-2 border-blue-500' : 'border'}`}>
@@ -367,7 +375,7 @@ const renderColorationTongueOptions = () => {
           src={`/assets/lengua/lengua-${coloracion}.png`}
           alt={coloracion}
           className="w-24 mb-2 cursor-pointer"
-          width="80" height="70"
+          width="200" height="200"
           
         />
      
@@ -443,9 +451,9 @@ return (
           </fieldset>
           <fieldset>
             <legend className="text-lg font-semibold border-black mb-3">Enfermedades</legend>
-            <div className="enfermedades-container">
+            
               {renderEnfermedadesButtons()}
-            </div>
+          
           </fieldset>
           <button type="button" onClick={nextPage} className=' p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300'>Siguiente</button>
         </fieldset>

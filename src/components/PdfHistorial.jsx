@@ -86,17 +86,15 @@ function HistorialClinicoPDF({ datos }) {
           <Text style={styles.label}>Ciudad:<Text style={styles.value}>{datos.city}</Text></Text>
           <Text style={styles.label}>Diente:<Text style={styles.value}>{datos.toothSelected}</Text></Text>
         </View>
-
         <View style={styles.section}>
-          <Text style={styles.title}>Consulta y Antecedentes</Text>
-          <Text style={styles.label}>Fecha: <Text style={styles.value}>{datos.currentDate.toLocaleDateString()}</Text></Text>
+  <Text style={styles.title}>Consulta y Antecedentes</Text>
+  <Text style={styles.label}>Fecha: <Text style={styles.value}>{datos.currentDate.toLocaleDateString()}</Text></Text>
 
-          <Text style={styles.label}>Enfermedades:<Text style={styles.value}>{datos.diseasess}</Text></Text>
-          {datos.enfermedades && datos.enfermedades.map(enfermedad => (
-    <Text key={enfermedad} style={styles.value}>{enfermedad}</Text>))}
-        </View>
-
-        <View style={styles.section}>
+  <Text style={styles.label}>Enfermedades:</Text>
+  {datos.diseases.map((enfermedad, index) => (
+    <Text key={index} style={styles.value}>{enfermedad}</Text>
+  ))}
+</View><View style={styles.section}>
           <Text style={styles.title}>Observaciones</Text>
           <Text style={styles.label}>Coloración encías: <Text style={styles.value}>{datos.nameColorationGum}</Text></Text>
           <Text style={styles.label}>Motivo de consulta:<Text style={styles.value}> {datos.consultation}</Text></Text>
