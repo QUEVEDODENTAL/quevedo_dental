@@ -59,7 +59,6 @@ NEXTAUTH_SECRET=TuPalabraSecreta
 npx prisma migrate dev
 npx prisma migrate deploy
 npx prisma generate
-```
 
 ````
 ## Modo de uso de Base de Datos
@@ -71,4 +70,12 @@ npx prisma studio
 despues de poner  comando  le aparecerá  http://localhost:5555 
 
 dando click url lo mandara  la página  y despues  dar en  el + en donde  les desplegara  OPEN MODEL  debera buscar usuario le abrira  paguina en donde  tendra que poner un  correo y contraseña  y despues le da en aguardar   
+
+````
+`````
+## Ejecuta el proyecto.
+````
+ npm run dev
+``
+ Abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento.
 
