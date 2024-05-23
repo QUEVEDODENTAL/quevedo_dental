@@ -75,7 +75,8 @@ dando click url lo mandara  la página  y despues  dar en  el + en donde  les de
 `````
 ## Ejecuta el proyecto.
 ````
+````
  npm run dev
-``
+````
  Abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento.
 
