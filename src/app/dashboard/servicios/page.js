@@ -56,8 +56,8 @@ const Service = () => {
       <button onClick={agregarServicio} className="bg-secondary-card text-primary-white px-4 py-2 rounded-[10px] mt-4 transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
         Agregar Servicio
       </button>
-      <Link href="/carrito">
-        <button className="bg-secondary-card text-primary-white px-4 py-2 rounded-[10px] mt-4 transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
+      <Link href="/dashboard/carrito">
+        <button className="bg-secondary-card text-primary-white px-9 py-2 rounded-[10px] mt-4 transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
           Ir al Carrito
         </button>
       </Link>
