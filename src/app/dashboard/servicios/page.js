@@ -19,22 +19,18 @@ const Service = () => {
   };
 
   const modificarServicio = (id, nuevoNombre, nuevoPrecio) => {
-    const serviciosActualizados = servicios.map(servicio => {
-      if (servicio.id === id) {
-        return {
-          ...servicio,
-          nombre: nuevoNombre,
-          precio: nuevoPrecio
-        };
-      }
-      return servicio;
-    });
+    const serviciosActualizados = servicios.map(servicio => 
+      servicio.id === id ? { ...servicio, nombre: nuevoNombre, precio: nuevoPrecio } : servicio
+    );
     setServicios(serviciosActualizados);
   };
-
+  
   const eliminarServicio = (id) => {
-    const serviciosFiltrados = servicios.filter(servicio => servicio.id !== id);
-    setServicios(serviciosFiltrados);
+    const confirmacion = window.confirm("¿Estás seguro de que deseas eliminar este servicio?");
+    if (confirmacion) {
+      const serviciosFiltrados = servicios.filter(servicio => servicio.id !== id);
+      setServicios(serviciosFiltrados);
+    }
   };
 
   return (

@@ -28,14 +28,14 @@ const Servicio = ({ id, nombre, precio, agregarServicio, modificarServicio, elim
         name="nombre"
         value={servicios.nombre}
         onChange={handleChange}
-        className="border border-gray-300 rounded-lg px-3 py-1 mt-2 w-[53%]"
+        className="bg-primary-red rounded-lg px-3 py-1 mt-2 w-[53%]"
       />
       <input
         type="number"
         name="precio"
         value={servicio.precio}
         onChange={handleChange}
-        className="border border-gray-300 rounded-lg px-3 py-1 mt-2 w-[53%]"
+        className="rounded-lg px-3 py-1 mt-2 w-[53%]"
       />
       <button onClick={handleModificarServicio} className="bg-secondary-card text-primary-white px-4 py-2 rounded-[10px] mt-2 mr-2 transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
         Modificar Servicio
