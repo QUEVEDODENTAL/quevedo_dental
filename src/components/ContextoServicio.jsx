@@ -20,10 +20,11 @@ export const ServiciosProvider = ({ children }) => {
   };
 
   const modificarServicio = (id, nuevoNombre, nuevoPrecio) => {
-    const serviciosActualizados = servicios.map(servicio =>
-      servicio.id === id ? { ...servicio, nombre: nuevoNombre, precio: nuevoPrecio } : servicio
-    );
-    setServicios(serviciosActualizados);
+    setServicios(servicios => {
+      return servicios.map(servicio =>
+        servicio.id === id ? { ...servicio, nombre: nuevoNombre, precio: nuevoPrecio } : servicio
+      );
+    });
   };
 
   const eliminarServicio = (id) => {
