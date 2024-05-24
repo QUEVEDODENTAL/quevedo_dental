@@ -313,9 +313,9 @@ optionsColorationTongue =
                 alt={`Diente ${numeroDiente}`}
                 className={`diente ${toothSelected.includes(numeroDiente) ? 'seleccionado' : ''}`}
                 onClick={() => toggleToothSelected(numeroDiente)}
-                width="200" height="100"
+                width="350" height="350"
               />
-              <div >{numeroDiente}</div>
+              <div className="numero-diente">{numeroDiente}</div>
             </>
           ) : null}
         </div>
@@ -337,7 +337,7 @@ const renderizarImagenSup = (numero) => {
       const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
 
       return (
-        <div key={numero} className="mx-1 shadow-md   cursor-pointer hover:text-purple-600r">
+        <div key={numero} className="mx-1 shadow-md   cursor-pointer hover:text-purple-600">
           
           {imagenExiste ? (
             <>
@@ -346,10 +346,9 @@ const renderizarImagenSup = (numero) => {
                 alt={`Diente ${numeroDiente}`}
                 className={`diente ${toothSelected.includes(numeroDiente) ? 'seleccionado' : ''}`}
                 onClick={() => toggleToothSelected(numeroDiente)}
-                width="200" height="200"
+                width="350" height="350"
               />
-              <div className = {numeroDiente}>
-              </div>
+              <div className="numero-diente">{numeroDiente}</div>
             </>
           ) : null}
         </div>
@@ -375,7 +374,7 @@ const renderColorationTongueOptions = () => {
           src={`/assets/lengua/lengua-${coloracion}.png`}
           alt={coloracion}
           className="w-24 mb-2 cursor-pointer"
-          width="200" height="200"
+          width="200" height="70"
           
         />
      
