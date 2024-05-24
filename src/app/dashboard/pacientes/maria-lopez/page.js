@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { FaPrint, FaPlus, FaCalendarAlt, FaSave } from 'react-icons/fa';
 import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import Link from 'next/link';
 
 const styles = StyleSheet.create({
   page: {
@@ -197,24 +198,30 @@ const Perfil = () => {
       </div>
       
       <div className="md:w-[40%] p-4 bg-secondary-dash2 shadow-xl rounded-xl mt-5">
-        <p className="text-lg md:text-xl font-bold text-center mb-4">Menú de opciones</p>
-        <div className="flex flex-col items-center justify-center">
-  <button onClick={toggleEditMode} className="mb-2 px-4 py-2 w-[80%] bg-secondary-button text-white rounded hover:bg-secondary-dash hover:text-primary-white transition-colors duration-300">
-    {editMode ? <><FaSave className="inline mr-2" /> Guardar cambios</> : <><FaCalendarAlt className="inline mr-2" /> Actualizar historial</>}
-  </button>
-  <button className="mb-2 px-4 py-2 w-[80%] bg-secondary-button text-white rounded hover:bg-secondary-dash hover:text-primary-white transition-colors duration-300">
-    <FaPlus className="inline mr-2" /> Agregar servicio
-  </button>
-  <PDFDownloadLink document={generatePdf()} fileName="perfil.pdf">
-    {({ loading }) => (
-      <button disabled={loading} className="mb-2 px-4 py-2 w-[80%] bg-secondary-button text-white rounded hover:bg-secondary-dash hover:text-primary-white transition-colors duration-300">
-        <FaPrint className="inline mr-2" /> Generar PDF
+  <p className="text-lg md:text-xl font-bold text-center mb-4">Menú de opciones</p>
+  <div className="flex flex-col items-center justify-center">
+    <button onClick={toggleEditMode} className="mb-2 w-full max-w-[80%] py-2 bg-secondary-button text-white rounded hover:bg-secondary-dash hover:text-primary-white transition-colors duration-300">
+      {editMode ? <><FaSave className="inline mr-2" /> Guardar cambios</> : <><FaCalendarAlt className="inline mr-2" /> Actualizar historial</>}
+    </button>
+    <Link href="/dashboard/servicios/servicios_paciente">
+      <button className="mb-2 w-full px-20 py-2 min-w-[200px] bg-secondary-button text-white rounded hover:bg-secondary-dash hover:text-primary-white transition-colors duration-300">
+        <FaPlus className="inline mr-2" /> Agregar servicio
       </button>
-    )}
-  </PDFDownloadLink>
+    </Link>
+    <PDFDownloadLink document={generatePdf()} fileName="perfil.pdf">
+      {({ loading }) => (
+        <button disabled={loading} className="mb-2 w-full px-24 py-2 min-w-[50%] md:min-w-[200px] bg-secondary-button text-white rounded hover:bg-secondary-dash hover:text-primary-white transition-colors duration-300">
+          <FaPrint className="inline mr-2" /> Generar PDF
+        </button>
+      )}
+    </PDFDownloadLink>
+    <Link href="/dashboard/pacientes">
+      <button className="mb-2 w-full px-[110px] py-2 bg-secondary-button text-white rounded hover:bg-secondary-dash hover:text-primary-white transition-colors duration-300">
+        <FaPlus className="inline mr-2" /> Regresar
+      </button>
+    </Link>
+  </div>
 </div>
-
-      </div>
     </div>
   );
 }
