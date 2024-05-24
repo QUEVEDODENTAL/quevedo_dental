@@ -1,6 +1,6 @@
-
 'use client'
 import React, { useState } from 'react';
+import Link from 'next/link'; // Importa Link de Next.js
 
 const Service = () => {
   const [servicios, setServicios] = useState([
@@ -38,9 +38,8 @@ const Service = () => {
   };
 
   return (
-
-      <div className="flex flex-col justify-center items-center mx-4 px-4 py-8">
-       <h1 className="text-3xl font-bold mb-4">Servicios</h1>
+    <div className="flex flex-col justify-center items-center mx-4 px-4 py-8">
+      <h1 className="text-3xl font-bold mb-4">Servicios</h1>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {servicios.map(servicio => (
@@ -57,6 +56,11 @@ const Service = () => {
       <button onClick={agregarServicio} className="bg-secondary-card text-primary-white px-4 py-2 rounded-[10px] mt-4 transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
         Agregar Servicio
       </button>
+      <Link href="/carrito">
+        <button className="bg-secondary-card text-primary-white px-4 py-2 rounded-[10px] mt-4 transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
+          Ir al Carrito
+        </button>
+      </Link>
     </div>
   );
 };
@@ -111,4 +115,3 @@ const Servicio = ({ id, nombre, precio, modificarServicio, eliminarServicio }) =
 };
 
 export default Service;
-
