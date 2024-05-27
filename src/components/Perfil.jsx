@@ -6,14 +6,16 @@ const Perfil = () => {
     <div className="flex flex-col items-center h-screen w-full text-base md:text-lg">
       {/* Imagen */}
       <div className="w-40 h-40 rounded-full overflow-hidden border-1 flex items-center justify-center">
-        <Image
-          src="/assets/dentista2.jpg"
-          alt="Dentista 2"
-          width={240}
-          height={240}
-          priority
-          className="rounded-full"
-        />
+        <div className="rounded-full">
+          <Image
+            src="/assets/dentista2.jpg"
+            alt="Dentista 2"
+            width={240}
+            height={240}
+            priority
+            className="object-cover w-full h-full" // Agregamos las clases object-cover, w-full, h-full
+          />
+        </div>
       </div>
 
       <div className='mt-10 w-full max-w-md'>
