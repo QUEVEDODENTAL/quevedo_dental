@@ -89,7 +89,7 @@ Pero si es en otro equipo donde se está ejecutando abre el cmd de tu equipo y e
 ipconfig
 ```
 Dada la dirección IPv4 que te de te diriges a tu navegador y pones
-http://direccion ip:3000
+http://140.10.6.142:3000
 
 
 
