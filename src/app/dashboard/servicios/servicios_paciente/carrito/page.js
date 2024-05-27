@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 const CarritoPage = () => {
   const [serviciosEnCarrito, setServiciosEnCarrito] = useState([]);
 
-  const handleAgregarAlCarrito = (servicio) => {
-    setServiciosEnCarrito([...serviciosEnCarrito, servicio]);
-  };
+  // const handleAgregarAlCarrito = (servicio) => {
+  //   setServiciosEnCarrito([...serviciosEnCarrito, servicio]);
+  // };
 
   const handleEliminarDelCarrito = (id) => {
     setServiciosEnCarrito(serviciosEnCarrito.filter(servicio => servicio.id !== id));
