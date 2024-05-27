@@ -30,17 +30,21 @@ const Service = () => {
           />
         ))}
       </div>
-      <button onClick={agregarServicio} className="bg-secondary-card text-primary-white px-4 py-2 rounded-[10px] mt-4 transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
-        Agregar Servicio
-      </button>
-      <Link href="/dashboard/servicios/servicios_paciente">
-        <button className="bg-secondary-card text-primary-white px-5 py-2 rounded-[10px] mt-4 transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
-          Servicio Cliente
+      
+      <div className="mt-4 space-x-4">
+        <button onClick={agregarServicio} className="bg-secondary-card text-primary-white px-4 py-2 rounded-[10px] transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
+          Agregar Servicio
         </button>
-      </Link>
+        <Link href="/dashboard/servicios/servicios_paciente">
+          <button className="bg-secondary-card text-primary-white px-5 py-2 rounded-[10px] transition-colors duration-300 ease-in-out hover:bg-secondary-dash">
+            Servicio Cliente
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };
+
 
 const Servicio = ({ id, nombre, precio, modificarServicio, eliminarServicio }) => {
   const [servicio, setServicio] = useState({ nombre, precio });
