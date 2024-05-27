@@ -81,3 +81,15 @@ dando click url lo mandara  la página  y despues  dar en  el + en donde  les de
 
  Abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento.
 
+``
+##Visualiza  en otro equipo
+Pero si es en otro equipo donde se está ejecutando abre el cmd de tu equipo y escribe ipconfig, cuando termine de ejecutarse este comando busca un apartado que diga dirección IPv4.
+
+````
+ipconfig
+````
+Dada la dirección IPv4 que te de te diriges a tu navegador y pones
+http://direccion ip:3000
+
+
+
