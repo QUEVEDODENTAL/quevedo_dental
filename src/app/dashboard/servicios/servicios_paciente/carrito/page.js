@@ -14,10 +14,10 @@ const CarritoPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-4">Carrito de Servicios</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center">Carrito de Servicios</h1>
 
       {serviciosEnCarrito.length === 0 ? (
-        <p>No hay servicios en el carrito.</p>
+        <p className="text-center">No hay servicios en el carrito.</p>
       ) : (
         <ul>
           {serviciosEnCarrito.map(servicio => (
