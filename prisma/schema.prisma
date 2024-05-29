@@ -78,8 +78,8 @@ model doctor {
   Sex              String?            @db.VarChar(10)
   MedicalLicense   String?            @db.VarChar(100)
   Email            String             @unique @db.VarChar(150)
-  historialclinico historialclinico[]
   usuarios         usuarios           @relation(fields: [Email], references: [Email])
+  historialclinico historialclinico[]
 }
 
 model empleado {
@@ -150,6 +150,12 @@ model usuarios {
   IsEmployee      Boolean   @default(false)
   doctor          doctor?
   empleado        empleado?
+}
+
+model servicios {
+  Id           Int     @id @default(autoincrement())
+  Service_Name String  @db.VarChar(100)
+  Price        Decimal @db.Decimal(10, 2)
 }
 
 enum antecedentesnopatologicos_Smoking {

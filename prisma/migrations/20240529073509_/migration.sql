@@ -163,17 +163,34 @@ CREATE TABLE `usuarios` (
     PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+
+CREATE TABLE servicios (
+    Id INT AUTO_INCREMENT NOT NULL,
+    Service_Name VARCHAR(100) NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL,
+    CONSTRAINT servicios_pk PRIMARY KEY (Id)
+);
+
+-- DropForeignKey
+ALTER TABLE `antecedentesnopatologicos` DROP FOREIGN KEY `antecedentesnopatologicos_id_paciente_fkey`;
+
+-- DropForeignKey
+ALTER TABLE `antecedentespatologicos` DROP FOREIGN KEY `antecedentespatologicos_paciente_id_fkey`;
+
+-- DropForeignKey
+ALTER TABLE `examenclinicointraoral` DROP FOREIGN KEY `examenclinicointraoral_id_paciente_fkey`;
+
+-- DropForeignKey
+ALTER TABLE `historialclinico` DROP FOREIGN KEY `historialclinico_cliente_id_fkey`;
+
+-- DropForeignKey
+ALTER TABLE `historialclinico` DROP FOREIGN KEY `historialclinico_dentista_id_fkey`;
+
 -- AddForeignKey
 ALTER TABLE `antecedentesnopatologicos` ADD CONSTRAINT `AntecedentesNoPatologicos_id_paciente_fkey` FOREIGN KEY (`PatientId`) REFERENCES `clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `antecedentespatologicos` ADD CONSTRAINT `AntecedentesPatologicos_paciente_id_fkey` FOREIGN KEY (`PatientId`) REFERENCES `clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `doctor` ADD CONSTRAINT `doctor_Email_fkey` FOREIGN KEY (`Email`) REFERENCES `usuarios`(`Email`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `empleado` ADD CONSTRAINT `empleado_Email_fkey` FOREIGN KEY (`Email`) REFERENCES `usuarios`(`Email`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `examenclinicointraoral` ADD CONSTRAINT `ExamenClinicoIntraoral_id_paciente_fkey` FOREIGN KEY (`PatientId`) REFERENCES `clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
