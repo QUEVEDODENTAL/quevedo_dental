@@ -21,7 +21,7 @@ const SliderBar = ({ isSliderVisible, toggleSliderVisibility }) => {
       <div className="fixed top-4 left-4 cursor-pointer bg-secondary-dash p-2 rounded-lg text-secondary-icon">
         <FaBars className="text-xl" onClick={toggleSliderVisibility} />
       </div>
-      <div className={`fixed text-white h-[100%] w-full sm:w-64 flex flex-col bg-secondary-dash text-secondary-icon transition-transform duration-500 ${isSliderVisible ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className={`fixed text-white h-[100%] w-screen sm:w-64 flex flex-col bg-secondary-dash text-secondary-icon transition-transform duration-500 ${isSliderVisible ? 'translate-x-0' : '-translate-x-full'}`}>
 
         <div className="absolute top-4 right-4 cursor-pointer" onClick={toggleSliderVisibility}>
           <FaBars className="text-xl" />
