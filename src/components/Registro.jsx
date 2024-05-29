@@ -25,7 +25,7 @@ const RegistrarPage = () => {
 
     return (
         <div className="mx-1 my-1 p-4 border-10 custom-shadowa rounded-[10px] lg:w-4/5 md:w-4/4 bg-primary-info0">
-            <h1 className='text-3xl font-bold flex justify-center mb-[20px]'>Formulario de Inscripción para Médicos y Empleados</h1>
+            <h1 className='text-3xl font-bold flex justify-center mb-[20px]'>Formulario de Inscripción para Doctores y Empleados</h1>
             <div className="flex justify-around">
                 <div style={{ flex: 1 }}>
                     <button
