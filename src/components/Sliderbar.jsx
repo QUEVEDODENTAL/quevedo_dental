@@ -11,7 +11,7 @@ const SliderBar = ({ isSliderVisible, toggleSliderVisibility }) => {
   const handleSignOut = async () => {
     try {
       setLoading('signOut'); // Establecer estado de carga
-      const data = await signOut({ redirect: false, callbackUrl: '/auth/login' });
+      const data = await signOut({ redirect: false, callbackUrl: '/' });
       window.location.href = data.url;
     } catch (error) {
       console.error('Error during sign out:', error);
