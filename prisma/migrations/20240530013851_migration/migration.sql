@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE `antecedentesnopatologicos` (
+CREATE TABLE `antecedentes_no_patologicos` (
     `PatientId` INTEGER NOT NULL,
     `Smoking` ENUM('Si', 'No') NOT NULL,
     `SubstanceAbuse` ENUM('Si', 'No') NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE `antecedentesnopatologicos` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `antecedentespatologicos` (
+CREATE TABLE `antecedentes_patologicos` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `PatientId` INTEGER NULL,
     `Disease` VARCHAR(255) NOT NULL,
@@ -68,13 +68,13 @@ CREATE TABLE `doctor` (
     `Gender` ENUM('Masculino', 'Femenino', 'Otro') NULL,
     `Specialty` VARCHAR(100) NULL,
     `Address` VARCHAR(255) NULL,
-    `Phone` VARCHAR(20) NULL,
     `Cellphone` VARCHAR(20) NULL,
     `CURP` VARCHAR(18) NULL,
     `LicenseNumber` VARCHAR(12) NULL,
     `Sex` VARCHAR(10) NULL,
     `MedicalLicense` VARCHAR(100) NULL,
     `Email` VARCHAR(150) NOT NULL,
+    `HireDate` DATE NOT NULL,
 
     UNIQUE INDEX `doctor_Email_key`(`Email`),
     PRIMARY KEY (`id`)
@@ -87,7 +87,7 @@ CREATE TABLE `empleado` (
     `LastName` VARCHAR(50) NOT NULL,
     `BirthDate` DATE NULL,
     `Gender` ENUM('Masculino', 'Femenino', 'Otro') NULL,
-    `Phone` VARCHAR(20) NULL,
+    `Cellphone` VARCHAR(20) NULL,
     `Email` VARCHAR(100) NOT NULL,
     `Address` VARCHAR(255) NULL,
     `Position` VARCHAR(100) NULL,
@@ -113,7 +113,7 @@ CREATE TABLE `enfermedades` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `examenclinicointraoral` (
+CREATE TABLE `examen_clinico_intraoral` (
     `PatientId` INTEGER NOT NULL,
     `ExaminationDate` DATE NOT NULL,
     `Gums` VARCHAR(255) NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE `examenclinicointraoral` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `historialclinico` (
+CREATE TABLE `historial_clinico` (
     `HistoryId` INTEGER NOT NULL AUTO_INCREMENT,
     `ClientId` INTEGER NULL,
     `DentistId` INTEGER NULL,
@@ -145,6 +145,7 @@ CREATE TABLE `historialclinico` (
 -- CreateTable
 CREATE TABLE `permisos` (
     `ID` INTEGER NOT NULL AUTO_INCREMENT,
+    `Permission` VARCHAR(255) NOT NULL,
     `Description` VARCHAR(255) NOT NULL,
 
     PRIMARY KEY (`ID`)
@@ -163,40 +164,11 @@ CREATE TABLE `usuarios` (
     PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+-- CreateTable
+CREATE TABLE `servicios` (
+    `Id` INTEGER NOT NULL AUTO_INCREMENT,
+    `Service_Name` VARCHAR(100) NOT NULL,
+    `Price` DECIMAL(10, 2) NOT NULL,
 
-CREATE TABLE servicios (
-    Id INT AUTO_INCREMENT NOT NULL,
-    Service_Name VARCHAR(100) NOT NULL,
-    Price DECIMAL(10, 2) NOT NULL,
-    CONSTRAINT servicios_pk PRIMARY KEY (Id)
-);
-
--- DropForeignKey
-ALTER TABLE `antecedentesnopatologicos` DROP FOREIGN KEY `antecedentesnopatologicos_id_paciente_fkey`;
-
--- DropForeignKey
-ALTER TABLE `antecedentespatologicos` DROP FOREIGN KEY `antecedentespatologicos_paciente_id_fkey`;
-
--- DropForeignKey
-ALTER TABLE `examenclinicointraoral` DROP FOREIGN KEY `examenclinicointraoral_id_paciente_fkey`;
-
--- DropForeignKey
-ALTER TABLE `historialclinico` DROP FOREIGN KEY `historialclinico_cliente_id_fkey`;
-
--- DropForeignKey
-ALTER TABLE `historialclinico` DROP FOREIGN KEY `historialclinico_dentista_id_fkey`;
-
--- AddForeignKey
-ALTER TABLE `antecedentesnopatologicos` ADD CONSTRAINT `AntecedentesNoPatologicos_id_paciente_fkey` FOREIGN KEY (`PatientId`) REFERENCES `clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `antecedentespatologicos` ADD CONSTRAINT `AntecedentesPatologicos_paciente_id_fkey` FOREIGN KEY (`PatientId`) REFERENCES `clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `examenclinicointraoral` ADD CONSTRAINT `ExamenClinicoIntraoral_id_paciente_fkey` FOREIGN KEY (`PatientId`) REFERENCES `clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `historialclinico` ADD CONSTRAINT `HistorialClinico_cliente_id_fkey` FOREIGN KEY (`ClientId`) REFERENCES `clientes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `historialclinico` ADD CONSTRAINT `HistorialClinico_dentista_id_fkey` FOREIGN KEY (`DentistId`) REFERENCES `doctor`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+    PRIMARY KEY (`Id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
