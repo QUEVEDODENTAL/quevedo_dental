@@ -1,9 +1,8 @@
 
 'use client'
 import React, { useState,useEffect } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import { PDFDocument, PDFViewer,} from '@react-pdf/renderer';
+import { PDFDownloadLink, PDFViewer,} from '@react-pdf/renderer';
 import HistorialClinicoPDF from './PdfHistorial';
 
 function HistorialClinicoForm() {
@@ -15,7 +14,7 @@ function HistorialClinicoForm() {
   const [birthdate, setBirthdate] = useState('');
   const [city, setCity] = useState('');
   const [consultation, setConsultation] = useState('');
-  const [diseasess, setDiseasess] = useState('');
+
   const [selectedDiseases, setSelectedDiseases] = useState([]);
   const [showForm, setShowForm] = useState(true); // Agregamos el estado para controlar si se muestra el formulario o la vista previa
   const [gumColoration, setGumColoration] = useState('');
@@ -26,7 +25,6 @@ function HistorialClinicoForm() {
   const [palateInjuries, setPalateInjuries] = useState('sin-ulceraciones');
   const [observationsPalate, setObservationsPalate] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [nameToothSelected, setNameToothSelected] = useState([]);
 
   const [currentDate, setCurrentDate] = useState(new Date());
   useEffect(() => {
@@ -62,8 +60,9 @@ function HistorialClinicoForm() {
     });
   };
 
- // const getNamesTeeth = () => {
-    const namesTeeth = {
+  
+    const nameestooth = () => {
+    return {
       11: 'Incisivo Central Superior Izquierdo',
       12: 'Incisivo Lateral Superior Izquierdo',
       13: 'Canino Superior Izquierdo',
@@ -97,12 +96,9 @@ function HistorialClinicoForm() {
       47: 'Segundo Molar Inferior Derecho',
       48: 'Tercer Molar Inferior Derecho',
     };
-  
-    //return namesTeeth;
-  //};
-  
-  //const namesTeeth = getNamesTeeth();
-  //console.log(namesTeeth);
+  };
+
+    const nameesTooth = nameestooth();
 
   const traducirColorEncias = (colorEncias) => {
     // Mapea los valores de color a sus nombres correspondientes
@@ -153,6 +149,7 @@ optionsColorationTongue =
     { name: 'cancer', label: 'Cáncer' },
     { name: 'convulsiones', label: 'Convulsiones' }
   ];
+ 
   const handleSubmit = (event) => {
     event.preventDefault();
     
@@ -160,13 +157,17 @@ optionsColorationTongue =
     // Verificar si todos los campos obligatorios están llenos
  // Validar si todos los campos obligatorios, excepto los relacionados con enfermedades, están llenos
  const requiredFields = [name, address, phone, ocupationSelected, birthdate, city, consultation,gumColoration, colorationTongueSelected, tongueUlcerations, palateColoring, palateInjuries];
- const hasEmptyFields = requiredFields.some(field => field.trim() === '');
+ const hasEmptyFields = requiredFields.some(field => field && field.trim() === '');
+
  if (!hasEmptyFields) {
   // Agregar la información de los dientes al objeto formData
-  const toothsSelected = toothSelected.map(numero => ({
-    numero: numero,
-    nombre: namesTeeth[numero]
-  }));
+  const toothSelectedUpdated = (toothSelected, namesTooth) => {
+    return toothSelected.map(numero => ({
+      numero: numero,
+      nombre: namesTooth[numero]
+    }));
+  };
+  
       const newData = {
         name,
         sex,
@@ -184,7 +185,7 @@ optionsColorationTongue =
         palateColoring,
         observationsPalate,
         currentDate,
-        dientes: toothSelected
+        toothSelected: toothSelectedUpdated(toothSelected, nameesTooth)
       };
       console.log(newData);
       // Generar el PDF
@@ -196,13 +197,7 @@ optionsColorationTongue =
   };
   
   
-  const generarTextoHistorial = () => {
-    const text = toothSelected.map(numero => {
-      const name = namesTeeth[numero];
-      return `Número: ${numero}, name: ${name}`;
-    }).join('\n');
-    return text;
-  };
+ 
   
   
   const handleSexChange = (e) => {
@@ -214,24 +209,25 @@ optionsColorationTongue =
  
   }
   const handleEnfermedadClick = (enfermedad) => {
+    // Verificar si la enfermedad ya está seleccionada
+    const isSelected = selectedDiseases.includes(enfermedad);
+    let updatedDiseases = [];
   
-      // Verificar si la enfermedad ya está seleccionada
-      const isSelected = formData.diseases.includes(enfermedad); // Usar formData en lugar de selectedDiseases
-      let updatedDiseases = [];
-    
-      if (isSelected) {
-        // Si la enfermedad ya está seleccionada, la eliminamos de la lista
-        updatedDiseases = formData.diseases.filter((e) => e !== enfermedad); // Usar formData en lugar de selectedDiseases
-      } else {
-        // Si la enfermedad no está seleccionada, la agregamos a la lista
-        updatedDiseases = [...formData.diseases, enfermedad]; // Usar formData en lugar de selectedDiseases
-      }
-    
-      // Actualizamos el estado con la lista de enfermedades seleccionadas
-      handleFormDataChange('diseases', updatedDiseases);
-    };
-    
-
+    if (isSelected) {
+      // Si la enfermedad ya está seleccionada, la eliminamos de la lista
+      updatedDiseases = selectedDiseases.filter((e) => e !== enfermedad);
+    } else {
+      // Si la enfermedad no está seleccionada, la agregamos a la lista
+      updatedDiseases = [...selectedDiseases, enfermedad];
+    }
+  
+    // Actualizamos el estado con la lista de enfermedades seleccionadas
+    setSelectedDiseases(updatedDiseases);
+    // Actualizamos el estado formData con las enfermedades seleccionadas
+    handleFormDataChange('diseases', updatedDiseases);
+  };
+  
+  
   const renderEnfermedadesButtons = () => {
     return (
       <div className="flex flex-wrap">
@@ -550,7 +546,10 @@ return (
           <div className="flex justify-between mt-4">
             <button type="button" onClick={prevPage} className=' p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300'>Anterior</button>
             <div className="mx-2"></div>
-            <button type="submit" onClick={handleSubmit} className=' p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300'>Generar PDF</button>
+            <button type="submit" onClick={handleSubmit} className=' p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300'>Generar PDF
+           </button>
+           
+           
           </div>
         </fieldset>
       </form>
@@ -558,11 +557,20 @@ return (
     {!showForm && (
       <div>
         <h2>Vista Previa del Historial Clínico</h2>
-        <PDFViewer>
-        <HistorialClinicoPDF datos={formData} currentDate={currentDate}/>
+        <PDFViewer style={{ width: '100%', height: '600px' }}>
+        <HistorialClinicoPDF datos={formData} currentDate={currentDate}  toothSelected={toothSelected}  nameestooth={nameesTooth} />
 
         </PDFViewer>
-        <button onClick={() => setShowForm(true)}>Regresar</button>
+        <button onClick={() => setShowForm(true)}className=' p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300'>Regresar</button> 
+        
+        
+        <PDFDownloadLink
+            document={<HistorialClinicoPDF formData={formData}currentDate={currentDate}  nameesTooth={nameesTooth} toothSelected={toothSelected}/>}
+            fileName="historial_clinico.pdf"
+          >
+            {({ loading }) => (loading ? 'Generando PDF...' : 'Descargar PDF')}
+          </PDFDownloadLink>
+          
       </div>
     )}
   </div>

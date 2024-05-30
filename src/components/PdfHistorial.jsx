@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 12,
-    fontWeight: 'heavy',
+    fontWeight: 'bold', // Corregir 'heavy' a 'bold'
   },
   value: {
     fontSize: 12,
@@ -55,6 +55,16 @@ const styles = StyleSheet.create({
   },
 });
 
+// Definir getNamesTooth en el mismo archivo
+const getNamesTooth = () => {
+  return {
+    1: 'Incisor',
+    2: 'Canine',
+    3: 'Molar',
+    // ...otros dientes
+  };
+};
+
 function HistorialClinicoPDF({ datos }) {
   if (!datos) {
     return (
@@ -68,11 +78,13 @@ function HistorialClinicoPDF({ datos }) {
     );
   }
 
+  const toothNames = getNamesTooth();
+
   return (
-    <Document>
+    <Document download="historial_clinico.pdf">
       <Page size="A4" style={styles.page}>
         <View>
-          <Text style={styles.header}>Historial Clinico</Text>
+          <Text style={styles.header}>Historial Clínico</Text>
         </View>
 
         <View style={styles.section}>
@@ -80,21 +92,19 @@ function HistorialClinicoPDF({ datos }) {
           <Text style={styles.label}>Nombre:<Text style={styles.value}> {datos.name}</Text></Text>
           <Text style={styles.label}>Sexo:<Text style={styles.value}> {datos.sex}</Text></Text>
           <Text style={styles.label}>Domicilio:<Text style={styles.value}> {datos.address}</Text></Text>
-          <Text style={styles.label}>Telefono: <Text style={styles.value}>{datos.phone}</Text></Text>
-          <Text style={styles.label}>Ocupacion:<Text style={styles.value}>{datos.ocupationSelected}</Text></Text>
+          <Text style={styles.label}>Teléfono: <Text style={styles.value}>{datos.phone}</Text></Text>
+          <Text style={styles.label}>Ocupación:<Text style={styles.value}>{datos.ocupationSelected}</Text></Text>
           <Text style={styles.label}>Fecha de Nacimiento:<Text style={styles.value}>{datos.birthdate}</Text></Text>
           <Text style={styles.label}>Ciudad:<Text style={styles.value}>{datos.city}</Text></Text>
-          <Text style={styles.label}>Diente:<Text style={styles.value}>{datos.toothSelected}</Text></Text>
         </View>
+        
         <View style={styles.section}>
-  <Text style={styles.title}>Consulta y Antecedentes</Text>
-  <Text style={styles.label}>Fecha: <Text style={styles.value}>{datos.currentDate.toLocaleDateString()}</Text></Text>
-
-  <Text style={styles.label}>Enfermedades:</Text>
-  {datos.diseases.map((enfermedad, index) => (
-    <Text key={index} style={styles.value}>{enfermedad}</Text>
-  ))}
-</View><View style={styles.section}>
+          <Text style={styles.title}>Consulta y Antecedentes</Text>
+          <Text style={styles.label}>Fecha: <Text style={styles.value}>{datos.currentDate.toLocaleDateString()}</Text></Text>
+          <Text style={styles.label}>Enfermedades: {datos.diseases.length > 0 ? datos.diseases.join(', ') : 'No hay enfermedades registradas'}</Text>
+        </View>
+        
+        <View style={styles.section}>
           <Text style={styles.title}>Observaciones</Text>
           <Text style={styles.label}>Coloración encías: <Text style={styles.value}>{datos.nameColorationGum}</Text></Text>
           <Text style={styles.label}>Motivo de consulta:<Text style={styles.value}> {datos.consultation}</Text></Text>
@@ -103,6 +113,13 @@ function HistorialClinicoPDF({ datos }) {
           <Text style={styles.label}>Observaciones Lengua: <Text style={styles.value}> {datos.observationsTongue}</Text></Text>
           <Text style={styles.label}>Coloración Paladar: <Text style={styles.value}>{datos.palateColoring}</Text></Text>
           <Text style={styles.label}>Observaciones paladar: <Text style={styles.value}>{datos.observationsPalate}</Text></Text>
+          <Text style={styles.label}>Dientes seleccionados:</Text>
+          <View>
+            {datos.toothSelected.map((tooth, index) => (
+             
+              <Text style={styles.value}>{tooth.numero}  {toothNames[tooth.numero]}</Text>
+            ))}
+          </View>
         </View>
       </Page>
     </Document>
