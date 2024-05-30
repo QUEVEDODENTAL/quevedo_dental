@@ -558,14 +558,14 @@ return (
       <div>
         <h2>Vista Previa del Historial Clínico</h2>
         <PDFViewer style={{ width: '100%', height: '600px' }}>
-        <HistorialClinicoPDF datos={formData} currentDate={currentDate}  toothSelected={toothSelected}  nameestooth={nameesTooth} />
+        <HistorialClinicoPDF datos={formData} currentDate={currentDate} toothSelectedUpdated= {{toothSelected}} />
 
         </PDFViewer>
         <button onClick={() => setShowForm(true)}className=' p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300'>Regresar</button> 
         
         
         <PDFDownloadLink
-            document={<HistorialClinicoPDF formData={formData}currentDate={currentDate}  nameesTooth={nameesTooth} toothSelected={toothSelected}/>}
+            document={<HistorialClinicoPDF formData={formData}currentDate={currentDate}  toothSelectedUpdated= {{toothSelected}}/>}
             fileName="historial_clinico.pdf"
           >
             {({ loading }) => (loading ? 'Generando PDF...' : 'Descargar PDF')}

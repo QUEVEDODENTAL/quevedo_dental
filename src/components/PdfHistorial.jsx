@@ -55,17 +55,9 @@ const styles = StyleSheet.create({
   },
 });
 
-// Definir getNamesTooth en el mismo archivo
-const getNamesTooth = () => {
-  return {
-    1: 'Incisor',
-    2: 'Canine',
-    3: 'Molar',
-    // ...otros dientes
-  };
-};
 
-function HistorialClinicoPDF({ datos }) {
+
+function HistorialClinicoPDF({ datos, nameestooth }) {
   if (!datos) {
     return (
       <Document>
@@ -78,7 +70,6 @@ function HistorialClinicoPDF({ datos }) {
     );
   }
 
-  const toothNames = getNamesTooth();
 
   return (
     <Document download="historial_clinico.pdf">
@@ -115,11 +106,18 @@ function HistorialClinicoPDF({ datos }) {
           <Text style={styles.label}>Observaciones paladar: <Text style={styles.value}>{datos.observationsPalate}</Text></Text>
           <Text style={styles.label}>Dientes seleccionados:</Text>
           <View>
-            {datos.toothSelected.map((tooth, index) => (
+            {datos.toothSelected.map((tooth) => (
              
-              <Text style={styles.value}>{tooth.numero}  {toothNames[tooth.numero]}</Text>
-            ))}
-          </View>
+              <Text style={styles.value}>{tooth.numero}</Text>
+              
+              ))}
+              
+             </View>
+             
+             {datos.toothSelected.map((tooth) => (
+                <Text style={styles.value}>{tooth.nombre}</Text>
+              ))}  
+          
         </View>
       </Page>
     </Document>
