@@ -4,9 +4,7 @@ Esta documentación proporciona una guía sobre cómo Instalar para gestionar y 
 ## Prerrequisitos
 
  * npm 10.5.2 o superior
- *  MySQL Workbench 8 o superior para (Base de Datos)
  *  MySQL Product Archives(Crear contraseña)
- *  git bash
  * Node
    
 ##Instalación de Linux en Windows con WSL
