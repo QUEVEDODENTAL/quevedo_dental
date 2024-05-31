@@ -332,7 +332,7 @@ const renderizarImagen = (numero) => {
     // Si la imagen existe, renderiza el contenido correspondiente
     if (imagenExiste) {
       return (
-        <div key={numero} className="mx-1 shadow-md cursor-pointer hover:text-purple-600 diente-grid" style={{ display: 'inline-block', textAlign: 'center', marginRight: '10px' }}>
+        <div key={numero} className="mx-1 shadow-md cursor-pointer hover:text-purple-600 " >
           <>
             <Image
               src={rutaImagen}
@@ -346,11 +346,9 @@ const renderizarImagen = (numero) => {
           </>
         </div>
       );
-    } else {
-      // Si la imagen no existe, busca el siguiente diente
-      return renderizarImagen(numero + 1);
     }
   }
+
   return null; // Retorna null si no se cumple ninguna condición o no hay imagen disponible
 };
 
@@ -368,7 +366,7 @@ const renderizarImagenSup = (numero) => {
     const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
 
     return (
-      <div key={numero} className="mx-1 shadow-md cursor-pointer hover:text-purple-600" style={{ display: 'inline-block', textAlign: 'center', marginRight: '10px' }}>
+      <div key={numero} className="mx-1 shadow-md cursor-pointer hover:text-purple-600">
         {imagenExiste && (
           <>
             <Image
@@ -587,5 +585,6 @@ return (
   </div>
 );
 };
+
 
 export default HistorialClinicoForm;
