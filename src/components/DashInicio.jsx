@@ -16,7 +16,7 @@ const DashInicio = () => {
         </Link>
       </div>
       <div className="bg-secondary-icon p-4 text-center rounded-lg transition-transform duration-300 hover:scale-105 relative h-48 flex flex-col justify-center items-center">
-        <Link href="/dashboard/historial">
+        <Link href="/dashboard/servicios">
           <div>
             <FaAddressBook className="mt-2 ml-2" size={30} />
             <h2 className="text-xl font-bold mb-2">Servicios</h2>
