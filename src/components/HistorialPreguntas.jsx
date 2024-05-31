@@ -288,70 +288,9 @@ optionsColorationTongue =
   };
   
 
-  const renderizarImagen = (numero) => {
-    const numeroDiente = numero + 31;
+  
 
-    if (
-      (numeroDiente >= 31 && numeroDiente <= 38) ||
-      (numeroDiente >= 41 && numeroDiente <= 48) ||
-      (numeroDiente >= 71 && numeroDiente <= 75) ||
-      (numeroDiente >= 81 && numeroDiente <= 85)
-    ) {
-      const rutaImagen = `/assets/dientes/dentadura-inf-${numeroDiente}.svg`;
-      const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
-
-      return (
-        <div key={numero} className="mx-1 shadow-md   cursor-pointer hover:text-purple-600">
-          {imagenExiste ? (
-            <>
-              <Image
-                src={rutaImagen}
-                alt={`Diente ${numeroDiente}`}
-                className={`diente ${toothSelected.includes(numeroDiente) ? 'seleccionado' : ''}`}
-                onClick={() => toggleToothSelected(numeroDiente)}
-                width="350" height="350"
-              />
-              <div className="numero-diente">{numeroDiente}</div>
-            </>
-          ) : null}
-        </div>
-      );
-    }
-    return null; // Retorna null si no se cumple ninguna condición
-};
-
-const renderizarImagenSup = (numero) => {
-    const numeroDiente = numero + 11;
-
-    if (
-      (numeroDiente >= 11 && numeroDiente <= 18) ||
-      (numeroDiente >= 21 && numeroDiente <= 28) ||
-      (numeroDiente >= 51 && numeroDiente <= 55) ||
-      (numeroDiente >= 61 && numeroDiente <= 65)
-    ) {
-      const rutaImagen =`/assets/dientes/dentadura-sup-${numeroDiente}.svg`;
-      const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
-
-      return (
-        <div key={numero} className="mx-1 shadow-md   cursor-pointer hover:text-purple-600">
-          
-          {imagenExiste ? (
-            <>
-              <Image 
-                src={rutaImagen}
-                alt={`Diente ${numeroDiente}`}
-                className={`diente ${toothSelected.includes(numeroDiente) ? 'seleccionado' : ''}`}
-                onClick={() => toggleToothSelected(numeroDiente)}
-                width="350" height="350"
-              />
-              <div className="numero-diente">{numeroDiente}</div>
-            </>
-          ) : null}
-        </div>
-      );
-    }
-    return null; // Retorna null si no se cumple ninguna condición
-};
+  
 // Dentro de la función renderColoracionLenguaOptions()
 const renderColorationTongueOptions = () => {
   return optionsColorationTongue.map((coloracion, index) => (
@@ -378,14 +317,84 @@ const renderColorationTongueOptions = () => {
     </div>
   ));
 };
+const renderizarImagen = (numero) => {
+  const numeroDiente = numero + 31;
+
+  if (
+    (numeroDiente >= 31 && numeroDiente <= 38) ||
+    (numeroDiente >= 41 && numeroDiente <= 48) ||
+    (numeroDiente >= 71 && numeroDiente <= 75) ||
+    (numeroDiente >= 81 && numeroDiente <= 85)
+  ) {
+    const rutaImagen = `/assets/dientes/dentadura-inf-${numeroDiente}.svg`;
+    const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
+
+    // Si la imagen existe, renderiza el contenido correspondiente
+    if (imagenExiste) {
+      return (
+        <div key={numero} className="mx-1 shadow-md cursor-pointer hover:text-purple-600 diente-grid" style={{ display: 'inline-block', textAlign: 'center', marginRight: '10px' }}>
+          <>
+            <Image
+              src={rutaImagen}
+              alt={`Diente ${numeroDiente}`}
+              className={`diente ${toothSelected.includes(numeroDiente) ? 'seleccionado' : ''}`}
+              onClick={() => toggleToothSelected(numeroDiente)}
+              width="30"
+              height="90"
+            />
+            <div className="numero-diente">{numeroDiente}</div>
+          </>
+        </div>
+      );
+    } else {
+      // Si la imagen no existe, busca el siguiente diente
+      return renderizarImagen(numero + 1);
+    }
+  }
+  return null; // Retorna null si no se cumple ninguna condición o no hay imagen disponible
+};
+
+
+const renderizarImagenSup = (numero) => {
+  const numeroDiente = numero + 11;
+
+  if (
+    (numeroDiente >= 11 && numeroDiente <= 18) ||
+    (numeroDiente >= 19 && numeroDiente <= 28) ||
+    (numeroDiente >= 51 && numeroDiente <= 55) ||
+    (numeroDiente >= 61 && numeroDiente <= 65)
+  ) {
+    const rutaImagen = `/assets//dientes/dentadura-sup-${numeroDiente}.svg`;
+    const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
+
+    return (
+      <div key={numero} className="mx-1 shadow-md cursor-pointer hover:text-purple-600" style={{ display: 'inline-block', textAlign: 'center', marginRight: '10px' }}>
+        {imagenExiste && (
+          <>
+            <Image
+              src={rutaImagen}
+              alt={`Diente ${numeroDiente}`}
+              className={`diente ${toothSelected.includes(numeroDiente) ? 'seleccionado' : ''}`}
+              onClick={() => toggleToothSelected(numeroDiente)}
+              width="30"
+              height="90"
+            />
+            <div className="numero-diente">{numeroDiente}</div>
+          </>
+        )}
+      </div>
+    );
+  }
+  return null; // Retorna null si no se cumple ninguna condición o no hay imagen disponible
+};
 
 
 
 return (
-  <div className="max-w-md">
-    <div className="flex items-center justify-center mb-4 border-black">
+  <div className="mb-4">
+   
       <h2 className="ml-2 text-lg font-semibold">Historial Clínico/Preguntas</h2>
-    </div>
+  
     <div className="current-date font-semibold">
     <p>Fecha actual: {currentDate.toLocaleDateString('es-MX')}</p>
     </div>
@@ -393,11 +402,11 @@ return (
       <form onSubmit={handleSubmit} className="max-w-md">
         <fieldset>
           <legend className="text-lg font-semibold">Información Personal</legend>
-          <div className="form-control mb-3">
+          <div className="mb-4">
             <label htmlFor="name" className="border-black">Nombre:</label>
             <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} className="border rounded-md p-2 w-full" placeholder="Ingrese el nombre completo" />
           </div>
-          <div className="form-control mb-3">
+          <div className="mb-4">
             <label className="">Sexo:</label>
             <label className="inline-flex items-center">
               <input type="checkbox" value="masculino" checked={sex === 'masculino'} onChange={handleSexChange} className="form-checkbox h-5 w-5 text-red-600 rounded-full" />
@@ -459,24 +468,26 @@ return (
         <fieldset>
           <legend className="text-lg font-semibold">Odontograma</legend>
           <legend className="text-lg font-semibold">Dientes Superiores</legend>
-          <div className="grid grid-cols-8 gap-10 justify-center">
-            <div className="dientes-grid">
+          <div className="flex flex-wrap  flex flex-column gap-2.5  items-center justify-center contenedor-filas-dientes ">
+      
               {[...Array(105).keys()].map((numero) => (
                 <div key={`sup-${numero}`} className="m-2 px-1">
                   {renderizarImagenSup(numero)}
                 </div>
               ))}
-            </div>
+        
           </div>
+          </fieldset>
+          <fieldset>
           <legend className="text-lg font-semibold">Dientes Inferiores</legend>
-          <div className="grid grid-cols-8 gap-10 justify-center">
-            <div className="dientes-grid">
+          <div className="flex flex-wrap  gap-2.5 items-center justify-center">
+        
               {[...Array(105).keys()].map((numero) => (
                 <div key={`inf-${numero}`} className="m-2 px-1">
                   {renderizarImagen(numero)}
                 </div>
               ))}
-            </div>
+          
           </div>
         </fieldset>
         <div className="flex justify-between mt-4">

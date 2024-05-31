@@ -28,7 +28,7 @@
 .custom-shadowa {
   box-shadow: 0px 3px 8px rgba(26, 113, 171, 0.50);
 } */
-
+/*  */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -66,4 +66,7 @@
   box-shadow: 0 0 5px #4c66af; /* Agrega una sombra al diente seleccionado */
 }
 
-
+/* Estilos CSS */
+.diente {
+  margin-right: 1px; /* Reducir el margen derecho entre los dientes */
+}
