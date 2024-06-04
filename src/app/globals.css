@@ -22,3 +22,9 @@
   }
 }
 
+
+
+.diente.seleccionado {
+  border-color: #6a4caf; /* Cambia el color del borde cuando está seleccionado */
+  box-shadow: 0 0 5px #4c66af; /* Agrega una sombra al diente seleccionado */
+}
