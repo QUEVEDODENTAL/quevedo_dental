@@ -121,10 +121,6 @@ optionsColorationTongue =
   [
     "Blanca", "Gris", "Rosa", "Roja", 
   ];
-  const opcionesColoracionLengua = 
-  [
-    "Blanca", "Gris", "Rosa", "Roja", 
-  ];
   const optionsPalateColoring = [
     "Rosado pálido", "Rojo intenso", "Blanco brillante", "Parduzco oscuro", "Morado oscuro", "Grisáceo o negro"
   ];
@@ -389,10 +385,10 @@ const renderizarImagenSup = (numero) => {
 
 
 return (
-  <div className="mb-4">
-   
-      <h2 className="ml-2 text-lg font-semibold">Historial Clínico/Preguntas</h2>
-  
+  <div className="mb-4 pt-5">
+    <div className=' justify-center text-center'>
+      <h2 className="text-3xl font-bold flex justify-center mb-[20px]">Historial Clínico/Preguntas</h2>
+    </div>
     <div className="current-date font-semibold">
     <p>Fecha actual: {currentDate.toLocaleDateString('es-MX')}</p>
     </div>
@@ -466,8 +462,7 @@ return (
         <fieldset>
           <legend className="text-lg font-semibold">Odontograma</legend>
           <legend className="text-lg font-semibold">Dientes Superiores</legend>
-          <div className="flex flex-wrap  flex flex-column gap-2.5  items-center justify-center contenedor-filas-dientes ">
-      
+          <div className="flex flex-wrap flex-column gap-2.5  items-center justify-center contenedor-filas-dientes ">
               {[...Array(105).keys()].map((numero) => (
                 <div key={`sup-${numero}`} className="m-2 px-1">
                   {renderizarImagenSup(numero)}
