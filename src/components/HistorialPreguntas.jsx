@@ -402,7 +402,7 @@ const teeth = [
   { number: 26, src: "/assets/dientes/dentadura-sup-26.svg" },
   { number: 27, src: "/assets/dientes/dentadura-sup-27.svg" },
   { number: 28, src: "/assets/dientes/dentadura-sup-28.svg" },
-  //
+  // DIENTES SUPERIORES
 
   { number: 48, src: "/assets/dientes/dentadura-inf-48.svg" },
   { number: 47, src: "/assets/dientes/dentadura-inf-47.svg" },
@@ -420,7 +420,7 @@ const teeth = [
   { number: 36, src: "/assets/dientes/dentadura-inf-36.svg" },
   { number: 37, src: "/assets/dientes/dentadura-inf-37.svg" },
   { number: 38, src: "/assets/dientes/dentadura-inf-38.svg" },
-  //
+  // DIENTES INFERIORES
 ];
 
 const Tooth = ({ number, src }) => (
@@ -433,7 +433,10 @@ const Tooth = ({ number, src }) => (
   
     return (
       <div className="mb-4">
-        <h2 className="ml-2 text-lg font-semibold">Historial Clínico/Preguntas</h2>
+
+        <div className='py-4'>
+        <h2 className="text-3xl font-semibold text-center">Historial Clínico/Preguntas</h2>
+        </div>
   
         <div className="current-date font-semibold">
           <p>Fecha actual: {currentDate.toLocaleDateString('es-MX')}</p>
@@ -494,8 +497,6 @@ const Tooth = ({ number, src }) => (
               <textarea id="Consultation" value={consultation} onChange={(e) => setConsultation(e.target.value)} rows={2} className="border rounded-md p-2 w-full" style={{ maxWidth: '650px', maxHeight: '200px', resize: 'none' }} placeholder="Describe el motivo de consulta aquí..." />
             </div>
           </fieldset>
-          <fieldset>
-            </fieldset>
   
             <fieldset>
           <div className="mb-4">
@@ -512,23 +513,31 @@ const Tooth = ({ number, src }) => (
       </form>
         )}
   {currentPage === 2 && (
-  <div className="flex flex-col items-center p-4 ">
-      <div className="bg-green-700 text-white px-4 py-2 rounded mb-4">
-        Odontograma
+  <div className="flex flex-col items-center p-4">
+    <div className="px-4 py-2 rounded mb-4">
+      Odontograma
+    </div>
+    <div className="flex flex-col space-y-4">
+      <div className="flex justify-center space-x-2">
+        {teeth.slice(0, 16).map((tooth, index) => (
+          <Tooth key={index} number={tooth.number} src={tooth.src} />
+        ))}
       </div>
-      <div className="flex flex-col space-y-4">
-        <div className="flex justify-center space-x-2">
-          {teeth.slice(0, 16).map((tooth, index) => (
-            <Tooth key={index} number={tooth.number} src={tooth.src} />
-          ))}
-        </div>
-        <div className="flex justify-center space-x-2">
-          {teeth.slice(16).map((tooth, index) => (
-            <Tooth key={index} number={tooth.number} src={tooth.src} />
-          ))}
-        </div>
+      <div className="flex justify-center space-x-2">
+        {teeth.slice(16).map((tooth, index) => (
+          <Tooth key={index} number={tooth.number} src={tooth.src} />
+        ))}
       </div>
     </div>
+    <div className="flex justify-between w-full mt-4">
+      <button type="button" onClick={prevPage} className="w-1/2 p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300 mr-2">
+        Anterior
+      </button>
+      <button type="button" onClick={nextPage} className="w-1/2 p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300 ml-2">
+        Siguiente
+      </button>
+    </div>
+  </div>
   )}
 
 {currentPage === 3 && (
@@ -605,6 +614,7 @@ const Tooth = ({ number, src }) => (
         </fieldset>
       </form>
     )}
+    
     {!showForm && (
       <div>
         <h2>Vista Previa del Historial Clínico</h2>

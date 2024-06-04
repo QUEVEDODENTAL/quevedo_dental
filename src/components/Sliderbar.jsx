@@ -73,8 +73,8 @@ const SliderBar = ({ isSliderVisible, toggleSliderVisibility }) => {
           </li>
           <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
             <FaIdCardAlt />
-            <Link href="/dashboard/cuestionario" className="block ml-2 transition-all hover:text-yellow-500" onClick={() => handleLinkClick('cuestionario')}>
-              {loading === 'cuestionario' ? 'Cargando...' : 'Cuestionario'}
+            <Link href="/dashboard/historial" className="block ml-2 transition-all hover:text-yellow-500" onClick={() => handleLinkClick('historial')}>
+              {loading === 'historial' ? 'Cargando...' : 'Historial'}
             </Link>
           </li>
           <li className="p-4 pl-10 flex items-center transition-transform duration-300 ease-in-out hover:scale-110">
