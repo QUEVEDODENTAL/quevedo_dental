@@ -424,9 +424,9 @@ const teeth = [
 ];
 
 const Tooth = ({ number, src }) => (
-  <div className="flex flex-col items-center shadow-md ">
-    <div className="text-m cursor-pointer hover:text-purple-600 ">{number}</div>
-    <Image width="30" height="90" src={src} alt={`Diente ${number}`} />
+  <div className="flex flex-col items-center shadow-md cursor-pointer hover:bg-secondary-font p-2 rounded transition-colors duration-300">
+    <div className="text-m hover:text-purple-600">{number}</div>
+    <Image width={30} height={90} src={src} alt={`Diente ${number}`} />
   </div>
 );
 
@@ -447,7 +447,7 @@ const Tooth = ({ number, src }) => (
          
               <legend className="text-lg font-semibold">Información Personal</legend>
                <label htmlFor="name" className="border-black">Nombre:</label>
-            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} className="border rounded-md p-2 w-full" placeholder="Ingrese el nombre completo" />
+            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} className="border rounded-md p-2 w-full mb-4" placeholder="Ingrese el nombre completo" />
         
           <div className="mb-4">
             <label className="">Sexo:</label>
@@ -508,7 +508,7 @@ const Tooth = ({ number, src }) => (
                   </label>
                 ))}
               </div>
-          <button type="button" onClick={nextPage} className=' p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300'>Siguiente</button>
+          <button type="button" onClick={nextPage} className=' p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300 w-full'>Siguiente</button>
         </fieldset>
       </form>
         )}
@@ -518,17 +518,17 @@ const Tooth = ({ number, src }) => (
       Odontograma
     </div>
     <div className="flex flex-col space-y-4">
-      <div className="flex justify-center space-x-2">
-        {teeth.slice(0, 16).map((tooth, index) => (
-          <Tooth key={index} number={tooth.number} src={tooth.src} />
-        ))}
-      </div>
-      <div className="flex justify-center space-x-2">
-        {teeth.slice(16).map((tooth, index) => (
-          <Tooth key={index} number={tooth.number} src={tooth.src} />
-        ))}
-      </div>
-    </div>
+  <div className="flex justify-center space-x-2">
+    {teeth.slice(0, 16).map((tooth, index) => (
+      <Tooth key={index} number={tooth.number} src={tooth.src} />
+    ))}
+  </div>
+  <div className="flex justify-center space-x-2">
+    {teeth.slice(16).map((tooth, index) => (
+      <Tooth key={index} number={tooth.number} src={tooth.src} />
+    ))}
+  </div>
+</div>
     <div className="flex justify-between w-full mt-4">
       <button type="button" onClick={prevPage} className="w-1/2 p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300 mr-2">
         Anterior
