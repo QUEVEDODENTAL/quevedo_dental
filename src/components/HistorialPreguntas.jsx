@@ -4,7 +4,6 @@ import React, { useState,useEffect } from 'react';
 import Image from 'next/image';
 import { PDFDownloadLink, PDFViewer,} from '@react-pdf/renderer';
 import HistorialClinicoPDF from './PdfHistorial';
-import { saveAs } from 'file-saver';
 import { FaPrint } from 'react-icons/fa';
 
 function HistorialClinicoForm() {
