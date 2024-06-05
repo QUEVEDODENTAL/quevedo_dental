@@ -425,7 +425,7 @@ const teeth = [
 
 const Tooth = ({ number, src }) => (
   <div className="flex flex-col items-center shadow-md cursor-pointer hover:bg-secondary-font p-2 rounded transition-colors duration-300">
-    <div className="text-m hover:text-purple-600">{number}</div>
+    <div className="text-m">{number}</div>
     <Image width={30} height={90} src={src} alt={`Diente ${number}`} />
   </div>
 );
