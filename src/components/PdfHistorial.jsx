@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
   page: {
@@ -53,11 +53,19 @@ const styles = StyleSheet.create({
   tableCell: {
     fontSize: 12,
   },
+
+    // Estilos existentes...
+    toothImage: {
+      width: 30, // Ancho de la imagen del diente
+      height: 90, // Altura de la imagen del diente
+      marginRight: 5, // Espacio entre las imágenes de los dientes
+    },
+ 
 });
 
 
 
-function HistorialClinicoPDF({ datos, nameestooth }) {
+function HistorialClinicoPDF({ datos, toothImage }) {
   if (!datos) {
     return (
       <Document>
@@ -91,7 +99,8 @@ function HistorialClinicoPDF({ datos, nameestooth }) {
         
         <View style={styles.section}>
           <Text style={styles.title}>Consulta y Antecedentes</Text>
-          <Text style={styles.label}>Fecha: <Text style={styles.value}>{datos.currentDate.toLocaleDateString()}</Text></Text>
+          <Text style={styles.label}>Fecha: <Text style={styles.value}>{datos.currentDate ? new Date(datos.currentDate).toLocaleDateString() : 'Fecha no disponible'}</Text></Text>
+
           <Text style={styles.label}>Enfermedades: {datos.diseases.length > 0 ? datos.diseases.join(', ') : 'No hay enfermedades registradas'}</Text>
         </View>
         
@@ -104,24 +113,26 @@ function HistorialClinicoPDF({ datos, nameestooth }) {
           <Text style={styles.label}>Observaciones Lengua: <Text style={styles.value}> {datos.observationsTongue}</Text></Text>
           <Text style={styles.label}>Coloración Paladar: <Text style={styles.value}>{datos.palateColoring}</Text></Text>
           <Text style={styles.label}>Observaciones paladar: <Text style={styles.value}>{datos.observationsPalate}</Text></Text>
-          <Text style={styles.label}>Dientes seleccionados:</Text>
-          <View>
-            {datos.toothSelected.map((tooth) => (
-             
-              <Text style={styles.value}>{tooth.numero}</Text>
-              
-              ))}
-              
-             </View>
-             
-             {datos.toothSelected.map((tooth) => (
-                <Text style={styles.value}>{tooth.nombre}</Text>
-              ))}  
-          
+
+          <Text style={styles.title}>Dientes seleccionados</Text>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+            {datos.toothSelected && datos.toothSelected.map((tooth) => (
+              <View key={tooth.numero} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
+
+                
+                <Text style={styles.label}>Numero de diente: <Text style={styles.value}>{tooth.numero}</Text></Text>
+                <Text style={styles.label}> Nombre del diente:  <Text style={styles.value}>{tooth.nombre}</Text> </Text>
+                {tooth.imagen && <Image src={tooth.imagen} style={styles.toothImage} />}
+                {/* //Image src={dienteSeleccionado.imagen} style={styles.toothImage} */}
+              </View>
+            ))}
+          </View>
         </View>
+      
       </Page>
     </Document>
   );
 }
 
 export default HistorialClinicoPDF;
+

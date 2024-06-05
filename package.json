@@ -15,6 +15,7 @@
     "@react-pdf/renderer": "^3.4.4",
     "@vercel/blob": "^0.22.3",
     "bcrypt": "^5.1.1",
+    "file-saver": "^2.0.5",
     "jspdf": "^2.5.1",
     "mysql": "^2.18.1",
     "next": "^14.2.3",

@@ -3,6 +3,8 @@
 import React, { useState,useEffect } from 'react';
 import Image from 'next/image';
 import { PDFDownloadLink, PDFViewer,} from '@react-pdf/renderer';
+import HistorialClinicoPDF from './PdfHistorial';
+import { saveAs } from 'file-saver';
 
 function HistorialClinicoForm() {
   const [name, setName] = useState('');
@@ -13,6 +15,7 @@ function HistorialClinicoForm() {
   const [birthdate, setBirthdate] = useState('');
   const [city, setCity] = useState('');
   const [consultation, setConsultation] = useState('');
+  const [toothImage, setToothImage] = useState(null);
 
   const [selectedDiseases, setSelectedDiseases] = useState([]);
   const [showForm, setShowForm] = useState(true); // Agregamos el estado para controlar si se muestra el formulario o la vista previa
@@ -149,54 +152,55 @@ optionsColorationTongue =
     { name: 'convulsiones', label: 'Convulsiones' }
   ];
  
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    
-    
-    // Verificar si todos los campos obligatorios están llenos
- // Validar si todos los campos obligatorios, excepto los relacionados con enfermedades, están llenos
- const requiredFields = [name, address, phone, ocupationSelected, birthdate, city, consultation,gumColoration, colorationTongueSelected, tongueUlcerations, palateColoring, palateInjuries];
- const hasEmptyFields = requiredFields.some(field => field && field.trim() === '');
-
- if (!hasEmptyFields) {
-  // Agregar la información de los dientes al objeto formData
-  const toothSelectedUpdated = (toothSelected, namesTooth) => {
-    return toothSelected.map(numero => ({
-      numero: numero,
-      nombre: namesTooth[numero]
-    }));
-  };
-  
-      const newData = {
-        name,
-        sex,
-        address,
-        phone,
-        ocupationSelected,
-        birthdate,
-        city,
-        consultation,
-        diseases: selectedDiseases,
-        nameColorationGum,
-        colorationTongueSelected,
-        tongueUlcerations,
-        observationsTongue,
-        palateColoring,
-        observationsPalate,
-        currentDate,
-        toothSelected: toothSelectedUpdated(toothSelected, nameesTooth)
-      };
-      console.log(newData);
-      // Generar el PDF
-      setShowForm(false); // Cambia showForm a false para mostrar la vista previa del PDF
-      setFormData(newData); // Actualiza el estado formData con los datos del formulario
-    } else {
-      alert("Por favor complete todos los campos obligatorios.");
-    }console.log(formData);
-  };
-  
-  
  
+    
+// Asumiendo que tienes una variable state llamada 'toothImage' que almacena la imagen de los dientes
+// Asegúrate de actualizar 'toothImage' cuando el usuario seleccione o cargue una imagen
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+  
+  // Verificar si todos los campos obligatorios están llenos
+  const requiredFields = [name, address, phone, ocupationSelected, birthdate, city, consultation,gumColoration, colorationTongueSelected, tongueUlcerations, palateColoring, palateInjuries];
+  const hasEmptyFields = requiredFields.some(field => field && field.trim() === '');
+
+  if (!hasEmptyFields) {
+    const toothSelectedUpdated = (toothSelected, namesTooth) => {
+      return toothSelected.map(numero => ({
+        numero: numero,
+        nombre: namesTooth[numero]
+      }));
+    };
+  
+    const newData = {
+      name,
+      sex,
+      address,
+      phone,
+      ocupationSelected,
+      birthdate,
+      city,
+      consultation,
+      diseases: selectedDiseases,
+      nameColorationGum,
+      colorationTongueSelected,
+      tongueUlcerations,
+      observationsTongue,
+      palateColoring,
+      observationsPalate,
+      currentDate,
+      toothSelected: toothSelectedUpdated(toothSelected, nameesTooth),
+      toothImage: toothImage
+    };
+
+    // Generar el PDF
+    setShowForm(false);
+    setFormData(newData);
+  } else {
+    alert("Por favor complete todos los campos obligatorios.");
+  }
+};
+
   
   
   const handleSexChange = (e) => {
@@ -268,15 +272,28 @@ optionsColorationTongue =
     const index = toothSelected.indexOf(numeroDiente);
     if (index === -1) {
       // Si no está seleccionado, agrégalo al array
-      setToothSelected([...toothSelected, numeroDiente]);
+      const updatedToothSelected = [...toothSelected, numeroDiente];
+      const updatedToothData = updatedToothSelected.map(numero => ({
+        numero: numero,
+        nombre: nameesTooth[numero],
+        imagen: teeth.find(tooth => tooth.number === numero).src// Busca la ruta de la imagen en el array teeth
+      }));
+      setToothSelected(updatedToothSelected);
+      setToothImage(updatedToothData);
     } else {
       // Si ya está seleccionado, elimínalo del array
       const newToothSelected = [...toothSelected];
       newToothSelected.splice(index, 1);
+      const updatedToothData = newToothSelected.map(numero => ({
+        numero: numero,
+        nombre: nameesTooth[numero],
+        imagen: teeth.find(tooth => tooth.number === numero).src // Busca la ruta de la imagen en el array teeth
+      }));
       setToothSelected(newToothSelected);
+      setToothImage(updatedToothData);
     }
   };
-
+  
 
 
   const handleGumColorationChange = (color) => {
@@ -287,8 +304,24 @@ optionsColorationTongue =
   };
   
 
-  
+  const handleDownloadPDF = () => {
+    // Genera el PDF utilizando el estado formData actualizado
+    const pdfDoc = <HistorialClinicoPDF datos={formData} currentDate={currentDate} toothSelectedUpdated= {{toothSelected}} />
+    // Convierte el PDF a un Blob
+    pdfDoc.toBlob().then(blob => {
+      // Descarga automáticamente el Blob como un archivo PDF
+      saveAs(blob, 'historial_clinico.pdf');
+    });
+  };
 
+  // Función para guardar el PDF
+  const handleSavePDF = () => {
+    // Renderizar el PDF
+    const pdfBlob = HistorialClinicoPDF.renderAsBlob({ datos: formData, currentDate, toothSelected });
+
+    // Guardar el Blob como archivo PDF
+    saveAs(pdfBlob, 'historial_clinico.pdf');
+  };
   
 // Dentro de la función renderColoracionLenguaOptions()
 const renderColorationTongueOptions = () => {
@@ -316,72 +349,7 @@ const renderColorationTongueOptions = () => {
     </div>
   ));
 };
-const renderizarImagen = (numero) => {
-  const numeroDiente = numero + 31;
 
-  if (
-    (numeroDiente >= 31 && numeroDiente <= 38) ||
-    (numeroDiente >= 41 && numeroDiente <= 48) ||
-    (numeroDiente >= 71 && numeroDiente <= 75) ||
-    (numeroDiente >= 81 && numeroDiente <= 85)
-  ) {
-    const rutaImagen = `/assets/dientes/dentadura-inf-${numeroDiente}.svg`;
-    const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
-
-        return (
-          <div key={numero} className="mx-1 shadow-md cursor-pointer hover:text-purple-600">
-            {imagenExiste && (
-              <>
-                <Image
-                  src={rutaImagen}
-                  alt={`Diente ${numeroDiente}`}
-                  className={`diente ${toothSelected.includes(numeroDiente) ? 'seleccionado' : ''}`}
-                  onClick={() => toggleToothSelected(numeroDiente)}
-                  width="30"
-                  height="90"
-                />
-                <div className="numero-diente">{numeroDiente}</div>
-              </>
-            )}
-          </div>
-        );
-      }
-      return null; // Retorna null si no se cumple ninguna condición o no hay imagen disponible
-    };
-    
-
-const renderizarImagenSup = (numero) => {
-  const numeroDiente = numero + 11;
-
-  if (
-    (numeroDiente >= 11 && numeroDiente <= 18) ||
-    (numeroDiente >= 19 && numeroDiente <= 28) ||
-    (numeroDiente >= 51 && numeroDiente <= 55) ||
-    (numeroDiente >= 61 && numeroDiente <= 65)
-  ) {
-    const rutaImagen = `/assets//dientes/dentadura-sup-${numeroDiente}.svg`;
-    const imagenExiste = true; // Aquí debes ajustar la lógica para verificar si la imagen existe realmente
-
-    return (
-      <div key={numero} className="mx-1 shadow-md cursor-pointer hover:text-purple-600">
-        {imagenExiste && (
-          <>
-            <Image
-              src={rutaImagen}
-              alt={`Diente ${numeroDiente}`}
-              className={`diente ${toothSelected.includes(numeroDiente) ? 'seleccionado' : ''}`}
-              onClick={() => toggleToothSelected(numeroDiente)}
-              width="30"
-              height="90"
-            />
-            <div className="numero-diente">{numeroDiente}</div>
-          </>
-        )}
-      </div>
-    );
-  }
-  return null; // Retorna null si no se cumple ninguna condición o no hay imagen disponible
-};
 
 
 
@@ -423,12 +391,33 @@ const teeth = [
   // DIENTES INFERIORES
 ];
 
-const Tooth = ({ number, src }) => (
-  <div className="flex flex-col items-center shadow-md cursor-pointer hover:bg-secondary-font p-2 rounded transition-colors duration-300">
+// Dentro del componente Tooth
+
+const Tooth = ({ number, src, isSelected, onClick }) => (
+  <div 
+    className={`flex flex-col items-center shadow-md cursor-pointer hover:bg-secondary-font p-2 rounded transition-colors duration-300 ${isSelected ? 'bg-blue-200' : ''}`}
+    onClick={onClick}
+  >
     <div className="text-m">{number}</div>
     <Image width={30} height={90} src={src} alt={`Diente ${number}`} />
+    {isSelected && <Image width={30} height={90} src={src} alt={`Diente ${number} seleccionado`} />}
   </div>
 );
+
+// Dentro del componente principal donde renderizas los dientes
+
+<div className="flex justify-center space-x-2">
+  {teeth.map((tooth, index) => (
+    <Tooth 
+      key={index} 
+      number={tooth.number} 
+      src={tooth.src} 
+      isSelected={toothSelected.includes(tooth.number)} 
+      onClick={() => toggleToothSelected(tooth.number)} 
+    />
+  ))}
+</div>
+
 
   
     return (
@@ -512,23 +501,22 @@ const Tooth = ({ number, src }) => (
         </fieldset>
       </form>
         )}
-  {currentPage === 2 && (
-  <div className="flex flex-col items-center p-4">
-    <div className="px-4 py-2 rounded mb-4">
+        {currentPage === 2 && (
+        <div className="flex flex-col items-center p-4">
+          <div className="px-4 py-2 rounded mb-4">
       Odontograma
-    </div>
-    <div className="flex flex-col space-y-4">
-  <div className="flex justify-center space-x-2">
-    {teeth.slice(0, 16).map((tooth, index) => (
-      <Tooth key={index} number={tooth.number} src={tooth.src} />
-    ))}
-  </div>
-  <div className="flex justify-center space-x-2">
-    {teeth.slice(16).map((tooth, index) => (
-      <Tooth key={index} number={tooth.number} src={tooth.src} />
-    ))}
-  </div>
-</div>
+      </div>
+      <div className="flex flex-col space-y-4">
+        <div className="flex justify-center space-x-2">
+          {teeth.slice(0, 16).map((tooth, index) => (
+          <Tooth key={index} number={tooth.number} src={tooth.src} onClick={() => toggleToothSelected(tooth.number)} />
+          ))}
+          </div>
+          <div className="flex justify-center space-x-2">
+            {teeth.slice(16).map((tooth, index) => (
+            <Tooth  key={index} number={tooth.number} src={tooth.src} onClick={() => toggleToothSelected(tooth.number)} />))}
+            </div>
+            </div>
     <div className="flex justify-between w-full mt-4">
       <button type="button" onClick={prevPage} className="w-1/2 p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300 mr-2">
         Anterior
@@ -602,15 +590,8 @@ const Tooth = ({ number, src }) => (
             <div className="mx-2"></div>
             <button type="submit" onClick={handleSubmit} className=' p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300'>Generar PDF
            </button>
-              <PDFDownloadLink
-            document={<HistorialClinicoPDF formData={formData}currentDate={currentDate}  toothSelectedUpdated= {{toothSelected}}/>}
-            fileName="historial_clinico.pdf"
-          >
-            {({ loading }) => (loading ? 'Generando PDF...' : 'Descargar PDF')}
-          </PDFDownloadLink>
-          
-           
-          </div>
+           </div>
+        
         </fieldset>
       </form>
     )}
@@ -619,7 +600,7 @@ const Tooth = ({ number, src }) => (
       <div>
         <h2>Vista Previa del Historial Clínico</h2>
         <PDFViewer style={{ width: '100%', height: '600px' }}>
-        <HistorialClinicoPDF datos={formData} currentDate={currentDate} toothSelectedUpdated= {{toothSelected}} />
+        <HistorialClinicoPDF datos={formData} currentDate={currentDate} toothSelectedUpdated= {{toothSelected}} toothImage={toothImage} />
 
         </PDFViewer>
         <button onClick={() => setShowForm(true)}className=' p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300'>Regresar</button> 
@@ -629,6 +610,7 @@ const Tooth = ({ number, src }) => (
       </div>
     )}
   </div>
+  
 );
 };
 
