@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { PDFDownloadLink, PDFViewer,} from '@react-pdf/renderer';
 import HistorialClinicoPDF from './PdfHistorial';
 import { saveAs } from 'file-saver';
+import { FaPrint } from 'react-icons/fa';
 
 function HistorialClinicoForm() {
   const [name, setName] = useState('');
@@ -196,6 +197,7 @@ const handleSubmit = (event) => {
     // Generar el PDF
     setShowForm(false);
     setFormData(newData);
+   // generateAndDownloadPDF(newData); 
   } else {
     alert("Por favor complete todos los campos obligatorios.");
   }
@@ -304,24 +306,25 @@ const handleSubmit = (event) => {
   };
   
 
-  const handleDownloadPDF = () => {
-    // Genera el PDF utilizando el estado formData actualizado
-    const pdfDoc = <HistorialClinicoPDF datos={formData} currentDate={currentDate} toothSelectedUpdated= {{toothSelected}} />
-    // Convierte el PDF a un Blob
-    pdfDoc.toBlob().then(blob => {
-      // Descarga automáticamente el Blob como un archivo PDF
-      saveAs(blob, 'historial_clinico.pdf');
-    });
-  };
+  // const generateAndDownloadPDF = (data) => {
+  //   // Renderiza el PDF con los datos proporcionados
+  //   const pdfDoc = <HistorialClinicoPDF datos={data} currentDate={currentDate} toothSelectedUpdated={{ toothSelected }} />;
+  
+  //   // Convierte el PDF a un Blob
+  //   pdfDoc.toBlob().then(blob => {
+  //     // Descarga automáticamente el Blob como un archivo PDF
+  //     saveAs(blob, 'historial_clinico.pdf');
+  //   });
+  // };
 
-  // Función para guardar el PDF
-  const handleSavePDF = () => {
-    // Renderizar el PDF
-    const pdfBlob = HistorialClinicoPDF.renderAsBlob({ datos: formData, currentDate, toothSelected });
+  // // Función para guardar el PDF
+  // const handleSavePDF = () => {
+  //   // Renderizar el PDF
+  //   const pdfBlob = HistorialClinicoPDF.renderAsBlob({ datos: formData, currentDate, toothSelected });
 
-    // Guardar el Blob como archivo PDF
-    saveAs(pdfBlob, 'historial_clinico.pdf');
-  };
+  //   // Guardar el Blob como archivo PDF
+  //   saveAs(pdfBlob, 'historial_clinico.pdf');
+  // };
   
 // Dentro de la función renderColoracionLenguaOptions()
 const renderColorationTongueOptions = () => {
@@ -601,8 +604,17 @@ const Tooth = ({ number, src, isSelected, onClick }) => (
         <h2>Vista Previa del Historial Clínico</h2>
         <PDFViewer style={{ width: '100%', height: '600px' }}>
         <HistorialClinicoPDF datos={formData} currentDate={currentDate} toothSelectedUpdated= {{toothSelected}} toothImage={toothImage} />
-
         </PDFViewer>
+
+        <div className="flex flex-col items-center justify-center h-screen w-full text-base my-5">
+        <PDFDownloadLink document={<HistorialClinicoPDF datos={formData} currentDate={currentDate} toothSelectedUpdated= {{toothSelected}} toothImage={toothImage} />} fileName="historial_clinico.pdf">
+      {({ loading }) => (
+        <button disabled={loading} className="mb-2 w-full px-24 py-2 min-w-[50%] md:min-w-[200px] bg-secondary-button text-white rounded hover:bg-secondary-dash hover:text-primary-white transition-colors duration-300">
+          <FaPrint className="inline mr-2" /> Descargar PDF
+        </button>
+      )}
+    </PDFDownloadLink>
+  </div>
         <button onClick={() => setShowForm(true)}className=' p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300'>Regresar</button> 
         
         

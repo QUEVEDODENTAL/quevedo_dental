@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
   page: {
@@ -53,19 +53,11 @@ const styles = StyleSheet.create({
   tableCell: {
     fontSize: 12,
   },
-
-    // Estilos existentes...
-    toothImage: {
-      width: 30, // Ancho de la imagen del diente
-      height: 90, // Altura de la imagen del diente
-      marginRight: 5, // Espacio entre las imágenes de los dientes
-    },
- 
 });
 
 
 
-function HistorialClinicoPDF({ datos, toothImage }) {
+function HistorialClinicoPDF({ datos, toothImage, toothSelectedUpdated}) {
   if (!datos) {
     return (
       <Document>
@@ -113,26 +105,27 @@ function HistorialClinicoPDF({ datos, toothImage }) {
           <Text style={styles.label}>Observaciones Lengua: <Text style={styles.value}> {datos.observationsTongue}</Text></Text>
           <Text style={styles.label}>Coloración Paladar: <Text style={styles.value}>{datos.palateColoring}</Text></Text>
           <Text style={styles.label}>Observaciones paladar: <Text style={styles.value}>{datos.observationsPalate}</Text></Text>
-
           <Text style={styles.title}>Dientes seleccionados</Text>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-            {datos.toothSelected && datos.toothSelected.map((tooth) => (
+            {/* Renderiza las imágenes de los dientes seleccionados */}
+            {datos.toothSelected.map((tooth) => (
               <View key={tooth.numero} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
-
-                
+                {/* Muestra la imagen del diente */}
+                {/* <Image style={styles.toothImage} src={toothImages[tooth.numero]} /> */}
+                {/* Muestra el número o nombre del diente */}
                 <Text style={styles.label}>Numero de diente: <Text style={styles.value}>{tooth.numero}</Text></Text>
-                <Text style={styles.label}> Nombre del diente:  <Text style={styles.value}>{tooth.nombre}</Text> </Text>
-                {tooth.imagen && <Image src={tooth.imagen} style={styles.toothImage} />}
-                {/* //Image src={dienteSeleccionado.imagen} style={styles.toothImage} */}
+                <Text style={styles.label}>  Nombre de diente: <Text style={styles.value}>{tooth.nombre}</Text></Text>
               </View>
             ))}
           </View>
         </View>
-      
       </Page>
     </Document>
   );
 }
+
+
+
 
 export default HistorialClinicoPDF;
 
