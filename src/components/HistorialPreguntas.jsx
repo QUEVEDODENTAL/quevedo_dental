@@ -605,19 +605,16 @@ const Tooth = ({ number, src, isSelected, onClick }) => (
         <HistorialClinicoPDF datos={formData} currentDate={currentDate} toothSelectedUpdated= {{toothSelected}} toothImage={toothImage} />
         </PDFViewer>
 
-        <div className="flex flex-col items-center justify-center h-screen w-full text-base my-5">
+        <div className="items-center justify-center text-base py-3">
         <PDFDownloadLink document={<HistorialClinicoPDF datos={formData} currentDate={currentDate} toothSelectedUpdated= {{toothSelected}} toothImage={toothImage} />} fileName="historial_clinico.pdf">
       {({ loading }) => (
-        <button disabled={loading} className="mb-2 w-full px-24 py-2 min-w-[50%] md:min-w-[200px] bg-secondary-button text-white rounded hover:bg-secondary-dash hover:text-primary-white transition-colors duration-300">
+        <button disabled={loading} className=" w-full px-24 py-2 min-w-[50%] md:min-w-[200px] bg-secondary-button text-white rounded hover:bg-secondary-dash hover:text-primary-white transition-colors duration-300">
           <FaPrint className="inline mr-2" /> Descargar PDF
         </button>
       )}
     </PDFDownloadLink>
   </div>
-        <button onClick={() => setShowForm(true)}className=' p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300'>Regresar</button> 
-        
-        
-     
+        <button onClick={() => setShowForm(true)}className='p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300 w-full'>Regresar</button> 
       </div>
     )}
   </div>
