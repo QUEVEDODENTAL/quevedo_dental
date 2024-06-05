@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
   page: {
@@ -31,33 +31,14 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginBottom: 5,
   },
-  table: {
-    display: "table",
-    width: "auto",
-    marginTop: 20,
-  },
-  tableRow: {
-    flexDirection: "row",
-  },
-  tableCol: {
-    width: "25%",
-    borderStyle: "solid",
-    borderColor: "#000",
-    borderWidth: 1,
-    padding: 5,
-  },
-  tableCellHeader: {
-    fontSize: 12,
-    fontWeight: "bold",
-  },
-  tableCell: {
-    fontSize: 12,
+  toothImage: {
+    width: 50, // Ajusta el ancho de la imagen según sea necesario
+    height: 50, // Ajusta la altura de la imagen según sea necesario
+    marginRight: 5, // Agrega margen derecho entre la imagen y el texto
   },
 });
 
-
-
-function HistorialClinicoPDF({ datos, toothImage, toothSelectedUpdated}) {
+function HistorialClinicoPDF({ datos, toothImages }) {
   if (!datos) {
     return (
       <Document>
@@ -69,7 +50,6 @@ function HistorialClinicoPDF({ datos, toothImage, toothSelectedUpdated}) {
       </Document>
     );
   }
-
 
   return (
     <Document download="historial_clinico.pdf">
@@ -92,7 +72,6 @@ function HistorialClinicoPDF({ datos, toothImage, toothSelectedUpdated}) {
         <View style={styles.section}>
           <Text style={styles.title}>Consulta y Antecedentes</Text>
           <Text style={styles.label}>Fecha: <Text style={styles.value}>{datos.currentDate ? new Date(datos.currentDate).toLocaleDateString() : 'Fecha no disponible'}</Text></Text>
-
           <Text style={styles.label}>Enfermedades: {datos.diseases.length > 0 ? datos.diseases.join(', ') : 'No hay enfermedades registradas'}</Text>
         </View>
         
@@ -110,12 +89,15 @@ function HistorialClinicoPDF({ datos, toothImage, toothSelectedUpdated}) {
             {/* Renderiza las imágenes de los dientes seleccionados */}
             {datos.toothSelected.map((tooth) => (
               <View key={tooth.numero} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
-                {/* Muestra la imagen del diente */}
-                {/* <Image style={styles.toothImage} src={toothImages[tooth.numero]} /> */}
-                {/* Muestra el número o nombre del diente */}
-                <Text style={styles.label}>Numero de diente: <Text style={styles.value}>{tooth.numero}</Text></Text>
-                <Text style={styles.label}>  Nombre de diente: <Text style={styles.value}>{tooth.nombre}</Text></Text>
-              </View>
+              {/* Muestra la imagen del diente si toothImages y tooth.numero están definidos */}
+              {toothImages && tooth.numero && (
+                <Image style={styles.toothImage} src={toothImages[tooth.numero]} />
+              )}
+              {/* Muestra el número o nombre del diente */}
+              <Text style={styles.label}>Numero de diente: <Text style={styles.value}>{tooth.numero}</Text></Text>
+              <Text style={styles.label}>  Nombre de diente: <Text style={styles.value}>{tooth.nombre}</Text></Text>
+            </View>
+            
             ))}
           </View>
         </View>
@@ -124,8 +106,4 @@ function HistorialClinicoPDF({ datos, toothImage, toothSelectedUpdated}) {
   );
 }
 
-
-
-
 export default HistorialClinicoPDF;
-
