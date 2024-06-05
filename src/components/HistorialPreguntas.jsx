@@ -271,29 +271,28 @@ const handleSubmit = (event) => {
   const toggleToothSelected = (numeroDiente) => {
     // Verifica si el número de diente está en el array de dientes seleccionados
     const index = toothSelected.indexOf(numeroDiente);
+    let updatedToothSelected;
+  
     if (index === -1) {
       // Si no está seleccionado, agrégalo al array
-      const updatedToothSelected = [...toothSelected, numeroDiente];
-      const updatedToothData = updatedToothSelected.map(numero => ({
-        numero: numero,
-        nombre: nameesTooth[numero],
-        imagen: teeth.find(tooth => tooth.number === numero).src// Busca la ruta de la imagen en el array teeth
-      }));
-      setToothSelected(updatedToothSelected);
-      setToothImage(updatedToothData);
+      updatedToothSelected = [...toothSelected, numeroDiente];
     } else {
       // Si ya está seleccionado, elimínalo del array
-      const newToothSelected = [...toothSelected];
-      newToothSelected.splice(index, 1);
-      const updatedToothData = newToothSelected.map(numero => ({
-        numero: numero,
-        nombre: nameesTooth[numero],
-        imagen: teeth.find(tooth => tooth.number === numero).src // Busca la ruta de la imagen en el array teeth
-      }));
-      setToothSelected(newToothSelected);
-      setToothImage(updatedToothData);
+      updatedToothSelected = [...toothSelected];
+      updatedToothSelected.splice(index, 1);
     }
+  
+    const updatedToothData = updatedToothSelected.map(numero => ({
+      numero: numero,
+      nombre: nameesTooth[numero],
+      imagen: teeth.find(tooth => tooth.number === numero).src
+    }));
+  
+    setToothSelected(updatedToothSelected);
+    setToothImage(updatedToothData);
   };
+  
+  
   
 
 
@@ -303,27 +302,6 @@ const handleSubmit = (event) => {
   const handleOcupationChange = (event) => {
     setocupationSelected(event.target.value);
   };
-  
-
-  // const generateAndDownloadPDF = (data) => {
-  //   // Renderiza el PDF con los datos proporcionados
-  //   const pdfDoc = <HistorialClinicoPDF datos={data} currentDate={currentDate} toothSelectedUpdated={{ toothSelected }} />;
-  
-  //   // Convierte el PDF a un Blob
-  //   pdfDoc.toBlob().then(blob => {
-  //     // Descarga automáticamente el Blob como un archivo PDF
-  //     saveAs(blob, 'historial_clinico.pdf');
-  //   });
-  // };
-
-  // // Función para guardar el PDF
-  // const handleSavePDF = () => {
-  //   // Renderizar el PDF
-  //   const pdfBlob = HistorialClinicoPDF.renderAsBlob({ datos: formData, currentDate, toothSelected });
-
-  //   // Guardar el Blob como archivo PDF
-  //   saveAs(pdfBlob, 'historial_clinico.pdf');
-  // };
   
 // Dentro de la función renderColoracionLenguaOptions()
 const renderColorationTongueOptions = () => {
@@ -397,7 +375,7 @@ const teeth = [
 
 const Tooth = ({ number, src, isSelected, onClick }) => (
   <div 
-    className={`flex flex-col items-center shadow-md cursor-pointer hover:bg-secondary-font p-2 rounded transition-colors duration-300 ${isSelected ? 'bg-blue-200' : ''}`}
+    className={`flex flex-col items-center shadow-md cursor-pointer p-2 rounded hover:bg-secondary-font hover:text-secondary-dash2 transition-colors duration-300 ${isSelected ? 'bg-secondary-font text-primary-white' : 'bg-primary-white'}`}
     onClick={onClick}
   >
     <div className="text-m">{number}</div>
@@ -405,6 +383,8 @@ const Tooth = ({ number, src, isSelected, onClick }) => (
     {isSelected && <Image width={30} height={90} src={src} alt={`Diente ${number} seleccionado`} />}
   </div>
 );
+
+
 
 // Dentro del componente principal donde renderizas los dientes
 
