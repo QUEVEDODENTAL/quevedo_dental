@@ -196,7 +196,6 @@ const handleSubmit = (event) => {
     // Generar el PDF
     setShowForm(false);
     setFormData(newData);
-   // generateAndDownloadPDF(newData); 
   } else {
     alert("Por favor complete todos los campos obligatorios.");
   }
@@ -268,6 +267,7 @@ const handleSubmit = (event) => {
   const prevPage = () => {
     setCurrentPage(currentPage - 1);
   };
+  
   const toggleToothSelected = (numeroDiente) => {
     // Verifica si el número de diente está en el array de dientes seleccionados
     const index = toothSelected.indexOf(numeroDiente);
@@ -375,7 +375,7 @@ const teeth = [
 
 const Tooth = ({ number, src, isSelected, onClick }) => (
   <div 
-    className={`flex flex-col items-center shadow-md cursor-pointer p-2 rounded hover:bg-secondary-font hover:text-secondary-dash2 transition-colors duration-300 ${isSelected ? 'bg-secondary-font text-primary-white' : 'bg-primary-white'}`}
+    className={`flex flex-col items-center shadow-md cursor-pointer p-2 rounded transition-colors duration-300 ${isSelected ? 'bg-secondary-font text-primary-white' : 'bg-primary-white'} ${isSelected ? 'text-primary-white' : 'hover:bg-secondary-font hover:text-secondary-dash2'}`}
     onClick={onClick}
   >
     <div className="text-m">{number}</div>
@@ -385,9 +385,7 @@ const Tooth = ({ number, src, isSelected, onClick }) => (
 );
 
 
-
 // Dentro del componente principal donde renderizas los dientes
-
 <div className="flex justify-center space-x-2">
   {teeth.map((tooth, index) => (
     <Tooth 
@@ -395,13 +393,12 @@ const Tooth = ({ number, src, isSelected, onClick }) => (
       number={tooth.number} 
       src={tooth.src} 
       isSelected={toothSelected.includes(tooth.number)} 
-      onClick={() => toggleToothSelected(tooth.number)} 
+      onClick={() => toggleToothSelected(tooth.number)}
     />
   ))}
 </div>
 
 
-  
     return (
       <div className="mb-4">
 
