@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { PDFDownloadLink, PDFViewer,} from '@react-pdf/renderer';
 import HistorialClinicoPDF from './PdfHistorial';
 import { FaPrint } from 'react-icons/fa';
+import ReactSwitch from 'react-switch';
 
 function HistorialClinicoForm() {
   const [name, setName] = useState('');
@@ -196,6 +197,7 @@ const handleSubmit = (event) => {
     // Generar el PDF
     setShowForm(false);
     setFormData(newData);
+    console.log('Form Data:', formData);
   } else {
     alert("Por favor complete todos los campos obligatorios.");
   }
@@ -212,51 +214,27 @@ const handleSubmit = (event) => {
  
   }
   const handleEnfermedadClick = (enfermedad) => {
-    // Verificar si la enfermedad ya está seleccionada
-    const isSelected = selectedDiseases.includes(enfermedad);
-    let updatedDiseases = [];
   
-    if (isSelected) {
-      // Si la enfermedad ya está seleccionada, la eliminamos de la lista
-      updatedDiseases = selectedDiseases.filter((e) => e !== enfermedad);
-    } else {
-      // Si la enfermedad no está seleccionada, la agregamos a la lista
-      updatedDiseases = [...selectedDiseases, enfermedad];
-    }
+      const updatedDiseases = selectedDiseases.includes(enfermedad)
+        ? selectedDiseases.filter((disease) => disease !== enfermedad)
+        : [...selectedDiseases, enfermedad];
+      setSelectedDiseases(updatedDiseases);
+    };
   
-    // Actualizamos el estado con la lista de enfermedades seleccionadas
-    setSelectedDiseases(updatedDiseases);
-    // Actualizamos el estado formData con las enfermedades seleccionadas
-    handleFormDataChange('diseases', updatedDiseases);
-  };
-  
-  
-  const renderEnfermedadesButtons = () => {
-    return (
-      <div className="flex flex-wrap">
-        {enfermedadesList.map((enfermedad) => (
-          <div key={enfermedad.name} className="mr-4 mb-4">
-            <button
-              className={`rounded-md p-2 w-48 text-center cursor-pointer ${
-                selectedDiseases.includes(enfermedad.name)
-                  ? 'bg-blue-500 text-white border-blue-500'
-                  : 'bg-gray-200 text-gray-700 border-gray-300'
-              } focus:outline-none`}
-              onClick={() => handleEnfermedadClick(enfermedad.name)}
-            >
-              {enfermedad.label}
-              <input
-                type="checkbox"
-                style={{ display: 'none' }}
-                checked={selectedDiseases.includes(enfermedad.name)}
-                onChange={() => handleEnfermedadClick(enfermedad.name)}
-              />
-            </button>
-          </div>
-        ))}
-      </div>
-    );
-  };
+    const renderDiseasesOptions = () => {
+      return enfermedadesList.map((enfermedad, index) => (
+        <div key={index} className="flex items-center mb-2">
+          <label htmlFor={enfermedad.name} className="mr-2">{enfermedad.label}</label>
+          <ReactSwitch
+            id={enfermedad.name}
+            onChange={() => handleEnfermedadClick(enfermedad.name)}
+            checked={selectedDiseases.includes(enfermedad.name)}
+            offColor="#ccc"
+            onColor="#0d6efd"
+          />
+        </div>
+      ));
+    };
   
   
 
@@ -467,16 +445,14 @@ const Tooth = ({ number, src, isSelected, onClick }) => (
           </fieldset>
   
             <fieldset>
-          <div className="mb-4">
-                <label className="block mb-2 font-bold text-gray-700">Enfermedades:</label>
-                {enfermedadesList.map((enfermedad) => (
-                  <label key={enfermedad.name} className="inline-flex items-center mr-4">
-                    <input type="checkbox" className="form-checkbox" value={enfermedad.name} checked={selectedDiseases.includes(enfermedad.name)} onChange={() => handleEnfermedadClick(enfermedad.name)} />
-                    <span className="ml-2">{enfermedad.label}</span>
-                  </label>
-                ))}
-              </div>
+            <div className="mb-4">
+                  <label className="block text-m font-medium ">Enfermedades:</label>
+                  <div className="grid grid-cols-2 gap-4  ">
+                    {renderDiseasesOptions()}
+                  </div>
+                
           <button type="button" onClick={nextPage} className=' p-2 bg-secondary-card rounded-lg text-primary-white hover:bg-secondary-dash transition-colors duration-300 w-full'>Siguiente</button>
+        </div>
         </fieldset>
       </form>
         )}
