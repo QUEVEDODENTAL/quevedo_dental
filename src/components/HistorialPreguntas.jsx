@@ -124,10 +124,7 @@ optionsColorationTongue =
   [
     "Blanca", "Gris", "Rosa", "Roja", 
   ];
-  const opcionesColoracionLengua = 
-  [
-    "Blanca", "Gris", "Rosa", "Roja", 
-  ];
+ 
   const optionsPalateColoring = [
     "Rosado pálido", "Rojo intenso", "Blanco brillante", "Parduzco oscuro", "Morado oscuro", "Grisáceo o negro"
   ];
@@ -223,14 +220,14 @@ const handleSubmit = (event) => {
   
     const renderDiseasesOptions = () => {
       return enfermedadesList.map((enfermedad, index) => (
-        <div key={index} className="flex items-center mb-2">
+        <div key={index} className="flex items-center justify-between mb-2">
           <label htmlFor={enfermedad.name} className="mr-2">{enfermedad.label}</label>
           <ReactSwitch
             id={enfermedad.name}
             onChange={() => handleEnfermedadClick(enfermedad.name)}
             checked={selectedDiseases.includes(enfermedad.name)}
             offColor="#ccc"
-            onColor="#0d6efd"
+            onColor= ' bg-secondary-card'
           />
         </div>
       ));
