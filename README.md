@@ -1,12 +1,18 @@
 # Manual de Instalacion
-
 Esta documentación proporciona una guía sobre cómo Instalar para gestionar y realizar la migración.
+
 ## Prerrequisitos
 
- * npm 10.5.2 o superior
+ * pnpm 9.2.0 o superior
  * MySQL Product Archives(Crear contraseña)
  * Node
-   
+
+## Instalación de pnpm para ejecucion del proyecto
+
+```
+iwr https://get.pnpm.io/install.ps1 -useb | iex
+```
+
 ## Instalación de Linux en Windows con WSL
 ```
 wsl --install
@@ -38,7 +44,7 @@ npm install
 https://dev.mysql.com/downloads/workbench/
 ```
 
-Una ves instalado mysql hacer el proceso de instalación y se le pedira una contraseña 
+Una ves instalado mysql hacer el proceso de instalación y se le pedira una contraseña.
 
 ## Configuracion de la Base De Datos.
 
@@ -46,7 +52,7 @@ Una ves instalado mysql hacer el proceso de instalación y se le pedira una cont
 
 4. Edita el archivo ´.env´ con los detalles de la base de datos a lo cual modificara la contraseña.
 
-Nota: En donde dice contraseña hay que poner la que creo en mysql
+Nota: Donde dice contraseña hay que poner la que creo en mysql.
 
 ```
 DATABASE_URL="mysql://root:contraseña@localhost:3306/proyecto_salud?schema=public"
@@ -56,9 +62,6 @@ NEXTAUTH_URL="http://localhost:3000/"
 NEXTAUTH_SECRET=TuPalabraSecreta
 `````
 
-## Instalacion de Base De Datos.
-
-
 ## Ejecucion de Migración.
 
 5. Genera y Migra el schema de Base de datos.
@@ -67,8 +70,8 @@ NEXTAUTH_SECRET=TuPalabraSecreta
 npx prisma migrate dev
 npx prisma migrate deploy
 npx prisma generate
-
 ````
+
 ## Modo de uso de Base de Datos
 1. Para ver que se haya ejecutado correctamente ejecutamos el comando.
 ```
@@ -83,13 +86,13 @@ dando click url lo mandara  la página  y despues  dar en  el + en donde  les de
 `````
 ## Ejecuta el proyecto.
 ````
- npm run dev
+ pnpm run dev
 ````
 
 
  Abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento.
 
-## Visualiza  en otro equipo
+## Visualiza en otro equipo
 
 Pero si es en otro equipo donde se está ejecutando abre el cmd de tu equipo y escribe ipconfig, cuando termine de ejecutarse este comando busca un apartado que diga dirección IPv4.
 
