@@ -355,10 +355,6 @@ const Tooth = ({ number, src, isSelected, onClick }) => (
   </div>
 );
 
-
-
-
-
 // Dentro del componente principal donde renderizas los dientes
 <div className="flex justify-center space-x-2">
   {teeth.map((tooth, index) => (
