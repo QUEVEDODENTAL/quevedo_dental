@@ -32,15 +32,18 @@ npm install
 ````
 ## Instalar la programa para crear contraseña para uso .env
 ```
-MySQL Product Archives(https://downloads.mysql.com/archives/community/)
+MySQL Workbench
+````
+[https://downloads.mysql.com/archives/community/](https://dev.mysql.com/downloads/workbench/)
+````
 
-Cuando se Instale despues hacer el proceso de intalacion se pidara   poner una  contraseña  y como esta Configuracion de la Base De Datos se tepide hacer Ejecucion de Migración  los paso que pidiran  que pongas en la terminal
+Una ves instalado mysql hacer el proceso de instalación y se le pedira una contraseña 
 ```
 ## Configuracion de la Base De Datos.
 
 3. Crea un archivo .env
 
-4. Edita el archivo ´.env´ con los detalles de la base de datos.
+4. Edita el archivo ´.env´ con los detalles de la base de datos a lo cual modificara la contraseña.
 
 ```
 DATABASE_URL="mysql://root:contraseña@localhost:3306/proyecto_salud?schema=public"
@@ -49,6 +52,9 @@ NEXTAUTH_URL="http://localhost:3000/"
 
 NEXTAUTH_SECRET=TuPalabraSecreta
 `````
+## Instalacion de Base De Datos.
+
+
 ## Ejecucion de Migración.
 
 5. Genera y Migra el schema de Base de datos.
