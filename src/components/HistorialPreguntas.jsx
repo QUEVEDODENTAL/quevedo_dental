@@ -242,34 +242,6 @@ const handleSubmit = (event) => {
   const prevPage = () => {
     setCurrentPage(currentPage - 1);
   };
-  
-  const toggleToothSelected = (numeroDiente) => {
-    // Verifica si el número de diente está en el array de dientes seleccionados
-    const index = toothSelected.indexOf(numeroDiente);
-    let updatedToothSelected;
-  
-    if (index === -1) {
-      // Si no está seleccionado, agrégalo al array
-      updatedToothSelected = [...toothSelected, numeroDiente];
-    } else {
-      // Si ya está seleccionado, elimínalo del array
-      updatedToothSelected = [...toothSelected];
-      updatedToothSelected.splice(index, 1);
-    }
-  
-    const updatedToothData = updatedToothSelected.map(numero => ({
-      numero: numero,
-      nombre: nameesTooth[numero],
-      imagen: teeth.find(tooth => tooth.number === numero).src
-    }));
-  
-    setToothSelected(updatedToothSelected);
-    setToothImage(updatedToothData);
-  };
-  
-  
-  
-
 
   const handleGumColorationChange = (color) => {
     setGumColoration(color);
@@ -345,6 +317,30 @@ const teeth = [
   { number: 38, src: "/assets/dientes/dentadura-inf-38.svg" },
   // DIENTES INFERIORES
 ];
+
+const toggleToothSelected = (numeroDiente) => {
+  // Verifica si el número de diente está en el array de dientes seleccionados
+  const index = toothSelected.indexOf(numeroDiente);
+  let updatedToothSelected;
+
+  if (index === -1) {
+    // Si no está seleccionado, agrégalo al array
+    updatedToothSelected = [...toothSelected, numeroDiente];
+  } else {
+    // Si ya está seleccionado, elimínalo del array
+    updatedToothSelected = [...toothSelected];
+    updatedToothSelected.splice(index, 1);
+  }
+
+  const updatedToothData = updatedToothSelected.map(numero => ({
+    numero: numero,
+    nombre: nameesTooth[numero],
+    imagen: teeth.find(tooth => tooth.number === numero).src
+  }));
+
+  setToothSelected(updatedToothSelected);
+  setToothImage(updatedToothData);
+};
 
 // Dentro del componente Tooth
 
