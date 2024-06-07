@@ -227,7 +227,7 @@ const handleSubmit = (event) => {
             onChange={() => handleEnfermedadClick(enfermedad.name)}
             checked={selectedDiseases.includes(enfermedad.name)}
             offColor="#ccc"
-            onColor= ' bg-secondary-card'
+            onColor= '#0068FF'
           />
         </div>
       ));
@@ -350,7 +350,7 @@ const teeth = [
 
 const Tooth = ({ number, src, isSelected, onClick }) => (
   <div 
-    className={`flex flex-col items-center shadow-md cursor-pointer p-2 rounded transition-colors duration-300 ${isSelected ? 'bg-secondary-font text-primary-white' : 'bg-primary-white'} ${isSelected ? 'text-primary-white' : 'hover:bg-secondary-font hover:text-secondary-dash2'}`}
+    className={`flex flex-col items-center shadow-md cursor-pointer p-2 rounded hover:text-primary-seccion hover:bg-secondary-button ${isSelected ? ' bg-secondary-button text-primary-white' : ' bg-primary-seccion'}`}
     onClick={onClick}
   >
     <div className="text-m">{number}</div>
@@ -358,6 +358,9 @@ const Tooth = ({ number, src, isSelected, onClick }) => (
     {isSelected && <Image width={30} height={90} src={src} alt={`Diente ${number} seleccionado`} />}
   </div>
 );
+
+
+
 
 
 // Dentro del componente principal donde renderizas los dientes
