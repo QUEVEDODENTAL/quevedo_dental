@@ -47,10 +47,10 @@ const DashInicio = () => {
         </Link>
       </div>
       <div className="bg-secondary-icon p-4 text-center rounded-lg hidden md:block transition-transform duration-300 hover:scale-105 col-span-2 relative h-48 flex flex-col justify-center items-center">
-        <Link href="/dashboard/cuestionario">
+        <Link href="/dashboard/historial">
           <div>
             <FaIdCardAlt className="mt-2 ml-2" size={30} />
-            <h2 className="text-xl font-bold mb-2">Cuestionario</h2>
+            <h2 className="text-xl font-bold mb-2">Historial</h2>
             <p>Realizar cuestionario</p>
             <p>Para el paciente</p>
           </div>
