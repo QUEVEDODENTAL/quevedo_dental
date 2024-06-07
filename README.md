@@ -4,10 +4,10 @@ Esta documentación proporciona una guía sobre cómo Instalar para gestionar y 
 ## Prerrequisitos
 
  * npm 10.5.2 o superior
- *  MySQL Product Archives(Crear contraseña)
+ * MySQL Product Archives(Crear contraseña)
  * Node
    
-##Instalación de Linux en Windows con WSL
+## Instalación de Linux en Windows con WSL
 ```
 wsl --install
 ```
@@ -21,6 +21,7 @@ git clone (https://github.com/QUEVEDODENTAL/quevedo_dental.git)
 ```
 
 2. Navega hasta el directorio del proyecto:
+   
 ```
 cd quevedo_dental
 ```
@@ -28,22 +29,24 @@ cd quevedo_dental
 3. Instala las dependencias del proyecto:
 ```
 npm install
-
-````
-## Instalar la programa para crear contraseña para uso .env
 ```
-MySQL Workbench
-````
-[https://downloads.mysql.com/archives/community/](https://dev.mysql.com/downloads/workbench/)
-````
+
+## Instalacion de Mysql Workbench
+1. Dirigirse al link anexado para poder descargarlo
+   
+```
+https://dev.mysql.com/downloads/workbench/
+```
 
 Una ves instalado mysql hacer el proceso de instalación y se le pedira una contraseña 
-```
+
 ## Configuracion de la Base De Datos.
 
 3. Crea un archivo .env
 
 4. Edita el archivo ´.env´ con los detalles de la base de datos a lo cual modificara la contraseña.
+
+Nota: En donde dice contraseña hay que poner la que creo en mysql
 
 ```
 DATABASE_URL="mysql://root:contraseña@localhost:3306/proyecto_salud?schema=public"
@@ -52,6 +55,7 @@ NEXTAUTH_URL="http://localhost:3000/"
 
 NEXTAUTH_SECRET=TuPalabraSecreta
 `````
+
 ## Instalacion de Base De Datos.
 
 
