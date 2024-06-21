@@ -24,14 +24,14 @@ const RegistrarPage = () => {
     };
 
     return (
-        <div className="mx-1 my-1 p-4 border-10 custom-shadowa rounded-[10px] lg:w-4/5 md:w-4/4">
-            <h1 className='text-3xl font-bold flex justify-center mb-[20px]'>Registro</h1>
+        <div className="mx-1 my-1 p-4 border-10 custom-shadowa rounded-[10px] lg:w-4/5 md:w-4/4 bg-primary-info0">
+            <h1 className='text-3xl font-bold flex justify-center mb-[20px]'>Formulario de Inscripción para Doctores y Empleados</h1>
             <div className="flex justify-around">
                 <div style={{ flex: 1 }}>
                     <button
                         className={`font-semibold text-sm text-secondary-font hover:bg-secondary-font hover:text-primary-white ${selectedOption === 'doctor' ? 'bg-secondary-font text-white' : ''}`}
                         onClick={() => handleOptionSelect('doctor')}
-                        style={{ width: '100%', padding: '10px', borderRadius: '10px', textAlign: 'center', marginBottom: '10px', transition: 'background-color 0.3s' }}
+                        style={{ width: '100%', padding: '10px', borderRadius: '10px', textAlign: 'center', marginBottom: '10px', transition: 'background-color 0.3s', color: selectedOption === 'doctor' ? '#fff' : '#1A71AB' }}
                     >
                         Doctor
                     </button>
@@ -40,7 +40,7 @@ const RegistrarPage = () => {
                     <button
                         className={`font-semibold text-sm text-secondary-font hover:bg-secondary-font hover:text-primary-white ${selectedOption === 'empleado' ? 'bg-secondary-font text-white' : ''}`}
                         onClick={() => handleOptionSelect('empleado')}
-                        style={{ width: '100%', padding: '10px', borderRadius: '10px', textAlign: 'center', marginBottom: '10px', transition: 'background-color 0.3s' }}
+                        style={{ width: '100%', padding: '10px', borderRadius: '10px', textAlign: 'center', marginBottom: '10px', transition: 'background-color 0.3s', color: selectedOption === 'empleado' ? '#fff' : '#1A71AB' }}
                     >
                         Empleado
                     </button>
@@ -226,7 +226,7 @@ const RegistrarPage = () => {
                             </div>
                         </>
                     )}
-                    <div className="mt-4">
+                    <div className="flex justify-center mt-4">
                         <button type="submit" name="registrar" className="text-[1rem] p-[10px] rounded-[10px] scale-90 bg-secondary-font text-primary-seccion cursor-pointer text-white hover:bg-secondary-font hover:text-primary-seccion hover:scale-100 transition-transform duration-300">
                             Registrar
                         </button>

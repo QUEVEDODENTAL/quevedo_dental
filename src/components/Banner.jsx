@@ -15,9 +15,10 @@ const Banner = () => {
             </h1>
             
             <p className="md:text-base lg:text-lg font-light sm:px-2">
-              Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-              archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar
-              de las industrias desde el año 1500
+            Nos enorgullecemos de utilizar la tecnología más avanzada y 
+            las técnicas más actualizadas para asegurarnos de que cada uno de nuestros pacientes reciba el mejor cuidado posible. 
+            Nuestro objetivo es hacer que su visita sea lo más cómoda y agradable posible, 
+            para que siempre se sienta bienvenido y cuidado.
             </p>
           </div>
           <div className="w-64 md:w-auto mt-4 md:mt-0 md:ml-12 md:pl-10 flex justify-center">

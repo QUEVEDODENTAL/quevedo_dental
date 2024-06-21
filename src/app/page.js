@@ -15,7 +15,7 @@ export default function Home() {
       <section id='servicios' className="flex flex-col items-center min-w-full justify-between bg-primary-main">
         <CardServices />
       </section>
-      <section id='sobre-nosotros' className="flex flex-col items-center min-w-full justify-between bg-primary-seccionary">
+      <section id='sobre-nosotros' className="flex flex-col items-center min-w-full justify-between">
         <SobreNosotros />
       </section>
       <section id='nuestro-equipo' className="flex flex-col items-center min-w-full justify-between bg-primary-seccion">
