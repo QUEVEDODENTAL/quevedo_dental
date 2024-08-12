@@ -48,9 +48,9 @@ Una ves instalado mysql hacer el proceso de instalación y se le pedira una cont
 
 ## Configuracion de la Base De Datos.
 
-3. Crea un archivo .env
+1. Crea un archivo .env
 
-4. Edita el archivo ´.env´ con los detalles de la base de datos a lo cual modificara la contraseña.
+2. Edita el archivo ´.env´ con los detalles de la base de datos a lo cual modificara la contraseña.
 
 Nota 1: Donde dice contraseña hay que poner la que creo en mysql.
 Nota 2: El numero 3306 es el puerto de la base datos.
@@ -65,7 +65,7 @@ NEXTAUTH_SECRET=TuPalabraSecreta
 
 ## Ejecucion de Migración.
 
-5. Genera y Migra el schema de Base de datos.
+Genera y Migra el schema de Base de datos.
 
 ````
 npx prisma migrate dev
