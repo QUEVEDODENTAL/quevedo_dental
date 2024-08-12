@@ -5,7 +5,7 @@ Esta documentación proporciona una guía sobre cómo Instalar para gestionar y 
 
  * pnpm 9.2.0 o superior
  * MySQL Product Archives(Crear contraseña)
- * Node
+ * NodeJs 20.13.0 o superior 
 
 ## Instalación de pnpm para ejecucion del proyecto
 
@@ -52,7 +52,8 @@ Una ves instalado mysql hacer el proceso de instalación y se le pedira una cont
 
 4. Edita el archivo ´.env´ con los detalles de la base de datos a lo cual modificara la contraseña.
 
-Nota: Donde dice contraseña hay que poner la que creo en mysql.
+Nota 1: Donde dice contraseña hay que poner la que creo en mysql.
+Nota 2: El numero 3306 es el puerto de la base datos.
 
 ```
 DATABASE_URL="mysql://root:contraseña@localhost:3306/proyecto_salud?schema=public"
@@ -77,30 +78,26 @@ npx prisma generate
 ```
 npx prisma studio
 ```
-
 despues de poner  comando  le aparecerá  http://localhost:5555 
 
-dando click url lo mandara  la página  y despues  dar en  el + en donde  les desplegara  OPEN MODEL  debera buscar usuario le abrira  paguina en donde  tendra que poner un  correo y contraseña  y despues le da en aguardar   
+dando click url lo mandara  la página  y despues  dar en  el + en donde  les desplegara  OPEN MODEL  debera buscar usuario le abrira una pagina en donde tendra que poner un correo y contraseña y despues le da en aguardar
 
-````
-`````
 ## Ejecuta el proyecto.
+Para poder ejecutar el proyecto pondremos el comando anexo en la terminal para poder vizualizarlo.
+
 ````
  pnpm run dev
 ````
-
-
- Abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento.
+ 
+Aparecera un link ese link hay que copiarlo y digirirnos a nuestro navegador y pondremos el link el cual sera  http://localhost:3000 para ver la aplicación en funcionamiento.
 
 ## Visualiza en otro equipo
 
-Pero si es en otro equipo donde se está ejecutando abre el cmd de tu equipo y escribe ipconfig, cuando termine de ejecutarse este comando busca un apartado que diga dirección IPv4.
+Pero si es en otro equipo en donde se está ejecutando tendremos que abrir el cmd de tu equipo y escribir  ipconfig, cuando termine de ejecutarse este comando busca un apartado que diga dirección IPv4.
 
 ```
 ipconfig
 ```
+
 Dada la dirección IPv4 que te de te diriges a tu navegador y pones
 http://140.10.6.142:3000
-
-
-
